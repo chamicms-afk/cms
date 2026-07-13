@@ -492,12 +492,42 @@
                 <span class="arrow-indicator">▼</span>
             </div>
             <div class="card-content">
-                <ul>
-                    <li>Mobile Reload</li>
-                    <li>Recharge Cards</li>
-                    <li>New SIM Connections</li>
-                    <li>Mobile Accessories</li>
-                </ul>
+                <button onclick="toggleSection('mobileReloadBox');" class="serviceBtn">📲 MOBILE RELOAD</button>
+                <div id="mobileReloadBox" class="sub-box">
+                    <b>Available Networks</b>
+                    <ul>
+                        <li>Dialog / Mobitel / Hutch / Airtel</li>
+                        <li>Instant Reload & Online Recharges available</li>
+                    </ul>
+                </div>
+
+                <button onclick="toggleSection('rechargeCardsBox');" class="serviceBtn">💳 RECHARGE CARDS</button>
+                <div id="rechargeCardsBox" class="sub-box">
+                    <b>Card Types</b>
+                    <ul>
+                        <li>Rs. 50, Rs. 100, Rs. 200, Rs. 500 & More</li>
+                        <li>Data Packs & Voice Router Recharges</li>
+                    </ul>
+                </div>
+
+                <button onclick="toggleSection('newSimBox');" class="serviceBtn">🆔 NEW SIM CONNECTIONS</button>
+                <div id="newSimBox" class="sub-box">
+                    <b>New SIM Activation</b>
+                    <ul>
+                        <li>Dialog / Mobitel / Hutch / Airtel SIMs</li>
+                        <li><span style="color:red;">*</span> Please bring your original NIC (ජාතික හැඳුනුම්පත)</li>
+                    </ul>
+                </div>
+
+                <button onclick="toggleSection('mobileAccessoriesBox');" class="serviceBtn">🎧 MOBILE ACCESSORIES</button>
+                <div id="mobileAccessoriesBox" class="sub-box">
+                    <b>Available Items</b>
+                    <ul>
+                        <li>Phone Chargers & USB Cables</li>
+                        <li>Handsfree / Earphones / Bluetooth Devices</li>
+                        <li>Tempered Glass & Back Covers</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
