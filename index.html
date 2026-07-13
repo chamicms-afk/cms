@@ -719,29 +719,26 @@
             card.classList.toggle("active");
         }
 
-        function toggleSection(boxId) {
-            var x = document.getElementById(boxId);
-            x.classList.toggle("open");
-        }
+function toggleCard(element) {
+            let currentCard = element.parentElement;
+            let allCards = document.querySelectorAll(".container .card");
 
-        // --- යාවත්කාලීන කළ සුපිරි Search විශේෂාංගය (Auto Expand & Scroll) ---
-        function searchServices() {
-            let input = document.getElementById("searchInput").value.toLowerCase().trim();
-            let cards = document.querySelectorAll(".container .card");
-            let subBoxes = document.querySelectorAll(".sub-box");
-
-            if (input === "") {
-                // සර්ච් එක හිස් නම් හැම කාඩ් එකක්ම පෙන්වා active/open ස්ටේට්ස් රීසෙට් කරයි
-                cards.forEach(card => {
-                    card.style.display = "block";
+            // දැනට ඇරිලා තියෙන අනෙක් හැම කාඩ් එකක්ම වැසීම
+            allCards.forEach(card => {
+                if (card !== currentCard) {
                     card.classList.remove("active");
-                });
-                subBoxes.forEach(box => {
-                    box.classList.remove("open");
-                });
-                return;
-            }
+                    
+                    // ඒ වැහෙන කාඩ් ඇතුළේ open කරපු sub-boxes (උදා: photo copy) තිබ්බොත් ඒවත් close කරයි
+                    let subBoxes = card.querySelectorAll(".sub-box");
+                    subBoxes.forEach(box => {
+                        box.classList.remove("open");
+                    });
+                }
+            });
 
+            // ක්ලික් කරපු කාඩ් එක පමණක් open හෝ close කිරීම
+            currentCard.classList.toggle("active");
+        }
             let firstMatch = null;
 
             cards.forEach(card => {
