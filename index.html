@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Chami Multi Shop (CMS)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0b4ea2, #c0c0c0, #ffffff);
+            padding: 25px 15px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,.2);
+        }
+
+        .logo {
+            width: 150px;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 44px;
+            font-weight: bold;
+            color: #003366;
+            text-align: center;
+            word-wrap: break-word;
+        }
+
+        .welcome-text {
+            margin-top: 10px;
+            font-size: 20px;
+            font-style: italic;
+            color: #003366;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive adjustments for Mobile Screen */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 26px; /* Prevents text breaking into 3 lines on mobile */
+            }
+            .welcome-text {
+                font-size: 16px;
+            }
+            .header {
+                padding: 15px 10px;
+            }
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #0b4ea2;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* --- CARD STYLES --- */
+        .card {
+            background: #fff;
+            margin-bottom: 20px;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,.05);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(11, 78, 162, 0.15);
+        }
+
+        .card-header {
+            background: #0b4ea2;
+            color: white;
+            padding: 16px 20px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 15px;
+            transition: background 0.3s;
+        }
+        
+        .card-header:hover {
+            background: #083b7a;
+        }
+
+        .card-icon-3d {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+            font-size: 22px;
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.3), 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .card-icon-3d img {
+            width: 26px;
+            height: 26px;
+            object-fit: contain;
+        }
+
+        .arrow-indicator {
+            margin-left: auto;
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        .card.active .arrow-indicator {
+            transform: rotate(-180deg);
+        }
+
+        .card-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 20px;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+            background: #ffffff;
+            opacity: 0;
+        }
+
+        .card.active .card-content {
+            max-height: 2000px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            opacity: 1;
+            transition: max-height 0.4s cubic-bezier(0.85, 0, 0.15, 1), padding 0.3s ease, opacity 0.3s ease;
+        }
+
+        .card-content ul:not(.payment-list) {
+            padding-left: 20px;
+        }
+
+        .card-content li:not(.payment-item) {
+            margin: 8px 0;
+        }
+
+        /* --- PAYMENT METHOD GRID DESIGN --- */
+        .payment-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            list-style: none !important;
+            padding-left: 0 !important;
+        }
+        
+        .payment-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            font-weight: bold;
+            color: #334155;
+            transition: all 0.2s ease;
+        }
+
+        .payment-img {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+        }
+
+        @media (max-width: 650px) {
+            .payment-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* --- CONTACT FORM STYLES --- */
+        .contact-form {
+            padding: 10px 5px;
+            background: #ffffff;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            color: #374151;
+            transition: border-color 0.3s;
+            background: #f9fafb;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #0b4ea2;
+            background: #ffffff;
+        }
+        .submit-btn {
+            width: 100%;
+            background: #0b4ea2;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .submit-btn:hover {
+            background: #083b7a;
+        }
+
+        /* --- OTHER BUTTONS & ELEMENTS --- */
+        .serviceBtn {
+            display: block;
+            width: 100%;
+            background: #f0f4f8;
+            border: 1px solid #0b4ea2;
+            color: #0b4ea2;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: left;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .serviceBtn:hover {
+            background: #0b4ea2;
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .sub-box {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            padding-left: 10px;
+            border-left: 3px solid #0b4ea2;
+            margin-bottom: 5px;
+            transition: all 0.3s ease-out;
+        }
+        .sub-box.open {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .copyBtn {
+            background: #e0e0e0;
+            border: 1px solid #777;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .contact-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .contact-col {
+            flex: 1;
+            min-width: 250px;
+        }
+        .contact {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        .icon:hover {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 25px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+        .whatsapp-float img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0,0,0,.3);
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        .slider {
+            width: 100%;
+            max-width: 1000px;
+            margin: 15px auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.2);
+            position: relative;
+        }
+        .slider img {
+            width: 100%;
+            display: none;
+        }
+        .slider img.active {
+            display: block;
+        }
+
+        .service-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 15px;
+            background: #fff;
+            border-radius: 15px;
+            margin: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.1);
+        }
+        .service-item {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            color: #003366;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img class="logo" src="https://lh3.googleusercontent.com/d/1qY4_78N7PLEzWwsPowtfyy848HzVUnRi" alt="CMS Logo">
+        <div class="title">Welcome to Chami Multi Shop (CMS)</div>
+        <p class="welcome-text">Beyond the Page, Beyond the Connection.</p>
+    </div>
+
+    <div class="slider">
+        <img class="slide active" src="https://lh3.googleusercontent.com/d/1bXRfWw2bRySVygliwt36cumA5MH_3OT7" alt="Slide 1">
+        <img class="slide" src="https://lh3.googleusercontent.com/d/1N5Fn1GWoo-pk85kD8GMj3aroV_DCT0iT" alt="Slide 2">
+        <img class="slide" src="https://lh3.googleusercontent.com/d/1lLBJEdVMpY6llYbt9ftwe04duzJtFVg4" alt="Slide 3">
+        <img class="slide" src="https://lh3.googleusercontent.com/d/1w4w9hAtK1Db0c0wLgAWTSyTrmcWm4pG5" alt="Slide 4">
+    </div>
+
+    <div class="service-row">
+        <div class="service-item">📄<br>Photo Copy</div>
+        <div class="service-item">🖨<br>Print Out</div>
+        <div class="service-item">📱<br>Reload</div>
+        <div class="service-item">🖊<br>Stationery</div>
+        <div class="service-item">🌐<br>Online</div>
+    </div>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search Services (e.g., photo copy)..." onkeyup="searchServices()">
+    </div>
+
+    <div class="container">
+
+        <!-- Document Services -->
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">
+                <span class="card-icon-3d">📄</span> Document Services
+                <span class="arrow-indicator">▼</span>
+            </div>
+            <div class="card-content">
+                <button onclick="toggleSection('photoCopyBox');" class="serviceBtn">📋 PHOTO COPY</button>
+                <div id="photoCopyBox" class="sub-box">
+                    <b>A4 Paper</b>
+                    <ul>
+                        <li>Single Side - Rs. 10.00</li>
+                        <li>Double Side - Rs. 15.00</li>
+                    </ul>
+                    <b>A3 Paper</b>
+                    <ul>
+                        <li>Single Side - Rs. 20.00</li>
+                        <li>Double Side - Rs. 30.00</li>
+                    </ul>
+                </div>
+
+                <button onclick="toggleSection('printOutBox')" class="serviceBtn">🖨 PRINT OUT</button>
+                <div id="printOutBox" class="sub-box">
+                    <b>A4 B/W</b>
+                    <ul>
+                        <li>Single Side - Rs. 10.00</li>
+                        <li>Double Side - Rs. 15.00</li>
+                    </ul>
+                    <b>A4 Colour</b>
+                    <ul>
+                        <li>Single Side - Rs. 30 - 80</li>
+                        <li>Double Side - Rs. 50 - 120</li>
+                    </ul>
+                    <b>A3 B/W</b>
+                    <ul>
+                        <li>Single Side - Rs. 20.00</li>
+                        <li>Double Side - Rs. 35.00</li>
+                    </ul>
+                </div>
+
+                <button onclick="toggleSection('scanningBox')" class="serviceBtn">📠 SCANNING</button>
+                <div id="scanningBox" class="sub-box">
+                    <b>Scanning Charges</b>
+                    <ul>
+                        <li>A4 - Rs. 15.00</li>
+                        <li>A3 - Rs. 40.00</li>
+                    </ul>
+                </div>
+
+                <button onclick="toggleSection('laminatingBindingBox')" class="serviceBtn">📁 LAMINATING & BINDING</button>
+                <div id="laminatingBindingBox" class="sub-box">
+                    <b>Laminating (A4)</b>
+                    <ul>
+                        <li>Rs. 50.00</li>
+                    </ul>
+                    <b>Spiral Binding</b>
+                    <ul>
+                        <li>Small - Rs. 80.00</li>
+                        <li>Large - Rs. 150.00</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Reload & Cards -->
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">
+                <span class="card-icon-3d">📱</span> Mobile Reload & Cards
+                <span class="arrow-indicator">▼</span>
+            </div>
+            <div class="card-content">
+                <ul>
+                    <li>Mobile Reload</li>
+                    <li>Recharge Cards</li>
+                    <li>New SIM Connections</li>
+                    <li>Mobile Accessories</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Accessories & More -->
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">
+                <span class="card-icon-3d">🔌</span> Accessories & More
+                <span class="arrow-indicator">▼</span>
+            </div>
+            <div class="card-content">
+                <ul>
+                    <li>Mobile Accessories</li>
+                    <li>Electrical Accessories</li>
+                    <li>Dialog Television Products & Accessories</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Online Services & Technical Services -->
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">
+                <span class="card-icon-3d">🌐</span> Online Services & Technical Services
+                <span class="arrow-indicator">▼</span>
+            </div>
+            <div class="card-content">
+                <ul>
+                    <li>Online Forms & Applications</li>
+                    <li>Online Transfers</li>
+                    <li>Satellite Installation & Troubleshooting</li>
+                    <li>CCTV Installation & Troubleshooting</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Payment Methods Card -->
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">
+                <span class="card-icon-3d"><img src="https://img.icons8.com/color/48/bank-cards.png" alt="Payment"></span> Payment Methods
+                <span class="arrow-indicator">▼</span>
+            </div>
+            <div class="card-content">
+                <ul class="payment-list">
+                    <li class="payment-item">
+                        <img class="payment-img" src="https://img.icons8.com/color/48/cash--v1.png" alt="Cash">
+                        Cash Payments
+                    </li>
+                    <li class="payment-item">
+                        <img class="payment-img" src="https://img.icons8.com/color/48/visa.png" alt="Visa">
+                        <img class="payment-img" src="https://img.icons8.com/color/48/mastercard.png" alt="MasterCard" style="margin-left: -5px;">
+                        Visa / MasterCard
+                    </li>
+                    <li class="payment-item">
+                        <img class="payment-img" src="https://img.icons8.com/color/48/online-money-transfer.png" alt="Online Payment">
+                        Online Fund Transfers
+                    </li>
+                    <li class="payment-item">
+                        <img class="payment-img" src="https://img.icons8.com/color/48/qr-code--v1.png" alt="Lanka QR">
+                        Lanka QR Payments
+                    </li>
+                    <li class="payment-item">
+                        <img class="payment-img" src="https://img.icons8.com/color/48/wallet--v1.png" alt="eZ Cash">
+                        eZ Cash
+                    </li>
+                    <li class="payment-item">
+                        <img class="payment-img" src="https://img.icons8.com/color/48/touchscreen-smartphone.png" alt="mCash">
+                        mCash
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Business Hours -->
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">
+                <span class="card-icon-3d">🕒</span> Business Hours
+                <span class="arrow-indicator">▼</span>
+            </div>
+            <div class="card-content">
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="margin-bottom: 10px; border-bottom: 1px dashed #ccc; padding-bottom: 5px;"><strong>Monday - Friday:</strong> 8:00 AM - 7:00 PM</li>
+                    <li style="margin-bottom: 10px; border-bottom: 1px dashed #ccc; padding-bottom: 5px;"><strong>Saturday:</strong> 8:30 AM - 6:00 PM</li>
+                    <li style="margin-bottom: 10px;"><strong>Sunday & Public Holidays:</strong> Closed</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bank Details -->
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">
+                <span class="card-icon-3d">🏦</span> Bank Details
+                <span class="arrow-indicator">▼</span>
+            </div>
+            <div class="card-content">
+                <p><strong>🏦 Bank</strong></p>
+                <div style="margin-left:25px; line-height:1.8;">
+                    Bank Name : Commercial Bank Of Ceylon PLC,<br>
+                    Branch : Aluthgama<br>
+                    Account Name : Chami Multi Shop<br>
+                    Account Number : <span id="accNo">8027678059</span><br>
+                    <button class="copyBtn" onclick="copyAccount()">📋 Copy Account Number</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">
+                <span class="card-icon-3d">📍</span> Contact Information
+                <span class="arrow-indicator">▼</span>
+            </div>
+            <div class="card-content">
+                <div class="contact-grid">
+                    <div class="contact-col">
+                        <p><strong>📍 Address</strong></p>
+                        <div style="margin-left:25px; line-height:1.8;">
+                            Chami Multi Shop <br>
+                            No. 476, St. Vincent Road,<br>
+                            Diyalagoda, Maggona,<br>
+                            Sri Lanka.<br>
+                            <a href="https://maps.app.goo.gl/go2japNiaEAXtst9A" target="_blank" class="serviceBtn" style="display:inline-block; width:auto; padding: 5px 10px; margin-top: 5px;">📍 Google Maps</a>
+                        </div>
+                    </div>
+                    <div class="contact-col">
+                        <p><strong>📞 Phone Numbers</strong></p>
+                        <div style="margin-left:25px; line-height:1.8;">
+                            <a href="tel:+94770545464" style="text-decoration: none; color: #0b4ea2; font-weight: bold;">+94 770 54 54 64</a><br>
+                            <a href="tel:+94710545464" style="text-decoration: none; color: #0b4ea2; font-weight: bold;">+94 710 54 54 64</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact">
+                    <a href="tel:+94770545464"><img class="icon" src="https://lh3.googleusercontent.com/d/1OFcjgWWFOeguwizL0Lbmaag1AgHqYdHO" alt="Call"></a>
+                    <a href="https://wa.me/94770545464" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/19W1N_0UmfJ0kgOfu5zKqLZdqLUbcYQug" alt="WhatsApp"></a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=chamicms@gmail.com" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/1PtHWv3zqC12Uis2uJktEijOmbdCOtGbx" alt="Email"></a>
+                    <a href="https://web.facebook.com/ChamiMultiShop" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/1Pv4hKbA7EQw9ZaGKlHtHtKGJsvG5UxcT" alt="Facebook"></a>
+                    <a href="https://www.google.com/search?q=Chami+Multi+Shop+%28CMS%29" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/1ecm8t-d0BMieUmB1qzQp_caeBnygan_L" alt="Google"></a>
+                    <a href="https://maps.app.goo.gl/go2japNiaEAXtst9A" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/1tcb2HxvmlsFKsu6p1EmfU0JbkilRIKsQ" alt="Maps"></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Us Form Card -->
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">
+                <span class="card-icon-3d">✉️</span> Contact Us
+                <span class="arrow-indicator">▼</span>
+            </div>
+            <div class="card-content">
+                <form id="contactForm" class="contact-form" onsubmit="sendToWhatsApp(event)">
+                    
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Your Name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Your Email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number</label>
+                        <input type="tel" id="mobile" placeholder="Your Mobile Number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send via WhatsApp</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Created By Ranjika Arsakularathna
+    </div>
+
+    <a href="https://wa.me/94770545464" class="whatsapp-float" target="_blank">
+        <img src="https://lh3.googleusercontent.com/d/19W1N_0UmfJ0kgOfu5zKqLZdqLUbcYQug" alt="WhatsApp Floating">
+    </a>
+
+    <script>
+        function toggleCard(element) {
+            let card = element.parentElement;
+            card.classList.toggle("active");
+        }
+
+        function toggleSection(boxId) {
+            var x = document.getElementById(boxId);
+            x.classList.toggle("open");
+        }
+
+        // --- යාවත්කාලීන කළ සුපිරි Search විශේෂාංගය (Auto Expand & Scroll) ---
+        function searchServices() {
+            let input = document.getElementById("searchInput").value.toLowerCase().trim();
+            let cards = document.querySelectorAll(".container .card");
+            let subBoxes = document.querySelectorAll(".sub-box");
+
+            if (input === "") {
+                // සර්ච් එක හිස් නම් හැම කාඩ් එකක්ම පෙන්වා active/open ස්ටේට්ස් රීසෙට් කරයි
+                cards.forEach(card => {
+                    card.style.display = "block";
+                    card.classList.remove("active");
+                });
+                subBoxes.forEach(box => {
+                    box.classList.remove("open");
+                });
+                return;
+            }
+
+            let firstMatch = null;
+
+            cards.forEach(card => {
+                let cardText = card.innerText.toLowerCase();
+                
+                if (cardText.includes(input)) {
+                    card.style.display = "block";
+                    card.classList.add("active"); // ප්‍රධාන කාඩ් එක ඉබේම දිග හරියි
+
+                    // කාඩ් එක ඇතුළේ තියෙන සබ්-බොක්ස් (උදා: photo copy) චෙක් කිරීම
+                    let cardSubBoxes = card.querySelectorAll(".sub-box");
+                    cardSubBoxes.forEach(box => {
+                        let boxText = box.innerText.toLowerCase();
+                        let btnText = box.previousElementSibling ? box.previousElementSibling.innerText.toLowerCase() : "";
+                        
+                        if (boxText.includes(input) || btnText.includes(input)) {
+                            box.classList.add("open"); // අදාළ සර්විස් බොක්ස් එක ඉබේම දිග හරියි
+                            if (!firstMatch) {
+                                firstMatch = box.previousElementSibling || box; // ස්ක්‍රෝල් වීමට අදාළ බටන් එක තෝරා ගනී
+                            }
+                        }
+                    });
+
+                    if (!firstMatch) {
+                        firstMatch = card;
+                    }
+                } else {
+                    card.style.display = "none";
+                    card.classList.remove("active");
+                }
+            });
+
+            // මැච් වෙන සේවාව දෙසට ස්මූත් විදිහට ස්ක්‍රීන් එක රැගෙන යාම
+            if (firstMatch) {
+                firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+        }
+
+        function copyAccount() {
+            let accNo = document.getElementById("accNo").innerText;
+            navigator.clipboard.writeText(accNo).then(() => {
+                alert("Account Number copied to clipboard: " + accNo);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+            
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let mobile = document.getElementById("mobile").value;
+            let message = document.getElementById("message").value;
+
+            let whatsappUrl = "https://wa.me/94770545464?text=" + 
+                              "Hello Chami Multi Shop,%0A%0A" + 
+                              "*Name:* " + name + "%0A" + 
+                              "*Email:* " + email + "%0A" + 
+                              "*Mobile:* " + mobile + "%0A" + 
+                              "*Message:* " + message;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+
+        window.onload = function() {
+            let slides = document.querySelectorAll(".slide");
+            let current = 0;
+
+            setInterval(() => {
+                slides[current].classList.remove("active");
+                current++;
+                if (current >= slides.length) {
+                    current = 0;
+                }
+                slides[current].classList.add("active");
+            }, 3000);
+        };
+    </script>
+</body>
+</html>
