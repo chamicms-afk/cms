@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Chami Multi Shop </title>
+    <title>Welcome to Chami Multi Shop (CMS)</title>
     <style>
         * {
             margin: 0;
@@ -32,7 +32,7 @@
         }
 
         .title {
-            font-size: 40px;
+            font-size: 44px;
             font-weight: bold;
             color: #003366;
             text-align: center;
@@ -41,7 +41,7 @@
 
         .welcome-text {
             margin-top: 10px;
-            font-size: 24px;
+            font-size: 20px;
             font-style: italic;
             color: #003366;
             max-width: 800px;
@@ -52,7 +52,7 @@
         /* Responsive adjustments for Mobile Screen */
         @media (max-width: 768px) {
             .title {
-                font-size: 26px; /* Prevents text breaking into 3 lines on mobile */
+                font-size: 26px;
             }
             .welcome-text {
                 font-size: 16px;
@@ -468,18 +468,14 @@
 
                 <button onclick="toggleSection('laminatingBindingBox')" class="serviceBtn">📁 LAMINATING & BINDING</button>
                 <div id="laminatingBindingBox" class="sub-box">
-                    <b>Laminating </b>
+                    <b>Laminating (A4)</b>
                     <ul>
-                        <li>A5 - B4 - Rs. 60.00</li>
-                        <li>A4      - Rs. 100.00</li>
-                        <li>A3      - Rs.200.00</li>
-                    </ul> 
+                        <li>Rs. 50.00</li>
+                    </ul>
                     <b>Spiral Binding</b>
                     <ul>
-                        <li>Small  - Rs. 80.00</li>
-                        <li>Medium - Rs. 150.00</li>
-                        <li>Large  - Rs. 200.00</li>
-                        <li>Front & Back Cover - Rs. 150.00</li>
+                        <li>Small - Rs. 80.00</li>
+                        <li>Large - Rs. 150.00</li>
                     </ul>
                 </div>
             </div>
@@ -607,9 +603,9 @@
             </div>
             <div class="card-content">
                 <ul style="list-style: none; padding-left: 0;">
-                    <li style="margin-bottom: 10px; border-bottom: 1px dashed #ccc; padding-bottom: 5px;"><strong>Monday - Friday:</strong> 6:00 AM - 10:30 PM</li>
-                    <li style="margin-bottom: 10px; border-bottom: 1px dashed #ccc; padding-bottom: 5px;"><strong>Saturday:</strong> 6:00 AM - 10:30 PM</li>
-                    <li style="margin-bottom: 10px;"><strong>Sunday & Public Holidays:</strong> 6:00 AM - 10:30 PM</li>
+                    <li style="margin-bottom: 10px; border-bottom: 1px dashed #ccc; padding-bottom: 5px;"><strong>Monday - Friday:</strong> 8:00 AM - 7:00 PM</li>
+                    <li style="margin-bottom: 10px; border-bottom: 1px dashed #ccc; padding-bottom: 5px;"><strong>Saturday:</strong> 8:30 AM - 6:00 PM</li>
+                    <li style="margin-bottom: 10px;"><strong>Sunday & Public Holidays:</strong> Closed</li>
                 </ul>
             </div>
         </div>
@@ -709,26 +705,20 @@
         Created By Ranjika Arsakularathna
     </div>
 
-    <a href="https://wa.me/9471193383" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/94770545464" class="whatsapp-float" target="_blank">
         <img src="https://lh3.googleusercontent.com/d/19W1N_0UmfJ0kgOfu5zKqLZdqLUbcYQug" alt="WhatsApp Floating">
     </a>
 
     <script>
+        // --- යාවත්කාලීන කළ Accordion Function එක (එකක් ඇරෙද්දී අනෙක්වා වැසේ) ---
         function toggleCard(element) {
-            let card = element.parentElement;
-            card.classList.toggle("active");
-        }
-
-function toggleCard(element) {
             let currentCard = element.parentElement;
             let allCards = document.querySelectorAll(".container .card");
 
-            // දැනට ඇරිලා තියෙන අනෙක් හැම කාඩ් එකක්ම වැසීම
             allCards.forEach(card => {
                 if (card !== currentCard) {
                     card.classList.remove("active");
                     
-                    // ඒ වැහෙන කාඩ් ඇතුළේ open කරපු sub-boxes (උදා: photo copy) තිබ්බොත් ඒවත් close කරයි
                     let subBoxes = card.querySelectorAll(".sub-box");
                     subBoxes.forEach(box => {
                         box.classList.remove("open");
@@ -736,9 +726,30 @@ function toggleCard(element) {
                 }
             });
 
-            // ක්ලික් කරපු කාඩ් එක පමණක් open හෝ close කිරීම
             currentCard.classList.toggle("active");
         }
+
+        function toggleSection(boxId) {
+            var x = document.getElementById(boxId);
+            x.classList.toggle("open");
+        }
+
+        function searchServices() {
+            let input = document.getElementById("searchInput").value.toLowerCase().trim();
+            let cards = document.querySelectorAll(".container .card");
+            let subBoxes = document.querySelectorAll(".sub-box");
+
+            if (input === "") {
+                cards.forEach(card => {
+                    card.style.display = "block";
+                    card.classList.remove("active");
+                });
+                subBoxes.forEach(box => {
+                    box.classList.remove("open");
+                });
+                return;
+            }
+
             let firstMatch = null;
 
             cards.forEach(card => {
@@ -746,18 +757,17 @@ function toggleCard(element) {
                 
                 if (cardText.includes(input)) {
                     card.style.display = "block";
-                    card.classList.add("active"); // ප්‍රධාන කාඩ් එක ඉබේම දිග හරියි
+                    card.classList.add("active");
 
-                    // කාඩ් එක ඇතුළේ තියෙන සබ්-බොක්ස් (උදා: photo copy) චෙක් කිරීම
                     let cardSubBoxes = card.querySelectorAll(".sub-box");
                     cardSubBoxes.forEach(box => {
                         let boxText = box.innerText.toLowerCase();
                         let btnText = box.previousElementSibling ? box.previousElementSibling.innerText.toLowerCase() : "";
                         
                         if (boxText.includes(input) || btnText.includes(input)) {
-                            box.classList.add("open"); // අදාළ සර්විස් බොක්ස් එක ඉබේම දිග හරියි
+                            box.classList.add("open");
                             if (!firstMatch) {
-                                firstMatch = box.previousElementSibling || box; // ස්ක්‍රෝල් වීමට අදාළ බටන් එක තෝරා ගනී
+                                firstMatch = box.previousElementSibling || box;
                             }
                         }
                     });
@@ -771,7 +781,6 @@ function toggleCard(element) {
                 }
             });
 
-            // මැච් වෙන සේවාව දෙසට ස්මූත් විදිහට ස්ක්‍රීන් එක රැගෙන යාම
             if (firstMatch) {
                 firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
             }
