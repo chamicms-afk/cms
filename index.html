@@ -382,7 +382,12 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
-        .package-btn {
+        .package-btn img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    border-radius: 4px;
+        }
             background: #f8fafc;
             border: 1px solid #e2e8f0;
             padding: 12px 10px;
@@ -457,19 +462,19 @@
     <div class="package-section">
         <div class="package-section-title">📱 RELOAD & DATA PACKAGES</div>
         <div class="package-grid">
-            <button class="package-btn dialog-btn" onclick="togglePackage('dialogPkg')">
-                🔴 Dialog Packages
-            </button>
-            <button class="package-btn mobitel-btn" onclick="togglePackage('mobitelPkg')">
-                🟢 Mobitel Packages
-            </button>
-            <button class="package-btn hutch-btn" onclick="togglePackage('hutchPkg')">
-                🟠 Hutch Packages
-            </button>
-            <button class="package-btn airtel-btn" onclick="togglePackage('airtelPkg')">
-                🔴 Airtel Packages
-            </button>
-        </div>
+    <button class="package-btn dialog-btn" onclick="togglePackage('dialogPkg')">
+        <img src="YOUR_DIALOG_ICON_URL" alt="Dialog"> Dialog Packages
+    </button>
+    <button class="package-btn mobitel-btn" onclick="togglePackage('mobitelPkg')">
+        <img src="YOUR_MOBITEL_ICON_URL" alt="Mobitel"> Mobitel Packages
+    </button>
+    <button class="package-btn hutch-btn" onclick="togglePackage('hutchPkg')">
+        <img src="YOUR_HUTCH_ICON_URL" alt="Hutch"> Hutch Packages
+    </button>
+    <button class="package-btn airtel-btn" onclick="togglePackage('airtelPkg')">
+        <img src="YOUR_AIRTEL_ICON_URL" alt="Airtel"> Airtel Packages
+    </button>
+</div>
 
         <!-- Dialog Package Box -->
         <div id="dialogPkg" class="package-content-box">
