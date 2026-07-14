@@ -382,12 +382,23 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
-        .package-btn img {
-    width: 22px;
-    height: 22px;
+        .package-btn {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 15px 10px; /* උඩ යට ඉඩ ටිකක් වැඩි කළා */
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* හරියටම මැදට ගන්නවා */
+}
+
+.package-btn img {
+    width: 40px;      /* අයිකොන් එක ලොකුවට පේන්න සයිස් එක වැඩි කළා */
+    height: 40px;
     object-fit: contain;
-    border-radius: 4px;
-        }
+}
             background: #f8fafc;
             border: 1px solid #e2e8f0;
             padding: 12px 10px;
@@ -407,7 +418,7 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
         .dialog-btn { border-left: 5px solid #e11d48; color: #e11d48; }
-        .mobitel-btn { border-left: 5px solid #16a34a; color: #16a34a; }
+        .mobitel-btn { border-left: 5px solid #00529b; color: #00529b; }
         .hutch-btn { border-left: 5px solid #ea580c; color: #ea580c; }
         .airtel-btn { border-left: 5px solid #dc2626; color: #dc2626; }
 
@@ -462,19 +473,17 @@
     <div class="package-section">
         <div class="package-section-title">📱 RELOAD & DATA PACKAGES</div>
         <div class="package-grid">
-    <button class="package-btn dialog-btn" onclick="togglePackage('dialogPkg')">
-        <img src="https://lh3.googleusercontent.com/d/1hhSVTLuAkmFMklLnGpH5_zfirIGoscGK" alt="Dialog"> Dialog Packages
-
+    <button class="package-btn dialog-btn" onclick="togglePackage('dialogPkg')" title="Dialog Packages">
+        <img src="https://lh3.googleusercontent.com/d/19AZA_s05fqRBQ1SwbjTQYXuh9COe46_M" alt="Dialog">
     </button>
-    <button class="package-btn mobitel-btn" onclick="togglePackage('mobitelPkg')">
-        <img src="https://lh3.googleusercontent.com/d/1GCZGgYGeqjRdWHpoFEL4dlkVWb-MeDOS" alt="Mobitel"> Mobitel Packages
-
+    <button class="package-btn mobitel-btn" onclick="togglePackage('mobitelPkg')" title="Mobitel Packages">
+        <img src="https://lh3.googleusercontent.com/d/1XX7e5DRAkCKuQLviavVUKUXkfTNIC3Xh" alt="Mobitel">
     </button>
-    <button class="package-btn hutch-btn" onclick="togglePackage('hutchPkg')">
-        <img src="https://lh3.googleusercontent.com/d/1txqxjB9NSqmUmatH9l1vUX4CU30wJMNe"> Hutch Packages
+    <button class="package-btn hutch-btn" onclick="togglePackage('hutchPkg')" title="Hutch Packages">
+        <img src="https://lh3.googleusercontent.com/d/1txqxjB9NSqmUmatH9l1vUX4CU30wJMNe" alt="Hutch">
     </button>
-    <button class="package-btn airtel-btn" onclick="togglePackage('airtelPkg')">
-        <img src="https://lh3.googleusercontent.com/d/1GhFCjXc7t2rqzF2LytjtzmFO4vEs4rYc" alt="Airtel"> Airtel Packages
+    <button class="package-btn airtel-btn" onclick="togglePackage('airtelPkg')" title="Airtel Packages">
+        <img src="https://lh3.googleusercontent.com/d/1GhFCjXc7t2rqzF2LytjtzmFO4vEs4rYc" alt="Airtel">
     </button>
 </div>
 
