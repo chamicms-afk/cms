@@ -640,7 +640,60 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Bill Payments Card -->
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">
+                <span class="card-icon-3d">🧾</span> Bill Payments
+                <span class="arrow-indicator">▼</span>
+            </div>
+            <div class="card-content">
+                
+                <!-- Electricity Bill Sub Button -->
+                <button onclick="toggleSection('electricityBillBox');" class="serviceBtn">⚡ ELECTRICITY BILL</button>
+                <div id="electricityBillBox" class="sub-box">
+                    <b>💡 Power Utilities</b>
+                    <ul>
+                        <li>CEB (Ceylon Electricity Board)</li>
+                        <li>LECO (Lanka Electricity Company)</li>
+                    </ul>
+                </div>
 
+                <!-- Water Bill Sub Button -->
+                <button onclick="toggleSection('waterBillBox');" class="serviceBtn">💧 WATER BILL</button>
+                <div id="waterBillBox" class="sub-box">
+                    <b>🚰 Water Supply</b>
+                    <ul>
+                        <li>NWSDB (National Water Supply & Drainage Board)</li>
+                    </ul>
+                </div>
+
+                <!-- Post Paid Bill Sub Button -->
+                <button onclick="toggleSection('postpaidBillBox');" class="serviceBtn">📱 POSTPAID BILL</button>
+                <div id="postpaidBillBox" class="sub-box">
+                    <b>📞 Mobile Networks</b>
+                    <ul>
+                        <li>Dialog Postpaid Bills</li>
+                        <li>Mobitel Postpaid Bills</li>
+                        <li>Hutch Postpaid Bills</li>
+                        <li>Airtel Postpaid Bills</li>
+                    </ul>
+                </div>
+
+                <!-- SLT Bill & More Sub Button -->
+                <button onclick="toggleSection('sltBillBox');" class="serviceBtn">☎️ SLT BILL & MORE</button>
+                <div id="sltBillBox" class="sub-box">
+                    <b>🌐 Telecom & Other Payments</b>
+                    <ul>
+                        <li>SLT-MOBITEL Broadband & Home Phone</li>
+                        <li>SLT Peo TV Bills</li>
+                        <li>Insurance & Leasing Payments</li>
+                        <li>Other Utility & Shop Bills</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
         <!-- Accessories & More -->
         <div class="card">
             <div class="card-header" onclick="toggleCard(this)">
