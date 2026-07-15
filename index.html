@@ -828,13 +828,15 @@
             </div>
         </div>
 
-        <!-- Contact Information -->
+        <!-- Combined Contact Us & Information Card -->
         <div class="card">
             <div class="card-header" onclick="toggleCard(this)">
-                <span class="card-icon-3d">📍</span> Contact Information
+                <span class="card-icon-3d">📍</span> Contact Us & Info
                 <span class="arrow-indicator">▼</span>
             </div>
             <div class="card-content">
+                
+                <!-- Part 1: Address & Phone Numbers -->
                 <div class="contact-grid">
                     <div class="contact-col">
                         <p><strong>📍 Address</strong></p>
@@ -854,6 +856,8 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Quick Social Media Icons -->
                 <div class="contact">
                     <a href="tel:+94770545464"><img class="icon" src="https://lh3.googleusercontent.com/d/1OFcjgWWFOeguwizL0Lbmaag1AgHqYdHO" alt="Call"></a>
                     <a href="https://wa.me/94770545464" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/19W1N_0UmfJ0kgOfu5zKqLZdqLUbcYQug" alt="WhatsApp"></a>
@@ -862,44 +866,37 @@
                     <a href="https://www.google.com/search?q=Chami+Multi+Shop+%28CMS%29" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/1ecm8t-d0BMieUmB1qzQp_caeBnygan_L" alt="Google"></a>
                     <a href="https://maps.app.goo.gl/go2japNiaEAXtst9A" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/1tcb2HxvmlsFKsu6p1EmfU0JbkilRIKsQ" alt="Maps"></a>
                 </div>
+
+                <!-- Part 2: Contact Us Form (Separated with a clean line) -->
+                <div style="margin-top: 25px; border-top: 1px solid #e2e8f0; padding-top: 20px;">
+                    <p style="font-weight: bold; color: #003366; margin-bottom: 15px; font-size: 16px;">✉️ Send Us a Direct Message</p>
+                    <form id="contactForm" class="contact-form" onsubmit="sendToWhatsApp(event)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" placeholder="Your Name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="Your Email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mobile">Mobile Number</label>
+                            <input type="tel" id="mobile" placeholder="Your Mobile Number" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send via WhatsApp</button>
+                    </form>
+                </div>
+
             </div>
         </div>
-
-        <!-- Contact Us Form Card -->
-        <div class="card">
-            <div class="card-header" onclick="toggleCard(this)">
-                <span class="card-icon-3d">✉️</span> Contact Us
-                <span class="arrow-indicator">▼</span>
-            </div>
-            <div class="card-content">
-                <form id="contactForm" class="contact-form" onsubmit="sendToWhatsApp(event)">
-                    
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" placeholder="Your Name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="Your Email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="mobile">Mobile Number</label>
-                        <input type="tel" id="mobile" placeholder="Your Mobile Number" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Send via WhatsApp</button>
-                </form>
-            </div>
-        </div>
-
-    </div>
 
     <div class="footer">
         Created By Ranjika Arsakularathna
