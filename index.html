@@ -881,7 +881,7 @@
                 <!-- Quick Social Media Icons -->
                 <div class="contact">
                     <a href="tel:+94770545464"><img class="icon" src="https://lh3.googleusercontent.com/d/1OFcjgWWFOeguwizL0Lbmaag1AgHqYdHO" alt="Call"></a>
-                    <a href="https://wa.me/94710545464" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/19W1N_0UmfJ0kgOfu5zKqLZdqLUbcYQug" alt="WhatsApp"></a>
+                    <a href="https://wa.me/94701193383" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/19W1N_0UmfJ0kgOfu5zKqLZdqLUbcYQug" alt="WhatsApp"></a>
                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=chamicms@gmail.com" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/1PtHWv3zqC12Uis2uJktEijOmbdCOtGbx" alt="Email"></a>
                     <a href="https://web.facebook.com/chamimultishopcms" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/1Pv4hKbA7EQw9ZaGKlHtHtKGJsvG5UxcT" alt="Facebook"></a>
                     <a href="https://www.google.com/search?q=Chami+Multi+Shop+%28CMS%29" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/1ecm8t-d0BMieUmB1qzQp_caeBnygan_L" alt="Google"></a>
@@ -1024,12 +1024,19 @@
             }
         }
 
-        function copyAccount() {
-            let accNo = document.getElementById("accNo").innerText;
-            navigator.clipboard.writeText(accNo).then(() => {
-                alert("Account Number copied to clipboard: " + accNo);
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
+        // 1. Bank Account Copy කරන අලුත් කේතය
+        function copyAccNumber(elementId, btn) {
+            var accNum = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(accNum).then(function() {
+                var originalText = btn.innerHTML;
+                btn.innerHTML = "Copied! ✓";
+                btn.style.background = "#22c55e"; // කොපි වුණාම කොළ පාට වෙනවා
+                setTimeout(function() {
+                    btn.innerHTML = originalText;
+                    btn.style.background = "#003366"; // තත්පර 2කින් පරණ පාටට හැරෙනවා
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
             });
         }
 
@@ -1041,7 +1048,7 @@
             let mobile = document.getElementById("mobile").value;
             let message = document.getElementById("message").value;
 
-            let whatsappUrl = "https://wa.me/94770545464?text=" + 
+            let whatsappUrl = "https://wa.me/94701193383?text=" + 
                               "Hello Chami Multi Shop,%0A%0A" + 
                               "*Name:* " + name + "%0A" + 
                               "*Email:* " + email + "%0A" + 
