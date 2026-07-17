@@ -463,10 +463,10 @@
     </div>
 
     <div class="slider">
-        <img class="slide active" src="https://lh3.googleusercontent.com/d/1I4gD2S1yz7HTcIEadD2ieaavsgwfqhRs " alt="Slide 1">
-        <img class="slide" src="https://lh3.googleusercontent.com/d/1cGSOt4DZOo83jXPDK4mu6FFFAMLkwiKs" alt="Slide 2">
-        <img class="slide" src="https://lh3.googleusercontent.com/d/1jdPBkXRYDCDiutv6Ejlaw-J_cVwqWx7p" alt="Slide 3">
-        <img class="slide" src="https://lh3.googleusercontent.com/d/1VHkKv5YkewlS2M29Z8jVFjTXb3iLS-E-" alt="Slide 4">
+        <img class="slide active" src="https://lh3.googleusercontent.com/d/1AwGqz_gFA7u1gVuDT5wBIn1qtsb0VXaW" alt="Slide 1">
+        <img class="slide" src="https://lh3.googleusercontent.com/d/1ZFu6hXUi1i7IVLCEtuPDdt6exY0IEtDz" alt="Slide 2">
+        <img class="slide" src="https://lh3.googleusercontent.com/d/1Y7pe5IK5MTEj-gch3OibYiyNESV2UIOE" alt="Slide 3">
+        <img class="slide" src="https://lh3.googleusercontent.com/d/1GaYoP-SJ_5-PsMBdEO7FjGeFFd5lVXpP" alt="Slide 4">
     </div>
 
     <!-- NEW RELOAD PACKAGE SECTION -->
@@ -761,40 +761,40 @@
         <!-- Payment Methods Card -->
         <div class="card">
             <div class="card-header" onclick="toggleCard(this)">
-                <span class="card-icon-3d"><img src="https://img.icons8.com/color/48/bank-cards.png" alt="Payment"></span> Payment Methods
+                <span class="card-icon-3d"><img src="YOUR_PAYMENT_HEADER_ICON_URL" alt="Payment"></span> Payment Methods
                 <span class="arrow-indicator">▼</span>
             </div>
             <div class="card-content">
                 <ul class="payment-list">
                     <li class="payment-item">
-                        <img class="payment-img" src="https://img.icons8.com/color/48/cash--v1.png" alt="Cash">
+                        <img class="payment-img" src="YOUR_CASH_ICON_URL" alt="Cash">
                         Cash Payments
                     </li>
                     <li class="payment-item">
-                        <img class="payment-img" src="https://img.icons8.com/color/48/visa.png" alt="Visa">
-                        <img class="payment-img" src="https://img.icons8.com/color/48/mastercard.png" alt="MasterCard" style="margin-left: -5px;">
+                        <img class="payment-img" src="YOUR_VISA_ICON_URL" alt="Visa">
+                        <img class="payment-img" src="YOUR_MASTERCARD_ICON_URL" alt="MasterCard" style="margin-left: -5px;">
                         Visa / MasterCard
                     </li>
                     <li class="payment-item">
-                        <img class="payment-img" src="https://img.icons8.com/color/48/online-money-transfer.png" alt="Online Payment">
+                        <img class="payment-img" src="YOUR_BANK_TRANSFER_ICON_URL" alt="Online Payment">
                         Online Fund Transfers
                     </li>
                     <li class="payment-item">
-                        <img class="payment-img" src="https://img.icons8.com/color/48/qr-code--v1.png" alt="Lanka QR">
+                        <img class="payment-img" src="YOUR_LANKAQR_ICON_URL" alt="Lanka QR">
                         Lanka QR Payments
                     </li>
                     <li class="payment-item">
-                        <img class="payment-img" src="https://img.icons8.com/color/48/wallet--v1.png" alt="eZ Cash">
+                        <img class="payment-img" src="YOUR_EZCASH_ICON_URL" alt="eZ Cash">
                         eZ Cash
                     </li>
                     <li class="payment-item">
-                        <img class="payment-img" src="https://img.icons8.com/color/48/touchscreen-smartphone.png" alt="mCash">
+                        <img class="payment-img" src="YOUR_MCASH_ICON_URL" alt="mCash">
                         mCash
                     </li>
                 </ul>
             </div>
         </div>
-
+        
         <!-- Business Hours -->
         <div class="card">
             <div class="card-header" onclick="toggleCard(this)">
@@ -810,21 +810,42 @@
             </div>
         </div>
 
-        <!-- Bank Details -->
+        <!-- Bank Details Card -->
         <div class="card">
             <div class="card-header" onclick="toggleCard(this)">
                 <span class="card-icon-3d">🏦</span> Bank Details
                 <span class="arrow-indicator">▼</span>
             </div>
             <div class="card-content">
-                <p><strong>🏦 Bank</strong></p>
-                <div style="margin-left:25px; line-height:1.8;">
-                    Bank Name : Commercial Bank Of Ceylon PLC,<br>
-                    Branch : Aluthgama<br>
-                    Account Name : Chami Multi Shop<br>
-                    Account Number : <span id="accNo">8027678059</span><br>
-                    <button class="copyBtn" onclick="copyAccount()">📋 Copy Account Number</button>
+                
+                <!-- Bank 01 Details Box -->
+                <div class="bank-box" style="border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin-bottom: 15px; background: #f8fafc;">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px; border-bottom: 1px dashed #cbd5e1; padding-bottom: 8px;">
+                        <!-- Bank 01 Logo Link Here -->
+                        <img src="YOUR_BANK_1_LOGO_URL" alt="Bank 1 Logo" style="height: 35px; max-width: 120px; object-fit: contain; margin-right: 12px;">
+                        <span style="font-weight: bold; color: #003366; font-size: 16px;">BANK NAME 1</span>
+                    </div>
+                    <div style="line-height: 1.8; color: #334155; padding-left: 5px;">
+                        <p style="margin: 4px 0;"><strong>Account Name:</strong> CHAMI MULTI SHOP</p>
+                        <p style="margin: 4px 0;"><strong>Account Number:</strong> 1234XXXXXXXX</p>
+                        <p style="margin: 4px 0;"><strong>Branch:</strong> BRANCH NAME HERE</p>
+                    </div>
                 </div>
+
+                <!-- Bank 02 Details Box -->
+                <div class="bank-box" style="border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; background: #f8fafc;">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px; border-bottom: 1px dashed #cbd5e1; padding-bottom: 8px;">
+                        <!-- Bank 02 Logo Link Here -->
+                        <img src="YOUR_BANK_2_LOGO_URL" alt="Bank 2 Logo" style="height: 35px; max-width: 120px; object-fit: contain; margin-right: 12px;">
+                        <span style="font-weight: bold; color: #003366; font-size: 16px;">BANK NAME 2</span>
+                    </div>
+                    <div style="line-height: 1.8; color: #334155; padding-left: 5px;">
+                        <p style="margin: 4px 0;"><strong>Account Name:</strong> CHAMI MULTI SHOP</p>
+                        <p style="margin: 4px 0;"><strong>Account Number:</strong> 5678XXXXXXXX</p>
+                        <p style="margin: 4px 0;"><strong>Branch:</strong> BRANCH NAME HERE</p>
+                    </div>
+                </div>
+
             </div>
         </div>
 
