@@ -41,7 +41,10 @@
             padding: 0 20px;
             position: relative; /* මේ පේළිය අනිවාර්යයෙන්ම තියෙන්න ඕන */
             }
-
+        <!-- Search Bar -->
+    <div class="search-container">
+    <input type="text" id="searchInput" class="search-input" placeholder="Search services...">
+    </div>
         /* --- HERO SECTION --- */
         .hero-section {
             display: flex;
@@ -640,6 +643,21 @@
                     slides[current].classList.add("active");
                 }, 3000);
             }
+            document.getElementById('searchInput').addEventListener('keyup', function() {
+            let filter = this.value.toLowerCase();
+            let cards = document.querySelectorAll('.nav-card, .card'); 
+            
+            cards.forEach(card => {
+                if (card.textContent.toLowerCase().includes(filter)) {
+                    card.style.display = ""; 
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
         };
     </script>
 </body>
