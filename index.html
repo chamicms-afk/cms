@@ -528,11 +528,27 @@
                     <img src="https://lh3.googleusercontent.com/d/1qY4_78N7PLEzWwsPowtfyy848HzVUnRi" alt="CMS Logo" class="logo">
                 </div>
                 
-                <h1>
-                    <span class="main-title">Beyond the Page,</span>
-                    <br>
-                    <span class="accent">Beyond the Connection.</span>
-                    </h1>
+                /* h1 එකේ Font Size එක අඩු කරන්න (මේකෙන් තමයි පේළි 3 වෙන එක නවතින්නේ) */
+                h1 {
+                font-size: 2.2rem; /* 3rem හෝ 40px තිබ්බ නම් මේක 2rem හෝ 2.2rem වගේ ගාණකට අඩු කරන්න */
+                line-height: 1.3;
+                }
+
+.main-title {
+    background: linear-gradient(to right, #0b4ea2, #33ccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    white-space: nowrap; /* "Beyond the Page," මැදින් කැඩිලා යටට යන එක සම්පූර්ණයෙන්ම නවත්වනවා */
+}
+
+.accent {
+    background: linear-gradient(to right, #33ccff, #0b4ea2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    white-space: nowrap; /* "Beyond the Connection." මැදින් කැඩිලා යටට යන එක සම්පූර්ණයෙන්ම නවත්වනවා */
+}
                 
                 <p>Photocopy, Printing, Scanning, Binding, Laminating, Stationery, Mobile Reload, Bill Payments, Dialog TV Setup and Every daily essential  All under one roof.</p>
                 
