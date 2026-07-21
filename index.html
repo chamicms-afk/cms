@@ -652,6 +652,47 @@
 .sub-box ul li {
     color: #dddddd !important;
 }
+        /* Business Hours Popup Modal Style */
+.hours-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.hours-modal-content {
+    background: linear-gradient(135deg, #03132e 0%, #0c2a5c 100%);
+    border: 1px solid rgba(51, 204, 255, 0.4);
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 16px;
+    width: 85%;
+    max-width: 320px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    position: relative;
+    text-align: center;
+}
+
+.hours-close-btn {
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    font-size: 24px;
+    color: #33ccff;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-muted {
+    cursor: pointer !important;
+}
     </style>
 </head>
 <body>
@@ -678,7 +719,7 @@
                     <a href="tel:0770545464" class="btn btn-primary">CALL 0770 54 54 64</a>
                     <!-- Scroll to contact form when clicked -->
                     <a href="https://wa.me/94701193383" target="_blank" class="btn btn-outline">WHATSAPP</a>
-                    <span class="btn btn-muted">OPEN 6 AM - 10:30 PM</span>
+                    <button type="button" class="btn btn-muted" onclick="openOriginalHours()">OPEN 6 AM - 10:30 PM</button>
                 </div>
             </div>
 
@@ -1278,6 +1319,32 @@
                 }, 3000);
             }
         };
+        function openOriginalHours() {
+    document.getElementById('hoursModal').style.display = 'flex';
+}
+
+function closeOriginalHours() {
+    document.getElementById('hoursModal').style.display = 'none';
+}
+
+// Modal එකෙන් එලිය ක්ලික් කළාමත් Close වෙන විදිය
+window.addEventListener('click', function(event) {
+    var modal = document.getElementById('hoursModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+});
     </script>
+    <!-- Original Business Hours Popup Modal -->
+<div id="hoursModal" class="hours-modal">
+    <div class="hours-modal-content">
+        <span class="hours-close-btn" onclick="closeOriginalHours()">&times;</span>
+        <h3 style="margin-top:0; color:#33ccff;">⏰ Business Hours</h3>
+        <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin: 10px 0;">
+        <p style="margin: 8px 0; font-size:14px;"><b>Monday - Sunday:</b></p>
+        <p style="margin: 5px 0; font-size:16px; color:#ff9800; font-weight:bold;">6:00 AM - 10:30 PM</p>
+        <p style="margin-top: 10px; font-size:12px; color:#ccc;">Open 7 Days a Week</p>
+    </div>
+</div>
 </body>
 </html>
