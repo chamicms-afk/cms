@@ -652,6 +652,29 @@
 .sub-box ul li {
     color: #dddddd !important;
 }
+        /* ===================================================
+   Cards පේළියට 2 ගානේ (2 Columns) සෙට් කරන CSS
+   =================================================== */
+
+/* 01. Voice & Data Packages (Dialog, Mobitel, Hutch, Airtel) */
+.package-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; /* පේළියට Cards 2යි */
+    gap: 12px !important;                             /* Cards අතර ඉඩ ප්‍රමාණය */
+}
+
+/* 02. Category Cards (01 Document Services, 02 Mobile Reload...) */
+.services-section {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; /* පේළියට Cards 2යි */
+    gap: 12px !important;                             /* Cards අතර ඉඩ ප්‍රමාණය */
+}
+
+/* Phone Screen එකට ගැලපෙන විදියට Card එක ඇතුළේ Text පොඩ්ඩක් Adjust කිරීම */
+.card-header {
+    font-size: 13px !important; /* Cards 2ක් එන නිසා අකුරු පොඩ්ඩක් කුඩා කරලා ලස්සනට සෙට් කළා */
+    padding: 12px 10px !important;
+}
     </style>
 </head>
 <body>
