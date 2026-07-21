@@ -532,6 +532,126 @@
             .card-header { font-size: 1rem; }
             .btn { width: 100%; }
         }
+        /* ===================================================
+   01. VOICE & DATA PACKAGES (Dialog, SLT, Hutch, Airtel)
+   =================================================== */
+
+/* Packages Title එක */
+.package-section-title {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Logo Buttons (Glassmorphic Dark Blue Box) */
+.package-btn {
+    background: linear-gradient(135deg, #071e3d 0%, #0b2b5a 100%) !important;
+    border: 1px solid rgba(51, 204, 255, 0.3) !important;
+    border-radius: 12px !important;
+    padding: 12px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer;
+}
+
+/* Mouse එක ගෙනිච්චම Light Blue Glow වෙන විදිය */
+.package-btn:hover {
+    border-color: #33ccff !important;
+    box-shadow: 0 0 15px rgba(51, 204, 255, 0.6) !important;
+    transform: translateY(-3px);
+}
+
+/* Logo Image එක කැපී පෙනෙන්න සුදු background එකක් */
+.package-btn img {
+    background: #ffffff;
+    padding: 6px;
+    border-radius: 8px;
+    max-height: 40px;
+    object-fit: contain;
+}
+
+
+/* ===================================================
+   02. CATEGORY CARDS (01 DOCUMENT SERVICES, ETC.)
+   =================================================== */
+
+/* මුළු Card එකේ Outer Box එක */
+.card {
+    background: rgba(3, 19, 46, 0.85) !important; /* Semi-transparent Dark Blue */
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(51, 204, 255, 0.25) !important; /* Glow Border */
+    border-radius: 14px !important;
+    margin-bottom: 12px !important;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Click කරන Header Bar එක (DOCUMENT SERVICES...) */
+.card-header {
+    background: linear-gradient(135deg, #03132e 0%, #0c2a5c 100%) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    padding: 16px 18px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    cursor: pointer;
+}
+
+.card-header:hover {
+    background: linear-gradient(135deg, #08214d 0%, #123773 100%) !important;
+    border-color: rgba(51, 204, 255, 0.5) !important;
+}
+
+/* Number එක (01, 02...) Orange/Glow පාටින් */
+.service-num {
+    color: #e65100 !important;
+    font-weight: 800 !important;
+    margin-right: 8px;
+}
+
+/* ඊතල සලකුණ (Arrow Indicator) */
+.arrow-indicator {
+    color: #33ccff !important;
+}
+
+/* Dropdown එක ඇරුණාම ඇතුළේ තියෙන කොටස (Content Area) */
+.card-content {
+    background: rgba(2, 17, 36, 0.95) !important;
+    color: #ffffff !important;
+    padding: 15px !important;
+}
+
+/* ඇතුළේ තියෙන "Photo Copy" Buttons */
+.serviceBtn {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(51, 204, 255, 0.3) !important;
+    border-radius: 8px !important;
+    padding: 10px 15px !important;
+    margin-bottom: 10px !important;
+    cursor: pointer;
+    transition: all 0.2s ease !important;
+}
+
+.serviceBtn:hover {
+    background: #0b4ea2 !important;
+    border-color: #33ccff !important;
+}
+
+/* A4, A3 මිල ගණන් තියෙන Sub Box එක */
+.sub-box {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-left: 3px solid #33ccff !important;
+    padding: 12px 15px !important;
+    border-radius: 6px !important;
+    color: #ffffff !important;
+}
+
+.sub-box ul li {
+    color: #dddddd !important;
+}
     </style>
 </head>
 <body>
