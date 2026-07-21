@@ -167,7 +167,7 @@
             background-color: transparent;
             color: var(--text-gray);
             border: 1px solid var(--border-color);
-            cursor: default;
+            cursor: pointer !important;
         }
 
         /* --- HERO SLIDER --- */
@@ -678,7 +678,7 @@
                     <a href="tel:0770545464" class="btn btn-primary">CALL 0770 54 54 64</a>
                     <!-- Scroll to contact form when clicked -->
                     <a href="https://wa.me/94701193383" target="_blank" class="btn btn-outline">WHATSAPP</a>
-                    <span class="btn btn-muted">OPEN 6 AM - 10:30 PM</span>
+                    <button type="button" class="btn btn-muted" onclick="openContactUs()">OPEN 6 AM - 10:30 PM</button>
                 </div>
             </div>
 
@@ -1278,6 +1278,24 @@
                 }, 3000);
             }
         };
+        function openContactUs() {
+    // ඔයාගේ Contact Card එකේ දැනට තියෙන ID එක (contactFormSection)
+    var contactCard = document.getElementById('contactFormSection');
+    
+    if (contactCard) {
+        // 1. Contact Us card එක ළඟට Smooth Scroll වීම
+        contactCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        var header = contactCard.querySelector('.card-header');
+        
+        // 2. Card එක දැනට වැහිලා තියෙනවා නම් auto-open කිරීම
+        if (!contactCard.classList.contains('active')) {
+            setTimeout(function() {
+                toggleCard(header);
+            }, 400); // 0.4s delay එකක් දමා ඇත
+        }
+    }
+}
     </script>
 </body>
 </html>
