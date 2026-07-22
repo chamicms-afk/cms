@@ -9,12 +9,12 @@
     
     <style>
         :root {
-            --bg-color: #ffffff; 
-            --accent-color: #d15637; 
-            --text-dark: #111111;
-            --text-gray: #555555;
-            --border-color: #e2e2e2;
-            --blue: #0b4ea2;
+            --bg-color: #0f172a; 
+            --accent-color: #38bdf8; 
+            --text-dark: #f8fafc;
+            --text-gray: #94a3b8;
+            --border-color: #334155;
+            --blue: #0284c7;
         }
 
         * {
@@ -46,47 +46,50 @@
         }
 
         .logo {
-            height: 80px; /* 50px තිබුණු එක 80px කළා. මදි නම් තව වැඩි කරලා බලන්න */
+            height: 80px;
             border-radius: 8px;
         }
+        
         .logo-wrapper {
-        display: flex;
-        flex-direction: column;   /* Logo එකට හරියටම යටින් "Since 2005" තියන්න */
-        align-items: center;      /* Logo එකයි Text එකයි මැදට Center කරන්න */
-        justify-content: center;
-        margin: 0 auto 15px auto; /* පේජ් එකේ හරියටම මැදට ගේන්න */
-        width: 100%;
-        text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
+            width: 100%;
+            text-align: center;
         }
 
-.since-text {
-    font-size: 10px;          /* කුඩා font size එක */
-    color: #666666;
-    font-weight: 600;
-    margin-top: 3px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
+        .since-text {
+            font-size: 10px;
+            color: #94a3b8;
+            font-weight: 600;
+            margin-top: 3px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
         .hero-section {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px 0; /* 60px තිබුණු එක 20px කළා. මේකෙන් title එකයි logo එකයි අතර ඉඩ අඩුවෙනවා */
+            padding: 20px 0;
             gap: 50px;
         }
-        .gradient-line-1 {
-        background: linear-gradient(to right, #0b4ea2, #33ccff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        display: inline-block;
-    }
 
-    .gradient-line-2 {
-        background: linear-gradient(to right, #33ccff, #0b4ea2);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        display: inline-block;
-    }
+        .gradient-line-1 {
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .gradient-line-2 {
+            background: linear-gradient(to right, #818cf8, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
 
         .hero-content {
             flex: 1;
@@ -100,22 +103,19 @@
             letter-spacing: -2px;
         }
 
-        .hero-content h1 .accent {
-            color: var(--accent-color);
+        .main-title {
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
         }
-            .main-title {
-    background: linear-gradient(to right, #0b4ea2, #33ccff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
-}
 
-.accent {
-    background: linear-gradient(to right, #33ccff, #0b4ea2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
-}
+        .accent {
+            background: linear-gradient(to right, #818cf8, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
 
         .hero-content p {
             font-size: 1.1rem;
@@ -140,26 +140,28 @@
             cursor: pointer;
             transition: 0.3s;
             text-align: center;
+            border-radius: 8px;
         }
 
         .btn-primary {
-        background-color: #071e3d; /* <-- 1. මෙතනට #0b4ea2 දැම්මා */
-        color: white;
-        border: 2px solid #071e3d; /* <-- 2. මෙතනටත් #0b4ea2 දැම්මා */
+            background-color: #0284c7;
+            color: white;
+            border: 2px solid #0284c7;
         }
 
         .btn-primary:hover {
-        background-color: #083c7d; /* <-- 3. Hover වෙද්දී වෙන තද නිල් පාට දැම්මා */
+            background-color: #0369a1;
+            border-color: #0369a1;
         }
 
         .btn-outline {
             background-color: transparent;
             color: var(--text-dark);
-            border: 1px solid var(--text-dark);
+            border: 1px solid var(--border-color);
         }
         
         .btn-outline:hover {
-            background-color: var(--text-dark);
+            background-color: #1e293b;
             color: white;
         }
 
@@ -167,7 +169,7 @@
             background-color: transparent;
             color: var(--text-gray);
             border: 1px solid var(--border-color);
-            cursor: default;
+            cursor: pointer !important;
         }
 
         /* --- HERO SLIDER --- */
@@ -181,9 +183,10 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            border-radius: 8px;
+            border-radius: 12px;
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
+            border: 1px solid var(--border-color);
         }
 
         .slider img {
@@ -201,11 +204,12 @@
             position: absolute;
             bottom: -20px;
             left: -40px;
-            background: white;
+            background: #1e293b;
             padding: 25px 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             max-width: 280px;
             border: 1px solid var(--border-color);
+            border-radius: 12px;
             z-index: 10;
         }
 
@@ -223,6 +227,7 @@
             font-size: 0.95rem;
             font-weight: 600;
             line-height: 1.4;
+            color: #f8fafc;
         }
 
         /* --- SEARCH BOX --- */
@@ -233,64 +238,76 @@
             width: 100%;
             padding: 18px 20px;
             border: 1px solid var(--border-color);
-            background: white;
-            border-radius: 4px;
+            background: #1e293b;
+            color: #ffffff;
+            border-radius: 8px;
             font-size: 1rem;
             font-family: 'Inter', sans-serif;
             transition: 0.3s;
         }
         .search-box input:focus {
             outline: none;
-            border-color: var(--text-dark);
+            border-color: #38bdf8;
         }
 
-        /* --- SERVICES (ACCORDION STYLED AS GRID ITEMS) --- */
+        /* --- SERVICES (ACCORDION CARDS) --- */
         .services-section {
             border-top: 1px solid var(--border-color);
             margin-top: 20px;
             padding-bottom: 50px;
         }
 
-        .card {
-            border-bottom: 1px solid var(--border-color);
-            background: transparent;
+        div.card, .card {
+            background-color: #0f172a !important;
+            border: 1px solid #334155 !important;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+            border-radius: 12px !important;
+            margin-bottom: 12px !important;
+            overflow: hidden;
         }
 
-        .card-header {
-            padding: 30px 10px;
-            font-size: 1.2rem;
-            font-weight: 800;
+        div.card-header, .card-header {
+            background: #1e293b !important;
+            color: #f8fafc !important;
+            font-size: 1.1rem;
+            font-weight: 600 !important;
             text-transform: uppercase;
             display: flex;
             align-items: center;
+            padding: 20px 18px !important;
+            border-bottom: 1px solid #334155 !important;
             cursor: pointer;
             transition: 0.3s;
-            gap: 20px;
+            gap: 15px;
         }
         
-        .card-header:hover {
-            color: var(--accent-color);
+        div.card-header:hover, .card-header:hover {
+            background: #334155 !important;
         }
 
         .service-num {
             font-size: 0.9rem;
-            color: var(--accent-color);
-            font-weight: 600;
+            color: #38bdf8 !important;
+            font-weight: 700 !important;
         }
 
         .arrow-indicator {
             margin-left: auto;
             font-size: 0.9rem;
+            color: #38bdf8 !important;
             transition: transform 0.3s ease;
         }
+        
         .card.active .arrow-indicator {
             transform: rotate(-180deg);
         }
 
-        .card-content {
+        div.card-content, .card-content {
             display: none;
-            padding: 0 10px 30px 40px;
+            background-color: #0f172a !important;
+            padding: 20px 18px !important;
         }
+        
         .card.active .card-content {
             display: block;
         }
@@ -299,12 +316,13 @@
         .serviceBtn {
             display: block;
             width: 100%;
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-dark);
-            padding: 15px;
+            background: #1e293b !important;
+            border: 1px solid #334155 !important;
+            color: #e2e8f0 !important;
+            padding: 14px;
             margin: 8px 0;
             font-weight: 600;
+            border-radius: 8px;
             cursor: pointer;
             text-align: left;
             text-decoration: none;
@@ -314,81 +332,105 @@
             font-size: 0.85rem;
             letter-spacing: 0.5px;
         }
+        
         .serviceBtn:hover {
-            border-color: var(--text-dark);
+            background: #0284c7 !important;
+            border-color: #38bdf8 !important;
+            color: #ffffff !important;
         }
 
         .sub-box {
             display: none;
             padding: 15px 20px;
-            border-left: 3px solid var(--accent-color);
+            border-left: 3px solid #0284c7 !important;
             margin-bottom: 15px;
-            background: white;
+            background: rgba(30, 41, 59, 0.6) !important;
+            border-radius: 6px;
             font-size: 0.95rem;
+            color: #cbd5e1 !important;
         }
+        
         .sub-box.open {
             display: block;
         }
+        
         .sub-box ul { padding-left: 20px; margin-top: 10px; margin-bottom: 15px; }
-        .sub-box li { margin-bottom: 5px; color: var(--text-gray); }
+        .sub-box li { margin-bottom: 5px; color: #94a3b8 !important; }
 
         /* --- RELOAD PACKAGES --- */
         .package-section {
             margin: 40px 0;
         }
+        
         .package-section-title {
             font-size: 1.2rem;
             font-weight: 800;
             text-transform: uppercase;
             margin-bottom: 20px;
+            color: #f8fafc !important;
+            text-align: center;
         }
+        
         .package-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 15px;
         }
-        .package-btn {
-            background: white;
-            border: 1px solid var(--border-color);
-            padding: 20px;
+        
+        a.package-btn, .package-btn {
+            background: #1e293b !important;
+            border: 1px solid #475569 !important;
+            border-radius: 12px !important;
+            padding: 15px !important;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12) !important;
+            transition: all 0.25s ease !important;
             cursor: pointer;
-            transition: all 0.2s ease;
             display: flex;
             justify-content: center;
-        }
-        .package-btn:hover { border-color: var(--text-dark); }
-        .package-btn img {
-            width: 70px;
-            height: 70px;
-            object-fit: contain;
+            align-items: center;
         }
         
-        .dialog-btn { border-top: 4px solid #e11d48; }
-        .mobitel-btn { border-top: 4px solid #00529b; }
-        .hutch-btn { border-top: 4px solid #ea580c; }
-        .airtel-btn { border-top: 4px solid #dc2626; }
+        a.package-btn:hover, .package-btn:hover {
+            background: #0284c7 !important;
+            border-color: #38bdf8 !important;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.3) !important;
+            transform: translateY(-2px);
+        }
+        
+        .package-btn img {
+            background: #ffffff;
+            padding: 6px;
+            border-radius: 8px;
+            width: 70px;
+            height: 50px;
+            object-fit: contain;
+        }
 
         .package-content-box {
             display: none;
             margin-top: 15px;
             padding: 25px;
-            background: white;
+            background: #1e293b;
             border: 1px solid var(--border-color);
+            border-radius: 12px;
             text-align: center;
         }
+        
         .drive-link-btn {
             display: inline-block;
             margin-top: 15px;
-            background: var(--text-dark);
+            background: #0284c7;
             color: white;
             padding: 12px 25px;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.9rem;
+            border-radius: 8px;
             text-transform: uppercase;
             transition: 0.3s;
         }
-        .drive-link-btn:hover { background: var(--accent-color); }
+        
+        .drive-link-btn:hover { background: #38bdf8; }
 
         /* --- PAYMENT GRID --- */
         .payment-list {
@@ -398,16 +440,20 @@
             list-style: none;
             padding: 0;
         }
+        
         .payment-item {
             display: flex;
             align-items: center;
             gap: 15px;
             padding: 15px;
-            background: white;
+            background: #1e293b;
             border: 1px solid var(--border-color);
+            border-radius: 8px;
             font-weight: 600;
             font-size: 0.9rem;
+            color: #f8fafc;
         }
+        
         .payment-img {
             width: 35px;
             height: 35px;
@@ -419,8 +465,10 @@
             border: 1px solid var(--border-color);
             padding: 20px;
             margin-bottom: 15px;
-            background: white;
+            background: #1e293b;
+            border-radius: 12px;
         }
+        
         .bank-header {
             display: flex;
             align-items: center;
@@ -428,22 +476,27 @@
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 15px;
         }
+        
         .bank-header img {
             height: 30px;
             margin-right: 15px;
         }
+        
         .copyBtn {
-            background: var(--text-dark);
+            background: #0284c7;
             color: white;
             border: none;
-            padding: 4px 10px;
+            padding: 6px 12px;
             font-size: 0.75rem;
+            border-radius: 6px;
             cursor: pointer;
             margin-left: 15px;
             text-transform: uppercase;
             font-family: 'Inter', sans-serif;
             transition: 0.3s;
         }
+        
+        .copyBtn:hover { background: #38bdf8; }
 
         /* --- CONTACT & FORM --- */
         .contact-grid {
@@ -451,8 +504,10 @@
             gap: 40px;
             flex-wrap: wrap;
         }
+        
         .contact-col { flex: 1; min-width: 250px; }
         .contact-col p { color: var(--text-gray); }
+        
         .contact-icons {
             margin-top: 25px;
             display: flex;
@@ -461,35 +516,43 @@
             border-top: 1px solid var(--border-color);
             padding-top: 25px;
         }
+        
         .icon { width: 40px; height: 40px; transition: 0.3s; }
         .icon:hover { transform: translateY(-3px); }
 
         .contact-form { margin-top: 30px; }
         .form-group { margin-bottom: 15px; }
+        
         .form-group input, .form-group textarea {
             width: 100%;
             padding: 15px;
             border: 1px solid var(--border-color);
-            background: white;
+            background: #1e293b;
+            color: #ffffff;
+            border-radius: 8px;
             font-family: 'Inter', sans-serif;
             font-size: 0.95rem;
         }
+        
         .form-group input:focus, .form-group textarea:focus {
             outline: none;
-            border-color: var(--text-dark);
+            border-color: #38bdf8;
         }
+        
         .submit-btn {
-            background: var(--text-dark);
+            background: #0284c7;
             color: white;
             padding: 15px 30px;
             border: none;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: 0.3s;
         }
-        .submit-btn:hover { background: var(--accent-color); }
+        
+        .submit-btn:hover { background: #38bdf8; }
 
         .footer {
             text-align: center;
@@ -506,10 +569,49 @@
             right: 20px;
             z-index: 999;
         }
+        
         .whatsapp-float img {
             width: 55px; height: 55px;
             border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Business Hours Popup Modal Style */
+        .hours-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hours-modal-content {
+            background: #1e293b !important;
+            border: 1px solid rgba(56, 189, 248, 0.3) !important;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 16px;
+            width: 85%;
+            max-width: 320px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
+            position: relative;
+            text-align: center;
+        }
+
+        .hours-close-btn {
+            position: absolute;
+            top: 8px;
+            right: 15px;
+            font-size: 24px;
+            color: #38bdf8 !important;
+            cursor: pointer;
+            font-weight: bold;
         }
 
         /* --- RESPONSIVE DESIGN --- */
@@ -527,327 +629,11 @@
         }
         
         @media (max-width: 600px) {
-            .hero-content h1 { font-size: 1.5rem; }
+            .hero-content h1 { font-size: 1.8rem; }
             .payment-list { grid-template-columns: 1fr; }
             .card-header { font-size: 1rem; }
             .btn { width: 100%; }
         }
-        /* ===================================================
-   01. VOICE & DATA PACKAGES (Dialog, SLT, Hutch, Airtel)
-   =================================================== */
-
-/* Packages Title එක */
-.package-section-title {
-    color: #ffffff !important;
-    font-weight: 700 !important;
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-/* Logo Buttons (Glassmorphic Dark Blue Box) */
-.package-btn {
-    background: linear-gradient(135deg, #071e3d 0%, #0b2b5a 100%) !important;
-    border: 1px solid rgba(51, 204, 255, 0.3) !important;
-    border-radius: 12px !important;
-    padding: 12px !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
-    transition: all 0.3s ease !important;
-    cursor: pointer;
-}
-
-/* Mouse එක ගෙනිච්චම Light Blue Glow වෙන විදිය */
-.package-btn:hover {
-    border-color: #33ccff !important;
-    box-shadow: 0 0 15px rgba(51, 204, 255, 0.6) !important;
-    transform: translateY(-3px);
-}
-
-/* Logo Image එක කැපී පෙනෙන්න සුදු background එකක් */
-.package-btn img {
-    background: #ffffff;
-    padding: 6px;
-    border-radius: 8px;
-    max-height: 40px;
-    object-fit: contain;
-}
-
-
-/* ===================================================
-   02. CATEGORY CARDS (01 DOCUMENT SERVICES, ETC.)
-   =================================================== */
-
-/* මුළු Card එකේ Outer Box එක */
-.card {
-    background: rgba(3, 19, 46, 0.85) !important; /* Semi-transparent Dark Blue */
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(51, 204, 255, 0.25) !important; /* Glow Border */
-    border-radius: 14px !important;
-    margin-bottom: 12px !important;
-    overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4) !important;
-    transition: all 0.3s ease !important;
-}
-
-/* Click කරන Header Bar එක (DOCUMENT SERVICES...) */
-.card-header {
-    background: linear-gradient(135deg, #03132e 0%, #0c2a5c 100%) !important;
-    color: #ffffff !important;
-    font-weight: 700 !important;
-    padding: 16px 18px !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-    cursor: pointer;
-}
-
-.card-header:hover {
-    background: linear-gradient(135deg, #08214d 0%, #123773 100%) !important;
-    border-color: rgba(51, 204, 255, 0.5) !important;
-}
-
-/* Number එක (01, 02...) Orange/Glow පාටින් */
-.service-num {
-    color: #e65100 !important;
-    font-weight: 800 !important;
-    margin-right: 8px;
-}
-
-/* ඊතල සලකුණ (Arrow Indicator) */
-.arrow-indicator {
-    color: #33ccff !important;
-}
-
-/* Dropdown එක ඇරුණාම ඇතුළේ තියෙන කොටස (Content Area) */
-.card-content {
-    background: rgba(2, 17, 36, 0.95) !important;
-    color: #ffffff !important;
-    padding: 15px !important;
-}
-
-/* ඇතුළේ තියෙන "Photo Copy" Buttons */
-.serviceBtn {
-    background: rgba(255, 255, 255, 0.08) !important;
-    color: #ffffff !important;
-    border: 1px solid rgba(51, 204, 255, 0.3) !important;
-    border-radius: 8px !important;
-    padding: 10px 15px !important;
-    margin-bottom: 10px !important;
-    cursor: pointer;
-    transition: all 0.2s ease !important;
-}
-
-.serviceBtn:hover {
-    background: #0b4ea2 !important;
-    border-color: #33ccff !important;
-}
-
-/* A4, A3 මිල ගණන් තියෙන Sub Box එක */
-.sub-box {
-    background: rgba(255, 255, 255, 0.05) !important;
-    border-left: 3px solid #33ccff !important;
-    padding: 12px 15px !important;
-    border-radius: 6px !important;
-    color: #ffffff !important;
-}
-
-.sub-box ul li {
-    color: #dddddd !important;
-}
-        /* Business Hours Popup Modal Style */
-.hours-modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(5px);
-    justify-content: center;
-    align-items: center;
-}
-
-.hours-modal-content {
-    background: linear-gradient(135deg, #03132e 0%, #0c2a5c 100%);
-    border: 1px solid rgba(51, 204, 255, 0.4);
-    color: #ffffff;
-    padding: 20px;
-    border-radius: 16px;
-    width: 85%;
-    max-width: 320px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    position: relative;
-    text-align: center;
-}
-
-.hours-close-btn {
-    position: absolute;
-    top: 8px;
-    right: 15px;
-    font-size: 24px;
-    color: #33ccff;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.btn-muted {
-    cursor: pointer !important;
-}
-        /* ===================================================
-   PROFESSIONAL SLATE & TECH NAVY THEME (Corporate Look)
-   =================================================== */
-
-/* 01. PACKAGE BUTTONS (Dialog, Mobitel, Hutch, Airtel) */
-.package-btn {
-    background: #1e293b !important;                          /* Soft Slate Navy */
-    border: 1px solid rgba(148, 163, 184, 0.25) !important;  /* Soft Border */
-    color: #f8fafc !important;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12) !important;
-    transition: all 0.25s ease !important;
-}
-
-.package-btn:hover {
-    background: #0f172a !important;                          /* Slightly Darker Slate */
-    border-color: #38bdf8 !important;                        /* Modern Soft Accent Cyan */
-    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.15) !important;
-}
-
-/* 02. CATEGORY CARDS (Document Services, Reload, etc.) */
-.card {
-    background: #0f172a !important;                          /* Deep Slate Base */
-    border: 1px solid rgba(148, 163, 184, 0.2) !important;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
-    border-radius: 12px !important;
-}
-
-/* Card Header Bar (DOCUMENT SERVICES...) */
-.card-header {
-    background: #1e293b !important;                          /* Professional Slate Header */
-    color: #f8fafc !important;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.15) !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.3px !important;
-}
-
-.card-header:hover {
-    background: #334155 !important;                          /* Subtle Hover */
-}
-
-/* ඊතල සලකුණ (Arrow Indicator) */
-.arrow-indicator {
-    color: #38bdf8 !important;                               /* Clean Accent Color */
-}
-
-/* Dropdown Content Area */
-.card-content {
-    background: #0f172a !important;
-}
-
-/* "Photo Copy" වගේ ඇතුළේ තියෙන Sub Buttons */
-.serviceBtn {
-    background: rgba(30, 41, 59, 0.8) !important;
-    border: 1px solid rgba(148, 163, 184, 0.2) !important;
-    color: #e2e8f0 !important;
-}
-
-.serviceBtn:hover {
-    background: #0284c7 !important;                          /* Elegant Steel Blue */
-    border-color: #38bdf8 !important;
-    color: #ffffff !important;
-}
-
-/* Sub Boxes (Details / Rates) */
-.sub-box {
-    background: rgba(30, 41, 59, 0.6) !important;
-    border-left: 3px solid #0284c7 !important;
-    color: #cbd5e1 !important;
-}
-
-/* 03. POPUP MODAL (BUSINESS HOURS WINDOW) */
-.hours-modal-content {
-    background: #1e293b !important;
-    border: 1px solid rgba(56, 189, 248, 0.3) !important;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
-}
-
-.hours-close-btn {
-    color: #38bdf8 !important;
-}
-        /* Sub Boxes (Details / Rates) */
-.sub-box {
-    background: rgba(30, 41, 59, 0.6) !important;
-    border-left: 3px solid #0284c7 !important;
-    color: #cbd5e1 !important;
-}
-
-/* 03. POPUP MODAL (BUSINESS HOURS WINDOW) */
-.hours-modal-content {
-    background: #1e293b !important;
-    border: 1px solid rgba(56, 189, 248, 0.3) !important;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
-}
-
-.hours-close-btn {
-    color: #38bdf8 !important;
-}
-
-
-/* 💥 💥 💥 මෙන්න මෙතනට අලුත් OVERRIDE CSS ටික PASTE කරන්න 💥 💥 💥 */
-
-div.card, 
-.card {
-    background-color: #0f172a !important;
-    border: 1px solid #334155 !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25) !important;
-}
-
-div.card-header, 
-.card-header {
-    background: #1e293b !important;
-    color: #f8fafc !important;
-    border-bottom: 1px solid #334155 !important;
-}
-
-div.card-header:hover, 
-.card-header:hover {
-    background: #334155 !important;
-}
-
-a.package-btn, 
-.package-btn {
-    background: #1e293b !important;
-    border: 1px solid #475569 !important;
-    color: #f8fafc !important;
-}
-
-a.package-btn:hover, 
-.package-btn:hover {
-    background: #0284c7 !important;
-    border-color: #38bdf8 !important;
-    box-shadow: 0 0 12px rgba(56, 189, 248, 0.3) !important;
-}
-
-div.card-content, 
-.card-content {
-    background-color: #0f172a !important;
-}
-
-.serviceBtn {
-    background: #1e293b !important;
-    border: 1px solid #334155 !important;
-    color: #e2e8f0 !important;
-}
-
-.serviceBtn:hover {
-    background: #0284c7 !important;
-    border-color: #38bdf8 !important;
-    color: #ffffff !important;
-}
-
-.arrow-indicator {
-    color: #38bdf8 !important;
-}
-
 </style>
 
 </head>
