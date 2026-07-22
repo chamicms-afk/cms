@@ -176,7 +176,7 @@
         .offer-container {
             text-align: center;
             margin-top: 15px;
-            margin-bottom: -15px !important; /* ඍණ අගයක් දීලා Slider එක උඩට ඇද්දා */
+            margin-bottom: -20px !important; /* ඍණ අගයක් දීලා Slider එක උඩට ඇද්දා */
             width: 100%;
             position: relative;
             z-index: 2;
@@ -217,11 +217,61 @@
             position: relative;
         }
 
+        /* ✅ ඔයාගේ පරණ කෝඩ් එක මෙහෙම වෙනස් වෙන්න ඕන */
         .slider img {
             width: 100%;
             height: 100%;
             object-fit: cover; /* Photos කපෙන්නේ නැතුව Ratio එකට අනුව Fit වීම */
             display: none;
+            cursor: pointer; /* ✨ මේ පේළිය අලුතින් එකතු කළා */
+        }
+
+        /* 👇 මෙතැන් සිට අලුත් CSS කොටස (Lightbox) 👇 */
+
+        /* --- LIGHTBOX MODAL (FULL IMAGE PREVIEW) --- */
+        .lightbox-modal {
+            display: none; /* Default එකෙන් පේන්නේ නැහැ */
+            position: fixed; /* Screen එක උඩම තියෙන්න */
+            z-index: 10000; /* හැමදේටම උඩින් */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* කළු පසුබිම */
+            backdrop-filter: blur(5px); /* පසුබිම Blur කරන්න */
+            justify-content: center; /* මැදට සකස් කිරීම */
+            align-items: center; /* මැදට සකස් කිරීම */
+        }
+
+        .lightbox-content {
+            max-width: 95%; /* Phone එකට ගැලපෙන්න */
+            max-height: 90vh; /* Phone එකට ගැලපෙන්න */
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            object-fit: contain; /* Image එක Ratio එකට අනුව පෙන්නන්න */
+            animation: zoomIn 0.3s ease-out; /* පොඩි Animation එකක් */
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #ffffff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            user-select: none;
+        }
+
+        .lightbox-close:hover {
+            color: #38bdf8;
+        }
+
+        /* Zoom Animation */
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
         .slider img.active {
@@ -1326,5 +1376,11 @@ window.addEventListener('click', function(event) {
         <p style="margin-top: 10px; font-size:12px; color:#ccc;">Open 7 Days a Week</p>
     </div>
 </div>
-</body>
+   <!-- FULL IMAGE PREVIEW MODAL (Page එකේ පල්ලෙහාම </body> එකට උඩින් දාන්න) -->
+<div id="imageLightbox" class="lightbox-modal" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+    <img class="lightbox-content" id="lightboxImg" alt="Full Image Preview">
+</div>
+
+</body> 
 </html>
