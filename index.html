@@ -755,14 +755,14 @@
 
             <!-- Image Slider combined with Location Card -->
             <div class="hero-image-wrapper">
-                <div class="slider">
-                    <img class="slide active" src="https://lh3.googleusercontent.com/d/1AwGqz_gFA7u1gVuDT5wBIn1qtsb0VXaW" alt="Slide 1">
-                    <img class="slide" src="https://lh3.googleusercontent.com/d/1ZFu6hXUi1i7IVLCEtuPDdt6exY0IEtDz" alt="Slide 2">
-                    <img class="slide" src="https://lh3.googleusercontent.com/d/1Y7pe5IK5MTEj-gch3OibYiyNESV2UIOE" alt="Slide 3">
-                    <img class="slide" src="https://lh3.googleusercontent.com/d/1GaYoP-SJ_5-PsMBdEO7FjGeFFd5lVXpP" alt="Slide 4">
-                </div>
-                
+            <div class="slider">
+                <!-- මෙන්න මේ වගේ හැම img tag එකකටම onclick එකතු කරන්න -->
+                <img class="slide active" src="https://lh3.googleusercontent.com/d/1AwGqz_gFA7u1gVuDT5wBIn1qtsb0VXaW" alt="Slide 1" onclick="openLightbox(this.src)">
+                <img class="slide" src="https://lh3.googleusercontent.com/d/1ZFu6hXUi1i7IVLCEtuPDdt6exY0IEtDz" alt="Slide 2" onclick="openLightbox(this.src)">
+                <img class="slide" src="https://lh3.googleusercontent.com/d/1Y7pe5IK5MTEj-gch3OibYiyNESV2UIOE" alt="Slide 3" onclick="openLightbox(this.src)">
+                <img class="slide" src="https://lh3.googleusercontent.com/d/1GaYoP-SJ_5-PsMBdEO7FjGeFFd5lVXpP" alt="Slide 4" onclick="openLightbox(this.src)">
             </div>
+</div>
         </header>
 
         <!-- Search Box -->
@@ -1364,7 +1364,29 @@ window.addEventListener('click', function(event) {
         modal.style.display = 'none';
     }
 });
-    </script>
+       // Modal එකෙන් එලිය ක්ලික් කළාමත් Close වෙන විදිය
+window.addEventListener('click', function(event) {
+    var modal = document.getElementById('hoursModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+});
+
+/* ✨ මෙන්න මෙතැනට PASTE කරන්න (LIGHTBOX JS) ✨ */
+function openLightbox(imgSrc) {
+    const modal = document.getElementById('imageLightbox');
+    const modalImg = document.getElementById('lightboxImg');
+    modalImg.src = imgSrc;
+    modal.style.display = 'flex';
+}
+
+function closeLightbox(e) {
+    if (e.target.id === 'imageLightbox' || e.target.className === 'lightbox-close') {
+        document.getElementById('imageLightbox').style.display = 'none';
+    }
+}
+</script> 
+  
     <!-- Original Business Hours Popup Modal -->
 <div id="hoursModal" class="hours-modal">
     <div class="hours-modal-content">
