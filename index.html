@@ -175,8 +175,11 @@
         /* --- SPECIAL OFFERS SHINE EFFECT --- */
         .offer-container {
             text-align: center;
-            margin: 25px 0 0px 0;
+            margin-top: 15px;
+            margin-bottom: -15px !important; /* ඍණ අගයක් දීලා Slider එක උඩට ඇද්දා */
             width: 100%;
+            position: relative;
+            z-index: 2;
         }
 
         .offer-text-shine {
@@ -199,11 +202,11 @@
         }
         /* --- HERO SLIDER (16:9 RATIO) --- */
         .hero-image-wrapper {
-            flex: 1;
-            position: relative;
-            width: 100%;
+        flex: 1;
+        position: relative;
+        width: 100%;
+        margin-top: 0px !important;
         }
-
         .slider {
             width: 100%;
             aspect-ratio: 16 / 9; /* 16:9 Widescreen Ratio එකට Set කිරීම */
