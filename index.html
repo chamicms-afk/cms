@@ -736,27 +736,28 @@ header {
     margin-top: 5px !important;  /* 👈 Gap එක තවත් අඩු කරන්න ඕන නම් මේක 0px හෝ -5px කරන්න */
     padding-top: 0px !important;
 }
-        /* --- RUNNING TEXT TICKER STYLING --- */
+/* --- RUNNING TEXT TICKER STYLING (RED LOGO COLOR) --- */
 .running-text-container {
     width: 100%;
     overflow: hidden;
-    background: linear-gradient(90deg, #0f172a, #1e293b); /* ලස්සන dark පසුබිමක් */
-    color: #f8fafc;
-    padding: 8px 0;
+    background: linear-gradient(90deg, #b91c1c, #ef4444, #b91c1c); /* ✨ Logo එකට ගැලපෙන ප්‍රීමියම් Red Gradient එක */
+    color: #ffffff; /* ✨ පැහැදිලිව කියවන්න පුළුවන් Crisp White Text */
+    padding: 9px 0;
     font-size: 14px;
-    font-weight: 500;
-    border-bottom: 2px solid #38bdf8; /* පහළින් කුඩා පාට ඉරක් */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    border-bottom: 2px solid #991b1b; /* පහළින් Dark Red Border එකක් */
+    box-shadow: 0 3px 10px rgba(185, 28, 28, 0.25);
 }
 
 .running-text {
     display: inline-block;
     white-space: nowrap;
-    padding-left: 100%; /* දකුණෙන් පටන් ගැනීමට */
-    animation: runText 18s linear infinite; /* 18s කියන්නේ Speed එක */
+    padding-left: 100%;
+    animation: runText 18s linear infinite;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); /* Text එක තවත් පැහැදිලිව පෙනෙන්න Drop Shadow එකක් */
 }
 
-/* Mouse එක ගෙනිච්චාම Pause වීමට (Customer ට කියවන්න පහසු වෙන්න) */
+/* Mouse එක ගෙනිච්චාම Pause වීමට */
 .running-text-container:hover .running-text {
     animation-play-state: paused;
 }
@@ -777,7 +778,7 @@ header {
    <!-- Running Sinhala Text Banner -->
     <div class="running-text-container">
     <div class="running-text">
-        📢 සාදරයෙන් පිළිගනිමු! CMS (Chami Multi Shop) වෙතින් ඔබට අවශ්‍ය සියලුම Mobile Reloads, Bill Payments සහ Electronics උපකරණ අඩුම මිලට ලබාගත හැක...
+        📢 සාදරයෙන් පිළිගනිමු! CMS (චමි මල්ටි ෂොප්) වෙතින් ඔබට අවශ්‍ය සියලුම ‍‍ෆ‍ොටො කොපි, ප්‍රින්ට් අවුට්, ස්කෑනින්, බයින්ඩින්, ලැමිනේටින් , ලිපි ද්‍රව්‍ය,  පාසල් උපකරණ, කාර්යාල උපකරණ, රීලෝඩ්, බිල්පත් ගෙවීම්,  ඩයලොග් ටීවී නව සම්බන්ධතා , උපාංග සහ සවි කිරීම, තෑගි භාණ්ඩ , විදුලි උපකරණ සහ උපාංග සහ සෑම දෛනික අත්‍යවශ්‍ය දෙයක්ම එකම වහලක් යටින් අඩුම මිලට ලබාගත හැක...
     </div>
 </div> 
     <div class="container">
