@@ -466,14 +466,27 @@
         }
         
         .package-section-title {
-            font-size: 1.2rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            color: var(--text-dark) !important;
-            text-align: center;
-        }
-        
+    font-size: 1.3rem;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-align: center;
+    display: block;
+
+    /* Gradient Red Colors */
+    background: linear-gradient(90deg, #d32f2f, #ef5350, #b71c1c, #d32f2f);
+    background-size: 200% auto;
+
+    /* Mobile Text Clip Fix */
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+
+    /* Animation */
+    animation: shineText 2.5s linear infinite;
+}
         .package-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
