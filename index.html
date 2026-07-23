@@ -56,7 +56,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin: -8px auto 10px auto; /* ✨ උඩ Gap එක අඩු කරලා Logo එක උඩට තල්ලු කළා */
+        margin: -12px auto 10px auto; /* ✨ උඩ Gap එක අඩු කරලා Logo එක උඩට තල්ලු කළා */
         width: 100%;
         text-align: center;
         }
@@ -133,53 +133,67 @@
             max-width: 90%;
         }
 
-        .button-group {
+        /* --- ACTION BUTTONS 2-COLUMN LAYOUT --- */
+        .action-buttons-wrapper {
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+            margin: 10px 0;
+            box-sizing: border-box;
         }
 
-        .btn {
-            padding: 15px 25px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            text-decoration: none;
-            cursor: pointer;
-            transition: 0.3s;
-            text-align: center;
+        .button-row {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .action-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 4px;
             border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            text-align: center;
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            border: none;
+            cursor: pointer;
         }
 
-        .btn-primary {
+        .action-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Button Colors and Sizes */
+        .btn-call {
             background-color: #0284c7;
             color: #ffffff;
-            border: 2px solid #0284c7;
+            font-size: 11.5px;
         }
 
-        .btn-primary:hover {
-            background-color: #0369a1;
-            border-color: #0369a1;
+        .btn-whatsapp {
+            background-color: #25d366;
+            color: #ffffff;
+            font-size: 12.5px;
         }
 
-        .btn-outline {
-            background-color: #ffffff;
-            color: var(--text-dark);
-            border: 1px solid var(--border-color);
-        }
-        
-        .btn-outline:hover {
-            background-color: #f1f5f9;
-            color: #0284c7;
+        .btn-hours {
+            background-color: #0f172a;
+            color: #fef08a;
+            font-size: 11px;
         }
 
-        .btn-muted {
-            background-color: #ffffff;
-            color: var(--text-gray);
-            border: 1px solid var(--border-color);
-            cursor: pointer !important;
-        }
+        .btn-facebook {
+            background-color: #1877f2;
+            color: #ffffff;
+            font-size: 12.5px;
+}
         /* --- SPECIAL OFFERS SHINE EFFECT --- */
         .offer-container {
             text-align: center;
@@ -806,18 +820,43 @@ header {
                 <span class="accent">Beyond the Connection</span>
                 </h1>
                 
-                <p>Photocopy, Printing, Scanning, Binding, Laminating, Stationery, School Items, Office Items, Mobile Reload, Bill Payments, Dialog TV Setup, Fancy Items and Every daily essential  All under one roof.</p>
+                <p>Photo Copy, Printing, Scanning, Binding, Laminating, Stationery, School Items, Office Items, Reload & Card, Bill Payments, Dialog TV Setup, Fancy Items and Every daily essential  All under one roof.</p>
                 
-                <div class="button-group">
-                    <a href="tel:0770545464" class="btn btn-primary">CALL 0770 54 54 64</a>
-                    <!-- Scroll to contact form when clicked -->
-                    <a href="https://wa.me/94701193383" target="_blank" class="btn btn-outline">WHATSAPP</a>
-                    <button type="button" class="btn btn-muted" onclick="openOriginalHours()">OPEN 6 AM - 10:30 PM</button>
-                </div>
-               <!-- ✨ මෙන්න මෙතනට PASTE කරන්න ✨ -->
-                <div class="offer-container">
-                <span class="offer-text-shine">✨ SPECIAL OFFERS ✨</span>
-                </div> 
+        <!-- Quick Action Buttons Container -->
+            <div class="action-buttons-wrapper">
+
+        <!-- LINE 1: CALL & WHATSAPP -->
+            <div class="button-row">
+            <a href="tel:0770545464" class="action-btn btn-call">
+            CALL 0770 54 54 64
+            </a>
+            <a href="https://wa.me/94701193383" target="_blank" class="action-btn btn-whatsapp">
+            WHATSAPP
+            </a>
+            </div>
+
+        <!-- LINE 2: OPEN HOURS & FACEBOOK -->
+        <div class="button-row">
+        <button type="button" class="action-btn btn-hours" onclick="openOriginalHours()">
+            OPEN 6 AM - 10:30 PM
+        </button>
+        <a href="https://facebook.com" target="_blank" class="action-btn btn-facebook">
+            FACEBOOK
+        </a>
+    </div>
+
+</div>
+
+<!-- SPECIAL OFFERS -->
+<div class="offer-container">
+    <span class="offer-text-shine">SPECIAL OFFERS</span>
+</div>
+</div>
+
+<!-- ✨ SPECIAL OFFERS ✨ -->
+<div class="offer-container">
+    <span class="offer-text-shine">✨ SPECIAL OFFERS ✨</span>
+</div>
             </div>
 
             <!-- Image Slider combined with Location Card -->
