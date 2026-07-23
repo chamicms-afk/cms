@@ -736,28 +736,29 @@ header {
     margin-top: 5px !important;  /* 👈 Gap එක තවත් අඩු කරන්න ඕන නම් මේක 0px හෝ -5px කරන්න */
     padding-top: 0px !important;
 }
-/* --- RUNNING TEXT TICKER STYLING (RED LOGO COLOR) --- */
+/* --- RUNNING TEXT TICKER STYLING --- */
 .running-text-container {
     width: 100%;
     overflow: hidden;
-    background: linear-gradient(90deg, #b91c1c, #ef4444, #b91c1c); /* ✨ Logo එකට ගැලපෙන ප්‍රීමියම් Red Gradient එක */
-    color: #ffffff; /* ✨ පැහැදිලිව කියවන්න පුළුවන් Crisp White Text */
+    /* 🎨 CALL button/bar එකේ Color එක මෙතැනට යොදන්න */
+    background-color: #0f172a; /* 👈 මෙතැන තියෙන Hex Code එක "CALL 0770545464" එකේ Color Code එකට වෙනස් කරන්න */
+    color: #ffffff;            /* ✨ Text එක කැපී පෙනෙන Crisp White පාට */
     padding: 9px 0;
     font-size: 14px;
     font-weight: 600;
-    border-bottom: 2px solid #991b1b; /* පහළින් Dark Red Border එකක් */
-    box-shadow: 0 3px 10px rgba(185, 28, 28, 0.25);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .running-text {
     display: inline-block;
     white-space: nowrap;
     padding-left: 100%;
-    animation: runText 18s linear infinite;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); /* Text එක තවත් පැහැදිලිව පෙනෙන්න Drop Shadow එකක් */
+    /* ⏱️ Speed එක අඩු කළා (30s කළ නිසා දැන් ගොඩක් හෙමින් හා පැහැදිලිව දුවනවා) */
+    animation: runText 35s linear infinite; 
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-/* Mouse එක ගෙනිච්චාම Pause වීමට */
+/* Mouse එක තැබූ විට Pause වීම */
 .running-text-container:hover .running-text {
     animation-play-state: paused;
 }
