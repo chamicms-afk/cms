@@ -74,12 +74,13 @@
             flex: 1;
         }
 
+        /* ✏️ REDUCED TITLE FONT SIZE */
         .hero-content h1 {
-            font-size: 4rem;
+            font-size: 2.3rem;
             font-weight: 900;
-            line-height: 1.1;
-            margin: 0 0 5px 0;
-            letter-spacing: -2px;
+            line-height: 1.2;
+            margin: 0 0 10px 0;
+            letter-spacing: -1px;
         }
 
         .main-title {
@@ -97,7 +98,7 @@
         }
 
         .hero-content p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--text-gray);
             margin-bottom: 20px;
             max-width: 90%;
@@ -169,7 +170,7 @@
         .btn-hours { background-color: #ffffff; color: #000000; border: 1px solid #cbd5e1; font-size: 11px; }
         .btn-facebook { background-color: #1877f2; color: #ffffff; font-size: 12.5px; }
 
-        /* --- 12-APP GRID (BALANCED 4 COLUMNS X 3 ROWS) --- */
+        /* --- 12-APP GRID --- */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -178,7 +179,7 @@
         }
 
         .service-card {
-            background-color: #e5e7eb; /* Retail HUB Light Grey */
+            background-color: #e5e7eb;
             border: 1px solid #d1d5db;
             border-radius: 16px;
             padding: 14px 6px;
@@ -220,7 +221,7 @@
             text-transform: uppercase;
         }
 
-        /* --- DYNAMIC DETAILS CONTAINER (SHOWS CONTENT WHEN GRID ITEM CLICKED) --- */
+        /* --- DYNAMIC DETAILS CONTAINER --- */
         .category-detail-panel {
             display: none;
             background: #ffffff;
@@ -685,6 +686,7 @@
         }
 
         @media (max-width: 600px) {
+            .hero-content h1 { font-size: 1.8rem; }
             .services-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
             .service-card { padding: 10px 4px; min-height: 75px; }
             .service-card span { font-size: 9.5px; }
@@ -800,7 +802,7 @@
                     </div>
                 </div>
 
-                <!-- 📂 DYNAMIC CONTENT PANELS (SHOWS CONTENT WHEN GRID ITEM IS CLICKED) -->
+                <!-- 📂 DYNAMIC CONTENT PANELS -->
                 <div id="panelDisplayArea">
                     
                     <!-- 1. Document Services -->
@@ -1266,11 +1268,9 @@
 
             let isAlreadyActive = targetPanel.classList.contains('active');
 
-            // Close all open panels and cards first
             allPanels.forEach(panel => panel.classList.remove('active'));
             allCards.forEach(card => card.classList.remove('active'));
 
-            // Toggle target panel
             if (!isAlreadyActive) {
                 targetPanel.classList.add('active');
                 cardElement.classList.add('active');
