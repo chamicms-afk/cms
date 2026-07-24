@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chami Multi Shop (CMS)</title>
-    <!-- පෙනුම ලස්සන කරන්න Inter කියන Font එක පාවිච්චි කරමු -->
+    <!-- Inter Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
     
     <style>
@@ -37,47 +37,6 @@
         }
 
         /* --- HEADER / HERO SECTION --- */
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .logo {
-            height: 80px;
-            border-radius: 8px;
-            display: block;
-        }
-        
-        .logo-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin: -15px auto 10px auto; /* ✨ උඩ Gap එක අඩු කරලා Logo එක උඩට තල්ලු කළා */
-        width: 100%;
-        text-align: center;
-        }
-
-        .since-text {
-        font-size: 10px;
-        color: var(--text-gray);
-        font-weight: 600;
-        margin-top: 0px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        }
-        .since-text {
-            font-size: 10px;
-            color: var(--text-gray);
-            font-weight: 600;
-            margin-top: 5px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
         .hero-section {
             display: flex;
             align-items: center;
@@ -86,18 +45,29 @@
             gap: 50px;
         }
 
-        .gradient-line-1 {
-            background: linear-gradient(to right, #0284c7, #2563eb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
+        .logo-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: -15px auto 10px auto;
+            width: 100%;
+            text-align: center;
         }
 
-        .gradient-line-2 {
-            background: linear-gradient(to right, #2563eb, #0284c7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
+        .logo {
+            height: 80px;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .since-text {
+            font-size: 10px;
+            color: var(--text-gray);
+            font-weight: 600;
+            margin-top: 5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .hero-content {
@@ -129,8 +99,32 @@
         .hero-content p {
             font-size: 1.1rem;
             color: var(--text-gray);
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             max-width: 90%;
+        }
+
+        /* --- SEARCH BOX (PLACED IN THE MIDDLE) --- */
+        .search-box {
+            margin: 15px 0 20px 0 !important;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            color: var(--text-dark);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #0284c7;
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
         }
 
         /* --- ACTION BUTTONS 2-COLUMN LAYOUT --- */
@@ -139,7 +133,7 @@
             flex-direction: column;
             gap: 8px;
             width: 100%;
-            margin: 10px 0;
+            margin: 10px 0 20px 0;
             box-sizing: border-box;
         }
 
@@ -170,36 +164,58 @@
             transform: scale(0.98);
         }
 
-        /* Button Colors and Sizes */
-        .btn-call {
-            background-color: #0284c7;
-            color: #ffffff;
-            font-size: 11.5px;
+        .btn-call { background-color: #0284c7; color: #ffffff; font-size: 11.5px; }
+        .btn-whatsapp { background-color: #25d366; color: #ffffff; font-size: 12.5px; }
+        .btn-hours { background-color: #ffffff; color: #000000; border: 1px solid #cbd5e1; font-size: 11px; }
+        .btn-facebook { background-color: #1877f2; color: #ffffff; font-size: 12.5px; }
+
+        /* --- 4-COLUMN APP GRID CARDS --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 15px 0 25px 0;
         }
 
-        .btn-whatsapp {
-            background-color: #25d366;
-            color: #ffffff;
-            font-size: 12.5px;
+        .service-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 12px 5px;
+            text-align: center;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            transition: transform 0.2s, background-color 0.2s;
         }
 
-        .btn-hours {
-            background-color: #ffffff; /* Background එක White */
-            color: #000000;            /* Text එක Black */
-            border: 1px solid #cbd5e1; /* Background එක White නිසා Button එක වෙන් වී පෙනෙන්න Border එකක් */
-            font-size: 11px;
+        .service-card:active, .service-card:hover {
+            background-color: #f1f5f9;
+            transform: scale(0.96);
         }
-       
-        .btn-facebook {
-            background-color: #1877f2;
-            color: #ffffff;
-            font-size: 12.5px;
-}
+
+        .service-card img {
+            width: 30px;
+            height: 30px;
+            margin-bottom: 6px;
+            object-fit: contain;
+        }
+
+        .service-card span {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+
         /* --- SPECIAL OFFERS SHINE EFFECT --- */
         .offer-container {
             text-align: center;
             margin-top: 15px;
-            margin-bottom: 0px !important; /* ඍණ අගයක් දීලා Slider එක උඩට ඇද්දා */
+            margin-bottom: 0px !important;
             width: 100%;
             position: relative;
             z-index: 2;
@@ -223,16 +239,18 @@
             0% { background-position: 0% center; }
             100% { background-position: 200% center; }
         }
-        /* --- HERO SLIDER (16:9 RATIO) --- */
+
+        /* --- HERO SLIDER --- */
         .hero-image-wrapper {
-        flex: 1;
-        position: relative;
-        width: 100%;
-        margin-top: 0px !important;
+            flex: 1;
+            position: relative;
+            width: 100%;
+            margin-top: 0px !important;
         }
+
         .slider {
             width: 100%;
-            aspect-ratio: 16 / 9; /* 16:9 Widescreen Ratio එකට Set කිරීම */
+            aspect-ratio: 16 / 9;
             overflow: hidden;
             border-radius: 12px;
             border: 1px solid var(--border-color);
@@ -240,118 +258,101 @@
             position: relative;
         }
 
-        /* ✅ ඔයාගේ පරණ කෝඩ් එක මෙහෙම වෙනස් වෙන්න ඕන */
         .slider img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Photos කපෙන්නේ නැතුව Ratio එකට අනුව Fit වීම */
+            object-fit: cover;
             display: none;
-            cursor: pointer; /* ✨ මේ පේළිය අලුතින් එකතු කළා */
-        }
-
-        /* 👇 මෙතැන් සිට අලුත් CSS කොටස (Lightbox) 👇 */
-
-        /* --- LIGHTBOX MODAL (FULL IMAGE PREVIEW) --- */
-        .lightbox-modal {
-            display: none; /* Default එකෙන් පේන්නේ නැහැ */
-            position: fixed; /* Screen එක උඩම තියෙන්න */
-            z-index: 10000; /* හැමදේටම උඩින් */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9); /* කළු පසුබිම */
-            backdrop-filter: blur(5px); /* පසුබිම Blur කරන්න */
-            justify-content: center; /* මැදට සකස් කිරීම */
-            align-items: center; /* මැදට සකස් කිරීම */
-        }
-
-        .lightbox-content {
-            max-width: 95%; /* Phone එකට ගැලපෙන්න */
-            max-height: 90vh; /* Phone එකට ගැලපෙන්න */
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            object-fit: contain; /* Image එක Ratio එකට අනුව පෙන්නන්න */
-            animation: zoomIn 0.3s ease-out; /* පොඩි Animation එකක් */
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            color: #ffffff;
-            font-size: 40px;
-            font-weight: bold;
             cursor: pointer;
-            transition: 0.2s;
-            user-select: none;
-        }
-
-        .lightbox-close:hover {
-            color: #38bdf8;
-        }
-
-        /* Zoom Animation */
-        @keyframes zoomIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
         }
 
         .slider img.active {
             display: block;
         }
 
-        .location-card {
-            position: absolute;
-            bottom: -20px;
-            left: -40px;
-            background: #ffffff;
-            padding: 25px 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            max-width: 280px;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            z-index: 10;
-        }
-
-        .location-card .label {
-            font-size: 0.7rem;
-            color: var(--text-gray);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .location-card p {
-            margin: 0;
-            font-size: 0.95rem;
-            font-weight: 600;
-            line-height: 1.4;
-            color: var(--text-dark);
-        }
-
-        /* --- SEARCH BOX --- */
-        .search-box {
+        /* --- RELOAD PACKAGES --- */
+        .package-section {
             margin: 40px 0;
         }
-        .search-box input {
-            width: 100%;
-            padding: 18px 20px;
-            border: 1px solid #cbd5e1;
-            background: #ffffff;
-            color: var(--text-dark);
+
+        .package-section-title {
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-align: center;
+            display: block;
+            background: linear-gradient(90deg, #d32f2f, #ef5350, #b71c1c, #d32f2f);
+            background-size: 200% auto;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            color: transparent !important;
+            animation: shineText 2.5s linear infinite;
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        a.package-btn, .package-btn {
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 12px !important;
+            padding: 15px !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+            transition: all 0.25s ease !important;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        a.package-btn:hover, .package-btn:hover {
+            background: #f1f5f9 !important;
+            border-color: #0284c7 !important;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15) !important;
+            transform: translateY(-2px);
+        }
+
+        .package-btn img {
+            background: transparent;
+            padding: 2px;
             border-radius: 8px;
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
+            width: 70px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .package-content-box {
+            display: none;
+            margin-top: 15px;
+            padding: 25px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .drive-link-btn {
+            display: inline-block;
+            margin-top: 15px;
+            background: #0284c7;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            text-transform: uppercase;
             transition: 0.3s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
         }
-        .search-box input:focus {
-            outline: none;
-            border-color: #0284c7;
-            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
-        }
+
+        .drive-link-btn:hover { background: #0369a1; }
 
         /* --- SERVICES (ACCORDION CARDS) --- */
         .services-section {
@@ -383,15 +384,9 @@
             transition: 0.3s;
             gap: 15px;
         }
-        
+
         div.card-header:hover, .card-header:hover {
             background: #f8fafc !important;
-        }
-
-        .service-num {
-            font-size: 0.9rem;
-            color: #0284c7 !important;
-            font-weight: 700 !important;
         }
 
         .arrow-indicator {
@@ -400,7 +395,7 @@
             color: #0284c7 !important;
             transition: transform 0.3s ease;
         }
-        
+
         .card.active .arrow-indicator {
             transform: rotate(-180deg);
         }
@@ -410,12 +405,11 @@
             background-color: #ffffff !important;
             padding: 20px 18px !important;
         }
-        
+
         .card.active .card-content {
             display: block;
         }
 
-        /* Inner Sub-buttons */
         .serviceBtn {
             display: block;
             width: 100%;
@@ -435,7 +429,7 @@
             font-size: 0.85rem;
             letter-spacing: 0.5px;
         }
-        
+
         .serviceBtn:hover {
             background: #0284c7 !important;
             border-color: #0284c7 !important;
@@ -452,102 +446,10 @@
             font-size: 0.95rem;
             color: #334155 !important;
         }
-        
-        .sub-box.open {
-            display: block;
-        }
-        
+
+        .sub-box.open { display: block; }
         .sub-box ul { padding-left: 20px; margin-top: 10px; margin-bottom: 15px; }
         .sub-box li { margin-bottom: 5px; color: #64748b !important; }
-
-        /* --- RELOAD PACKAGES --- */
-        .package-section {
-            margin: 40px 0;
-        }
-        
-        .package-section-title {
-    font-size: 1.3rem;
-    font-weight: 900;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    text-align: center;
-    display: block;
-
-    /* Gradient Red Colors */
-    background: linear-gradient(90deg, #d32f2f, #ef5350, #b71c1c, #d32f2f);
-    background-size: 200% auto;
-
-    /* Mobile Text Clip Fix */
-    -webkit-background-clip: text !important;
-    background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    color: transparent !important;
-
-    /* Animation */
-    animation: shineText 2.5s linear infinite;
-}
-        .package-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-        }
-        
-        a.package-btn, .package-btn {
-            background: #ffffff !important;
-            border: 1px solid #e2e8f0 !important;
-            border-radius: 12px !important;
-            padding: 15px !important;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
-            transition: all 0.25s ease !important;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        a.package-btn:hover, .package-btn:hover {
-            background: #f1f5f9 !important;
-            border-color: #0284c7 !important;
-            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15) !important;
-            transform: translateY(-2px);
-        }
-        
-        .package-btn img {
-            background: transparent;
-            padding: 2px;
-            border-radius: 8px;
-            width: 70px;
-            height: 50px;
-            object-fit: contain;
-        }
-
-        .package-content-box {
-            display: none;
-            margin-top: 15px;
-            padding: 25px;
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        }
-        
-        .drive-link-btn {
-            display: inline-block;
-            margin-top: 15px;
-            background: #0284c7;
-            color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            border-radius: 8px;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-        
-        .drive-link-btn:hover { background: #0369a1; }
 
         /* --- PAYMENT GRID --- */
         .payment-list {
@@ -557,7 +459,7 @@
             list-style: none;
             padding: 0;
         }
-        
+
         .payment-item {
             display: flex;
             align-items: center;
@@ -571,7 +473,7 @@
             color: var(--text-dark);
             box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
-        
+
         .payment-img {
             width: 35px;
             height: 35px;
@@ -587,7 +489,7 @@
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
-        
+
         .bank-header {
             display: flex;
             align-items: center;
@@ -595,12 +497,12 @@
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 15px;
         }
-        
+
         .bank-header img {
             height: 30px;
             margin-right: 15px;
         }
-        
+
         .copyBtn {
             background: #0284c7;
             color: white;
@@ -614,7 +516,7 @@
             font-family: 'Inter', sans-serif;
             transition: 0.3s;
         }
-        
+
         .copyBtn:hover { background: #0369a1; }
 
         /* --- CONTACT & FORM --- */
@@ -623,10 +525,10 @@
             gap: 40px;
             flex-wrap: wrap;
         }
-        
+
         .contact-col { flex: 1; min-width: 250px; }
         .contact-col p { color: var(--text-gray); }
-        
+
         .contact-icons {
             margin-top: 25px;
             display: flex;
@@ -635,13 +537,13 @@
             border-top: 1px solid var(--border-color);
             padding-top: 25px;
         }
-        
+
         .icon { width: 40px; height: 40px; transition: 0.3s; }
         .icon:hover { transform: translateY(-3px); }
 
         .contact-form { margin-top: 30px; }
         .form-group { margin-bottom: 15px; }
-        
+
         .form-group input, .form-group textarea {
             width: 100%;
             padding: 15px;
@@ -652,13 +554,13 @@
             font-family: 'Inter', sans-serif;
             font-size: 0.95rem;
         }
-        
+
         .form-group input:focus, .form-group textarea:focus {
             outline: none;
             border-color: #0284c7;
             box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
         }
-        
+
         .submit-btn {
             background: #0284c7;
             color: white;
@@ -671,7 +573,7 @@
             letter-spacing: 1px;
             transition: 0.3s;
         }
-        
+
         .submit-btn:hover { background: #0369a1; }
 
         .footer {
@@ -689,7 +591,7 @@
             right: 20px;
             z-index: 999;
         }
-        
+
         .whatsapp-float img {
             width: 55px; height: 55px;
             border-radius: 50%;
@@ -701,10 +603,8 @@
             display: none;
             position: fixed;
             z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
             background-color: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(4px);
             justify-content: center;
@@ -726,167 +626,225 @@
 
         .hours-close-btn {
             position: absolute;
-            top: 8px;
-            right: 15px;
+            top: 8px; right: 15px;
             font-size: 24px;
             color: #0284c7 !important;
             cursor: pointer;
             font-weight: bold;
         }
 
+        /* --- CARD DETAILS POPUP MODAL --- */
+        .details-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 10001;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .details-modal-box {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 18px;
+            width: 85%;
+            max-width: 360px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: popupAnimation 0.25s ease-out;
+            text-align: center;
+        }
+
+        .details-modal-box h3 {
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .details-modal-box p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        @keyframes popupAnimation {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* --- LIGHTBOX MODAL --- */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-content {
+            max-width: 95%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            object-fit: contain;
+            animation: zoomIn 0.3s ease-out;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 15px; right: 20px;
+            color: #ffffff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            user-select: none;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
         /* --- RESPONSIVE DESIGN --- */
         @media (max-width: 992px) {
             .hero-section { flex-direction: column; text-align: center; padding: 40px 0; }
-            .hero-content p { margin: 0 auto 30px auto; }
-            .button-group { justify-content: center; }
+            .hero-content p { margin: 0 auto 20px auto; }
             .hero-image-wrapper { width: 100%; margin-top: 10px; }
-            .location-card {
-                position: static; margin: -20px auto 0 auto; width: 85%;
-                text-align: left; max-width: none;
-            }
             .package-grid { grid-template-columns: repeat(2, 1fr); }
             .payment-list { grid-template-columns: repeat(2, 1fr); }
         }
-        
+
         @media (max-width: 600px) {
             .hero-content h1 { font-size: 1.8rem; }
             .payment-list { grid-template-columns: 1fr; }
             .card-header { font-size: 1rem; }
-            .btn { width: 100%; }
         }
-        /* --- SLIDER SAHA SEARCH BOX GAP FIX --- */
 
-/* Header එකේ සහ Slider wrapper එකේ පහළ ඉඩ සියල්ල අයින් කිරීම */
-header {
-    margin-bottom: 0px !important;
-    padding-bottom: 0px !important;
-}
+        /* --- RUNNING TEXT TICKER STYLING --- */
+        .running-text-container {
+            width: 100%;
+            overflow: hidden;
+            background-color: #0284c7;
+            color: #ffffff;
+            padding: 9px 0;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
 
-.hero-image-wrapper {
-    margin-bottom: 0px !important;
-    padding-bottom: 0px !important;
-}
+        .running-text {
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 100%;
+            animation: runText 35s linear infinite;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
 
-/* Search Box එක Slider එකට ළං කිරීම */
-.search-box {
-    margin-top: 5px !important;  /* 👈 Gap එක තවත් අඩු කරන්න ඕන නම් මේක 0px හෝ -5px කරන්න */
-    padding-top: 0px !important;
-}
-/* --- RUNNING TEXT TICKER STYLING --- */
-.running-text-container {
-    width: 100%;
-    overflow: hidden;
-    /* 🎨 CALL button/bar එකේ Color එක මෙතැනට යොදන්න */
-    background-color: #0284c7; /* 👈 මෙතැන තියෙන Hex Code එක "CALL 0770545464" එකේ Color Code එකට වෙනස් කරන්න */
-    color: #ffffff;            /* ✨ Text එක කැපී පෙනෙන Crisp White පාට */
-    padding: 9px 0;
-    font-size: 14px;
-    font-weight: 600;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
+        .running-text-container:hover .running-text {
+            animation-play-state: paused;
+        }
 
-.running-text {
-    display: inline-block;
-    white-space: nowrap;
-    padding-left: 100%;
-    /* ⏱️ Speed එක අඩු කළා (30s කළ නිසා දැන් ගොඩක් හෙමින් හා පැහැදිලිව දුවනවා) */
-    animation: runText 35s linear infinite; 
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-/* Mouse එක තැබූ විට Pause වීම */
-.running-text-container:hover .running-text {
-    animation-play-state: paused;
-}
-
-/* Text එක දිවෙන Animation එක */
-@keyframes runText {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-</style>
-
+        @keyframes runText {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
 </head>
 <body>
-   <!-- Running Sinhala Text Banner -->
+
+    <!-- Running Sinhala Text Banner -->
     <div class="running-text-container">
-    <div class="running-text">
-        📢 අපි ඔබව සාදරයෙන් පිළිගනිමු! චමි මල්ටි ෂොප් (CMS) වෙතින් ඔබට අවශ්‍ය සියලුම ‍‍ෆ‍ොටො කොපි, ප්‍රින්ට් අවුට්, ස්කෑනින්, බයින්ඩින්, ලැමිනේටින් , ලිපි ද්‍රව්‍ය,  පාසල් උපකරණ, කාර්යාල උපකරණ, රීලෝඩ්, බිල්පත් ගෙවීම්,  ඩයලොග් ටීවී නව සම්බන්ධතා , උපාංග සහ සවි කිරීම, තෑගි භාණ්ඩ , විදුලි උපකරණ සහ උපාංග සහ සෑම දෛනික අත්‍යවශ්‍ය දෙයක්ම එකම වහලක් යටින් අඩුම මිලට ලබාගත හැක...
-    </div>
-</div> 
+        <div class="running-text">
+            📢 අපි ඔබව සාදරයෙන් පිළිගනිමු! චමි මල්ටි ෂොප් (CMS) වෙතින් ඔබට අවශ්‍ය සියලුම ‍ෆොටො කොපි, ප්‍රින්ට් අවුට්, ස්කෑනින්, බයින්ඩින්, ලැමිනේටින් , ලිපි ද්‍රව්‍ය, පාසල් උපකරණ, කාර්යාල උපකරණ, රීලෝඩ්, බිල්පත් ගෙවීම්, ඩයලොග් ටීවී නව සම්බන්ධතා , උපාංග සහ සවි කිරීම, තෑගි භාණ්ඩ , විදුලි උපකරණ සහ උපාංග සහ සෑම දෛනික අත්‍යවශ්‍ය දෙයක්ම එකම වහලක් යටින් අඩුම මිලට ලබාගත හැක...
+        </div>
+    </div> 
+
     <div class="container">
         
         <!-- Header / Hero Section -->
         <header class="hero-section">
             <div class="hero-content">
-                <div class="logo-wrapper" style="margin-bottom: 15px;">
-                <img src="https://lh3.googleusercontent.com/d/1qY4_78N7PLEzWwsPowtfyy848HzVUnRi" alt="CMS Logo" class="logo">
-                <span class="since-text">Since 2005</span>
-            </div>
+                <div class="logo-wrapper">
+                    <img src="https://lh3.googleusercontent.com/d/1qY4_78N7PLEzWwsPowtfyy848HzVUnRi" alt="CMS Logo" class="logo">
+                    <span class="since-text">Since 2005</span>
+                </div>
                 
                 <h1>
-                <span class="main-title">Beyond the Page</span>
-                <br>
-                <span class="accent">Beyond the Connection</span>
+                    <span class="main-title">Beyond the Page</span>
+                    <br>
+                    <span class="accent">Beyond the Connection</span>
                 </h1>
                 
-                <p>Photo Copy, Printing, Scanning, Binding, Laminating, Stationery, School Items, Office Items, Reload & Card, Bill Payments, Dialog TV Setup & Accessories, Fancy & Electrical Items and Every daily essential  All under one roof.</p>
+                <p>Photo Copy, Printing, Scanning, Binding, Laminating, Stationery, School Items, Office Items, Reload & Card, Bill Payments, Dialog TV Setup & Accessories, Fancy & Electrical Items and Every daily essential All under one roof.</p>
             
-                <!-- Search Box -->
-            <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search Services (e.g., photo copy)..." onkeyup="searchServices()">
-            </div>
+                <!-- 🔍 1. Search Services Box (placed between Slogan & Action Buttons) -->
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search Services (e.g., photo copy)..." onkeyup="searchServices()">
+                </div>
     
-        <!-- Quick Action Buttons Container -->
-            <div class="action-buttons-wrapper">
+                <!-- ⚡ 2. Action Buttons Container -->
+                <div class="action-buttons-wrapper">
+                    <div class="button-row">
+                        <a href="tel:0770545464" class="action-btn btn-call">CALL 0770 54 54 64</a>
+                        <a href="https://wa.me/94701193383" target="_blank" class="action-btn btn-whatsapp">WHATSAPP</a>
+                    </div>
+                    <div class="button-row">
+                        <button type="button" class="action-btn btn-hours" onclick="openOriginalHours()">OPEN 6 AM - 10:30 PM</button>
+                        <a href="https://web.facebook.com/chamimultishopcms" target="_blank" class="action-btn btn-facebook">FACEBOOK</a>
+                    </div>
+                </div>
 
-  <!-- LINE 1: CALL & WHATSAPP -->
-    <div class="button-row">
-        <a href="tel:0770545464" class="action-btn btn-call">
-            CALL 0770 54 54 64
-        </a>
-        <a href="https://wa.me/94701193383" target="_blank" class="action-btn btn-whatsapp">
-            WHATSAPP
-        </a>
-    </div>
+                <!-- 📱 3. App Style 4-Column Quick Service Cards -->
+                <div class="services-grid">
+                    <div class="service-card" onclick="openCard('Mobile Activation', 'මෙතැනින් Dialog, Mobitel, Hutch, Airtel නව SIM පත් සක්‍රිය කරගත හැක. (ජාතික හැඳුනුම්පත අවශ්‍ය වේ)')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3616/3616223.png" alt="Icon">
+                        <span>Mobile activation</span>
+                    </div>
 
-    <!-- LINE 2: OPEN HOURS & FACEBOOK -->
-    <div class="button-row">
-        <button type="button" class="action-btn btn-hours" onclick="openOriginalHours()">
-            OPEN 6 AM - 10:30 PM
-        </button>
-        <a href="https://web.facebook.com/chamimultishopcms" target="_blank" class="action-btn btn-facebook">
-            FACEBOOK
-        </a>
-    </div>
+                    <div class="service-card" onclick="openCard('SIM Change', 'නැතිවූ හෝ හානිවූ SIM පත් නැවත ලබාගැනීම සහ Nano/Micro SIM බවට පත්කිරීම.')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/893/893257.png" alt="Icon">
+                        <span>SIM change</span>
+                    </div>
 
-</div> <!-- action-buttons-wrapper එක අවසන් වේ -->
+                    <div class="service-card" onclick="openCard('Bill Payment', 'විදුලි, ජල, Postpaid දුරකථන සහ SLT බිල්පත් ගෙවීමේ පහසුකම්.')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2527/2527850.png" alt="Icon">
+                        <span>Bill payment</span>
+                    </div>
 
-<!-- SPECIAL OFFERS -->
-<div class="offer-container">
-    <span class="offer-text-shine">SPECIAL OFFERS</span>
-</div>
+                    <div class="service-card" onclick="openCard('eZ Cash', 'eZ Cash සහ mCash මුදල් තැන්පත් කිරීම සහ ලබාගැනීමේ පහසුකම්.')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1019/1019607.png" alt="Icon">
+                        <span>eZ cash</span>
+                    </div>
+                </div>
 
-            <!-- Image Slider combined with Location Card -->
-            <div class="hero-image-wrapper">
-            <div class="slider">
-                <!-- මෙන්න මේ වගේ හැම img tag එකකටම onclick එකතු කරන්න -->
-                <img class="slide active" src="https://lh3.googleusercontent.com/d/1AwGqz_gFA7u1gVuDT5wBIn1qtsb0VXaW" alt="Slide 1" onclick="openLightbox(this.src)">
-                <img class="slide" src="https://lh3.googleusercontent.com/d/1ZFu6hXUi1i7IVLCEtuPDdt6exY0IEtDz" alt="Slide 2" onclick="openLightbox(this.src)">
-                <img class="slide" src="https://lh3.googleusercontent.com/d/1Y7pe5IK5MTEj-gch3OibYiyNESV2UIOE" alt="Slide 3" onclick="openLightbox(this.src)">
-                <img class="slide" src="https://lh3.googleusercontent.com/d/1GaYoP-SJ_5-PsMBdEO7FjGeFFd5lVXpP" alt="Slide 4" onclick="openLightbox(this.src)">
+                <!-- SPECIAL OFFERS -->
+                <div class="offer-container">
+                    <span class="offer-text-shine">SPECIAL OFFERS</span>
+                </div>
+
+                <!-- Image Slider combined with Location Card -->
+                <div class="hero-image-wrapper">
+                    <div class="slider">
+                        <img class="slide active" src="https://lh3.googleusercontent.com/d/1AwGqz_gFA7u1gVuDT5wBIn1qtsb0VXaW" alt="Slide 1" onclick="openLightbox(this.src)">
+                        <img class="slide" src="https://lh3.googleusercontent.com/d/1ZFu6hXUi1i7IVLCEtuPDdt6exY0IEtDz" alt="Slide 2" onclick="openLightbox(this.src)">
+                        <img class="slide" src="https://lh3.googleusercontent.com/d/1Y7pe5IK5MTEj-gch3OibYiyNESV2UIOE" alt="Slide 3" onclick="openLightbox(this.src)">
+                        <img class="slide" src="https://lh3.googleusercontent.com/d/1GaYoP-SJ_5-PsMBdEO7FjGeFFd5lVXpP" alt="Slide 4" onclick="openLightbox(this.src)">
+                    </div>
+                </div>
             </div>
-</div>
         </header>
 
-        
-        <!-- Reload Packages (Clean Design) -->
+        <!-- Reload Packages Section -->
         <div class="package-section">
-            <div class="package-section-title offer-text-shine">Voice & Data Packages</div>
+            <div class="package-section-title">Voice & Data Packages</div>
             <div class="package-grid">
                 <button class="package-btn dialog-btn" onclick="togglePackage('dialogPkg')" title="Dialog Packages">
                     <img src="https://lh3.googleusercontent.com/d/19AZA_s05fqRBQ1SwbjTQYXuh9COe46_M" alt="Dialog">
@@ -928,7 +886,7 @@ header {
             </div>
         </div>
 
-        <!-- Services Accordion (Styled like the modern Grid) -->
+        <!-- Services Accordion Section -->
         <div class="services-section">
             
             <!-- 01 Document Services -->
@@ -1014,7 +972,7 @@ header {
                 </div>
             </div>
 
-            <!-- 02 Mobile Reload & Cards -->
+            <!-- 02 Recharge & Connections -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
                      Recharge & New Connections
@@ -1036,7 +994,6 @@ header {
                         <b>Card Types</b>
                         <ul>
                             <li>Rs. 50, Rs. 79, Rs. 100, Rs. 159 & More</li>
-                            
                         </ul>
                     </div>
 
@@ -1152,7 +1109,7 @@ header {
                 </div>
             </div>
 
-            <!-- 05 Online & Technical -->
+            <!-- 05 Online Services -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
                      Online & Technical Services
@@ -1176,35 +1133,20 @@ header {
                 </div>
                 <div class="card-content">
                     <ul class="payment-list">
-                        <li class="payment-item">
-                            <img class="payment-img" src="https://lh3.googleusercontent.com/d/17VpkNgYIwtlwrFqdQYvZ6gYfrLuLtXjr" alt="Cash">
-                            Cash Payments
-                        </li>
+                        <li class="payment-item"><img class="payment-img" src="https://lh3.googleusercontent.com/d/17VpkNgYIwtlwrFqdQYvZ6gYfrLuLtXjr" alt="Cash"> Cash Payments</li>
                         <li class="payment-item">
                             <img class="payment-img" src="https://lh3.googleusercontent.com/d/17v5EbIwVuAHj9R1LlefXlxG674m8PtfH" alt="Visa">
                             <img class="payment-img" src="https://lh3.googleusercontent.com/d/1_BnTymOYkNSNh8bcomh6TOv3P1WUOXcG" alt="MasterCard" style="margin-left: -10px;">
                             Visa / MasterCard
                         </li>
-                        <li class="payment-item">
-                            <img class="payment-img" src="https://lh3.googleusercontent.com/d/1puP8-1jfUhSZpZfHML4S9zZSCOsw7pz7" alt="Online Payment">
-                            Online Fund Transfers
-                        </li>
-                        <li class="payment-item">
-                            <img class="payment-img" src="https://lh3.googleusercontent.com/d/1EvdNXsp24UYqpSr5PL5n2UhEsLfFLmih" alt="Lanka QR">
-                            Lanka QR Payments
-                        </li>
-                        <li class="payment-item">
-                            <img class="payment-img" src="https://lh3.googleusercontent.com/d/1zIsDqUb4h3aZ2vy2pfAo-rQXTMxr0Zof" alt="eZ Cash">
-                            eZ Cash
-                        </li>
-                        <li class="payment-item">
-                            <img class="payment-img" src="https://lh3.googleusercontent.com/d/1mJRWdkxmRBVw7RYOi_-dvY8RBmOzO6S3" alt="mCash">
-                            mCash
-                        </li>
+                        <li class="payment-item"><img class="payment-img" src="https://lh3.googleusercontent.com/d/1puP8-1jfUhSZpZfHML4S9zZSCOsw7pz7" alt="Online Payment"> Online Fund Transfers</li>
+                        <li class="payment-item"><img class="payment-img" src="https://lh3.googleusercontent.com/d/1EvdNXsp24UYqpSr5PL5n2UhEsLfFLmih" alt="Lanka QR"> Lanka QR Payments</li>
+                        <li class="payment-item"><img class="payment-img" src="https://lh3.googleusercontent.com/d/1zIsDqUb4h3aZ2vy2pfAo-rQXTMxr0Zof" alt="eZ Cash"> eZ Cash</li>
+                        <li class="payment-item"><img class="payment-img" src="https://lh3.googleusercontent.com/d/1mJRWdkxmRBVw7RYOi_-dvY8RBmOzO6S3" alt="mCash"> mCash</li>
                     </ul>
                 </div>
             </div>
-            
+
             <!-- 07 Business Hours -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
@@ -1220,15 +1162,13 @@ header {
                 </div>
             </div>
 
-            <!-- 08 Bank Details (With Copy Function) -->
+            <!-- 08 Bank Details -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
                      Bank Details
                     <span class="arrow-indicator">▼</span>
                 </div>
                 <div class="card-content">
-                    
-                    <!-- Bank 01 -->
                     <div class="bank-box">
                         <div class="bank-header">
                             <img src="https://lh3.googleusercontent.com/d/1flVMhO5eJK64ICsM9C3rqJ56MXE9zIYZ" alt="Commercial Bank">
@@ -1243,7 +1183,6 @@ header {
                         </div>
                     </div>
 
-                    <!-- Bank 02 -->
                     <div class="bank-box">
                         <div class="bank-header">
                             <img src="https://lh3.googleusercontent.com/d/12LQKli5liOWAzIYyt0-qLzi30Ysvyhdj" alt="People's Bank">
@@ -1257,7 +1196,6 @@ header {
                             <p><strong>Branch:</strong> Maggona</p>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -1268,16 +1206,10 @@ header {
                     <span class="arrow-indicator">▼</span>
                 </div>
                 <div class="card-content">
-                    
                     <div class="contact-grid">
                         <div class="contact-col">
                             <p style="font-weight: 800; color: var(--text-dark); margin-bottom: 10px;">ADDRESS</p>
-                            <p>
-                                Chami Multi Shop <br>
-                                No. 476, St. Vincent Road,<br>
-                                Diyalagoda, Maggona,<br>
-                                Sri Lanka.
-                            </p>
+                            <p>Chami Multi Shop <br> No. 476, St. Vincent Road,<br> Diyalagoda, Maggona,<br> Sri Lanka.</p>
                             <a href="https://maps.app.goo.gl/go2japNiaEAXtst9A" target="_blank" class="serviceBtn" style="display:inline-block; width:auto; padding: 10px 20px; margin-top: 15px;">Open in Google Maps</a>
                         </div>
                         <div class="contact-col">
@@ -1299,21 +1231,12 @@ header {
 
                     <form id="contactForm" class="contact-form" onsubmit="sendToWhatsApp(event)">
                         <p style="font-weight: 800; margin-bottom: 20px;">SEND US A MESSAGE</p>
-                        <div class="form-group">
-                            <input type="text" id="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" id="mobile" placeholder="Your Mobile Number" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
-                        </div>
+                        <div class="form-group"><input type="text" id="name" placeholder="Your Name" required></div>
+                        <div class="form-group"><input type="email" id="email" placeholder="Your Email" required></div>
+                        <div class="form-group"><input type="tel" id="mobile" placeholder="Your Mobile Number" required></div>
+                        <div class="form-group"><textarea id="message" rows="4" placeholder="Your Message" required></textarea></div>
                         <button type="submit" class="submit-btn">SEND VIA WHATSAPP</button>
                     </form>
-
                 </div>
             </div>
 
@@ -1331,6 +1254,34 @@ header {
         <img src="https://lh3.googleusercontent.com/d/19W1N_0UmfJ0kgOfu5zKqLZdqLUbcYQug" alt="WhatsApp">
     </a>
 
+    <!-- Business Hours Modal -->
+    <div id="hoursModal" class="hours-modal">
+        <div class="hours-modal-content">
+            <span class="hours-close-btn" onclick="closeOriginalHours()">&times;</span>
+            <h3 style="margin-top:0; color:#0284c7;">⏰ Business Hours</h3>
+            <hr style="border:0; border-top:1px solid #e2e8f0; margin: 10px 0;">
+            <p style="margin: 8px 0; font-size:14px;"><b>Monday - Sunday:</b></p>
+            <p style="margin: 5px 0; font-size:16px; color:#ef5350; font-weight:bold;">6:00 AM - 10:30 PM</p>
+            <p style="margin-top: 10px; font-size:12px; color:#64748b;">Open 7 Days a Week</p>
+        </div>
+    </div>
+
+    <!-- Services Grid Card Details Popup Modal -->
+    <div id="detailsModal" class="details-modal-overlay">
+        <div class="details-modal-box">
+            <span class="hours-close-btn" onclick="closeCard()">&times;</span>
+            <h3 id="modalTitle">Title</h3>
+            <hr style="border:0; border-top:1px solid #e2e8f0; margin: 10px 0;">
+            <p id="modalBody">Details will show here...</p>
+        </div>
+    </div>
+
+    <!-- Full Image Preview Lightbox -->
+    <div id="imageLightbox" class="lightbox-modal" onclick="closeLightbox(event)">
+        <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+        <img class="lightbox-content" id="lightboxImg" alt="Full Image Preview">
+    </div>
+
     <!-- JAVASCRIPT FUNCTIONS -->
     <script>
         function toggleCard(element) {
@@ -1341,9 +1292,7 @@ header {
                 if (card !== currentCard) {
                     card.classList.remove("active");
                     let subBoxes = card.querySelectorAll(".sub-box");
-                    subBoxes.forEach(box => {
-                        box.classList.remove("open");
-                    });
+                    subBoxes.forEach(box => box.classList.remove("open"));
                 }
             });
             currentCard.classList.toggle("active");
@@ -1351,9 +1300,7 @@ header {
 
         function toggleSection(boxId) {
             var x = document.getElementById(boxId);
-            if (x) {
-                x.classList.toggle("open");
-            }
+            if (x) x.classList.toggle("open");
         }
 
         function togglePackage(pkgId) {
@@ -1361,9 +1308,7 @@ header {
             let targetBox = document.getElementById(pkgId);
             
             allBoxes.forEach(box => {
-                if (box.id !== pkgId) {
-                    box.style.display = "none";
-                }
+                if (box.id !== pkgId) box.style.display = "none";
             });
 
             if (targetBox.style.display === "block") {
@@ -1384,9 +1329,7 @@ header {
                     card.style.display = "block";
                     card.classList.remove("active");
                 });
-                subBoxes.forEach(box => {
-                    box.classList.remove("open");
-                });
+                subBoxes.forEach(box => box.classList.remove("open"));
                 return;
             }
 
@@ -1394,7 +1337,6 @@ header {
 
             cards.forEach(card => {
                 let cardText = card.innerText.toLowerCase();
-                
                 if (cardText.includes(input)) {
                     card.style.display = "block";
                     card.classList.add("active");
@@ -1403,30 +1345,22 @@ header {
                     cardSubBoxes.forEach(box => {
                         let boxText = box.innerText.toLowerCase();
                         let btnText = box.previousElementSibling ? box.previousElementSibling.innerText.toLowerCase() : "";
-                        
                         if (boxText.includes(input) || btnText.includes(input)) {
                             box.classList.add("open");
-                            if (!firstMatch) {
-                                firstMatch = box.previousElementSibling || box;
-                            }
+                            if (!firstMatch) firstMatch = box.previousElementSibling || box;
                         }
                     });
 
-                    if (!firstMatch) {
-                        firstMatch = card;
-                    }
+                    if (!firstMatch) firstMatch = card;
                 } else {
                     card.style.display = "none";
                     card.classList.remove("active");
                 }
             });
 
-            if (firstMatch) {
-                firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
-            }
+            if (firstMatch) firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
         }
 
-        // Bank Account Number Copy Function
         function copyAccNumber(elementId, btn) {
             var accNum = document.getElementById(elementId).innerText;
             navigator.clipboard.writeText(accNum).then(function() {
@@ -1436,17 +1370,13 @@ header {
                 btn.style.color = "white";
                 setTimeout(function() {
                     btn.innerHTML = originalText;
-                    btn.style.background = "#111111"; 
+                    btn.style.background = "#0284c7"; 
                 }, 2000);
-            }).catch(function(err) {
-                console.error('Could not copy text: ', err);
             });
         }
 
-        // WhatsApp Form Submit Function
         function sendToWhatsApp(event) {
             event.preventDefault();
-            
             let name = document.getElementById("name").value;
             let email = document.getElementById("email").value;
             let mobile = document.getElementById("mobile").value;
@@ -1466,72 +1396,46 @@ header {
         window.onload = function() {
             let slides = document.querySelectorAll(".slide");
             let current = 0;
-
             if (slides.length > 0) {
                 setInterval(() => {
                     slides[current].classList.remove("active");
-                    current++;
-                    if (current >= slides.length) {
-                        current = 0;
-                    }
+                    current = (current + 1) % slides.length;
                     slides[current].classList.add("active");
                 }, 3000);
             }
         };
-        function openOriginalHours() {
-    document.getElementById('hoursModal').style.display = 'flex';
-}
 
-function closeOriginalHours() {
-    document.getElementById('hoursModal').style.display = 'none';
-}
+        // Hours Modal Controls
+        function openOriginalHours() { document.getElementById('hoursModal').style.display = 'flex'; }
+        function closeOriginalHours() { document.getElementById('hoursModal').style.display = 'none'; }
 
-// Modal එකෙන් එලිය ක්ලික් කළාමත් Close වෙන විදිය
-window.addEventListener('click', function(event) {
-    var modal = document.getElementById('hoursModal');
-    if (event.target == modal) {
-        modal.style.display = 'none';
-    }
-});
-       // Modal එකෙන් එලිය ක්ලික් කළාමත් Close වෙන විදිය
-window.addEventListener('click', function(event) {
-    var modal = document.getElementById('hoursModal');
-    if (event.target == modal) {
-        modal.style.display = 'none';
-    }
-});
+        // Service Card Modal Controls
+        function openCard(title, details) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalBody').innerText = details;
+            document.getElementById('detailsModal').style.display = 'flex';
+        }
+        function closeCard() { document.getElementById('detailsModal').style.display = 'none'; }
 
-/* ✨ මෙන්න මෙතැනට PASTE කරන්න (LIGHTBOX JS) ✨ */
-function openLightbox(imgSrc) {
-    const modal = document.getElementById('imageLightbox');
-    const modalImg = document.getElementById('lightboxImg');
-    modalImg.src = imgSrc;
-    modal.style.display = 'flex';
-}
+        // Lightbox Image Controls
+        function openLightbox(imgSrc) {
+            const modal = document.getElementById('imageLightbox');
+            document.getElementById('lightboxImg').src = imgSrc;
+            modal.style.display = 'flex';
+        }
+        function closeLightbox(e) {
+            if (e.target.id === 'imageLightbox' || e.target.className === 'lightbox-close') {
+                document.getElementById('imageLightbox').style.display = 'none';
+            }
+        }
 
-function closeLightbox(e) {
-    if (e.target.id === 'imageLightbox' || e.target.className === 'lightbox-close') {
-        document.getElementById('imageLightbox').style.display = 'none';
-    }
-}
-</script> 
-  
-    <!-- Original Business Hours Popup Modal -->
-<div id="hoursModal" class="hours-modal">
-    <div class="hours-modal-content">
-        <span class="hours-close-btn" onclick="closeOriginalHours()">&times;</span>
-        <h3 style="margin-top:0; color:#33ccff;">⏰ Business Hours</h3>
-        <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin: 10px 0;">
-        <p style="margin: 8px 0; font-size:14px;"><b>Monday - Sunday:</b></p>
-        <p style="margin: 5px 0; font-size:16px; color:#ff9800; font-weight:bold;">6:00 AM - 10:30 PM</p>
-        <p style="margin-top: 10px; font-size:12px; color:#ccc;">Open 7 Days a Week</p>
-    </div>
-</div>
-   <!-- FULL IMAGE PREVIEW MODAL (Page එකේ පල්ලෙහාම </body> එකට උඩින් දාන්න) -->
-<div id="imageLightbox" class="lightbox-modal" onclick="closeLightbox(event)">
-    <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
-    <img class="lightbox-content" id="lightboxImg" alt="Full Image Preview">
-</div>
-
+        // Global Modal Outside Click Listener (Merged)
+        window.addEventListener('click', function(event) {
+            var hoursModal = document.getElementById('hoursModal');
+            var detailsModal = document.getElementById('detailsModal');
+            if (event.target == hoursModal) hoursModal.style.display = 'none';
+            if (event.target == detailsModal) detailsModal.style.display = 'none';
+        });
+    </script> 
 </body> 
 </html>
