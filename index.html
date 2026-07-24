@@ -114,7 +114,7 @@
             border: 1px solid #cbd5e1;
             background: #ffffff;
             color: var(--text-dark);
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 1rem;
             font-family: 'Inter', sans-serif;
             transition: 0.3s;
@@ -301,12 +301,12 @@
         }
 
         a.package-btn, .package-btn {
-            background: #ffffff !important;
-            border: 1px solid #e2e8f0 !important;
-            border-radius: 12px !important;
+            background: #e5e7eb !important;
+            border: 1px solid #d1d5db !important;
+            border-radius: 16px !important;
             padding: 15px !important;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
-            transition: all 0.25s ease !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+            transition: all 0.15s ease !important;
             cursor: pointer;
             display: flex;
             justify-content: center;
@@ -314,10 +314,13 @@
         }
 
         a.package-btn:hover, .package-btn:hover {
-            background: #f1f5f9 !important;
+            background: #cbd5e1 !important;
             border-color: #0284c7 !important;
-            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15) !important;
             transform: translateY(-2px);
+        }
+
+        .package-btn:active {
+            transform: scale(0.95) !important;
         }
 
         .package-btn img {
@@ -356,39 +359,53 @@
 
         .drive-link-btn:hover { background: #0369a1; }
 
-        /* --- SERVICES (ACCORDION CARDS) --- */
+        /* --- UPDATED SERVICES SECTION (MATCHED TO 4-APP GRID CARD STYLE) --- */
         .services-section {
             border-top: 1px solid var(--border-color);
             margin-top: 20px;
+            padding-top: 15px;
             padding-bottom: 50px;
         }
 
+        /* Updated Main Category Card Style */
         div.card, .card {
-            background-color: #ffffff !important;
-            border: 1px solid #e2e8f0 !important;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
-            border-radius: 12px !important;
+            background-color: #e5e7eb !important; /* Retail HUB Light Grey */
+            border: 1px solid #d1d5db !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+            border-radius: 16px !important;
             margin-bottom: 12px !important;
             overflow: hidden;
+            transition: transform 0.15s ease, background-color 0.15s ease;
         }
 
+        /* Updated Main Category Header Style */
         div.card-header, .card-header {
-            background: #ffffff !important;
-            color: var(--text-dark) !important;
-            font-size: 1.1rem;
-            font-weight: 600 !important;
+            background: #e5e7eb !important;
+            color: #111827 !important;
+            font-size: 1.05rem;
+            font-weight: 700 !important;
             text-transform: uppercase;
             display: flex;
             align-items: center;
-            padding: 20px 18px !important;
-            border-bottom: 1px solid #e2e8f0 !important;
+            padding: 18px 20px !important;
+            border-bottom: 1px solid transparent !important;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.2s ease;
             gap: 15px;
+            user-select: none;
         }
 
         div.card-header:hover, .card-header:hover {
-            background: #f8fafc !important;
+            background: #d1d5db !important;
+        }
+
+        div.card-header:active, .card-header:active {
+            transform: scale(0.99);
+        }
+
+        .card.active .card-header {
+            background: #d1d5db !important;
+            border-bottom: 1px solid #cbd5e1 !important;
         }
 
         .arrow-indicator {
@@ -402,34 +419,38 @@
             transform: rotate(-180deg);
         }
 
+        /* Card Content Container */
         div.card-content, .card-content {
             display: none;
             background-color: #ffffff !important;
             padding: 20px 18px !important;
+            border-top: 1px solid #d1d5db;
         }
 
         .card.active .card-content {
             display: block;
         }
 
+        /* Updated Inner Service Button Style */
         .serviceBtn {
             display: block;
             width: 100%;
-            background: #f8fafc !important;
-            border: 1px solid #e2e8f0 !important;
-            color: #1e293b !important;
-            padding: 14px;
+            background: #f1f5f9 !important;
+            border: 1px solid #cbd5e1 !important;
+            color: #111827 !important;
+            padding: 14px 16px;
             margin: 8px 0;
-            font-weight: 600;
-            border-radius: 8px;
+            font-weight: 700;
+            border-radius: 12px;
             cursor: pointer;
             text-align: left;
             text-decoration: none;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
             font-family: 'Inter', sans-serif;
             text-transform: uppercase;
             font-size: 0.85rem;
             letter-spacing: 0.5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
         }
 
         .serviceBtn:hover {
@@ -438,15 +459,20 @@
             color: #ffffff !important;
         }
 
+        .serviceBtn:active {
+            transform: scale(0.98);
+        }
+
         .sub-box {
             display: none;
             padding: 15px 20px;
             border-left: 3px solid #0284c7 !important;
             margin-bottom: 15px;
-            background: #f1f5f9 !important;
-            border-radius: 6px;
+            background: #f8fafc !important;
+            border-radius: 8px;
             font-size: 0.95rem;
             color: #334155 !important;
+            border: 1px solid #e2e8f0;
         }
 
         .sub-box.open { display: block; }
@@ -467,13 +493,13 @@
             align-items: center;
             gap: 15px;
             padding: 15px;
-            background: #ffffff;
+            background: #f8fafc;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 12px;
             font-weight: 600;
             font-size: 0.9rem;
             color: var(--text-dark);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
         }
 
         .payment-img {
@@ -487,9 +513,9 @@
             border: 1px solid var(--border-color);
             padding: 20px;
             margin-bottom: 15px;
-            background: #ffffff;
+            background: #f8fafc;
             border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
         }
 
         .bank-header {
@@ -552,7 +578,7 @@
             border: 1px solid #cbd5e1;
             background: #ffffff;
             color: var(--text-dark);
-            border-radius: 8px;
+            border-radius: 10px;
             font-family: 'Inter', sans-serif;
             font-size: 0.95rem;
         }
@@ -568,12 +594,13 @@
             color: white;
             padding: 15px 30px;
             border: none;
-            border-radius: 8px;
-            font-weight: 600;
+            border-radius: 10px;
+            font-weight: 700;
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: 0.3s;
+            width: 100%;
         }
 
         .submit-btn:hover { background: #0369a1; }
@@ -727,7 +754,7 @@
         @media (max-width: 600px) {
             .hero-content h1 { font-size: 1.8rem; }
             .payment-list { grid-template-columns: 1fr; }
-            .card-header { font-size: 1rem; }
+            .card-header { font-size: 0.95rem; }
         }
 
         /* --- RUNNING TEXT TICKER STYLING --- */
