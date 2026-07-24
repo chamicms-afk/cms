@@ -785,16 +785,16 @@
                 
                 <p>Photo Copy, Printing, Scanning, Binding, Laminating, Stationery, School Items, Office Items, Reload & Card, Bill Payments, Dialog TV Setup & Accessories, Fancy & Electrical Items and Every daily essential All under one roof.</p>
             
-                <!-- 🔍 1. Search Services Box (placed between Slogan & Action Buttons) -->
+                <!-- 🔍 Search Services Box (Middle) -->
                 <div class="search-box">
                     <input type="text" id="searchInput" placeholder="Search Services (e.g., photo copy)..." onkeyup="searchServices()">
                 </div>
     
-                <!-- ⚡ 2. Action Buttons Container -->
+                <!-- ⚡ Action Buttons Container -->
                 <div class="action-buttons-wrapper">
                     <div class="button-row">
                         <a href="tel:0770545464" class="action-btn btn-call">CALL 0770 54 54 64</a>
-                        <a href="https://wa.me/94701193383" target="_blank" class="action-btn btn-whatsapp">WHATSAPP</a>
+                        <a href="https://wa.me/94770545464" target="_blank" class="action-btn btn-whatsapp">WHATSAPP</a>
                     </div>
                     <div class="button-row">
                         <button type="button" class="action-btn btn-hours" onclick="openOriginalHours()">OPEN 6 AM - 10:30 PM</button>
@@ -802,7 +802,7 @@
                     </div>
                 </div>
 
-                <!-- 📱 3. App Style 4-Column Quick Service Cards -->
+                <!-- 📱 App Style 4-Column Quick Service Cards -->
                 <div class="services-grid">
                     <div class="service-card" onclick="openCard('Mobile Activation', 'මෙතැනින් Dialog, Mobitel, Hutch, Airtel නව SIM පත් සක්‍රිය කරගත හැක. (ජාතික හැඳුනුම්පත අවශ්‍ය වේ)')">
                         <img src="https://cdn-icons-png.flaticon.com/512/3616/3616223.png" alt="Icon">
@@ -830,7 +830,7 @@
                     <span class="offer-text-shine">SPECIAL OFFERS</span>
                 </div>
 
-                <!-- Image Slider combined with Location Card -->
+                <!-- Image Slider -->
                 <div class="hero-image-wrapper">
                     <div class="slider">
                         <img class="slide active" src="https://lh3.googleusercontent.com/d/1AwGqz_gFA7u1gVuDT5wBIn1qtsb0VXaW" alt="Slide 1" onclick="openLightbox(this.src)">
@@ -889,7 +889,7 @@
         <!-- Services Accordion Section -->
         <div class="services-section">
             
-            <!-- 01 Document Services -->
+            <!-- Document Services -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
                      Document Services
@@ -972,7 +972,7 @@
                 </div>
             </div>
 
-            <!-- 02 Recharge & Connections -->
+            <!-- Recharge & Connections -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
                      Recharge & New Connections
@@ -1018,7 +1018,7 @@
                 </div>
             </div>
 
-            <!-- 03 Bill Payments -->
+            <!-- Bill Payments -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
                      Bill Payments
@@ -1066,7 +1066,7 @@
                 </div>
             </div>
 
-            <!-- 04 Accessories & More -->
+            <!-- Accessories & More -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
                      Accessories & More
@@ -1109,7 +1109,7 @@
                 </div>
             </div>
 
-            <!-- 05 Online Services -->
+            <!-- Online Services -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
                      Online & Technical Services
@@ -1125,7 +1125,7 @@
                 </div>
             </div>
 
-            <!-- 06 Payment Methods -->
+            <!-- Payment Methods -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
                      Payment Methods
@@ -1147,7 +1147,7 @@
                 </div>
             </div>
 
-            <!-- 07 Business Hours -->
+            <!-- Business Hours -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
                      Business Hours
@@ -1162,7 +1162,7 @@
                 </div>
             </div>
 
-            <!-- 08 Bank Details -->
+            <!-- Bank Details -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
                      Bank Details
@@ -1199,7 +1199,7 @@
                 </div>
             </div>
 
-            <!-- 09 Contact Us -->
+            <!-- Contact Us -->
             <div class="card" id="contactFormSection">
                 <div class="card-header" onclick="toggleCard(this)">
                      Contact Us
@@ -1254,7 +1254,7 @@
         <img src="https://lh3.googleusercontent.com/d/19W1N_0UmfJ0kgOfu5zKqLZdqLUbcYQug" alt="WhatsApp">
     </a>
 
-    <!-- Business Hours Modal -->
+    <!-- Business Hours Popup Modal -->
     <div id="hoursModal" class="hours-modal">
         <div class="hours-modal-content">
             <span class="hours-close-btn" onclick="closeOriginalHours()">&times;</span>
@@ -1266,7 +1266,7 @@
         </div>
     </div>
 
-    <!-- Services Grid Card Details Popup Modal -->
+    <!-- Service Card Details Popup Modal -->
     <div id="detailsModal" class="details-modal-overlay">
         <div class="details-modal-box">
             <span class="hours-close-btn" onclick="closeCard()">&times;</span>
@@ -1392,7 +1392,7 @@
             window.open(whatsappUrl, '_blank');
         }
 
-        // Image Slider Function
+        // Image Slider
         window.onload = function() {
             let slides = document.querySelectorAll(".slide");
             let current = 0;
@@ -1405,11 +1405,11 @@
             }
         };
 
-        // Hours Modal Controls
+        // Hours Modal
         function openOriginalHours() { document.getElementById('hoursModal').style.display = 'flex'; }
         function closeOriginalHours() { document.getElementById('hoursModal').style.display = 'none'; }
 
-        // Service Card Modal Controls
+        // Service Card Modal
         function openCard(title, details) {
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalBody').innerText = details;
@@ -1417,7 +1417,7 @@
         }
         function closeCard() { document.getElementById('detailsModal').style.display = 'none'; }
 
-        // Lightbox Image Controls
+        // Lightbox Image
         function openLightbox(imgSrc) {
             const modal = document.getElementById('imageLightbox');
             document.getElementById('lightboxImg').src = imgSrc;
@@ -1429,7 +1429,7 @@
             }
         }
 
-        // Global Modal Outside Click Listener (Merged)
+        // Global Modal Click Listener
         window.addEventListener('click', function(event) {
             var hoursModal = document.getElementById('hoursModal');
             var detailsModal = document.getElementById('detailsModal');
