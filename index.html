@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chami Multi Shop (CMS)</title>
-    <!-- Inter Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts: Inter & Dancing Script -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -36,53 +37,89 @@
             padding: 0 20px;
         }
 
-        /* --- HEADER / HERO SECTION --- */
+        /* --- RUNNING TEXT TICKER STYLING --- */
+        .running-text-container {
+            width: 100%;
+            overflow: hidden;
+            background-color: #0284c7;
+            color: #ffffff;
+            padding: 9px 0;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .running-text {
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 100%;
+            animation: runText 35s linear infinite;
+        }
+
+        @keyframes runText {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* --- NEW UPDATED HEADER / HERO SECTION --- */
         .hero-section {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px 0;
-            gap: 50px;
+            padding: 18px 0;
+            gap: 15px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 15px;
         }
 
+        /* 1. Left Side: Logo Wrapper */
         .logo-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin: -15px auto 10px auto;
-            width: 100%;
+            flex-shrink: 0;
             text-align: center;
         }
 
         .logo {
-            height: 80px;
+            height: 75px; 
+            width: auto;
             border-radius: 8px;
             display: block;
+            object-fit: contain;
         }
 
         .since-text {
-            font-size: 10px;
-            color: var(--text-gray);
+            font-size: 11px;
+            color: #334155; 
             font-weight: 600;
-            margin-top: 5px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            margin-top: 2px; 
+            line-height: 1;  
+            letter-spacing: 0.5px;
         }
 
-        .hero-content {
+        /* 2. Middle Container: Title + Services Text */
+        .middle-content {
             flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 10px;
         }
 
-        /* ✏️ REDUCED TITLE FONT SIZE */
-        .hero-content h1 {
-            font-size: 2.3rem;
-            font-weight: 900;
-            line-height: 1.2;
-            margin: 0 0 10px 0;
-            letter-spacing: -1px;
+        /* Cursive Title (Dancing Script) */
+        .middle-content h1 {
+            font-family: 'Dancing Script', cursive !important;
+            font-size: 1.9rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 4px;
         }
 
+        /* 🔵 Line 1: Blue Color */
         .main-title {
             background: linear-gradient(to right, #0284c7, #2563eb);
             -webkit-background-clip: text;
@@ -90,42 +127,82 @@
             display: inline-block;
         }
 
+        /* 🔴 Line 2: Red Color */
         .accent {
-            background: linear-gradient(to right, #2563eb, #0284c7);
+            background: linear-gradient(to right, #dc2626, #ef4444);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: inline-block;
         }
 
-        .hero-content p {
-            font-size: 1rem;
-            color: var(--text-gray);
-            margin-bottom: 20px;
-            max-width: 90%;
+        /* Services Text */
+        .services-text {
+            font-size: 0.7rem;
+            line-height: 1.3;
+            color: #475569;
+            font-weight: 500;
+            max-width: 620px;
         }
 
-        /* --- SEARCH BOX --- */
-        .search-box {
-            margin: 15px 0 20px 0 !important;
+        .services-text .dot {
+            color: #0284c7;
+            font-weight: 800;
+            margin: 0 2px;
         }
-        
-        .search-box input {
-            width: 100%;
-            padding: 16px 20px;
-            border: 1px solid #cbd5e1;
-            background: #ffffff;
-            color: var(--text-dark);
-            border-radius: 12px;
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            transition: 0.3s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+
+        /* 🎯 "All under one roof." - Black Color */
+        .services-text .highlight-tag {
+            color: #0f172a; 
+            font-weight: 800;
+            display: inline-block;
         }
-        
-        .search-box input:focus {
-            outline: none;
+
+        /* 3. Right Side: Search Bar */
+        .search-wrapper {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            background-color: #ffffff;
+            border: 2px solid var(--border-color);
+            border-radius: 30px;
+            padding: 4px 6px 4px 14px;
+            width: 260px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+        }
+
+        .search-wrapper:focus-within {
             border-color: #0284c7;
             box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+        }
+
+        .search-input {
+            border: none;
+            outline: none;
+            background: transparent;
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+        }
+
+        .search-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .search-btn {
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            border: none;
+            outline: none;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            cursor: pointer;
+            flex-shrink: 0;
         }
 
         /* --- ACTION BUTTONS --- */
@@ -652,41 +729,25 @@
             cursor: pointer;
         }
 
-        /* RUNNING TEXT TICKER STYLING */
-        .running-text-container {
-            width: 100%;
-            overflow: hidden;
-            background-color: #0284c7;
-            color: #ffffff;
-            padding: 9px 0;
-            font-size: 14px;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .running-text {
-            display: inline-block;
-            white-space: nowrap;
-            padding-left: 100%;
-            animation: runText 35s linear infinite;
-        }
-
-        @keyframes runText {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
-        }
-
         /* RESPONSIVE DESIGN */
-        @media (max-width: 992px) {
-            .hero-section { flex-direction: column; text-align: center; padding: 30px 0; }
-            .hero-content p { margin: 0 auto 20px auto; }
-            .hero-image-wrapper { width: 100%; margin-top: 10px; }
+        @media (max-width: 900px) {
+            .hero-section {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .search-wrapper {
+                width: 100%;
+                max-width: 400px;
+            }
+
             .package-grid { grid-template-columns: repeat(2, 1fr); }
             .payment-list { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 600px) {
-            .hero-content h1 { font-size: 1.8rem; }
             .services-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
             .service-card { padding: 10px 4px; min-height: 75px; }
             .service-card span { font-size: 9.5px; }
@@ -696,7 +757,7 @@
 </head>
 <body>
 
-    <!-- Running Sinhala Text Banner -->
+    <!-- 1. Running Sinhala Text Banner -->
     <div class="running-text-container">
         <div class="running-text">
             📢 අපි ඔබව සාදරයෙන් පිළිගනිමු! චමි මල්ටි ෂොප් (CMS) වෙතින් ඔබට අවශ්‍ය සියලුම ‍ෆොටො කොපි, ප්‍රින්ට් අවුට්, ස්කෑනින්, බයින්ඩින්, ලැමිනේටින් , ලිපි ද්‍රව්‍ය, පාසල් උපකරණ, කාර්යාල උපකරණ, රීලෝඩ්, බිල්පත් ගෙවීම්, ඩයලොග් ටීවී නව සම්බන්ධතා , උපාංග සහ සවි කිරීම, තෑගි භාණ්ඩ , විදුලි උපකරණ සහ උපාංග සහ සෑම දෛනික අත්‍යවශ්‍ය දෙයක්ම එකම වහලක් යටින් අඩුම මිලට ලබාගත හැක...
@@ -705,484 +766,501 @@
 
     <div class="container">
         
-        <!-- Header / Hero Section -->
+        <!-- 2. NEW HEADER SECTION (Logo, Title, Services Text & Search Bar) -->
         <header class="hero-section">
-            <div class="hero-content">
-                <div class="logo-wrapper">
-                    <img src="https://lh3.googleusercontent.com/d/1qY4_78N7PLEzWwsPowtfyy848HzVUnRi" alt="CMS Logo" class="logo">
-                    <span class="since-text">Since 2005</span>
-                </div>
-                
+            <!-- Left Side: CMS Logo & Since 2005 -->
+            <div class="logo-wrapper">
+                <img src="https://lh3.googleusercontent.com/d/1qY4_78N7PLEzWwsPowtfyy848HzVUnRi" alt="CMS Logo" class="logo">
+                <span class="since-text">Since 2005</span>
+            </div>
+
+            <!-- Middle: Main Title + Services Text -->
+            <div class="middle-content">
                 <h1>
-                    <span class="main-title">Beyond the Page</span>
-                    <br>
+                    <span class="main-title">Beyond the Page, </span>
                     <span class="accent">Beyond the Connection</span>
                 </h1>
-                
-                <p>Photo Copy, Printing, Scanning, Binding, Laminating, Stationery, School Items, Office Items, Reload & Card, Bill Payments, Dialog TV Setup & Accessories, Fancy & Electrical Items and Every daily essential All under one roof.</p>
+                <p class="services-text">
+                    Photo Copy <span class="dot">•</span>
+                    Printing <span class="dot">•</span>
+                    Scanning <span class="dot">•</span>
+                    Binding <span class="dot">•</span>
+                    Laminating <span class="dot">•</span>
+                    Stationery <span class="dot">•</span>
+                    School Items <span class="dot">•</span>
+                    Office Items <span class="dot">•</span>
+                    Reload & Card <span class="dot">•</span>
+                    Bill Payments <span class="dot">•</span>
+                    Dialog TV Setup & Accessories <span class="dot">•</span>
+                    Fancy & Electrical Items and Every daily essential
+                    <span class="highlight-tag">All under one roof.</span>
+                </p>
+            </div>
+
+            <!-- Right Side: Search Bar -->
+            <div class="search-wrapper">
+                <input type="text" id="searchInput" placeholder="Search Services (e.g., photo copy)..." class="search-input" onkeyup="searchServices()">
+                <button type="button" class="search-btn" aria-label="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- 3. Action Buttons -->
+        <div class="action-buttons-wrapper">
+            <div class="button-row">
+                <a href="tel:0770545464" class="action-btn btn-call">CALL 0770 54 54 64</a>
+                <a href="https://wa.me/94770545464" target="_blank" class="action-btn btn-whatsapp">WHATSAPP</a>
+            </div>
+            <div class="button-row">
+                <button type="button" class="action-btn btn-hours" onclick="openOriginalHours()">OPEN 6 AM - 10:30 PM</button>
+                <a href="https://web.facebook.com/chamimultishopcms" target="_blank" class="action-btn btn-facebook">FACEBOOK</a>
+            </div>
+        </div>
+
+        <!-- 4. 12 BALANCED RETAIL HUB APP GRID BUTTONS -->
+        <div class="services-grid">
+            <div class="service-card" onclick="openPanel('docServicesPanel', this)">
+                <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="Icon">
+                <span>Document Services</span>
+            </div>
+
+            <div class="service-card" onclick="openPanel('rechargePanel', this)">
+                <img src="https://cdn-icons-png.flaticon.com/512/3616/3616223.png" alt="Icon">
+                <span>Recharge & New Connection</span>
+            </div>
+
+            <div class="service-card" onclick="openPanel('billPanel', this)">
+                <img src="https://cdn-icons-png.flaticon.com/512/2527/2527850.png" alt="Icon">
+                <span>Bill Payment</span>
+            </div>
+
+            <div class="service-card" onclick="openPanel('accessoriesPanel', this)">
+                <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="Icon">
+                <span>Accessories & More</span>
+            </div>
+
+            <div class="service-card" onclick="openPanel('techPanel', this)">
+                <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Icon">
+                <span>Online & Tech Services</span>
+            </div>
+
+            <div class="service-card" onclick="openPanel('paymentPanel', this)">
+                <img src="https://cdn-icons-png.flaticon.com/512/1019/1019607.png" alt="Icon">
+                <span>Payment Method</span>
+            </div>
+
+            <div class="service-card" onclick="openPanel('hoursPanel', this)">
+                <img src="https://cdn-icons-png.flaticon.com/512/2838/2838779.png" alt="Icon">
+                <span>Business Hours</span>
+            </div>
+
+            <div class="service-card" onclick="openPanel('bankPanel', this)">
+                <img src="https://cdn-icons-png.flaticon.com/512/2830/2830284.png" alt="Icon">
+                <span>Bank Detail</span>
+            </div>
+
+            <div class="service-card" onclick="openPanel('contactPanel', this)">
+                <img src="https://cdn-icons-png.flaticon.com/512/3059/3059502.png" alt="Icon">
+                <span>Contact Us</span>
+            </div>
+
+            <div class="service-card" onclick="openPanel('extraService1Panel', this)">
+                <img src="https://cdn-icons-png.flaticon.com/512/566/566020.png" alt="Icon">
+                <span>Service 10</span>
+            </div>
+
+            <div class="service-card" onclick="openPanel('extraService2Panel', this)">
+                <img src="https://cdn-icons-png.flaticon.com/512/566/566020.png" alt="Icon">
+                <span>Service 11</span>
+            </div>
+
+            <div class="service-card" onclick="openPanel('extraService3Panel', this)">
+                <img src="https://cdn-icons-png.flaticon.com/512/566/566020.png" alt="Icon">
+                <span>Service 12</span>
+            </div>
+        </div>
+
+        <!-- 5. DYNAMIC CONTENT PANELS -->
+        <div id="panelDisplayArea">
             
-                <!-- 🔍 Search Services Box -->
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Search Services (e.g., photo copy)..." onkeyup="searchServices()">
+            <!-- Document Services -->
+            <div id="docServicesPanel" class="category-detail-panel">
+                <div class="category-panel-title">
+                    📄 Document Services
+                    <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
                 </div>
-    
-                <!-- ⚡ Action Buttons -->
-                <div class="action-buttons-wrapper">
-                    <div class="button-row">
-                        <a href="tel:0770545464" class="action-btn btn-call">CALL 0770 54 54 64</a>
-                        <a href="https://wa.me/94770545464" target="_blank" class="action-btn btn-whatsapp">WHATSAPP</a>
-                    </div>
-                    <div class="button-row">
-                        <button type="button" class="action-btn btn-hours" onclick="openOriginalHours()">OPEN 6 AM - 10:30 PM</button>
-                        <a href="https://web.facebook.com/chamimultishopcms" target="_blank" class="action-btn btn-facebook">FACEBOOK</a>
-                    </div>
-                </div>
-
-                <!-- 📱 12 BALANCED RETAIL HUB APP GRID BUTTONS -->
-                <div class="services-grid">
-                    <div class="service-card" onclick="openPanel('docServicesPanel', this)">
-                        <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="Icon">
-                        <span>Document Services</span>
-                    </div>
-
-                    <div class="service-card" onclick="openPanel('rechargePanel', this)">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3616/3616223.png" alt="Icon">
-                        <span>Recharge & New Connection</span>
-                    </div>
-
-                    <div class="service-card" onclick="openPanel('billPanel', this)">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2527/2527850.png" alt="Icon">
-                        <span>Bill Payment</span>
-                    </div>
-
-                    <div class="service-card" onclick="openPanel('accessoriesPanel', this)">
-                        <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="Icon">
-                        <span>Accessories & More</span>
-                    </div>
-
-                    <div class="service-card" onclick="openPanel('techPanel', this)">
-                        <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Icon">
-                        <span>Online & Tech Services</span>
-                    </div>
-
-                    <div class="service-card" onclick="openPanel('paymentPanel', this)">
-                        <img src="https://cdn-icons-png.flaticon.com/512/1019/1019607.png" alt="Icon">
-                        <span>Payment Method</span>
-                    </div>
-
-                    <div class="service-card" onclick="openPanel('hoursPanel', this)">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2838/2838779.png" alt="Icon">
-                        <span>Business Hours</span>
-                    </div>
-
-                    <div class="service-card" onclick="openPanel('bankPanel', this)">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2830/2830284.png" alt="Icon">
-                        <span>Bank Detail</span>
-                    </div>
-
-                    <div class="service-card" onclick="openPanel('contactPanel', this)">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3059/3059502.png" alt="Icon">
-                        <span>Contact Us</span>
-                    </div>
-
-                    <!-- ➕ 3 EXTRA BALANCE BUTTONS -->
-                    <div class="service-card" onclick="openPanel('extraService1Panel', this)">
-                        <img src="https://cdn-icons-png.flaticon.com/512/566/566020.png" alt="Icon">
-                        <span>Service 10</span>
-                    </div>
-
-                    <div class="service-card" onclick="openPanel('extraService2Panel', this)">
-                        <img src="https://cdn-icons-png.flaticon.com/512/566/566020.png" alt="Icon">
-                        <span>Service 11</span>
-                    </div>
-
-                    <div class="service-card" onclick="openPanel('extraService3Panel', this)">
-                        <img src="https://cdn-icons-png.flaticon.com/512/566/566020.png" alt="Icon">
-                        <span>Service 12</span>
-                    </div>
+                <button onclick="toggleSection('photoCopyBox');" class="serviceBtn">Photo Copy</button>
+                <div id="photoCopyBox" class="sub-box">
+                    <b>A4 Paper</b>
+                    <ul>
+                        <li>Single Side - Rs. 10.00</li>
+                        <li>Double Side - Rs. 15.00</li>
+                        <li>(30+ Pgs. Specials discount)</li>
+                    </ul>
+                    <b>A3 Paper</b>
+                    <ul>
+                        <li>Single Side - Rs. 20.00</li>
+                        <li>Double Side - Rs. 30.00</li>
+                        <li>(20+ Pgs. Specials discount)</li>
+                    </ul>
                 </div>
 
-                <!-- 📂 DYNAMIC CONTENT PANELS -->
-                <div id="panelDisplayArea">
-                    
-                    <!-- 1. Document Services -->
-                    <div id="docServicesPanel" class="category-detail-panel">
-                        <div class="category-panel-title">
-                            📄 Document Services
-                            <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
-                        </div>
-                        <button onclick="toggleSection('photoCopyBox');" class="serviceBtn">Photo Copy</button>
-                        <div id="photoCopyBox" class="sub-box">
-                            <b>A4 Paper</b>
-                            <ul>
-                                <li>Single Side - Rs. 10.00</li>
-                                <li>Double Side - Rs. 15.00</li>
-                                <li>(30+ Pgs. Specials discount)</li>
-                            </ul>
-                            <b>A3 Paper</b>
-                            <ul>
-                                <li>Single Side - Rs. 20.00</li>
-                                <li>Double Side - Rs. 30.00</li>
-                                <li>(20+ Pgs. Specials discount)</li>
-                            </ul>
-                        </div>
-
-                        <button onclick="toggleSection('printOutBox')" class="serviceBtn">Print Out</button>
-                        <div id="printOutBox" class="sub-box">
-                            <b>A4 B/W</b>
-                            <ul>
-                                <li>Single Side - Rs. 10.00</li>
-                                <li>Double Side - Rs. 15.00</li>
-                                <li>(30+ Pgs. Specials discount)</li>
-                            </ul>
-                            <b>A4 Colour</b>
-                            <ul>
-                                <li>Single Side - Rs. 30 - 80</li>
-                                <li>Double Side - Rs. 50 - 120</li>
-                                <li>(20+ Pgs. Specials discount)</li>
-                            </ul>
-                            <b>A3 B/W</b>
-                            <ul>
-                                <li>Single Side - Rs. 20.00</li>
-                                <li>Double Side - Rs. 35.00</li>
-                                <li>(20+ Pgs. Specials discount)</li>
-                            </ul>
-                        </div>
-
-                        <button onclick="toggleSection('scanningBox')" class="serviceBtn">Scanning</button>
-                        <div id="scanningBox" class="sub-box">
-                            <b>Scanning Charges</b>
-                            <ul>
-                                <li>A4 - Rs. 15.00</li>
-                                <li>A3 - Rs. 40.00</li>
-                                <li>(Document,PDF,JPG,IMG)</li>
-                            </ul>
-                        </div>
-
-                        <button onclick="toggleSection('laminatingBindingBox')" class="serviceBtn">Laminating & Binding</button>
-                        <div id="laminatingBindingBox" class="sub-box">
-                            <b>Laminating</b>
-                            <ul>
-                                <li>ID - Rs. 50.00</li>
-                                <li>A5 - Rs. 70.00</li>
-                                <li>A4 - Rs. 100.00</li>
-                                <li>A3 - Rs. 210.00</li>
-                                <li>(20+ Pgs. Specials discount)</li>
-                            </ul>
-                            <b>Spiral Binding</b>
-                            <ul>
-                                <li>Small  - Rs. 80.00</li>
-                                <li>Medium - Rs. 120.00</li>
-                                <li>Large  - Rs. 160.00</li>
-                                <li>Front & Back - Rs. 100.00 (Extra)</li>
-                            </ul>
-                            <b>Tape Binding</b>
-                            <ul>
-                                <li>Small  - Rs. 50.00</li>
-                                <li>Medium - Rs. 100.00</li>
-                                <li>Large  - Rs. 120.00</li>
-                                <li>Front & Back - Rs. 100.00 (Extra)</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- 2. Recharge & New Connections -->
-                    <div id="rechargePanel" class="category-detail-panel">
-                        <div class="category-panel-title">
-                            📱 Recharge & New Connections
-                            <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
-                        </div>
-                        <button onclick="toggleSection('mobileReloadBox');" class="serviceBtn">Reload</button>
-                        <div id="mobileReloadBox" class="sub-box">
-                            <b>Available Networks</b>
-                            <ul>
-                                <li>Dialog / Mobitel / Hutch / Airtel</li>
-                                <li>Data Packs, Voice & Router Recharges</li>
-                                <li>Instant Reload & Online Recharges available</li>
-                            </ul>
-                        </div>
-
-                        <button onclick="toggleSection('rechargeCardsBox');" class="serviceBtn">Recharge Cards</button>
-                        <div id="rechargeCardsBox" class="sub-box">
-                            <b>Card Types</b>
-                            <ul>
-                                <li>Rs. 50, Rs. 79, Rs. 100, Rs. 159 & More</li>
-                            </ul>
-                        </div>
-
-                        <button onclick="toggleSection('newSimBox');" class="serviceBtn">New SIM Connections</button>
-                        <div id="newSimBox" class="sub-box">
-                            <b>New SIM Activation</b>
-                            <ul>
-                                <li>Dialog / Mobitel / Hutch / Airtel</li>
-                                <li><span style="color:red;">*</span> Please bring your original NIC (ජාතික හැඳුනුම්පත)</li>
-                            </ul>
-                        </div>
-
-                        <button onclick="toggleSection('mobileAccessoriesBox');" class="serviceBtn">Mobile Accessories</button>
-                        <div id="mobileAccessoriesBox" class="sub-box">
-                            <b>Available Items</b>
-                            <ul>
-                                <li>Phone Chargers & USB Cables</li>
-                                <li>Handsfree / Earphones / Bluetooth Devices</li>
-                                <li>Tempered Glass & Back Covers</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- 3. Bill Payment -->
-                    <div id="billPanel" class="category-detail-panel">
-                        <div class="category-panel-title">
-                            💡 Bill Payments
-                            <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
-                        </div>
-                        <button onclick="toggleSection('electricityBillBox');" class="serviceBtn">Electricity Bill</button>
-                        <div id="electricityBillBox" class="sub-box">
-                            <b>Power Utilities</b>
-                            <ul>
-                                <li>CEB (Ceylon Electricity Board)</li>
-                                <li>LECO (Lanka Electricity Company)</li>
-                            </ul>
-                        </div>
-
-                        <button onclick="toggleSection('waterBillBox');" class="serviceBtn">Water Bill</button>
-                        <div id="waterBillBox" class="sub-box">
-                            <b>Water Supply</b>
-                            <ul>
-                                <li>NWSDB (National Water Supply & Drainage Board)</li>
-                            </ul>
-                        </div>
-
-                        <button onclick="toggleSection('postpaidBillBox');" class="serviceBtn">Postpaid Bill</button>
-                        <div id="postpaidBillBox" class="sub-box">
-                            <b>Mobile Networks</b>
-                            <ul>
-                                <li>Dialog Postpaid Bills</li>
-                                <li>Mobitel Postpaid Bills</li>
-                                <li>Hutch Postpaid Bills</li>
-                                <li>Airtel Postpaid Bills</li>
-                            </ul>
-                        </div>
-
-                        <button onclick="toggleSection('sltBillBox');" class="serviceBtn">SLT Bill & More</button>
-                        <div id="sltBillBox" class="sub-box">
-                            <b>Telecom & Other Payments</b>
-                            <ul>
-                                <li>SLT-MOBITEL Broadband & Home Phone</li>
-                                <li>SLT Peo TV Bills</li>
-                                <li>Insurance & Leasing Payments</li>
-                                <li>Other Utility & Shop Bills</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- 4. Accessories & More -->
-                    <div id="accessoriesPanel" class="category-detail-panel">
-                        <div class="category-panel-title">
-                            🔌 Accessories & More
-                            <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
-                        </div>
-                        <button onclick="toggleSection('mobileAccBox');" class="serviceBtn">Mobile Accessories</button>
-                        <div id="mobileAccBox" class="sub-box">
-                            <b>Phone Items</b>
-                            <ul>
-                                <li>Phone Chargers & USB Cables</li>
-                                <li>Handsfree / Earphones / Bluetooth Devices</li>
-                                <li>Tempered Glass & Back Covers</li>
-                                <li>Power Banks & Phone Holders</li>
-                            </ul>
-                        </div>
-
-                        <button onclick="toggleSection('electricalAccBox');" class="serviceBtn">Electrical Accessories</button>
-                        <div id="electricalAccBox" class="sub-box">
-                            <b>Home & Power</b>
-                            <ul>
-                                <li>Multi Plugs & Extension Cords</li>
-                                <li>LED Bulbs, CFL Bulbs & Holders</li>
-                                <li>Switches, Sockets & Insulating Tapes</li>
-                                <li>AA / AAA & 9V Batteries</li>
-                            </ul>
-                        </div>
-
-                        <button onclick="toggleSection('dialogTvAccBox');" class="serviceBtn">Dialog TV Products & Accessories</button>
-                        <div id="dialogTvAccBox" class="sub-box">
-                            <b>TV & Satellite Hardware</b>
-                            <ul>
-                                <li>Dialog TV New Connections Setup</li>
-                                <li>Satellite Remotes (Dialog TV & Ordinary)</li>
-                                <li>LNBs, AV Cables & HDMI Cables</li>
-                                <li>TV Setup Power Adapters & Accessories</li>
-                                <li>Warranty Services & Technical Troubleshooting</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- 5. Online & Technical Services -->
-                    <div id="techPanel" class="category-detail-panel">
-                        <div class="category-panel-title">
-                            🌐 Online & Technical Services
-                            <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
-                        </div>
-                        <ul style="padding-left:20px; line-height: 2; color: var(--text-gray);">
-                            <li>Online Forms & Applications</li>
-                            <li>Online Transfers</li>
-                            <li>Satellite Installation & Troubleshooting</li>
-                            <li>CCTV Installation & Troubleshooting</li>
-                        </ul>
-                    </div>
-
-                    <!-- 6. Payment Method -->
-                    <div id="paymentPanel" class="category-detail-panel">
-                        <div class="category-panel-title">
-                            💳 Payment Methods
-                            <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
-                        </div>
-                        <ul class="payment-list">
-                            <li class="payment-item"><img class="payment-img" src="https://lh3.googleusercontent.com/d/17VpkNgYIwtlwrFqdQYvZ6gYfrLuLtXjr" alt="Cash"> Cash Payments</li>
-                            <li class="payment-item">
-                                <img class="payment-img" src="https://lh3.googleusercontent.com/d/17v5EbIwVuAHj9R1LlefXlxG674m8PtfH" alt="Visa">
-                                <img class="payment-img" src="https://lh3.googleusercontent.com/d/1_BnTymOYkNSNh8bcomh6TOv3P1WUOXcG" alt="MasterCard" style="margin-left: -10px;">
-                                Visa / MasterCard
-                            </li>
-                            <li class="payment-item"><img class="payment-img" src="https://lh3.googleusercontent.com/d/1puP8-1jfUhSZpZfHML4S9zZSCOsw7pz7" alt="Online Payment"> Online Fund Transfers</li>
-                            <li class="payment-item"><img class="payment-img" src="https://lh3.googleusercontent.com/d/1EvdNXsp24UYqpSr5PL5n2UhEsLfFLmih" alt="Lanka QR"> Lanka QR Payments</li>
-                            <li class="payment-item"><img class="payment-img" src="https://lh3.googleusercontent.com/d/1zIsDqUb4h3aZ2vy2pfAo-rQXTMxr0Zof" alt="eZ Cash"> eZ Cash</li>
-                            <li class="payment-item"><img class="payment-img" src="https://lh3.googleusercontent.com/d/1mJRWdkxmRBVw7RYOi_-dvY8RBmOzO6S3" alt="mCash"> mCash</li>
-                        </ul>
-                    </div>
-
-                    <!-- 7. Business Hours -->
-                    <div id="hoursPanel" class="category-detail-panel">
-                        <div class="category-panel-title">
-                            ⏰ Business Hours
-                            <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
-                        </div>
-                        <ul style="list-style: none; padding-left: 0; color: var(--text-gray);">
-                            <li style="margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;"><strong>Monday - Friday:</strong> 6:00 AM - 10:30 PM</li>
-                            <li style="margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;"><strong>Saturday:</strong> 6:00 AM - 10:30 PM</li>
-                            <li><strong>Sunday & Public Holidays:</strong> 6:00 AM - 10:30 PM</li>
-                        </ul>
-                    </div>
-
-                    <!-- 8. Bank Details -->
-                    <div id="bankPanel" class="category-detail-panel">
-                        <div class="category-panel-title">
-                            🏦 Bank Details
-                            <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
-                        </div>
-                        <div class="bank-box">
-                            <div class="bank-header">
-                                <img src="https://lh3.googleusercontent.com/d/1flVMhO5eJK64ICsM9C3rqJ56MXE9zIYZ" alt="Commercial Bank">
-                                <span style="font-weight: 800; font-size: 1rem;">Commercial Bank</span>
-                            </div>
-                            <div style="line-height: 2; color: var(--text-gray);">
-                                <p><strong>Account Name:</strong> CHAMI MULTI SHOP</p>
-                                <p><strong>Account Number:</strong> <span id="comAcc">8027678059</span> 
-                                   <button class="copyBtn" onclick="copyAccNumber('comAcc', this)">Copy ✓</button>
-                                </p>
-                                <p><strong>Branch:</strong> Aluthgama</p>
-                            </div>
-                        </div>
-
-                        <div class="bank-box">
-                            <div class="bank-header">
-                                <img src="https://lh3.googleusercontent.com/d/12LQKli5liOWAzIYyt0-qLzi30Ysvyhdj" alt="People's Bank">
-                                <span style="font-weight: 800; font-size: 1rem;">People's Bank</span>
-                            </div>
-                            <div style="line-height: 2; color: var(--text-gray);">
-                                <p><strong>Account Name:</strong> M.K.A.D.C.R. Arsakularathna</p>
-                                <p><strong>Account Number:</strong> <span id="peoAcc">282200120031516</span>
-                                   <button class="copyBtn" onclick="copyAccNumber('peoAcc', this)">Copy ✓</button>
-                                </p>
-                                <p><strong>Branch:</strong> Maggona</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 9. Contact Us -->
-                    <div id="contactPanel" class="category-detail-panel">
-                        <div class="category-panel-title">
-                            📞 Contact Us
-                            <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
-                        </div>
-                        <div class="contact-grid">
-                            <div class="contact-col">
-                                <p style="font-weight: 800; color: var(--text-dark); margin-bottom: 10px;">ADDRESS</p>
-                                <p>Chami Multi Shop <br> No. 476, St. Vincent Road,<br> Diyalagoda, Maggona,<br> Sri Lanka.</p>
-                                <a href="https://maps.app.goo.gl/go2japNiaEAXtst9A" target="_blank" class="serviceBtn" style="display:inline-block; width:auto; padding: 10px 20px; margin-top: 15px;">Open in Google Maps</a>
-                            </div>
-                            <div class="contact-col">
-                                <p style="font-weight: 800; color: var(--text-dark); margin-bottom: 10px;">PHONE NUMBERS</p>
-                                <p>
-                                    <a href="tel:+94770545464" style="text-decoration: none; color: var(--text-gray); display: block; margin-bottom: 5px;">+94 770 54 54 64</a>
-                                    <a href="tel:+94710545464" style="text-decoration: none; color: var(--text-gray); display: block;">+94 710 54 54 64</a>
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-icons">
-                            <a href="tel:+94770545464"><img class="icon" src="https://lh3.googleusercontent.com/d/1OFcjgWWFOeguwizL0Lbmaag1AgHqYdHO" alt="Call"></a>
-                            <a href="https://wa.me/94770545464" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/19W1N_0UmfJ0kgOfu5zKqLZdqLUbcYQug" alt="WhatsApp"></a>
-                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=chamicms@gmail.com" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/1PtHWv3zqC12Uis2uJktEijOmbdCOtGbx" alt="Email"></a>
-                            <a href="https://web.facebook.com/chamimultishopcms" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/1Pv4hKbA7EQw9ZaGKlHtHtKGJsvG5UxcT" alt="Facebook"></a>
-                            <a href="https://www.google.com/search?q=Chami+Multi+Shop+%28CMS%29" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/1ecm8t-d0BMieUmB1qzQp_caeBnygan_L" alt="Google"></a>
-                        </div>
-
-                        <form id="contactForm" class="contact-form" onsubmit="sendToWhatsApp(event)">
-                            <p style="font-weight: 800; margin-bottom: 20px;">SEND US A MESSAGE</p>
-                            <div class="form-group"><input type="text" id="name" placeholder="Your Name" required></div>
-                            <div class="form-group"><input type="email" id="email" placeholder="Your Email" required></div>
-                            <div class="form-group"><input type="tel" id="mobile" placeholder="Your Mobile Number" required></div>
-                            <div class="form-group"><textarea id="message" rows="4" placeholder="Your Message" required></textarea></div>
-                            <button type="submit" class="submit-btn">SEND VIA WHATSAPP</button>
-                        </form>
-                    </div>
-
-                    <!-- 10. Placeholder Service 10 -->
-                    <div id="extraService1Panel" class="category-detail-panel">
-                        <div class="category-panel-title">
-                            ⚙️ Service 10
-                            <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
-                        </div>
-                        <p style="color:var(--text-gray);">මෙම සේවාව ඉක්මනින්ම යාවත්කාලීන කරනු ලැබේ. (Service 10 details will be added here)</p>
-                    </div>
-
-                    <!-- 11. Placeholder Service 11 -->
-                    <div id="extraService2Panel" class="category-detail-panel">
-                        <div class="category-panel-title">
-                            ⚙️ Service 11
-                            <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
-                        </div>
-                        <p style="color:var(--text-gray);">මෙම සේවාව ඉක්මනින්ම යාවත්කාලීන කරනු ලැබේ. (Service 11 details will be added here)</p>
-                    </div>
-
-                    <!-- 12. Placeholder Service 12 -->
-                    <div id="extraService3Panel" class="category-detail-panel">
-                        <div class="category-panel-title">
-                            ⚙️ Service 12
-                            <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
-                        </div>
-                        <p style="color:var(--text-gray);">මෙම සේවාව ඉක්මනින්ම යාවත්කාලීන කරනු ලැබේ. (Service 12 details will be added here)</p>
-                    </div>
-
+                <button onclick="toggleSection('printOutBox')" class="serviceBtn">Print Out</button>
+                <div id="printOutBox" class="sub-box">
+                    <b>A4 B/W</b>
+                    <ul>
+                        <li>Single Side - Rs. 10.00</li>
+                        <li>Double Side - Rs. 15.00</li>
+                        <li>(30+ Pgs. Specials discount)</li>
+                    </ul>
+                    <b>A4 Colour</b>
+                    <ul>
+                        <li>Single Side - Rs. 30 - 80</li>
+                        <li>Double Side - Rs. 50 - 120</li>
+                        <li>(20+ Pgs. Specials discount)</li>
+                    </ul>
+                    <b>A3 B/W</b>
+                    <ul>
+                        <li>Single Side - Rs. 20.00</li>
+                        <li>Double Side - Rs. 35.00</li>
+                        <li>(20+ Pgs. Specials discount)</li>
+                    </ul>
                 </div>
 
-                <!-- SPECIAL OFFERS -->
-                <div class="offer-container">
-                    <span class="offer-text-shine">SPECIAL OFFERS</span>
+                <button onclick="toggleSection('scanningBox')" class="serviceBtn">Scanning</button>
+                <div id="scanningBox" class="sub-box">
+                    <b>Scanning Charges</b>
+                    <ul>
+                        <li>A4 - Rs. 15.00</li>
+                        <li>A3 - Rs. 40.00</li>
+                        <li>(Document,PDF,JPG,IMG)</li>
+                    </ul>
                 </div>
 
-                <!-- Image Slider -->
-                <div class="hero-image-wrapper">
-                    <div class="slider">
-                        <img class="slide active" src="https://lh3.googleusercontent.com/d/1AwGqz_gFA7u1gVuDT5wBIn1qtsb0VXaW" alt="Slide 1" onclick="openLightbox(this.src)">
-                        <img class="slide" src="https://lh3.googleusercontent.com/d/1ZFu6hXUi1i7IVLCEtuPDdt6exY0IEtDz" alt="Slide 2" onclick="openLightbox(this.src)">
-                        <img class="slide" src="https://lh3.googleusercontent.com/d/1Y7pe5IK5MTEj-gch3OibYiyNESV2UIOE" alt="Slide 3" onclick="openLightbox(this.src)">
-                        <img class="slide" src="https://lh3.googleusercontent.com/d/1GaYoP-SJ_5-PsMBdEO7FjGeFFd5lVXpP" alt="Slide 4" onclick="openLightbox(this.src)">
+                <button onclick="toggleSection('laminatingBindingBox')" class="serviceBtn">Laminating & Binding</button>
+                <div id="laminatingBindingBox" class="sub-box">
+                    <b>Laminating</b>
+                    <ul>
+                        <li>ID - Rs. 50.00</li>
+                        <li>A5 - Rs. 70.00</li>
+                        <li>A4 - Rs. 100.00</li>
+                        <li>A3 - Rs. 210.00</li>
+                        <li>(20+ Pgs. Specials discount)</li>
+                    </ul>
+                    <b>Spiral Binding</b>
+                    <ul>
+                        <li>Small  - Rs. 80.00</li>
+                        <li>Medium - Rs. 120.00</li>
+                        <li>Large  - Rs. 160.00</li>
+                        <li>Front & Back - Rs. 100.00 (Extra)</li>
+                    </ul>
+                    <b>Tape Binding</b>
+                    <ul>
+                        <li>Small  - Rs. 50.00</li>
+                        <li>Medium - Rs. 100.00</li>
+                        <li>Large  - Rs. 120.00</li>
+                        <li>Front & Back - Rs. 100.00 (Extra)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Recharge & New Connections -->
+            <div id="rechargePanel" class="category-detail-panel">
+                <div class="category-panel-title">
+                    📱 Recharge & New Connections
+                    <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
+                </div>
+                <button onclick="toggleSection('mobileReloadBox');" class="serviceBtn">Reload</button>
+                <div id="mobileReloadBox" class="sub-box">
+                    <b>Available Networks</b>
+                    <ul>
+                        <li>Dialog / Mobitel / Hutch / Airtel</li>
+                        <li>Data Packs, Voice & Router Recharges</li>
+                        <li>Instant Reload & Online Recharges available</li>
+                    </ul>
+                </div>
+
+                <button onclick="toggleSection('rechargeCardsBox');" class="serviceBtn">Recharge Cards</button>
+                <div id="rechargeCardsBox" class="sub-box">
+                    <b>Card Types</b>
+                    <ul>
+                        <li>Rs. 50, Rs. 79, Rs. 100, Rs. 159 & More</li>
+                    </ul>
+                </div>
+
+                <button onclick="toggleSection('newSimBox');" class="serviceBtn">New SIM Connections</button>
+                <div id="newSimBox" class="sub-box">
+                    <b>New SIM Activation</b>
+                    <ul>
+                        <li>Dialog / Mobitel / Hutch / Airtel</li>
+                        <li><span style="color:red;">*</span> Please bring your original NIC (ජාතික හැඳුනුම්පත)</li>
+                    </ul>
+                </div>
+
+                <button onclick="toggleSection('mobileAccessoriesBox');" class="serviceBtn">Mobile Accessories</button>
+                <div id="mobileAccessoriesBox" class="sub-box">
+                    <b>Available Items</b>
+                    <ul>
+                        <li>Phone Chargers & USB Cables</li>
+                        <li>Handsfree / Earphones / Bluetooth Devices</li>
+                        <li>Tempered Glass & Back Covers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bill Payment -->
+            <div id="billPanel" class="category-detail-panel">
+                <div class="category-panel-title">
+                    💡 Bill Payments
+                    <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
+                </div>
+                <button onclick="toggleSection('electricityBillBox');" class="serviceBtn">Electricity Bill</button>
+                <div id="electricityBillBox" class="sub-box">
+                    <b>Power Utilities</b>
+                    <ul>
+                        <li>CEB (Ceylon Electricity Board)</li>
+                        <li>LECO (Lanka Electricity Company)</li>
+                    </ul>
+                </div>
+
+                <button onclick="toggleSection('waterBillBox');" class="serviceBtn">Water Bill</button>
+                <div id="waterBillBox" class="sub-box">
+                    <b>Water Supply</b>
+                    <ul>
+                        <li>NWSDB (National Water Supply & Drainage Board)</li>
+                    </ul>
+                </div>
+
+                <button onclick="toggleSection('postpaidBillBox');" class="serviceBtn">Postpaid Bill</button>
+                <div id="postpaidBillBox" class="sub-box">
+                    <b>Mobile Networks</b>
+                    <ul>
+                        <li>Dialog Postpaid Bills</li>
+                        <li>Mobitel Postpaid Bills</li>
+                        <li>Hutch Postpaid Bills</li>
+                        <li>Airtel Postpaid Bills</li>
+                    </ul>
+                </div>
+
+                <button onclick="toggleSection('sltBillBox');" class="serviceBtn">SLT Bill & More</button>
+                <div id="sltBillBox" class="sub-box">
+                    <b>Telecom & Other Payments</b>
+                    <ul>
+                        <li>SLT-MOBITEL Broadband & Home Phone</li>
+                        <li>SLT Peo TV Bills</li>
+                        <li>Insurance & Leasing Payments</li>
+                        <li>Other Utility & Shop Bills</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Accessories & More -->
+            <div id="accessoriesPanel" class="category-detail-panel">
+                <div class="category-panel-title">
+                    🔌 Accessories & More
+                    <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
+                </div>
+                <button onclick="toggleSection('mobileAccBox');" class="serviceBtn">Mobile Accessories</button>
+                <div id="mobileAccBox" class="sub-box">
+                    <b>Phone Items</b>
+                    <ul>
+                        <li>Phone Chargers & USB Cables</li>
+                        <li>Handsfree / Earphones / Bluetooth Devices</li>
+                        <li>Tempered Glass & Back Covers</li>
+                        <li>Power Banks & Phone Holders</li>
+                    </ul>
+                </div>
+
+                <button onclick="toggleSection('electricalAccBox');" class="serviceBtn">Electrical Accessories</button>
+                <div id="electricalAccBox" class="sub-box">
+                    <b>Home & Power</b>
+                    <ul>
+                        <li>Multi Plugs & Extension Cords</li>
+                        <li>LED Bulbs, CFL Bulbs & Holders</li>
+                        <li>Switches, Sockets & Insulating Tapes</li>
+                        <li>AA / AAA & 9V Batteries</li>
+                    </ul>
+                </div>
+
+                <button onclick="toggleSection('dialogTvAccBox');" class="serviceBtn">Dialog TV Products & Accessories</button>
+                <div id="dialogTvAccBox" class="sub-box">
+                    <b>TV & Satellite Hardware</b>
+                    <ul>
+                        <li>Dialog TV New Connections Setup</li>
+                        <li>Satellite Remotes (Dialog TV & Ordinary)</li>
+                        <li>LNBs, AV Cables & HDMI Cables</li>
+                        <li>TV Setup Power Adapters & Accessories</li>
+                        <li>Warranty Services & Technical Troubleshooting</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Online & Technical Services -->
+            <div id="techPanel" class="category-detail-panel">
+                <div class="category-panel-title">
+                    🌐 Online & Technical Services
+                    <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
+                </div>
+                <ul style="padding-left:20px; line-height: 2; color: var(--text-gray);">
+                    <li>Online Forms & Applications</li>
+                    <li>Online Transfers</li>
+                    <li>Satellite Installation & Troubleshooting</li>
+                    <li>CCTV Installation & Troubleshooting</li>
+                </ul>
+            </div>
+
+            <!-- Payment Method -->
+            <div id="paymentPanel" class="category-detail-panel">
+                <div class="category-panel-title">
+                    💳 Payment Methods
+                    <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
+                </div>
+                <ul class="payment-list">
+                    <li class="payment-item"><img class="payment-img" src="https://lh3.googleusercontent.com/d/17VpkNgYIwtlwrFqdQYvZ6gYfrLuLtXjr" alt="Cash"> Cash Payments</li>
+                    <li class="payment-item">
+                        <img class="payment-img" src="https://lh3.googleusercontent.com/d/17v5EbIwVuAHj9R1LlefXlxG674m8PtfH" alt="Visa">
+                        <img class="payment-img" src="https://lh3.googleusercontent.com/d/1_BnTymOYkNSNh8bcomh6TOv3P1WUOXcG" alt="MasterCard" style="margin-left: -10px;">
+                        Visa / MasterCard
+                    </li>
+                    <li class="payment-item"><img class="payment-img" src="https://lh3.googleusercontent.com/d/1puP8-1jfUhSZpZfHML4S9zZSCOsw7pz7" alt="Online Payment"> Online Fund Transfers</li>
+                    <li class="payment-item"><img class="payment-img" src="https://lh3.googleusercontent.com/d/1EvdNXsp24UYqpSr5PL5n2UhEsLfFLmih" alt="Lanka QR"> Lanka QR Payments</li>
+                    <li class="payment-item"><img class="payment-img" src="https://lh3.googleusercontent.com/d/1zIsDqUb4h3aZ2vy2pfAo-rQXTMxr0Zof" alt="eZ Cash"> eZ Cash</li>
+                    <li class="payment-item"><img class="payment-img" src="https://lh3.googleusercontent.com/d/1mJRWdkxmRBVw7RYOi_-dvY8RBmOzO6S3" alt="mCash"> mCash</li>
+                </ul>
+            </div>
+
+            <!-- Business Hours -->
+            <div id="hoursPanel" class="category-detail-panel">
+                <div class="category-panel-title">
+                    ⏰ Business Hours
+                    <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
+                </div>
+                <ul style="list-style: none; padding-left: 0; color: var(--text-gray);">
+                    <li style="margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;"><strong>Monday - Friday:</strong> 6:00 AM - 10:30 PM</li>
+                    <li style="margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;"><strong>Saturday:</strong> 6:00 AM - 10:30 PM</li>
+                    <li><strong>Sunday & Public Holidays:</strong> 6:00 AM - 10:30 PM</li>
+                </ul>
+            </div>
+
+            <!-- Bank Details -->
+            <div id="bankPanel" class="category-detail-panel">
+                <div class="category-panel-title">
+                    🏦 Bank Details
+                    <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
+                </div>
+                <div class="bank-box">
+                    <div class="bank-header">
+                        <img src="https://lh3.googleusercontent.com/d/1flVMhO5eJK64ICsM9C3rqJ56MXE9zIYZ" alt="Commercial Bank">
+                        <span style="font-weight: 800; font-size: 1rem;">Commercial Bank</span>
+                    </div>
+                    <div style="line-height: 2; color: var(--text-gray);">
+                        <p><strong>Account Name:</strong> CHAMI MULTI SHOP</p>
+                        <p><strong>Account Number:</strong> <span id="comAcc">8027678059</span> 
+                           <button class="copyBtn" onclick="copyAccNumber('comAcc', this)">Copy ✓</button>
+                        </p>
+                        <p><strong>Branch:</strong> Aluthgama</p>
+                    </div>
+                </div>
+
+                <div class="bank-box">
+                    <div class="bank-header">
+                        <img src="https://lh3.googleusercontent.com/d/12LQKli5liOWAzIYyt0-qLzi30Ysvyhdj" alt="People's Bank">
+                        <span style="font-weight: 800; font-size: 1rem;">People's Bank</span>
+                    </div>
+                    <div style="line-height: 2; color: var(--text-gray);">
+                        <p><strong>Account Name:</strong> M.K.A.D.C.R. Arsakularathna</p>
+                        <p><strong>Account Number:</strong> <span id="peoAcc">282200120031516</span>
+                           <button class="copyBtn" onclick="copyAccNumber('peoAcc', this)">Copy ✓</button>
+                        </p>
+                        <p><strong>Branch:</strong> Maggona</p>
                     </div>
                 </div>
             </div>
-        </header>
+
+            <!-- Contact Us -->
+            <div id="contactPanel" class="category-detail-panel">
+                <div class="category-panel-title">
+                    📞 Contact Us
+                    <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-col">
+                        <p style="font-weight: 800; color: var(--text-dark); margin-bottom: 10px;">ADDRESS</p>
+                        <p>Chami Multi Shop <br> No. 476, St. Vincent Road,<br> Diyalagoda, Maggona,<br> Sri Lanka.</p>
+                        <a href="https://maps.app.goo.gl/go2japNiaEAXtst9A" target="_blank" class="serviceBtn" style="display:inline-block; width:auto; padding: 10px 20px; margin-top: 15px;">Open in Google Maps</a>
+                    </div>
+                    <div class="contact-col">
+                        <p style="font-weight: 800; color: var(--text-dark); margin-bottom: 10px;">PHONE NUMBERS</p>
+                        <p>
+                            <a href="tel:+94770545464" style="text-decoration: none; color: var(--text-gray); display: block; margin-bottom: 5px;">+94 770 54 54 64</a>
+                            <a href="tel:+94710545464" style="text-decoration: none; color: var(--text-gray); display: block;">+94 710 54 54 64</a>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="contact-icons">
+                    <a href="tel:+94770545464"><img class="icon" src="https://lh3.googleusercontent.com/d/1OFcjgWWFOeguwizL0Lbmaag1AgHqYdHO" alt="Call"></a>
+                    <a href="https://wa.me/94770545464" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/19W1N_0UmfJ0kgOfu5zKqLZdqLUbcYQug" alt="WhatsApp"></a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=chamicms@gmail.com" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/1PtHWv3zqC12Uis2uJktEijOmbdCOtGbx" alt="Email"></a>
+                    <a href="https://web.facebook.com/chamimultishopcms" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/1Pv4hKbA7EQw9ZaGKlHtHtKGJsvG5UxcT" alt="Facebook"></a>
+                    <a href="https://www.google.com/search?q=Chami+Multi+Shop+%28CMS%29" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/1ecm8t-d0BMieUmB1qzQp_caeBnygan_L" alt="Google"></a>
+                </div>
+
+                <form id="contactForm" class="contact-form" onsubmit="sendToWhatsApp(event)">
+                    <p style="font-weight: 800; margin-bottom: 20px;">SEND US A MESSAGE</p>
+                    <div class="form-group"><input type="text" id="name" placeholder="Your Name" required></div>
+                    <div class="form-group"><input type="email" id="email" placeholder="Your Email" required></div>
+                    <div class="form-group"><input type="tel" id="mobile" placeholder="Your Mobile Number" required></div>
+                    <div class="form-group"><textarea id="message" rows="4" placeholder="Your Message" required></textarea></div>
+                    <button type="submit" class="submit-btn">SEND VIA WHATSAPP</button>
+                </form>
+            </div>
+
+            <!-- Extra Placeholder Panels -->
+            <div id="extraService1Panel" class="category-detail-panel">
+                <div class="category-panel-title">
+                    ⚙️ Service 10
+                    <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
+                </div>
+                <p style="color:var(--text-gray);">මෙම සේවාව ඉක්මනින්ම යාවත්කාලීන කරනු ලැබේ. (Service 10 details will be added here)</p>
+            </div>
+
+            <div id="extraService2Panel" class="category-detail-panel">
+                <div class="category-panel-title">
+                    ⚙️ Service 11
+                    <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
+                </div>
+                <p style="color:var(--text-gray);">මෙම සේවාව ඉක්මනින්ම යාවත්කාලීන කරනු ලැබේ. (Service 11 details will be added here)</p>
+            </div>
+
+            <div id="extraService3Panel" class="category-detail-panel">
+                <div class="category-panel-title">
+                    ⚙️ Service 12
+                    <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
+                </div>
+                <p style="color:var(--text-gray);">මෙම සේවාව ඉක්මනින්ම යාවත්කාලීන කරනු ලැබේ. (Service 12 details will be added here)</p>
+            </div>
+
+        </div>
+
+        <!-- SPECIAL OFFERS -->
+        <div class="offer-container">
+            <span class="offer-text-shine">SPECIAL OFFERS</span>
+        </div>
+
+        <!-- Image Slider -->
+        <div class="hero-image-wrapper">
+            <div class="slider">
+                <img class="slide active" src="https://lh3.googleusercontent.com/d/1AwGqz_gFA7u1gVuDT5wBIn1qtsb0VXaW" alt="Slide 1" onclick="openLightbox(this.src)">
+                <img class="slide" src="https://lh3.googleusercontent.com/d/1ZFu6hXUi1i7IVLCEtuPDdt6exY0IEtDz" alt="Slide 2" onclick="openLightbox(this.src)">
+                <img class="slide" src="https://lh3.googleusercontent.com/d/1Y7pe5IK5MTEj-gch3OibYiyNESV2UIOE" alt="Slide 3" onclick="openLightbox(this.src)">
+                <img class="slide" src="https://lh3.googleusercontent.com/d/1GaYoP-SJ_5-PsMBdEO7FjGeFFd5lVXpP" alt="Slide 4" onclick="openLightbox(this.src)">
+            </div>
+        </div>
 
         <!-- Reload Packages Section -->
         <div class="package-section">
