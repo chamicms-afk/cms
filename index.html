@@ -748,11 +748,40 @@
         }
 
         @media (max-width: 600px) {
-            .services-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-            .service-card { padding: 10px 4px; min-height: 75px; }
-            .service-card span { font-size: 9.5px; }
-            .payment-list { grid-template-columns: 1fr; }
-        }
+    .hero-section {
+        padding: 12px 0;
+        gap: 10px;
+    }
+
+    .logo {
+        height: 60px; /* Mobile එකට ගැලපෙන සේ Logo එක adjust කිරීම */
+    }
+
+    .middle-content h1 {
+        font-size: 1.45rem; /* Mobile Layout එකට Cursive Title එක ගැලපීම */
+    }
+
+    .services-text {
+        font-size: 0.65rem;
+        line-height: 1.35;
+    }
+
+    .search-wrapper {
+        width: 100%;
+        max-width: 100%;
+        height: 40px;
+    }
+
+    .action-btn {
+        padding: 8px 4px;
+        font-size: 11px;
+    }
+
+    .services-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .service-card { padding: 10px 4px; min-height: 75px; }
+    .service-card span { font-size: 9.5px; }
+    .payment-list { grid-template-columns: 1fr; }
+}
     </style>
 </head>
 <body>
