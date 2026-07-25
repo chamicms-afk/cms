@@ -1461,6 +1461,41 @@
             var hoursModal = document.getElementById('hoursModal');
             if (event.target == hoursModal) hoursModal.style.display = 'none';
         });
+
+        // 🔍 Updated Search Function for your HTML structure
+function searchServices() {
+    let input = document.getElementById('searchInput').value.toLowerCase().trim();
+    
+    // 1. ඔයාගේ HTML එකේ තියෙන Panels සහ Sub Boxes තෝරාගැනීම
+    let panels = document.querySelectorAll('.category-detail-panel');
+    let subBoxes = document.querySelectorAll('.sub-box');
+
+    // Search input එක හිස් නම් සියල්ල සාමාන්‍ය තත්ත්වයට පත් කරයි
+    if (input === "") {
+        panels.forEach(panel => panel.style.display = "");
+        subBoxes.forEach(box => box.style.display = "none"); // අවශ්‍ය නම් default විදියට hide තබයි
+        return;
+    }
+
+    // 2. Search කරන වචනය තියෙනවාදැයි පරීක්ෂා කිරීම
+    panels.forEach(panel => {
+        let panelText = panel.innerText.toLowerCase();
+
+        if (panelText.includes(input)) {
+            panel.style.display = "block"; // ගැලපෙන Panel එක Show කරයි
+
+            // Panel එක ඇතුළේ තියෙන Sub Box (A4/A3 prices) එකේ Search Text එක තිබේ නම් ඒකත් auto-open කරයි
+            let boxesInside = panel.querySelectorAll('.sub-box');
+            boxesInside.forEach(box => {
+                if (box.innerText.toLowerCase().includes(input)) {
+                    box.style.display = "block";
+                }
+            });
+        } else {
+            panel.style.display = "none"; // Match වෙන්නේ නැති Panels Hide කරයි
+        }
+    });
+}
     </script> 
 </body> 
 </html>
