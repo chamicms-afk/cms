@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chami Multi Shop (CMS)</title>
     
-    <!-- Google Fonts: Inter & Dancing Script -->
+    <!-- Google Fonts: Inter and Dancing Script (Cursive Font) -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
@@ -37,42 +37,17 @@
             padding: 0 20px;
         }
 
-        /* --- RUNNING TEXT TICKER STYLING --- */
-        .running-text-container {
-            width: 100%;
-            overflow: hidden;
-            background-color: #0284c7;
-            color: #ffffff;
-            padding: 9px 0;
-            font-size: 14px;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .running-text {
-            display: inline-block;
-            white-space: nowrap;
-            padding-left: 100%;
-            animation: runText 35s linear infinite;
-        }
-
-        @keyframes runText {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* --- NEW UPDATED HEADER / HERO SECTION --- */
+        /* --- HEADER / HERO SECTION --- */
         .hero-section {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 18px 0;
+            padding: 15px 0;
             gap: 15px;
             border-bottom: 1px solid var(--border-color);
-            margin-bottom: 15px;
         }
 
-        /* 1. Left Side: Logo Wrapper */
+        /* Left Side: Logo Wrapper */
         .logo-wrapper {
             display: flex;
             flex-direction: column;
@@ -80,6 +55,8 @@
             justify-content: center;
             flex-shrink: 0;
             text-align: center;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         .logo {
@@ -91,7 +68,7 @@
         }
 
         .since-text {
-            font-size: 11px;
+            font-size: 10px;
             color: #334155; 
             font-weight: 600;
             margin-top: 2px; 
@@ -99,73 +76,49 @@
             letter-spacing: 0.5px;
         }
 
-        /* 2. Middle Container: Title + Services Text */
-        .middle-content {
-            flex: 1;
+        /* Middle: Title Wrapper */
+        .hero-content {
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 0 10px;
+            padding: 0 !important;
         }
 
-        /* Cursive Title (Dancing Script) */
-        .middle-content h1 {
+        .hero-content h1 {
             font-family: 'Dancing Script', cursive !important;
-            font-size: 1.9rem;
+            font-size: 2.1rem;
             font-weight: 700;
             line-height: 1.1;
-            margin-bottom: 4px;
+            margin: 0;
         }
 
         .main-title {
             background: linear-gradient(to right, #0284c7, #2563eb);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: inline-block;
+            display: block;
         }
 
         .accent {
             background: linear-gradient(to right, #dc2626, #ef4444);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: inline-block;
+            display: block;
         }
 
-        /* Services Text */
-        .services-text {
-            font-size: 0.7rem;
-            line-height: 1.3;
-            color: #475569;
-            font-weight: 500;
-            max-width: 620px;
-        }
-
-        .services-text .dot {
-            color: #0284c7;
-            font-weight: 800;
-            margin: 0 2px;
-        }
-
-        .services-text .highlight-tag {
-            color: #0f172a; 
-            font-weight: 800;
-            display: inline-block;
-        }
-
-        /* 3. Right Side: Search Bar */
+        /* 🔍 Right Side: Search Bar Box */
         .search-wrapper {
-            flex-shrink: 0;
+            margin-left: auto;
             display: flex;
             align-items: center;
             background-color: #ffffff;
-            border: 2px solid var(--border-color);
+            border: 1px solid #cbd5e1;
             border-radius: 30px;
-            padding: 4px 6px 4px 14px;
-            width: 260px;
+            padding: 4px 6px 4px 16px;
+            width: 320px;
             transition: all 0.3s ease;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+            flex-shrink: 0;
         }
 
         .search-wrapper:focus-within {
@@ -179,7 +132,7 @@
             background: transparent;
             width: 100%;
             font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-dark);
         }
 
@@ -200,6 +153,21 @@
             color: #ffffff;
             cursor: pointer;
             flex-shrink: 0;
+            transition: background 0.2s ease;
+        }
+
+        .search-btn:hover {
+            background: linear-gradient(135deg, #0369a1, #1d4ed8);
+        }
+
+        /* --- HERO DESCRIPTION TEXT (UNDER HEADER) --- */
+        .hero-description {
+            font-size: 0.92rem;
+            color: var(--text-gray);
+            margin: 15px auto;
+            text-align: center;
+            max-width: 95%;
+            line-height: 1.5;
         }
 
         /* --- ACTION BUTTONS --- */
@@ -269,9 +237,7 @@
             min-height: 85px;
         }
 
-        .service-card:hover {
-            background-color: #d1d5db;
-        }
+        .service-card:hover { background-color: #d1d5db; }
 
         .service-card:active, .service-card.active {
             background-color: #cbd5e1;
@@ -307,9 +273,7 @@
             animation: fadeIn 0.25s ease-out;
         }
 
-        .category-detail-panel.active {
-            display: block;
-        }
+        .category-detail-panel.active { display: block; }
 
         .category-panel-title {
             font-size: 1.2rem;
@@ -428,14 +392,10 @@
             cursor: pointer;
         }
 
-        .slider img.active {
-            display: block;
-        }
+        .slider img.active { display: block; }
 
         /* --- RELOAD PACKAGES --- */
-        .package-section {
-            margin: 40px 0;
-        }
+        .package-section { margin: 40px 0; }
 
         .package-section-title {
             font-size: 1.3rem;
@@ -479,9 +439,7 @@
             transform: translateY(-2px);
         }
 
-        .package-btn:active {
-            transform: scale(0.95);
-        }
+        .package-btn:active { transform: scale(0.95); }
 
         .package-btn img {
             background: transparent;
@@ -726,65 +684,64 @@
             cursor: pointer;
         }
 
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 900px) {
+        /* RUNNING TEXT TICKER STYLING */
+        .running-text-container {
+            width: 100%;
+            overflow: hidden;
+            background-color: #0284c7;
+            color: #ffffff;
+            padding: 9px 0;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .running-text {
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 100%;
+            animation: runText 35s linear infinite;
+        }
+
+        @keyframes runText {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* RESPONSIVE DESIGN ADJUSTMENTS */
+        @media (max-width: 850px) {
             .hero-section {
                 flex-direction: column;
                 align-items: center;
+                gap: 12px;
                 text-align: center;
-                gap: 15px;
+            }
+
+            .hero-content {
+                height: auto;
+                text-align: center;
             }
 
             .search-wrapper {
+                margin-left: 0;
                 width: 100%;
                 max-width: 400px;
             }
-
-            .package-grid { grid-template-columns: repeat(2, 1fr); }
-            .payment-list { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* FINE-TUNED MOBILE STYLING (< 600px) */
         @media (max-width: 600px) {
-            .hero-section {
-                padding: 12px 0;
-                gap: 10px;
-            }
-
-            .logo {
-                height: 60px;
-            }
-
-            .middle-content h1 {
-                font-size: 1.45rem;
-            }
-
-            .services-text {
-                font-size: 0.65rem;
-                line-height: 1.35;
-            }
-
-            .search-wrapper {
-                width: 100%;
-                max-width: 100%;
-                height: 40px;
-            }
-
-            .action-btn {
-                padding: 8px 4px;
-                font-size: 11px;
-            }
-
+            .hero-content h1 { font-size: 1.8rem; }
             .services-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
             .service-card { padding: 10px 4px; min-height: 75px; }
             .service-card span { font-size: 9.5px; }
             .payment-list { grid-template-columns: 1fr; }
+            .package-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. Running Sinhala Text Banner -->
+    <!-- Running Sinhala Text Banner -->
     <div class="running-text-container">
         <div class="running-text">
             📢 අපි ඔබව සාදරයෙන් පිළිගනිමු! චමි මල්ටි ෂොප් (CMS) වෙතින් ඔබට අවශ්‍ය සියලුම ‍ෆොටො කොපි, ප්‍රින්ට් අවුට්, ස්කෑනින්, බයින්ඩින්, ලැමිනේටින් , ලිපි ද්‍රව්‍ය, පාසල් උපකරණ, කාර්යාල උපකරණ, රීලෝඩ්, බිල්පත් ගෙවීම්, ඩයලොග් ටීවී නව සම්බන්ධතා , උපාංග සහ සවි කිරීම, තෑගි භාණ්ඩ , විදුලි උපකරණ සහ උපාංග සහ සෑම දෛනික අත්‍යවශ්‍ය දෙයක්ම එකම වහලක් යටින් අඩුම මිලට ලබාගත හැක...
@@ -793,39 +750,27 @@
 
     <div class="container">
         
-        <!-- 2. NEW HEADER SECTION -->
+        <!-- Header / Hero Section (New Compact Layout) -->
         <header class="hero-section">
+            <!-- Left Side: CMS Logo & Since 2005 -->
             <div class="logo-wrapper">
                 <img src="https://lh3.googleusercontent.com/d/1qY4_78N7PLEzWwsPowtfyy848HzVUnRi" alt="CMS Logo" class="logo">
                 <span class="since-text">Since 2005</span>
             </div>
 
-            <div class="middle-content">
+            <!-- Middle Side: Main Title (Dancing Script Cursive Font) -->
+            <div class="hero-content">
                 <h1>
-                    <span class="main-title">Beyond the Page, </span>
+                    <span class="main-title">Beyond the Page,</span>
                     <span class="accent">Beyond the Connection</span>
                 </h1>
-                <p class="services-text">
-                    Photo Copy <span class="dot">•</span>
-                    Printing <span class="dot">•</span>
-                    Scanning <span class="dot">•</span>
-                    Binding <span class="dot">•</span>
-                    Laminating <span class="dot">•</span>
-                    Stationery <span class="dot">•</span>
-                    School Items <span class="dot">•</span>
-                    Office Items <span class="dot">•</span>
-                    Reload & Card <span class="dot">•</span>
-                    Bill Payments <span class="dot">•</span>
-                    Dialog TV Setup & Accessories <span class="dot">•</span>
-                    Fancy & Electrical Items and Every daily essential
-                    <span class="highlight-tag">All under one roof.</span>
-                </p>
             </div>
 
+            <!-- Right Side: Search Bar -->
             <div class="search-wrapper">
                 <input type="text" id="searchInput" placeholder="Search Services (e.g., photo copy)..." class="search-input" onkeyup="searchServices()">
-                <button type="button" class="search-btn" aria-label="Search">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <button type="button" class="search-btn" aria-label="Search" onclick="searchServices()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
@@ -833,7 +778,12 @@
             </div>
         </header>
 
-        <!-- 3. Action Buttons -->
+        <!-- Paragraph Description placed neatly under the header row -->
+        <p class="hero-description">
+            Photo Copy, Printing, Scanning, Binding, Laminating, Stationery, School Items, Office Items, Reload & Card, Bill Payments, Dialog TV Setup & Accessories, Fancy & Electrical Items and Every daily essential All under one roof.
+        </p>
+
+        <!-- ⚡ Action Buttons -->
         <div class="action-buttons-wrapper">
             <div class="button-row">
                 <a href="tel:0770545464" class="action-btn btn-call">CALL 0770 54 54 64</a>
@@ -845,7 +795,7 @@
             </div>
         </div>
 
-        <!-- 4. 12 BALANCED RETAIL HUB APP GRID BUTTONS -->
+        <!-- 📱 12 BALANCED RETAIL HUB APP GRID BUTTONS -->
         <div class="services-grid">
             <div class="service-card" onclick="openPanel('docServicesPanel', this)">
                 <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="Icon">
@@ -908,10 +858,10 @@
             </div>
         </div>
 
-        <!-- 5. DYNAMIC CONTENT PANELS -->
+        <!-- 📂 DYNAMIC CONTENT PANELS -->
         <div id="panelDisplayArea">
             
-            <!-- Document Services -->
+            <!-- 1. Document Services -->
             <div id="docServicesPanel" class="category-detail-panel">
                 <div class="category-panel-title">
                     📄 Document Services
@@ -992,7 +942,7 @@
                 </div>
             </div>
 
-            <!-- Recharge & New Connections -->
+            <!-- 2. Recharge & New Connections -->
             <div id="rechargePanel" class="category-detail-panel">
                 <div class="category-panel-title">
                     📱 Recharge & New Connections
@@ -1036,7 +986,7 @@
                 </div>
             </div>
 
-            <!-- Bill Payment -->
+            <!-- 3. Bill Payment -->
             <div id="billPanel" class="category-detail-panel">
                 <div class="category-panel-title">
                     💡 Bill Payments
@@ -1082,7 +1032,7 @@
                 </div>
             </div>
 
-            <!-- Accessories & More -->
+            <!-- 4. Accessories & More -->
             <div id="accessoriesPanel" class="category-detail-panel">
                 <div class="category-panel-title">
                     🔌 Accessories & More
@@ -1123,7 +1073,7 @@
                 </div>
             </div>
 
-            <!-- Online & Technical Services -->
+            <!-- 5. Online & Technical Services -->
             <div id="techPanel" class="category-detail-panel">
                 <div class="category-panel-title">
                     🌐 Online & Technical Services
@@ -1137,7 +1087,7 @@
                 </ul>
             </div>
 
-            <!-- Payment Method -->
+            <!-- 6. Payment Method -->
             <div id="paymentPanel" class="category-detail-panel">
                 <div class="category-panel-title">
                     💳 Payment Methods
@@ -1157,7 +1107,7 @@
                 </ul>
             </div>
 
-            <!-- Business Hours -->
+            <!-- 7. Business Hours -->
             <div id="hoursPanel" class="category-detail-panel">
                 <div class="category-panel-title">
                     ⏰ Business Hours
@@ -1170,7 +1120,7 @@
                 </ul>
             </div>
 
-            <!-- Bank Details -->
+            <!-- 8. Bank Details -->
             <div id="bankPanel" class="category-detail-panel">
                 <div class="category-panel-title">
                     🏦 Bank Details
@@ -1205,7 +1155,7 @@
                 </div>
             </div>
 
-            <!-- Contact Us -->
+            <!-- 9. Contact Us -->
             <div id="contactPanel" class="category-detail-panel">
                 <div class="category-panel-title">
                     📞 Contact Us
@@ -1244,7 +1194,7 @@
                 </form>
             </div>
 
-            <!-- Extra Placeholder Panels -->
+            <!-- 10. Placeholder Service 10 -->
             <div id="extraService1Panel" class="category-detail-panel">
                 <div class="category-panel-title">
                     ⚙️ Service 10
@@ -1253,6 +1203,7 @@
                 <p style="color:var(--text-gray);">මෙම සේවාව ඉක්මනින්ම යාවත්කාලීන කරනු ලැබේ. (Service 10 details will be added here)</p>
             </div>
 
+            <!-- 11. Placeholder Service 11 -->
             <div id="extraService2Panel" class="category-detail-panel">
                 <div class="category-panel-title">
                     ⚙️ Service 11
@@ -1261,6 +1212,7 @@
                 <p style="color:var(--text-gray);">මෙම සේවාව ඉක්මනින්ම යාවත්කාලීන කරනු ලැබේ. (Service 11 details will be added here)</p>
             </div>
 
+            <!-- 12. Placeholder Service 12 -->
             <div id="extraService3Panel" class="category-detail-panel">
                 <div class="category-panel-title">
                     ⚙️ Service 12
