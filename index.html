@@ -1465,27 +1465,30 @@
         function searchServices() {
     let input = document.getElementById('searchInput').value.toLowerCase().trim();
     let panels = document.querySelectorAll('.category-detail-panel');
+    let displayArea = document.getElementById('panelDisplayArea');
 
+    // 1. Search Box එක හිස් කළ විට (Reset)
+    if (input === "") {
+        panels.forEach(panel => {
+            panel.style.display = ""; // සියලු Panels CSS Default තත්ත්වයට පත් කරයි
+            let subBoxes = panel.querySelectorAll('.sub-box');
+            subBoxes.forEach(box => box.style.display = "none"); // Sub boxes පරණ විදියට hide කරයි
+        });
+        return;
+    }
+
+    let hasMatch = false;
+
+    // 2. Search කරන වචනය අඩංගු Panels සහ Sub-boxes සෙවීම
     panels.forEach(panel => {
         let panelText = panel.innerText.toLowerCase();
         let subBoxes = panel.querySelectorAll('.sub-box');
 
-        // Search Box එක හිස් කළ විට (Reset)
-        if (input === "") {
-            panel.style.display = ""; 
-            subBoxes.forEach(box => box.style.display = "none");
-            return;
-        }
-
-        // Search කරන වචනය Panel එක ඇතුළේ තියෙනවා නම්
         if (panelText.includes(input)) {
-            // Panel එක සහ Panel Display Area එක Screen එකේ පෙන්නන්න
-            panel.style.display = "block";
-            if (document.getElementById('panelDisplayArea')) {
-                document.getElementById('panelDisplayArea').style.display = "block";
-            }
+            panel.style.display = "block"; // Panel එක පෙන්වන්න
+            hasMatch = true;
 
-            // Search කරන වචනය A4/A3 මිල ගණන් (sub-box) ඇතුළේ තියෙනවා නම් ඒ පෙට්ටියත් Auto Open කරන්න
+            // Panel එක ඇතුළේ තියෙන Sub Box (A4/A3 මිල ගණන්) එකත් Auto Open කරන්න
             subBoxes.forEach(box => {
                 let boxText = box.innerText.toLowerCase();
                 if (boxText.includes(input)) {
@@ -1493,10 +1496,14 @@
                 }
             });
         } else {
-            // Match වෙන්නේ නැත්නම් Hide කරන්න
-            panel.style.display = "none";
+            panel.style.display = "none"; // Match නැති Panel එක සඟවන්න
         }
     });
+
+    // 3. Main Panel Area එක Hidden වී තිබේ නම්, Search කරද්දී එය Display කරවයි
+    if (displayArea && hasMatch) {
+        displayArea.style.display = "block";
+    }
 }
     </script> 
 </body> 
