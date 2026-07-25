@@ -1371,32 +1371,74 @@
             }
         }
 
+        <script>
+        // 🔍 Updated & Fixed Search Function
         function searchServices() {
             let input = document.getElementById("searchInput").value.toLowerCase().trim();
-            let cards = document.querySelectorAll(".services-grid .service-card");
+            let cards = document.querySelectorAll(".services-grid .service-card, .service-card");
             let panels = document.querySelectorAll(".category-detail-panel");
+            let displayArea = document.getElementById("panelDisplayArea");
 
+            // 1. Search Box එක හිස් කළ විට (Reset)
             if (input === "") {
-                cards.forEach(card => card.style.display = "flex");
-                closeAllPanels();
+                cards.forEach(card => card.style.display = "");
+                panels.forEach(panel => {
+                    panel.style.display = "";
+                    let subBoxes = panel.querySelectorAll(".sub-box");
+                    subBoxes.forEach(box => box.style.display = "none");
+                });
+                if (displayArea) displayArea.style.display = "";
                 return;
             }
 
-            panels.forEach(panel => {
-                let text = panel.innerText.toLowerCase();
-                let panelId = panel.id;
-                let correspondingCard = Array.from(cards).find(card => card.getAttribute('onclick').includes(panelId));
+            let hasMatch = false;
 
-                if (text.includes(input)) {
-                    panel.classList.add("active");
-                    if (correspondingCard) correspondingCard.classList.add("active");
+            // 2. Main Service Cards Search කිරීම
+            cards.forEach(card => {
+                let cardText = card.innerText.toLowerCase();
+                if (cardText.includes(input)) {
+                    card.style.display = "flex";
                 } else {
-                    panel.classList.remove("active");
-                    if (correspondingCard) correspondingCard.classList.remove("active");
+                    card.style.display = "none";
                 }
             });
+
+            // 3. Detail Panels සහ Sub-boxes (A4/A3 Prices) Search කිරීම
+            panels.forEach(panel => {
+                let panelText = panel.innerText.toLowerCase();
+                let subBoxes = panel.querySelectorAll(".sub-box");
+
+                if (panelText.includes(input)) {
+                    panel.style.display = "block";
+                    hasMatch = true;
+
+                    // Match වන Sub Box (මිල ගණන්) Auto Open කිරීම
+                    subBoxes.forEach(box => {
+                        let boxText = box.innerText.toLowerCase();
+                        if (boxText.includes(input)) {
+                            box.style.display = "block";
+                        }
+                    });
+                } else {
+                    panel.style.display = "none";
+                }
+            });
+
+            // Main Display Area එක Visible කිරීම
+            if (displayArea && hasMatch) {
+                displayArea.style.display = "block";
+            }
         }
 
+        // 📂 Close All Panels Helper Function
+        function closeAllPanels() {
+            let panels = document.querySelectorAll(".category-detail-panel");
+            let displayArea = document.getElementById("panelDisplayArea");
+            panels.forEach(panel => panel.style.display = "none");
+            if (displayArea) displayArea.style.display = "none";
+        }
+
+        // 📋 Copy Account Number
         function copyAccNumber(elementId, btn) {
             var accNum = document.getElementById(elementId).innerText;
             navigator.clipboard.writeText(accNum).then(function() {
@@ -1410,6 +1452,7 @@
             });
         }
 
+        // 💬 Send to WhatsApp
         function sendToWhatsApp(event) {
             event.preventDefault();
             let name = document.getElementById("name").value;
@@ -1427,7 +1470,7 @@
             window.open(whatsappUrl, '_blank');
         }
 
-        // Image Slider
+        // 🖼️ Image Slider
         window.onload = function() {
             let slides = document.querySelectorAll(".slide");
             let current = 0;
@@ -1440,11 +1483,11 @@
             }
         };
 
-        // Hours Modal
+        // ⏰ Hours Modal
         function openOriginalHours() { document.getElementById('hoursModal').style.display = 'flex'; }
         function closeOriginalHours() { document.getElementById('hoursModal').style.display = 'none'; }
 
-        // Lightbox Image
+        // 🔍 Lightbox Image
         function openLightbox(imgSrc) {
             const modal = document.getElementById('imageLightbox');
             document.getElementById('lightboxImg').src = imgSrc;
@@ -1456,55 +1499,11 @@
             }
         }
 
-        // Global Modal Click Listener
+        // 🖱️ Global Modal Click Listener
         window.addEventListener('click', function(event) {
             var hoursModal = document.getElementById('hoursModal');
             if (event.target == hoursModal) hoursModal.style.display = 'none';
         });
-
-        function searchServices() {
-    let input = document.getElementById('searchInput').value.toLowerCase().trim();
-    let panels = document.querySelectorAll('.category-detail-panel');
-    let displayArea = document.getElementById('panelDisplayArea');
-
-    // 1. Search Box එක හිස් කළ විට (Reset)
-    if (input === "") {
-        panels.forEach(panel => {
-            panel.style.display = ""; // සියලු Panels CSS Default තත්ත්වයට පත් කරයි
-            let subBoxes = panel.querySelectorAll('.sub-box');
-            subBoxes.forEach(box => box.style.display = "none"); // Sub boxes පරණ විදියට hide කරයි
-        });
-        return;
-    }
-
-    let hasMatch = false;
-
-    // 2. Search කරන වචනය අඩංගු Panels සහ Sub-boxes සෙවීම
-    panels.forEach(panel => {
-        let panelText = panel.innerText.toLowerCase();
-        let subBoxes = panel.querySelectorAll('.sub-box');
-
-        if (panelText.includes(input)) {
-            panel.style.display = "block"; // Panel එක පෙන්වන්න
-            hasMatch = true;
-
-            // Panel එක ඇතුළේ තියෙන Sub Box (A4/A3 මිල ගණන්) එකත් Auto Open කරන්න
-            subBoxes.forEach(box => {
-                let boxText = box.innerText.toLowerCase();
-                if (boxText.includes(input)) {
-                    box.style.display = "block";
-                }
-            });
-        } else {
-            panel.style.display = "none"; // Match නැති Panel එක සඟවන්න
-        }
-    });
-
-    // 3. Main Panel Area එක Hidden වී තිබේ නම්, Search කරද්දී එය Display කරවයි
-    if (displayArea && hasMatch) {
-        displayArea.style.display = "block";
-    }
-}
     </script> 
 </body> 
 </html>
