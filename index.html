@@ -1324,45 +1324,60 @@
         <img class="lightbox-content" id="lightboxImg" alt="Full Image Preview">
     </div>
 
-    <!-- JAVASCRIPT FUNCTIONS -->
+   <!-- JAVASCRIPT FUNCTIONS -->
 <script>
     // 📂 Panel Open / Close Functions
     function openPanel(panelId, cardElement) {
-        let allPanels = document.querySelectorAll('.category-detail-panel');
-        let allCards = document.querySelectorAll('.service-card');
-        let targetPanel = document.getElementById(panelId);
+        try {
+            let allPanels = document.querySelectorAll('.category-detail-panel');
+            let allCards = document.querySelectorAll('.service-card');
+            let targetPanel = document.getElementById(panelId);
 
-        if (!targetPanel) return;
+            if (!targetPanel) return;
 
-        let isAlreadyActive = targetPanel.classList.contains('active');
+            let isAlreadyActive = targetPanel.classList.contains('active');
 
-        // Reset all panels
-        allPanels.forEach(panel => {
-            panel.classList.remove('active');
-            panel.style.display = ""; 
-        });
-        allCards.forEach(card => card.classList.remove('active'));
+            allPanels.forEach(panel => {
+                if (panel) {
+                    panel.classList.remove('active');
+                    panel.style.display = "";
+                }
+            });
+            allCards.forEach(card => {
+                if (card) card.classList.remove('active');
+            });
 
-        if (!isAlreadyActive) {
-            targetPanel.classList.add('active');
-            targetPanel.style.display = "block";
-            if (cardElement) cardElement.classList.add('active');
-            targetPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            if (!isAlreadyActive) {
+                targetPanel.classList.add('active');
+                targetPanel.style.display = "block";
+                if (cardElement) cardElement.classList.add('active');
+                targetPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        } catch(e) {
+            console.error("openPanel Error:", e);
         }
     }
 
-    // 📂 Close All Panels (Single Unified Function)
+    // 📂 Close All Panels
     function closeAllPanels() {
-        let allPanels = document.querySelectorAll('.category-detail-panel');
-        let allCards = document.querySelectorAll('.service-card');
-        let displayArea = document.getElementById("panelDisplayArea");
+        try {
+            let allPanels = document.querySelectorAll('.category-detail-panel');
+            let allCards = document.querySelectorAll('.service-card');
+            let displayArea = document.getElementById("panelDisplayArea");
 
-        allPanels.forEach(panel => {
-            panel.classList.remove('active');
-            panel.style.display = "";
-        });
-        allCards.forEach(card => card.classList.remove('active'));
-        if (displayArea) displayArea.style.display = "";
+            allPanels.forEach(panel => {
+                if (panel) {
+                    panel.classList.remove('active');
+                    panel.style.display = "";
+                }
+            });
+            allCards.forEach(card => {
+                if (card) card.classList.remove('active');
+            });
+            if (displayArea) displayArea.style.display = "";
+        } catch(e) {
+            console.error("closeAllPanels Error:", e);
+        }
     }
 
     function toggleSection(boxId) {
@@ -1375,104 +1390,125 @@
         let targetBox = document.getElementById(pkgId);
         
         allBoxes.forEach(box => {
-            if (box.id !== pkgId) box.style.display = "none";
+            if (box && box.id !== pkgId) box.style.display = "none";
         });
 
-        if (targetBox.style.display === "block") {
-            targetBox.style.display = "none";
-        } else {
-            targetBox.style.display = "block";
-            targetBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        if (targetBox) {
+            if (targetBox.style.display === "block") {
+                targetBox.style.display = "none";
+            } else {
+                targetBox.style.display = "block";
+                targetBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
         }
     }
 
-    // 🔍 Working Search Function
+    // 🔍 Error-Safe Search Function
     function searchServices() {
-        let input = document.getElementById("searchInput").value.toLowerCase().trim();
-        let cards = document.querySelectorAll(".services-grid .service-card, .service-card");
-        let panels = document.querySelectorAll(".category-detail-panel");
-        let displayArea = document.getElementById("panelDisplayArea");
+        try {
+            let searchInputEl = document.getElementById("searchInput");
+            if (!searchInputEl) return;
 
-        // Search Reset
-        if (input === "") {
-            cards.forEach(card => card.style.display = "");
-            closeAllPanels();
-            return;
-        }
+            let input = searchInputEl.value.toLowerCase().trim();
+            let cards = document.querySelectorAll(".services-grid .service-card, .service-card");
+            let panels = document.querySelectorAll(".category-detail-panel");
+            let displayArea = document.getElementById("panelDisplayArea");
 
-        let hasMatch = false;
-
-        // Search Cards
-        cards.forEach(card => {
-            let cardText = card.innerText.toLowerCase();
-            if (cardText.includes(input)) {
-                card.style.display = "flex";
-            } else {
-                card.style.display = "none";
+            // Search Box එක හිස් නම් Reset කරයි
+            if (input === "") {
+                cards.forEach(card => { if(card) card.style.display = ""; });
+                closeAllPanels();
+                return;
             }
-        });
 
-        // Search Panels & Sub-boxes
-        panels.forEach(panel => {
-            let panelText = panel.innerText.toLowerCase();
-            let subBoxes = panel.querySelectorAll(".sub-box");
+            let hasMatch = false;
 
-            if (panelText.includes(input)) {
-                panel.classList.add("active");
-                panel.style.display = "block";
-                hasMatch = true;
+            // Search Cards
+            cards.forEach(card => {
+                if (!card) return;
+                let cardText = card.innerText ? card.innerText.toLowerCase() : "";
+                if (cardText.includes(input)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
 
-                subBoxes.forEach(box => {
-                    let boxText = box.innerText.toLowerCase();
-                    if (boxText.includes(input)) {
-                        box.style.display = "block";
-                    }
-                });
-            } else {
-                panel.classList.remove("active");
-                panel.style.display = "none";
+            // Search Panels & Sub-boxes
+            panels.forEach(panel => {
+                if (!panel) return;
+                let panelText = panel.innerText ? panel.innerText.toLowerCase() : "";
+                let subBoxes = panel.querySelectorAll(".sub-box");
+
+                if (panelText.includes(input)) {
+                    panel.classList.add("active");
+                    panel.style.display = "block";
+                    hasMatch = true;
+
+                    subBoxes.forEach(box => {
+                        if (!box) return;
+                        let boxText = box.innerText ? box.innerText.toLowerCase() : "";
+                        if (boxText.includes(input)) {
+                            box.style.display = "block";
+                        }
+                    });
+                } else {
+                    panel.classList.remove("active");
+                    panel.style.display = "none";
+                }
+            });
+
+            if (displayArea && hasMatch) {
+                displayArea.style.display = "block";
             }
-        });
-
-        if (displayArea && hasMatch) {
-            displayArea.style.display = "block";
+        } catch (err) {
+            console.error("Search Error:", err);
         }
     }
 
     // 📋 Copy Account Number
     function copyAccNumber(elementId, btn) {
-        var accNum = document.getElementById(elementId).innerText;
-        navigator.clipboard.writeText(accNum).then(function() {
-            var originalText = btn.innerHTML;
-            btn.innerHTML = "Copied! ✓";
-            btn.style.background = "#22c55e"; 
-            setTimeout(function() {
-                btn.innerHTML = originalText;
-                btn.style.background = "#0284c7"; 
-            }, 2000);
-        });
+        let el = document.getElementById(elementId);
+        if (!el) return;
+        var accNum = el.innerText;
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(accNum).then(function() {
+                var originalText = btn.innerHTML;
+                btn.innerHTML = "Copied! ✓";
+                btn.style.background = "#22c55e"; 
+                setTimeout(function() {
+                    btn.innerHTML = originalText;
+                    btn.style.background = "#0284c7"; 
+                }, 2000);
+            });
+        }
     }
 
     // 💬 Send to WhatsApp
     function sendToWhatsApp(event) {
-        event.preventDefault();
-        let name = document.getElementById("name").value;
-        let email = document.getElementById("email").value;
-        let mobile = document.getElementById("mobile").value;
-        let message = document.getElementById("message").value;
+        if (event) event.preventDefault();
+        let nameEl = document.getElementById("name");
+        let emailEl = document.getElementById("email");
+        let mobileEl = document.getElementById("mobile");
+        let messageEl = document.getElementById("message");
+
+        let name = nameEl ? nameEl.value : "";
+        let email = emailEl ? emailEl.value : "";
+        let mobile = mobileEl ? mobileEl.value : "";
+        let message = messageEl ? messageEl.value : "";
 
         let whatsappUrl = "https://wa.me/94770545464?text=" + 
                           "Hello Chami Multi Shop,%0A%0A" + 
-                          "*Name:* " + name + "%0A" + 
-                          "*Email:* " + email + "%0A" + 
-                          "*Mobile:* " + mobile + "%0A" + 
-                          "*Message:* " + message;
+                          "*Name:* " + encodeURIComponent(name) + "%0A" + 
+                          "*Email:* " + encodeURIComponent(email) + "%0A" + 
+                          "*Mobile:* " + encodeURIComponent(mobile) + "%0A" + 
+                          "*Message:* " + encodeURIComponent(message);
         
         window.open(whatsappUrl, '_blank');
     }
 
     // 🖼️ Image Slider
-    window.onload = function() {
+    window.addEventListener('load', function() {
         let slides = document.querySelectorAll(".slide");
         let current = 0;
         if (slides.length > 0) {
@@ -1482,29 +1518,41 @@
                 slides[current].classList.add("active");
             }, 3000);
         }
-    };
+    });
 
     // ⏰ Hours Modal
-    function openOriginalHours() { document.getElementById('hoursModal').style.display = 'flex'; }
-    function closeOriginalHours() { document.getElementById('hoursModal').style.display = 'none'; }
+    function openOriginalHours() { 
+        let modal = document.getElementById('hoursModal');
+        if (modal) modal.style.display = 'flex'; 
+    }
+    function closeOriginalHours() { 
+        let modal = document.getElementById('hoursModal');
+        if (modal) modal.style.display = 'none'; 
+    }
 
     // 🔍 Lightbox Image
     function openLightbox(imgSrc) {
         const modal = document.getElementById('imageLightbox');
-        document.getElementById('lightboxImg').src = imgSrc;
-        modal.style.display = 'flex';
+        const img = document.getElementById('lightboxImg');
+        if (modal && img) {
+            img.src = imgSrc;
+            modal.style.display = 'flex';
+        }
     }
     function closeLightbox(e) {
-        if (e.target.id === 'imageLightbox' || e.target.className === 'lightbox-close') {
-            document.getElementById('imageLightbox').style.display = 'none';
+        const modal = document.getElementById('imageLightbox');
+        if (modal && (e.target.id === 'imageLightbox' || e.target.className === 'lightbox-close')) {
+            modal.style.display = 'none';
         }
     }
 
     // 🖱️ Global Modal Click Listener
     window.addEventListener('click', function(event) {
         var hoursModal = document.getElementById('hoursModal');
-        if (event.target == hoursModal) hoursModal.style.display = 'none';
+        if (hoursModal && event.target == hoursModal) {
+            hoursModal.style.display = 'none';
+        }
     });
 </script> 
 </body> 
-</html>
+</html> 
