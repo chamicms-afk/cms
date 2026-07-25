@@ -1325,185 +1325,186 @@
     </div>
 
     <!-- JAVASCRIPT FUNCTIONS -->
-    <script>
-        function openPanel(panelId, cardElement) {
-            let allPanels = document.querySelectorAll('.category-detail-panel');
-            let allCards = document.querySelectorAll('.service-card');
-            let targetPanel = document.getElementById(panelId);
+<script>
+    // 📂 Panel Open / Close Functions
+    function openPanel(panelId, cardElement) {
+        let allPanels = document.querySelectorAll('.category-detail-panel');
+        let allCards = document.querySelectorAll('.service-card');
+        let targetPanel = document.getElementById(panelId);
 
-            let isAlreadyActive = targetPanel.classList.contains('active');
+        if (!targetPanel) return;
 
-            allPanels.forEach(panel => panel.classList.remove('active'));
-            allCards.forEach(card => card.classList.remove('active'));
+        let isAlreadyActive = targetPanel.classList.contains('active');
 
-            if (!isAlreadyActive) {
-                targetPanel.classList.add('active');
-                cardElement.classList.add('active');
-                targetPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-        }
-
-        function closeAllPanels() {
-            let allPanels = document.querySelectorAll('.category-detail-panel');
-            let allCards = document.querySelectorAll('.service-card');
-            allPanels.forEach(panel => panel.classList.remove('active'));
-            allCards.forEach(card => card.classList.remove('active'));
-        }
-
-        function toggleSection(boxId) {
-            var x = document.getElementById(boxId);
-            if (x) x.classList.toggle("open");
-        }
-
-        function togglePackage(pkgId) {
-            let allBoxes = document.querySelectorAll(".package-content-box");
-            let targetBox = document.getElementById(pkgId);
-            
-            allBoxes.forEach(box => {
-                if (box.id !== pkgId) box.style.display = "none";
-            });
-
-            if (targetBox.style.display === "block") {
-                targetBox.style.display = "none";
-            } else {
-                targetBox.style.display = "block";
-                targetBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
-            }
-        }
-
-        <script>
-        // 🔍 Updated & Fixed Search Function
-        function searchServices() {
-            let input = document.getElementById("searchInput").value.toLowerCase().trim();
-            let cards = document.querySelectorAll(".services-grid .service-card, .service-card");
-            let panels = document.querySelectorAll(".category-detail-panel");
-            let displayArea = document.getElementById("panelDisplayArea");
-
-            // 1. Search Box එක හිස් කළ විට (Reset)
-            if (input === "") {
-                cards.forEach(card => card.style.display = "");
-                panels.forEach(panel => {
-                    panel.style.display = "";
-                    let subBoxes = panel.querySelectorAll(".sub-box");
-                    subBoxes.forEach(box => box.style.display = "none");
-                });
-                if (displayArea) displayArea.style.display = "";
-                return;
-            }
-
-            let hasMatch = false;
-
-            // 2. Main Service Cards Search කිරීම
-            cards.forEach(card => {
-                let cardText = card.innerText.toLowerCase();
-                if (cardText.includes(input)) {
-                    card.style.display = "flex";
-                } else {
-                    card.style.display = "none";
-                }
-            });
-
-            // 3. Detail Panels සහ Sub-boxes (A4/A3 Prices) Search කිරීම
-            panels.forEach(panel => {
-                let panelText = panel.innerText.toLowerCase();
-                let subBoxes = panel.querySelectorAll(".sub-box");
-
-                if (panelText.includes(input)) {
-                    panel.style.display = "block";
-                    hasMatch = true;
-
-                    // Match වන Sub Box (මිල ගණන්) Auto Open කිරීම
-                    subBoxes.forEach(box => {
-                        let boxText = box.innerText.toLowerCase();
-                        if (boxText.includes(input)) {
-                            box.style.display = "block";
-                        }
-                    });
-                } else {
-                    panel.style.display = "none";
-                }
-            });
-
-            // Main Display Area එක Visible කිරීම
-            if (displayArea && hasMatch) {
-                displayArea.style.display = "block";
-            }
-        }
-
-        // 📂 Close All Panels Helper Function
-        function closeAllPanels() {
-            let panels = document.querySelectorAll(".category-detail-panel");
-            let displayArea = document.getElementById("panelDisplayArea");
-            panels.forEach(panel => panel.style.display = "none");
-            if (displayArea) displayArea.style.display = "none";
-        }
-
-        // 📋 Copy Account Number
-        function copyAccNumber(elementId, btn) {
-            var accNum = document.getElementById(elementId).innerText;
-            navigator.clipboard.writeText(accNum).then(function() {
-                var originalText = btn.innerHTML;
-                btn.innerHTML = "Copied! ✓";
-                btn.style.background = "#22c55e"; 
-                setTimeout(function() {
-                    btn.innerHTML = originalText;
-                    btn.style.background = "#0284c7"; 
-                }, 2000);
-            });
-        }
-
-        // 💬 Send to WhatsApp
-        function sendToWhatsApp(event) {
-            event.preventDefault();
-            let name = document.getElementById("name").value;
-            let email = document.getElementById("email").value;
-            let mobile = document.getElementById("mobile").value;
-            let message = document.getElementById("message").value;
-
-            let whatsappUrl = "https://wa.me/94770545464?text=" + 
-                              "Hello Chami Multi Shop,%0A%0A" + 
-                              "*Name:* " + name + "%0A" + 
-                              "*Email:* " + email + "%0A" + 
-                              "*Mobile:* " + mobile + "%0A" + 
-                              "*Message:* " + message;
-            
-            window.open(whatsappUrl, '_blank');
-        }
-
-        // 🖼️ Image Slider
-        window.onload = function() {
-            let slides = document.querySelectorAll(".slide");
-            let current = 0;
-            if (slides.length > 0) {
-                setInterval(() => {
-                    slides[current].classList.remove("active");
-                    current = (current + 1) % slides.length;
-                    slides[current].classList.add("active");
-                }, 3000);
-            }
-        };
-
-        // ⏰ Hours Modal
-        function openOriginalHours() { document.getElementById('hoursModal').style.display = 'flex'; }
-        function closeOriginalHours() { document.getElementById('hoursModal').style.display = 'none'; }
-
-        // 🔍 Lightbox Image
-        function openLightbox(imgSrc) {
-            const modal = document.getElementById('imageLightbox');
-            document.getElementById('lightboxImg').src = imgSrc;
-            modal.style.display = 'flex';
-        }
-        function closeLightbox(e) {
-            if (e.target.id === 'imageLightbox' || e.target.className === 'lightbox-close') {
-                document.getElementById('imageLightbox').style.display = 'none';
-            }
-        }
-
-        // 🖱️ Global Modal Click Listener
-        window.addEventListener('click', function(event) {
-            var hoursModal = document.getElementById('hoursModal');
-            if (event.target == hoursModal) hoursModal.style.display = 'none';
+        // Reset all panels
+        allPanels.forEach(panel => {
+            panel.classList.remove('active');
+            panel.style.display = ""; 
         });
-    </script> 
+        allCards.forEach(card => card.classList.remove('active'));
+
+        if (!isAlreadyActive) {
+            targetPanel.classList.add('active');
+            targetPanel.style.display = "block";
+            if (cardElement) cardElement.classList.add('active');
+            targetPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
+
+    // 📂 Close All Panels (Single Unified Function)
+    function closeAllPanels() {
+        let allPanels = document.querySelectorAll('.category-detail-panel');
+        let allCards = document.querySelectorAll('.service-card');
+        let displayArea = document.getElementById("panelDisplayArea");
+
+        allPanels.forEach(panel => {
+            panel.classList.remove('active');
+            panel.style.display = "";
+        });
+        allCards.forEach(card => card.classList.remove('active'));
+        if (displayArea) displayArea.style.display = "";
+    }
+
+    function toggleSection(boxId) {
+        var x = document.getElementById(boxId);
+        if (x) x.classList.toggle("open");
+    }
+
+    function togglePackage(pkgId) {
+        let allBoxes = document.querySelectorAll(".package-content-box");
+        let targetBox = document.getElementById(pkgId);
+        
+        allBoxes.forEach(box => {
+            if (box.id !== pkgId) box.style.display = "none";
+        });
+
+        if (targetBox.style.display === "block") {
+            targetBox.style.display = "none";
+        } else {
+            targetBox.style.display = "block";
+            targetBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+    }
+
+    // 🔍 Working Search Function
+    function searchServices() {
+        let input = document.getElementById("searchInput").value.toLowerCase().trim();
+        let cards = document.querySelectorAll(".services-grid .service-card, .service-card");
+        let panels = document.querySelectorAll(".category-detail-panel");
+        let displayArea = document.getElementById("panelDisplayArea");
+
+        // Search Reset
+        if (input === "") {
+            cards.forEach(card => card.style.display = "");
+            closeAllPanels();
+            return;
+        }
+
+        let hasMatch = false;
+
+        // Search Cards
+        cards.forEach(card => {
+            let cardText = card.innerText.toLowerCase();
+            if (cardText.includes(input)) {
+                card.style.display = "flex";
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        // Search Panels & Sub-boxes
+        panels.forEach(panel => {
+            let panelText = panel.innerText.toLowerCase();
+            let subBoxes = panel.querySelectorAll(".sub-box");
+
+            if (panelText.includes(input)) {
+                panel.classList.add("active");
+                panel.style.display = "block";
+                hasMatch = true;
+
+                subBoxes.forEach(box => {
+                    let boxText = box.innerText.toLowerCase();
+                    if (boxText.includes(input)) {
+                        box.style.display = "block";
+                    }
+                });
+            } else {
+                panel.classList.remove("active");
+                panel.style.display = "none";
+            }
+        });
+
+        if (displayArea && hasMatch) {
+            displayArea.style.display = "block";
+        }
+    }
+
+    // 📋 Copy Account Number
+    function copyAccNumber(elementId, btn) {
+        var accNum = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(accNum).then(function() {
+            var originalText = btn.innerHTML;
+            btn.innerHTML = "Copied! ✓";
+            btn.style.background = "#22c55e"; 
+            setTimeout(function() {
+                btn.innerHTML = originalText;
+                btn.style.background = "#0284c7"; 
+            }, 2000);
+        });
+    }
+
+    // 💬 Send to WhatsApp
+    function sendToWhatsApp(event) {
+        event.preventDefault();
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let mobile = document.getElementById("mobile").value;
+        let message = document.getElementById("message").value;
+
+        let whatsappUrl = "https://wa.me/94770545464?text=" + 
+                          "Hello Chami Multi Shop,%0A%0A" + 
+                          "*Name:* " + name + "%0A" + 
+                          "*Email:* " + email + "%0A" + 
+                          "*Mobile:* " + mobile + "%0A" + 
+                          "*Message:* " + message;
+        
+        window.open(whatsappUrl, '_blank');
+    }
+
+    // 🖼️ Image Slider
+    window.onload = function() {
+        let slides = document.querySelectorAll(".slide");
+        let current = 0;
+        if (slides.length > 0) {
+            setInterval(() => {
+                slides[current].classList.remove("active");
+                current = (current + 1) % slides.length;
+                slides[current].classList.add("active");
+            }, 3000);
+        }
+    };
+
+    // ⏰ Hours Modal
+    function openOriginalHours() { document.getElementById('hoursModal').style.display = 'flex'; }
+    function closeOriginalHours() { document.getElementById('hoursModal').style.display = 'none'; }
+
+    // 🔍 Lightbox Image
+    function openLightbox(imgSrc) {
+        const modal = document.getElementById('imageLightbox');
+        document.getElementById('lightboxImg').src = imgSrc;
+        modal.style.display = 'flex';
+    }
+    function closeLightbox(e) {
+        if (e.target.id === 'imageLightbox' || e.target.className === 'lightbox-close') {
+            document.getElementById('imageLightbox').style.display = 'none';
+        }
+    }
+
+    // 🖱️ Global Modal Click Listener
+    window.addEventListener('click', function(event) {
+        var hoursModal = document.getElementById('hoursModal');
+        if (event.target == hoursModal) hoursModal.style.display = 'none';
+    });
+</script> 
 </body> 
 </html>
