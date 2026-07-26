@@ -743,6 +743,21 @@
             .payment-list { grid-template-columns: 1fr; }
             .package-grid { grid-template-columns: repeat(2, 1fr); }
         }
+        .package-buttons-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 6px;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .package-buttons-container .serviceBtn {
+            flex: 1;
+            padding: 10px 4px;
+            font-size: 13px;
+            text-align: center;
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body>
@@ -1260,6 +1275,14 @@
                 </button>
             </div>
 
+            <!-- බටන් 4 විතරක් පරණ Code එකට උඩින් දාන්න -->
+            <div class="package-buttons-container">
+            <button onclick="togglePackage('dialogPkg')" class="serviceBtn">Dialog</button>
+            <button onclick="togglePackage('mobitelPkg')" class="serviceBtn">Mobitel</button>
+            <button onclick="togglePackage('hutchPkg')" class="serviceBtn">Hutch</button>
+    <        button onclick="togglePackage('airtelPkg')" class="serviceBtn">Airtel</button>
+            </div>
+            
             <!-- Package Content Boxes -->
             <div id="dialogPkg" class="package-content-box">
                 <h4 style="color:#e11d48; margin-bottom: 5px;">Dialog Latest Packages</h4>
