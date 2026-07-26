@@ -1261,25 +1261,27 @@
         <div class="package-section">
             <div class="package-section-title">Voice & Data Packages</div>
             
-            <!-- බටන් 4 විතරක් පරණ Code එකට උඩින් දාන්න -->
-            <div class="package-buttons-container">
-    <button onclick="togglePackage('dialogPkg')" class="serviceBtn">
-        <img src="https://lh3.googleusercontent.com/d/19AZA_s05fqRBQ1SwbjTQYXuh9COe46_M" alt="Dialog Logo">
-        <span>DIALOG</span>
-    </button>
-    <button onclick="togglePackage('mobitelPkg')" class="serviceBtn">
-        <img src="https://lh3.googleusercontent.com/d/1_4Visjogj0PtB9R3GS4iygV6-77xM6EA" alt="Mobitel Logo">
-        <span>MOBITEL</span>
-    </button>
-    <button onclick="togglePackage('hutchPkg')" class="serviceBtn">
-        <img src="https://lh3.googleusercontent.com/d/1txqxjB9NSqmUmatH9l1vUX4CU30wJMNe" alt="Hutch Logo">
-        <span>HUTCH</span>
-    </button>
-    <button onclick="togglePackage('airtelPkg')" class="serviceBtn">
-        <img src="https://lh3.googleusercontent.com/d/111gMEFIeJRNhuZyKLSpq7AdZLhO9KyzG" alt="Airtel Logo">
-        <span>AIRTEL</span>
-    </button>
-</div>
+         <div class="package-buttons-container" style="display: flex; gap: 5px; width: 100%; margin-bottom: 12px;">
+            <button onclick="togglePackage('dialogPkg')" class="serviceBtn" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 4px; padding: 8px 2px; font-size: 11px; font-weight: bold; white-space: nowrap;">
+            <img src="https://lh3.googleusercontent.com/d/19AZA_s05fqRBQ1SwbjTQYXuh9COe46_M" alt="Dialog Logo" style="height: 18px; width: auto; max-width: 25px; object-fit: contain;">
+            <span>DIALOG</span>
+        </button>
+
+        <button onclick="togglePackage('mobitelPkg')" class="serviceBtn" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 4px; padding: 8px 2px; font-size: 11px; font-weight: bold; white-space: nowrap;">
+            <img src="https://lh3.googleusercontent.com/d/1_4Visjogj0PtB9R3GS4iygV6-77xM6EA" alt="Mobitel Logo" style="height: 18px; width: auto; max-width: 25px; object-fit: contain;">
+            <span>MOBITEL</span>
+        </button>
+
+        <button onclick="togglePackage('hutchPkg')" class="serviceBtn" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 4px; padding: 8px 2px; font-size: 11px; font-weight: bold; white-space: nowrap;">
+            <img src="https://lh3.googleusercontent.com/d/1txqxjB9NSqmUmatH9l1vUX4CU30wJMNe" alt="Hutch Logo" style="height: 18px; width: auto; max-width: 25px; object-fit: contain;">
+            <span>HUTCH</span>
+        </button>
+
+        <button onclick="togglePackage('airtelPkg')" class="serviceBtn" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 4px; padding: 8px 2px; font-size: 11px; font-weight: bold; white-space: nowrap;">
+            <img src="https://lh3.googleusercontent.com/d/111gMEFIeJRNhuZyKLSpq7AdZLhO9KyzG" alt="Airtel Logo" style="height: 18px; width: auto; max-width: 25px; object-fit: contain;">
+            <span>AIRTEL</span>
+        </button>
+        </div>   
             
             <!-- Package Content Boxes -->
             <div id="dialogPkg" class="package-content-box">
