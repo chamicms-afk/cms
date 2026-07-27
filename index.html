@@ -848,7 +848,7 @@
 
             <div class="service-card" onclick="openPanel('accessoriesPanel', this)">
                 <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="Icon">
-                <span>Accessories & More</span>
+                <span>Products & Accessories</span>
             </div>
 
             <div class="service-card" onclick="openPanel('techPanel', this)">
@@ -1002,23 +1002,16 @@
 
                 <button onclick="toggleSection('newSimBox');" class="serviceBtn">New SIM Connections</button>
                 <div id="newSimBox" class="sub-box">
-                    <b>New SIM Activation</b>
+                    <b>New SIM & Change Activation</b>
                     <ul>
                         <li>Dialog / Mobitel / Hutch / Airtel</li>
+                        <li>Router Sim</li>
+                        <li>Sim change (Lost/Damage)</li>
                         <li><span style="color:red;">*</span> Please bring your original NIC (ජාතික හැඳුනුම්පත)</li>
                     </ul>
                 </div>
 
-                <button onclick="toggleSection('mobileAccessoriesBox');" class="serviceBtn">Mobile Accessories</button>
-                <div id="mobileAccessoriesBox" class="sub-box">
-                    <b>Available Items</b>
-                    <ul>
-                        <li>Phone Chargers & USB Cables</li>
-                        <li>Handsfree / Earphones / Bluetooth Devices</li>
-                        <li>Tempered Glass & Back Covers</li>
-                    </ul>
                 </div>
-            </div>
 
             <!-- 3. Bill Payment -->
             <div id="billPanel" class="category-detail-panel">
@@ -1066,24 +1059,86 @@
                 </div>
             </div>
 
-            <!-- 4. Accessories & More -->
+            <!-- 4. Products & Accessories -->
             <div id="accessoriesPanel" class="category-detail-panel">
                 <div class="category-panel-title">
-                    🔌 Accessories & More
+                    🔌 Products & Accessories
                     <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
                 </div>
-                <button onclick="toggleSection('mobileAccBox');" class="serviceBtn">Mobile Accessories</button>
+                
+                <!-- Main Sub Button 1 -->
+                <button onclick="toggleSection('mobileAccBox');" class="serviceBtn">Mobile & Accessories</button>
                 <div id="mobileAccBox" class="sub-box">
-                    <b>Phone Items</b>
-                    <ul>
-                        <li>Phone Chargers & USB Cables</li>
-                        <li>Handsfree / Earphones / Bluetooth Devices</li>
-                        <li>Tempered Glass & Back Covers</li>
-                        <li>Power Banks & Phone Holders</li>
-                    </ul>
+                    
+                    <!-- Sub Button 1.1 -->
+                    <button onclick="toggleSection('mobileItemsSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Mobile Phone</button>
+                    <div id="mobileItemsSubBox" class="sub-box">
+                        <b>Phone Items</b>
+                        <ul>
+                            <li>This service will be updated soon.</li>        
+                        </ul>
+                    </div>
+
+                    <!-- Sub Button 1.2 -->
+                    <button onclick="toggleSection('mobileServicesSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Mobile Accessories</button>
+                    <div id="mobileServicesSubBox" class="sub-box">
+                        <b>Mobile Accessories</b>
+                        <ul>
+                            <li>Phone Chargers & USB Cables</li>
+                            <li>Handsfree / Earphones / Bluetooth Devices</li>
+                            <li>Software Flashing & Unlocking</li>
+                        </ul>
+                    </div>
+
                 </div>
 
-                <button onclick="toggleSection('electricalAccBox');" class="serviceBtn">Electrical Accessories</button>
+                <!-- Main Sub Button 2: Dialog TV Products & Accessories -->
+                <button onclick="toggleSection('dialogTvAccBox');" class="serviceBtn">Dialog TV Products & Accessories</button>
+                <div id="dialogTvAccBox" class="sub-box">
+                    
+                    <!-- Sub Button 2.1 -->
+                    <button onclick="toggleSection('dtvConnSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Dialog TV New Connections</button>
+                    <div id="dtvConnSubBox" class="sub-box">
+                        <b>New Connections & Setup</b>
+                        <ul>
+                            <li>Dialog TV New Connections Rs.9990/= (Full Set)</li>
+                            <li>Dish Alignment & Signal Setup (Service charges apply.)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Sub Button 2.2 -->
+                    <button onclick="toggleSection('dtvRemoteSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Satellite Remotes</button>
+                    <div id="dtvRemoteSubBox" class="sub-box">
+                        <b>Remotes</b>
+                        <ul>
+                            <li>Dialog TV Original & Compatible Remotes</li>
+                            <li>Ordinary TV Remotes</li>
+                        </ul>
+                    </div>
+
+                    <!-- Sub Button 2.3 -->
+                    <button onclick="toggleSection('dtvCablesSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">LNBs & Cables</button>
+                    <div id="dtvCablesSubBox" class="sub-box">
+                        <b>LNBs & Cables</b>
+                        <ul>
+                            <li>Single & Dual Port LNBs</li>
+                            <li>AV Cables & HDMI Cables</li>
+                        </ul>
+                    </div>
+
+                    <!-- Sub Button 2.4 -->
+                    <button onclick="toggleSection('dtvPowerSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Power Adapters & Services</button>
+                    <div id="dtvPowerSubBox" class="sub-box">
+                        <b>Adapters & Troubleshooting</b>
+                        <ul>
+                            <li>TV Setup Power Adapters & Accessories</li>
+                            <li>Warranty Services & Technical Troubleshooting</li>
+                        </ul>
+                    </div>
+
+                </div>
+		
+		<button onclick="toggleSection('electricalAccBox');" class="serviceBtn">Electrical Accessories</button>
                 <div id="electricalAccBox" class="sub-box">
                     <b>Home & Power</b>
                     <ul>
@@ -1094,17 +1149,6 @@
                     </ul>
                 </div>
 
-                <button onclick="toggleSection('dialogTvAccBox');" class="serviceBtn">Dialog TV Products & Accessories</button>
-                <div id="dialogTvAccBox" class="sub-box">
-                    <b>TV & Satellite Hardware</b>
-                    <ul>
-                        <li>Dialog TV New Connections Setup</li>
-                        <li>Satellite Remotes (Dialog TV & Ordinary)</li>
-                        <li>LNBs, AV Cables & HDMI Cables</li>
-                        <li>TV Setup Power Adapters & Accessories</li>
-                        <li>Warranty Services & Technical Troubleshooting</li>
-                    </ul>
-                </div>
             </div>
 
             <!-- 5. Online & Technical Services -->
@@ -1263,7 +1307,7 @@
     Voice & Data Packages
     </div>
 
-    <!-- 🔘 Logo Buttons (ලෝගෝ විතරක් තියෙන එකම පේළියේ බටන් 4) -->
+    <!-- 🔘 Logo Buttons -->
     <div class="package-buttons-container" style="display: flex; gap: 6px; width: 100%; margin-bottom: 15px;">
         <button onclick="togglePackage('dialogPkg')" class="serviceBtn" style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 10px 4px; cursor: pointer;">
             <img src="https://lh3.googleusercontent.com/d/19AZA_s05fqRBQ1SwbjTQYXuh9COe46_M" alt="Dialog" style="height: 22px; max-width: 90%; object-fit: contain;">
@@ -1566,4 +1610,4 @@
     });
 </script> 
 </body> 
-</html> 
+</html>
