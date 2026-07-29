@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chami Multi Shop (CMS)</title>
     
-    <!-- Google Fonts: Inter and Dancing Script -->
+    <!-- Google Fonts: Inter and Dancing Script (Cursive Font) -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
@@ -361,49 +361,51 @@
 
         .slider img.active { display: block; }
 
-        .package-section { 
-            margin: 40px 0; 
-        }
+        /* --- RELOAD PACKAGES --- */
+        /* --- RELOAD PACKAGES (UPDATED CSS) --- */
+.package-section { 
+    margin: 40px 0; 
+}
 
-        .package-buttons-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 8px;
-            width: 100%;
-            margin-bottom: 15px;
-        }
+.package-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 15px;
+}
 
-        .package-logo-btn {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #ffffff;
-            border: 1px solid #cbd5e1;
-            border-radius: 10px;
-            padding: 0 !important;
-            height: 55px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            overflow: hidden;
-        }
+.package-logo-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 0 !important; /* හිස් ඉඩ සෙරම අයින් කළා */
+    height: 55px; /* බටන් එකේ උස */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    overflow: hidden; /* Image එක බටන් එකෙන් එලියට යාම වලක්වයි */
+}
 
-        .package-logo-btn:hover {
-            border-color: #0284c7;
-            transform: translateY(-2px);
-        }
+.package-logo-btn:hover {
+    border-color: #0284c7;
+    transform: translateY(-2px);
+}
 
-        .package-logo-btn:active {
-            transform: scale(0.96);
-        }
+.package-logo-btn:active {
+    transform: scale(0.96);
+}
 
-        .package-logo-btn img {
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: fill !important;
-            display: block;
-        }
+.package-logo-btn img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: fill !important; /* බටන් එක පුරාම stretch වී පිරේ */
+    display: block;
+}
 
         .package-content-box {
             display: none;
@@ -667,107 +669,6 @@
             .payment-list { grid-template-columns: 1fr; }
             .package-logo-btn { height: 46px; padding: 6px 6px; }
         }
-	
-        /* Product Search Bar */
-        .product-search-input {
-            width: 100%;
-            padding: 10px 14px;
-            margin: 12px 0 16px 0;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 14px;
-            outline: none;
-            box-sizing: border-box;
-            background: #ffffff;
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
-            transition: all 0.2s ease;
-        }
-
-        .product-search-input:focus {
-            border-color: #0284c7;
-            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
-        }
-
-        /* Product Cards Grid Layout */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 12px;
-            margin-top: 10px;
-        }
-
-        /* Individual Product Card */
-        .product-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 10px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .product-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-
-        .product-icon-box {
-            width: 100%;
-            height: 60px;
-            border-radius: 8px;
-            background: #f8fafc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
-
-        .product-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: #1e293b;
-            line-height: 1.25;
-            margin-bottom: 6px;
-        }
-
-        .product-price {
-            font-size: 12px;
-            color: #0284c7;
-            font-weight: 700;
-        }
-
-        .no-products-msg {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 20px;
-            color: #64748b;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        /* Load More Button */
-        .load-more-btn {
-            width: 100%;
-            padding: 10px;
-            margin-top: 15px;
-            background-color: #0284c7;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .load-more-btn:hover {
-            background-color: #0369a1;
-        }
     </style>
 </head>
 <body>
@@ -795,7 +696,7 @@
             </div>
 
             <div class="search-wrapper">
-                <input type="text" id="searchInput" placeholder="Search Services & Products..." class="search-input" oninput="searchServices()" onkeyup="searchServices()">
+                <input type="text" id="searchInput" placeholder="Search Services (e.g., photo copy)..." class="search-input" onkeyup="searchServices()">
                 <button type="button" class="search-btn" aria-label="Search" onclick="searchServices()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"></circle>
@@ -842,7 +743,7 @@
                 <img src="https://cdn-icons-png.flaticon.com/512/2527/2527850.png" alt="Icon">
                 <span>Bill Payment</span>
             </div>
-            <div class="service-card" id="accessoriesCard" onclick="openPanel('accessoriesPanel', this)">
+            <div class="service-card" onclick="openPanel('accessoriesPanel', this)">
                 <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="Icon">
                 <span>Products & Accessories</span>
             </div>
@@ -1047,7 +948,6 @@
                     <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
                 </div>
                 
-                <!-- 1. Mobile & Accessories Button -->
                 <button onclick="toggleSection('mobileAccBox');" class="serviceBtn">Mobile & Accessories</button>
                 <div id="mobileAccBox" class="sub-box">
                     <button onclick="toggleSection('mobileItemsSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Mobile Phone</button>
@@ -1069,7 +969,6 @@
                     </div>
                 </div>
 
-                <!-- 2. Dialog TV Products & Accessories Button -->
                 <button onclick="toggleSection('dialogTvAccBox');" class="serviceBtn">Dialog TV Products & Accessories</button>
                 <div id="dialogTvAccBox" class="sub-box">
                     <button onclick="toggleSection('dtvConnSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Dialog TV New Connections</button>
@@ -1122,7 +1021,6 @@
                     </div>
                 </div>
 
-                <!-- 3. Electrical Accessories Button -->
                 <button onclick="toggleSection('electricalAccBox');" class="serviceBtn">Electrical Accessories</button>
                 <div id="electricalAccBox" class="sub-box">
                     <button onclick="toggleSection('elecHomePowerSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Home & Power</button>
@@ -1156,29 +1054,6 @@
                             <li>- None -</li>
                         </ul>
                     </div>
-                </div>
-
-                <!-- 4. All Products Box -->
-                <button onclick="toggleSection('allProductsBox');" class="serviceBtn">All Products</button>
-                <div id="allProductsBox" class="sub-box">
-                    <b>All Available Products</b>
-                    
-                    <!-- Search Bar for Products -->
-                    <input type="text" id="productSearchInput" oninput="filterProducts()" onkeyup="filterProducts()" placeholder="🔍 Search products (e.g. Paper, Pen, Calculator)..." class="product-search-input">
-
-                    <!-- Product Grid Container -->
-                    <div id="productGrid" class="product-grid"></div>
-
-                    <!-- Load More Button -->
-                    <button id="loadMoreBtn" onclick="loadMoreProducts()" class="load-more-btn">Load More Products</button>
-
-                    <ul style="margin-top: 15px;">
-                        <li>Stationery & School Items</li>
-                        <li>Fancy Items & Gift Items</li>
-                        <li>Office Equipment & Supplies</li>
-                        <li>Electrical & Mobile Accessories</li>
-                        <li>Every Daily Essential Items</li>
-                    </ul>
                 </div>
             </div>
 
@@ -1329,13 +1204,14 @@
                 Voice & Data Packages
             </div>
 
+            <!-- 🔘 Logo Buttons (Full Frame Displays) -->
             <div class="package-buttons-container">
                 <button onclick="togglePackage('dialogPkg')" class="package-logo-btn">
-                    <img src="https://lh3.googleusercontent.com/d/19AZA_s05fqRBQ1SwbjTQYXuh9COe46_M" alt="Dialog">
+                    <img src="https://lh3.googleusercontent.com/d/1bAEy99QFJM3bAjuMLJK6Z-PnPQ3iJN8b" alt="Dialog">
                 </button>
 
                 <button onclick="togglePackage('mobitelPkg')" class="package-logo-btn">
-                    <img src="https://lh3.googleusercontent.com/d/1_4Visjogj0PtB9R3GS4iygV6-77xM6EA" alt="Mobitel">
+                    <img src="https://lh3.googleusercontent.com/d/1IeDlOE3Ti_l-pBYxz4DB3jeirDFuxPjn" alt="Mobitel">
                 </button>
 
                 <button onclick="togglePackage('hutchPkg')" class="package-logo-btn">
@@ -1343,10 +1219,11 @@
                 </button>
 
                 <button onclick="togglePackage('airtelPkg')" class="package-logo-btn">
-                    <img src="https://lh3.googleusercontent.com/d/111gMEFIeJRNhuZyKLSpq7AdZLhO9KyzG" alt="Airtel">
+                    <img src="https://lh3.googleusercontent.com/d/1UElQSeZ0I23C6W0AzGXwQBcGWNteJa69" alt="Airtel">
                 </button>
             </div>
 
+            <!-- 📂 Package Content Boxes -->
             <div id="dialogPkg" class="package-content-box">
                 <h4 style="color:#e11d48; margin-bottom: 5px;">Dialog Latest Packages</h4>
                 <p style="font-size:0.9rem; color:var(--text-gray, #666);">Click below to view all current Dialog voice & data packages.</p>
@@ -1400,82 +1277,6 @@
 
     <!-- JAVASCRIPT FUNCTIONS -->
     <script>
-        // Products Database Array
-        const productsData = [
-            { name: "A4 Paper Bundle", price: "Rs. 1,200", icon: "📄", keywords: "a4 paper print copy page book sheet" },
-            { name: "Blue Ballpoint Pen", price: "Rs. 30", icon: "✏️", keywords: "blue pen ballpoint writing stationary" },
-            { name: "Scientific Calculator", price: "Rs. 3,500", icon: "🔢", keywords: "scientific calculator casio math school office" },
-            { name: "USB Flash Drive 32GB", price: "Rs. 1,800", icon: "💾", keywords: "usb flash drive 32gb memory pendrive storage" },
-            { name: "Phone Charger Type-C", price: "Rs. 850", icon: "🔌", keywords: "phone charger type c cable mobile adapter" },
-            { name: "Bluetooth Earphones", price: "Rs. 2,200", icon: "🎧", keywords: "bluetooth earphones wireless handsfree audio headset" },
-            { name: "Dialog TV Remote", price: "Rs. 650", icon: "📺", keywords: "dialog tv remote satellite television controller" },
-            { name: "Extension Cord 5M", price: "Rs. 1,450", icon: "🔌", keywords: "extension cord 5m multi plug power wire socket" },
-            { name: "Multi Plug Adapter", price: "Rs. 450", icon: "🔌", keywords: "multi plug adapter power socket electrical" },
-            { name: "Traffic Light Set", price: "Rs. 550", icon: "🚦", keywords: "traffic light set school practical science project" }
-        ];
-
-        let currentPage = 1;
-        const itemsPerPage = 6;
-        let filteredProducts = [...productsData];
-
-        function renderProducts() {
-            const grid = document.getElementById("productGrid");
-            if (!grid) return;
-            grid.innerHTML = "";
-            
-            if (filteredProducts.length === 0) {
-                grid.innerHTML = `<div class="no-products-msg">No products found matching your search.</div>`;
-                const loadBtn = document.getElementById("loadMoreBtn");
-                if (loadBtn) loadBtn.style.display = "none";
-                return;
-            }
-
-            const showItems = filteredProducts.slice(0, currentPage * itemsPerPage);
-            
-            showItems.forEach(prod => {
-                const card = document.createElement("div");
-                card.className = "product-card";
-                card.innerHTML = `
-                    <div class="product-icon-box">${prod.icon}</div>
-                    <div class="product-title">${prod.name}</div>
-                    <div class="product-price">${prod.price}</div>
-                `;
-                grid.appendChild(card);
-            });
-
-            const loadBtn = document.getElementById("loadMoreBtn");
-            if (loadBtn) {
-                if (showItems.length >= filteredProducts.length) {
-                    loadBtn.style.display = "none";
-                } else {
-                    loadBtn.style.display = "block";
-                }
-            }
-        }
-
-        function loadMoreProducts() {
-            currentPage++;
-            renderProducts();
-        }
-
-        function filterProducts(forcedQuery) {
-            const inputEl = document.getElementById("productSearchInput");
-            const query = (forcedQuery !== undefined ? forcedQuery : (inputEl ? inputEl.value : "")).toLowerCase().trim();
-            
-            if (inputEl && forcedQuery !== undefined) {
-                inputEl.value = forcedQuery;
-            }
-
-            filteredProducts = productsData.filter(p => {
-                const nameMatch = p.name.toLowerCase().includes(query);
-                const kwMatch = p.keywords ? p.keywords.toLowerCase().includes(query) : false;
-                return nameMatch || kwMatch;
-            });
-
-            currentPage = 1;
-            renderProducts();
-        }
-
         function openPanel(panelId, cardElement) {
             try {
                 let allPanels = document.querySelectorAll('.category-detail-panel');
@@ -1489,7 +1290,7 @@
                 allPanels.forEach(panel => {
                     if (panel) {
                         panel.classList.remove('active');
-                        panel.style.display = "none";
+                        panel.style.display = "";
                     }
                 });
                 allCards.forEach(card => {
@@ -1511,26 +1312,18 @@
             try {
                 let allPanels = document.querySelectorAll('.category-detail-panel');
                 let allCards = document.querySelectorAll('.service-card');
-                let subBoxes = document.querySelectorAll(".sub-box");
+                let displayArea = document.getElementById("panelDisplayArea");
 
                 allPanels.forEach(panel => {
                     if (panel) {
                         panel.classList.remove('active');
-                        panel.style.display = "none";
+                        panel.style.display = "";
                     }
                 });
                 allCards.forEach(card => {
-                    if (card) {
-                        card.classList.remove('active');
-                        card.style.display = "";
-                    }
+                    if (card) card.classList.remove('active');
                 });
-                subBoxes.forEach(box => {
-                    if (box) {
-                        box.style.display = "none";
-                        box.classList.remove("open");
-                    }
-                });
+                if (displayArea) displayArea.style.display = "";
             } catch(e) {
                 console.error("closeAllPanels Error:", e);
             }
@@ -1538,15 +1331,7 @@
 
         function toggleSection(boxId) {
             var x = document.getElementById(boxId);
-            if (x) {
-                if (x.style.display === "block" || x.classList.contains("open")) {
-                    x.style.display = "none";
-                    x.classList.remove("open");
-                } else {
-                    x.style.display = "block";
-                    x.classList.add("open");
-                }
-            }
+            if (x) x.classList.toggle("open");
         }
 
         function togglePackage(pkgId) {
@@ -1573,63 +1358,43 @@
                 if (!searchInputEl) return;
 
                 let input = searchInputEl.value.toLowerCase().trim();
-                let cards = document.querySelectorAll(".services-grid .service-card");
+                let cards = document.querySelectorAll(".services-grid .service-card, .service-card");
                 let panels = document.querySelectorAll(".category-detail-panel");
-                let subBoxes = document.querySelectorAll(".sub-box");
+                let displayArea = document.getElementById("panelDisplayArea");
 
                 if (input === "") {
-                    subBoxes.forEach(box => { 
-                        if(box) {
-                            box.style.display = "none"; 
-                            box.classList.remove("open");
-                        }
-                    });
                     cards.forEach(card => { if(card) card.style.display = ""; });
                     closeAllPanels();
-                    filterProducts("");
                     return;
                 }
+
+                let hasMatch = false;
 
                 cards.forEach(card => {
                     if (!card) return;
                     let cardText = card.innerText ? card.innerText.toLowerCase() : "";
-                    card.style.display = cardText.includes(input) ? "flex" : "none";
+                    if (cardText.includes(input)) {
+                        card.style.display = "flex";
+                    } else {
+                        card.style.display = "none";
+                    }
                 });
-
-                let productMatchFound = false;
 
                 panels.forEach(panel => {
                     if (!panel) return;
                     let panelText = panel.innerText ? panel.innerText.toLowerCase() : "";
+                    let subBoxes = panel.querySelectorAll(".sub-box");
 
-                    if (panel.id === "accessoriesPanel") {
-                        const matchedProducts = productsData.filter(p => 
-                            p.name.toLowerCase().includes(input) || (p.keywords && p.keywords.toLowerCase().includes(input))
-                        );
-                        if (matchedProducts.length > 0) {
-                            productMatchFound = true;
-                        }
-                    }
-
-                    if (panelText.includes(input) || productMatchFound) {
+                    if (panelText.includes(input)) {
                         panel.classList.add("active");
                         panel.style.display = "block";
+                        hasMatch = true;
 
-                        let pSubBoxes = panel.querySelectorAll(".sub-box");
-                        pSubBoxes.forEach(box => {
+                        subBoxes.forEach(box => {
                             if (!box) return;
                             let boxText = box.innerText ? box.innerText.toLowerCase() : "";
-                            
-                            if (box.id === "allProductsBox" && productMatchFound) {
+                            if (boxText.includes(input)) {
                                 box.style.display = "block";
-                                box.classList.add("open");
-                                filterProducts(input);
-                            } else if (boxText.includes(input)) {
-                                box.style.display = "block";
-                                box.classList.add("open");
-                            } else {
-                                box.style.display = "none";
-                                box.classList.remove("open");
                             }
                         });
                     } else {
@@ -1638,6 +1403,9 @@
                     }
                 });
 
+                if (displayArea && hasMatch) {
+                    displayArea.style.display = "block";
+                }
             } catch (err) {
                 console.error("Search Error:", err);
             }
@@ -1656,8 +1424,6 @@
                         btn.innerHTML = originalText;
                         btn.style.background = "#0284c7"; 
                     }, 2000);
-                }).catch(function(err) {
-                    console.error("Copy failed: ", err);
                 });
             }
         }
@@ -1700,7 +1466,6 @@
             let modal = document.getElementById('hoursModal');
             if (modal) modal.style.display = 'flex'; 
         }
-
         function closeOriginalHours() { 
             let modal = document.getElementById('hoursModal');
             if (modal) modal.style.display = 'none'; 
@@ -1714,7 +1479,6 @@
                 modal.style.display = 'flex';
             }
         }
-
         function closeLightbox(e) {
             const modal = document.getElementById('imageLightbox');
             if (modal && (e.target.id === 'imageLightbox' || e.target.className === 'lightbox-close')) {
@@ -1728,10 +1492,6 @@
                 hoursModal.style.display = 'none';
             }
         });
-
-        document.addEventListener("DOMContentLoaded", function() {
-            renderProducts();
-        });
-    </script>
-</body>
+    </script> 
+</body> 
 </html>
