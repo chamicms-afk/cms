@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chami Multi Shop (CMS)</title>
     
-    <!-- Google Fonts: Inter and Dancing Script (Cursive Font) -->
+    <!-- Google Fonts: Inter and Dancing Script -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
@@ -210,14 +210,20 @@
         .btn-hours { background-color: #ffffff; color: #000000; border: 1px solid #cbd5e1; font-size: 11px; }
         .btn-facebook { background-color: #1877f2; color: #ffffff; font-size: 12.5px; }
 
-        .services-grid {
+        /* --- RETAIL HUB GRID STYLING --- */
+        .services-grid, .sub-products-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
             margin: 20px 0;
         }
 
-        .service-card {
+        .sub-products-grid {
+            grid-template-columns: repeat(4, 1fr);
+            margin: 15px 0 20px 0;
+        }
+
+        .service-card, .sub-product-card {
             background-color: #e5e7eb;
             border: 1px solid #d1d5db;
             border-radius: 16px;
@@ -234,22 +240,23 @@
             min-height: 85px;
         }
 
-        .service-card:hover { background-color: #d1d5db; }
+        .service-card:hover, .sub-product-card:hover { background-color: #d1d5db; }
 
-        .service-card:active, .service-card.active {
+        .service-card:active, .service-card.active,
+        .sub-product-card:active, .sub-product-card.active {
             background-color: #cbd5e1;
             border-color: #0284c7;
             transform: scale(0.96);
         }
 
-        .service-card img {
+        .service-card img, .sub-product-card img {
             width: 28px;
             height: 28px;
             margin-bottom: 6px;
             object-fit: contain;
         }
 
-        .service-card span {
+        .service-card span, .sub-product-card span {
             font-size: 10.5px;
             font-weight: 700;
             color: #111827;
@@ -335,6 +342,12 @@
         .sub-box ul { padding-left: 20px; margin-top: 10px; margin-bottom: 15px; }
         .sub-box li { margin-bottom: 5px; color: #64748b; }
 
+        /* Highlight box for search results */
+        .sub-box.search-match {
+            border: 2px solid #0284c7;
+            background-color: #f0f9ff;
+        }
+
         .hero-image-wrapper {
             flex: 1;
             position: relative;
@@ -361,51 +374,45 @@
 
         .slider img.active { display: block; }
 
-        /* --- RELOAD PACKAGES --- */
-        /* --- RELOAD PACKAGES (UPDATED CSS) --- */
-.package-section { 
-    margin: 40px 0; 
-}
+        .package-section { margin: 40px 0; }
 
-.package-buttons-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    width: 100%;
-    margin-bottom: 15px;
-}
+        .package-buttons-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
 
-.package-logo-btn {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #ffffff;
-    border: 1px solid #cbd5e1;
-    border-radius: 10px;
-    padding: 0 !important; /* හිස් ඉඩ සෙරම අයින් කළා */
-    height: 55px; /* බටන් එකේ උස */
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    overflow: hidden; /* Image එක බටන් එකෙන් එලියට යාම වලක්වයි */
-}
+        .package-logo-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 0 !important;
+            height: 55px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
 
-.package-logo-btn:hover {
-    border-color: #0284c7;
-    transform: translateY(-2px);
-}
+        .package-logo-btn:hover {
+            border-color: #0284c7;
+            transform: translateY(-2px);
+        }
 
-.package-logo-btn:active {
-    transform: scale(0.96);
-}
+        .package-logo-btn:active { transform: scale(0.96); }
 
-.package-logo-btn img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: fill !important; /* බටන් එක පුරාම stretch වී පිරේ */
-    display: block;
-}
+        .package-logo-btn img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: fill !important;
+            display: block;
+        }
 
         .package-content-box {
             display: none;
@@ -433,6 +440,22 @@
         }
 
         .drive-link-btn:hover { background: #0369a1; }
+
+        .excel-sheet-btn {
+            display: inline-block;
+            margin-top: 10px;
+            background: #16a34a;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border-radius: 8px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .excel-sheet-btn:hover { background: #15803d; }
 
         .payment-list {
             display: grid;
@@ -663,9 +686,9 @@
 
         @media (max-width: 600px) {
             .hero-content h1 { font-size: 1.5rem; }
-            .services-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-            .service-card { padding: 10px 4px; min-height: 75px; }
-            .service-card span { font-size: 9.5px; }
+            .services-grid, .sub-products-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .service-card, .sub-product-card { padding: 10px 4px; min-height: 75px; }
+            .service-card span, .sub-product-card span { font-size: 9.5px; }
             .payment-list { grid-template-columns: 1fr; }
             .package-logo-btn { height: 46px; padding: 6px 6px; }
         }
@@ -696,7 +719,7 @@
             </div>
 
             <div class="search-wrapper">
-                <input type="text" id="searchInput" placeholder="Search Services (e.g., photo copy)..." class="search-input" onkeyup="searchServices()">
+                <input type="text" id="searchInput" placeholder="Search Services & Products..." class="search-input" onkeyup="searchServices()">
                 <button type="button" class="search-btn" aria-label="Search" onclick="searchServices()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"></circle>
@@ -730,6 +753,7 @@
             </div>
         </div>
 
+        <!-- MAIN SERVICES RETAIL HUB GRID -->
         <div class="services-grid">
             <div class="service-card" onclick="openPanel('docServicesPanel', this)">
                 <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="Icon">
@@ -789,13 +813,13 @@
                 </div>
                 <button onclick="toggleSection('photoCopyBox');" class="serviceBtn">Photo Copy</button>
                 <div id="photoCopyBox" class="sub-box">
-                    <b>A4 Paper</b>
+                    <b>A4 Paper Photo Copy</b>
                     <ul>
                         <li>Single Side - Rs. 10.00</li>
                         <li>Double Side - Rs. 15.00</li>
                         <li>(30+ Pgs. Specials discount)</li>
                     </ul>
-                    <b>A3 Paper</b>
+                    <b>A3 Paper Photo Copy</b>
                     <ul>
                         <li>Single Side - Rs. 20.00</li>
                         <li>Double Side - Rs. 30.00</li>
@@ -805,19 +829,19 @@
 
                 <button onclick="toggleSection('printOutBox')" class="serviceBtn">Print Out</button>
                 <div id="printOutBox" class="sub-box">
-                    <b>A4 B/W</b>
+                    <b>A4 B/W Print Out</b>
                     <ul>
                         <li>Single Side - Rs. 10.00</li>
                         <li>Double Side - Rs. 15.00</li>
                         <li>(30+ Pgs. Specials discount)</li>
                     </ul>
-                    <b>A4 Colour</b>
+                    <b>A4 Colour Print Out</b>
                     <ul>
                         <li>Single Side - Rs. 30 - 80</li>
                         <li>Double Side - Rs. 50 - 120</li>
                         <li>(20+ Pgs. Specials discount)</li>
                     </ul>
-                    <b>A3 B/W</b>
+                    <b>A3 B/W Print Out</b>
                     <ul>
                         <li>Single Side - Rs. 20.00</li>
                         <li>Double Side - Rs. 35.00</li>
@@ -875,6 +899,7 @@
                         <li>Data Packs, Voice & Router Recharges</li>
                         <li>Instant Reload & Online Recharges available</li>
                     </ul>
+                    <a href="https://docs.google.com/spreadsheets/d/your-reload-sheet-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Reload Excel Sheet</a>
                 </div>
 
                 <button onclick="toggleSection('rechargeCardsBox');" class="serviceBtn">Recharge Cards</button>
@@ -883,6 +908,7 @@
                     <ul>
                         <li>Rs. 50, Rs. 79, Rs. 100, Rs. 159 & More</li>
                     </ul>
+                    <a href="https://docs.google.com/spreadsheets/d/your-cards-sheet-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Recharge Cards Stock Sheet</a>
                 </div>
 
                 <button onclick="toggleSection('newSimBox');" class="serviceBtn">New SIM Connections</button>
@@ -894,6 +920,7 @@
                         <li>Sim change (Lost/Damage)</li>
                         <li><span style="color:red;">*</span> Please bring your original NIC (ජාතික හැඳුනුම්පත)</li>
                     </ul>
+                    <a href="https://docs.google.com/spreadsheets/d/your-sim-sheet-id/edit" target="_blank" class="excel-sheet-btn">📊 Open SIM Inventory Excel Sheet</a>
                 </div>
             </div>
 
@@ -942,12 +969,14 @@
                 </div>
             </div>
 
+            <!-- Products & Accessories Panel -->
             <div id="accessoriesPanel" class="category-detail-panel">
                 <div class="category-panel-title">
                     🔌 Products & Accessories
                     <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
                 </div>
                 
+                <!-- 1. Mobile & Accessories -->
                 <button onclick="toggleSection('mobileAccBox');" class="serviceBtn">Mobile & Accessories</button>
                 <div id="mobileAccBox" class="sub-box">
                     <button onclick="toggleSection('mobileItemsSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Mobile Phone</button>
@@ -969,6 +998,7 @@
                     </div>
                 </div>
 
+                <!-- 2. Dialog TV Products & Accessories -->
                 <button onclick="toggleSection('dialogTvAccBox');" class="serviceBtn">Dialog TV Products & Accessories</button>
                 <div id="dialogTvAccBox" class="sub-box">
                     <button onclick="toggleSection('dtvConnSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Dialog TV New Connections</button>
@@ -1019,8 +1049,11 @@
                             <li>Warranty Services & Technical Troubleshooting</li>
                         </ul>
                     </div>
+                    
+                    <a href="https://docs.google.com/spreadsheets/d/your-dtv-sheet-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Dialog TV Accessories Excel Sheet</a>
                 </div>
 
+                <!-- 3. Electrical Accessories -->
                 <button onclick="toggleSection('electricalAccBox');" class="serviceBtn">Electrical Accessories</button>
                 <div id="electricalAccBox" class="sub-box">
                     <button onclick="toggleSection('elecHomePowerSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Home & Power</button>
@@ -1054,7 +1087,121 @@
                             <li>- None -</li>
                         </ul>
                     </div>
+                    
+                    <a href="https://docs.google.com/spreadsheets/d/your-stationery-sheet-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Stationeries / Products Excel Sheet</a>
                 </div>
+
+                <!-- 4. ALL PRODUCTS (Retail Hub Style Grid with 8 Category Cards) -->
+                <button onclick="toggleSection('allProductsBox');" class="serviceBtn" style="background: #0284c7; color: #ffffff;">All Products</button>
+                <div id="allProductsBox" class="sub-box">
+                    <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 12px; font-weight: 600;">SELECT PRODUCT CATEGORY:</p>
+
+                    <!-- Retail Hub Grid for 8 Categories -->
+                    <div class="sub-products-grid">
+                        <div class="sub-product-card" onclick="toggleSubProductBox('prodCat1Box', this)">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" alt="Cat 1">
+                            <span>All Books</span>
+                        </div>
+                        <div class="sub-product-card" onclick="toggleSubProductBox('prodCat2Box', this)">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" alt="Cat 2">
+                            <span>Category 2</span>
+                        </div>
+                        <div class="sub-product-card" onclick="toggleSubProductBox('prodCat3Box', this)">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" alt="Cat 3">
+                            <span>Category 3</span>
+                        </div>
+                        <div class="sub-product-card" onclick="toggleSubProductBox('prodCat4Box', this)">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" alt="Cat 4">
+                            <span>Category 4</span>
+                        </div>
+                        <div class="sub-product-card" onclick="toggleSubProductBox('prodCat5Box', this)">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" alt="Cat 5">
+                            <span>Category 5</span>
+                        </div>
+                        <div class="sub-product-card" onclick="toggleSubProductBox('prodCat6Box', this)">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" alt="Cat 6">
+                            <span>Category 6</span>
+                        </div>
+                        <div class="sub-product-card" onclick="toggleSubProductBox('prodCat7Box', this)">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" alt="Cat 7">
+                            <span>Category 7</span>
+                        </div>
+                        <div class="sub-product-card" onclick="toggleSubProductBox('prodCat8Box', this)">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" alt="Cat 8">
+                            <span>Category 8</span>
+                        </div>
+                    </div>
+
+                    <!-- Category Content Boxes (Excel Sheets & Item List) -->
+                    <div id="prodCat1Box" class="sub-box" style="margin-top: 10px;">
+                        <b>All Books & Stationeries</b>
+                        <ul>
+                            <li>CR Book 120Pgs / 80Pgs / 160Pgs / 200Pgs</li>
+                            <li>Exercise Books (Square / Single Line)</li>
+                            <li>Drawing Books, Note Books</li>
+                            <li>View inventory, prices and details for Category 1.</li>
+                        </ul>
+                        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQTqkLgKRYsZ3_bRDIKAnJkK-dcfzK271ZHfC_TqiDO30E68mzi7JmMmedPNtc5nQ/pubhtml?gid=342426926&single=true" target="_blank" class="excel-sheet-btn">📊 Open Sheet 1 (Category 1)</a>
+                    </div>
+
+                    <div id="prodCat2Box" class="sub-box" style="margin-top: 10px;">
+                        <b>Category 2 Stock & Details</b>
+                        <ul>
+                            <li>View inventory, prices and details for Category 2.</li>
+                        </ul>
+                        <a href="https://docs.google.com/spreadsheets/d/your-all-products-sheet-2-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Sheet 2 (Category 2)</a>
+                    </div>
+
+                    <div id="prodCat3Box" class="sub-box" style="margin-top: 10px;">
+                        <b>Category 3 Stock & Details</b>
+                        <ul>
+                            <li>View inventory, prices and details for Category 3.</li>
+                        </ul>
+                        <a href="https://docs.google.com/spreadsheets/d/your-all-products-sheet-3-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Sheet 3 (Category 3)</a>
+                    </div>
+
+                    <div id="prodCat4Box" class="sub-box" style="margin-top: 10px;">
+                        <b>Category 4 Stock & Details</b>
+                        <ul>
+                            <li>View inventory, prices and details for Category 4.</li>
+                        </ul>
+                        <a href="https://docs.google.com/spreadsheets/d/your-all-products-sheet-4-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Sheet 4 (Category 4)</a>
+                    </div>
+
+                    <div id="prodCat5Box" class="sub-box" style="margin-top: 10px;">
+                        <b>Category 5 Stock & Details</b>
+                        <ul>
+                            <li>View inventory, prices and details for Category 5.</li>
+                        </ul>
+                        <a href="https://docs.google.com/spreadsheets/d/your-all-products-sheet-5-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Sheet 5 (Category 5)</a>
+                    </div>
+
+                    <div id="prodCat6Box" class="sub-box" style="margin-top: 10px;">
+                        <b>Category 6 Stock & Details</b>
+                        <ul>
+                            <li>View inventory, prices and details for Category 6.</li>
+                        </ul>
+                        <a href="https://docs.google.com/spreadsheets/d/your-all-products-sheet-6-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Sheet 6 (Category 6)</a>
+                    </div>
+
+                    <div id="prodCat7Box" class="sub-box" style="margin-top: 10px;">
+                        <b>Category 7 Stock & Details</b>
+                        <ul>
+                            <li>View inventory, prices and details for Category 7.</li>
+                        </ul>
+                        <a href="https://docs.google.com/spreadsheets/d/your-all-products-sheet-7-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Sheet 7 (Category 7)</a>
+                    </div>
+
+                    <div id="prodCat8Box" class="sub-box" style="margin-top: 10px;">
+                        <b>Category 8 Stock & Details</b>
+                        <ul>
+                            <li>View inventory, prices and details for Category 8.</li>
+                        </ul>
+                        <a href="https://docs.google.com/spreadsheets/d/your-all-products-sheet-8-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Sheet 8 (Category 8)</a>
+                    </div>
+
+                </div>
+
             </div>
 
             <div id="techPanel" class="category-detail-panel">
@@ -1204,7 +1351,6 @@
                 Voice & Data Packages
             </div>
 
-            <!-- 🔘 Logo Buttons (Full Frame Displays) -->
             <div class="package-buttons-container">
                 <button onclick="togglePackage('dialogPkg')" class="package-logo-btn">
                     <img src="https://lh3.googleusercontent.com/d/1bAEy99QFJM3bAjuMLJK6Z-PnPQ3iJN8b" alt="Dialog">
@@ -1223,29 +1369,32 @@
                 </button>
             </div>
 
-            <!-- 📂 Package Content Boxes -->
             <div id="dialogPkg" class="package-content-box">
-                <h4 style="color:#e11d48; margin-bottom: 5px;">Dialog Latest Packages</h4>
-                <p style="font-size:0.9rem; color:var(--text-gray, #666);">Click below to view all current Dialog voice & data packages.</p>
-                <a href="https://drive.google.com/file/d/18Km7HVMrSHC_p6UfEg1AnTKPVOoakyGn/view?usp=sharing" target="_blank" class="drive-link-btn">View Dialog Packages</a>
+                <h4 style="color:#e11d48; margin-bottom: 5px;">Dialog Latest Packages & Sheets</h4>
+                <p style="font-size:0.9rem; color:var(--text-gray, #666);">Click below to view current Dialog packages.</p>
+                <a href="https://drive.google.com/file/d/18Km7HVMrSHC_p6UfEg1AnTKPVOoakyGn/view?usp=sharing" target="_blank" class="drive-link-btn">View Dialog PDF Packages</a><br>
+                <a href="https://docs.google.com/spreadsheets/d/your-dialog-excel-sheet-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Dialog Excel Sheet</a>
             </div>
 
             <div id="mobitelPkg" class="package-content-box">
-                <h4 style="color:#00529b; margin-bottom: 5px;">Mobitel Latest Packages</h4>
-                <p style="font-size:0.9rem; color:var(--text-gray, #666);">Click below to view all current Mobitel voice & data packages.</p>
-                <a href="https://drive.google.com/file/d/18f2GRydT4jfkXy4yyE3IODskBt9cK7wS/view?usp=sharing" target="_blank" class="drive-link-btn">View Mobitel Packages</a>
+                <h4 style="color:#00529b; margin-bottom: 5px;">Mobitel Latest Packages & Sheets</h4>
+                <p style="font-size:0.9rem; color:var(--text-gray, #666);">Click below to view current Mobitel packages.</p>
+                <a href="https://drive.google.com/file/d/18f2GRydT4jfkXy4yyE3IODskBt9cK7wS/view?usp=sharing" target="_blank" class="drive-link-btn">View Mobitel PDF Packages</a><br>
+                <a href="https://docs.google.com/spreadsheets/d/your-mobitel-excel-sheet-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Mobitel Excel Sheet</a>
             </div>
 
             <div id="hutchPkg" class="package-content-box">
-                <h4 style="color:#ea580c; margin-bottom: 5px;">Hutch Latest Packages</h4>
-                <p style="font-size:0.9rem; color:var(--text-gray, #666);">Click below to view all current Hutch voice & data packages.</p>
-                <a href="https://drive.google.com/file/d/13Q5lRtnIGycM9hQsQkbj7701ZO4ipDns/view?usp=sharing" target="_blank" class="drive-link-btn">View Hutch Packages</a>
+                <h4 style="color:#ea580c; margin-bottom: 5px;">Hutch Latest Packages & Sheets</h4>
+                <p style="font-size:0.9rem; color:var(--text-gray, #666);">Click below to view current Hutch packages.</p>
+                <a href="https://drive.google.com/file/d/13Q5lRtnIGycM9hQsQkbj7701ZO4ipDns/view?usp=sharing" target="_blank" class="drive-link-btn">View Hutch PDF Packages</a><br>
+                <a href="https://docs.google.com/spreadsheets/d/your-hutch-excel-sheet-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Hutch Excel Sheet</a>
             </div>
 
             <div id="airtelPkg" class="package-content-box">
-                <h4 style="color:#dc2626; margin-bottom: 5px;">Airtel Latest Packages</h4>
-                <p style="font-size:0.9rem; color:var(--text-gray, #666);">Click below to view all current Airtel voice & data packages.</p>
-                <a href="https://drive.google.com/file/d/1ofAbOu8eVnmHYK5P2TpkeVrvFweeenPC/view?usp=sharing" target="_blank" class="drive-link-btn">View Airtel Packages</a>
+                <h4 style="color:#dc2626; margin-bottom: 5px;">Airtel Latest Packages & Sheets</h4>
+                <p style="font-size:0.9rem; color:var(--text-gray, #666);">Click below to view current Airtel packages.</p>
+                <a href="https://drive.google.com/file/d/1ofAbOu8eVnmHYK5P2TpkeVrvFweeenPC/view?usp=sharing" target="_blank" class="drive-link-btn">View Airtel PDF Packages</a><br>
+                <a href="https://docs.google.com/spreadsheets/d/your-airtel-excel-sheet-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Airtel Excel Sheet</a>
             </div>
         </div>
 
@@ -1277,6 +1426,26 @@
 
     <!-- JAVASCRIPT FUNCTIONS -->
     <script>
+        // Image Slider Functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slider img');
+        
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) slide.classList.add('active');
+            });
+        }
+
+        function nextSlide() {
+            if (slides.length > 0) {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+        }
+        
+        setInterval(nextSlide, 4000);
+
         function openPanel(panelId, cardElement) {
             try {
                 let allPanels = document.querySelectorAll('.category-detail-panel');
@@ -1288,210 +1457,152 @@
                 let isAlreadyActive = targetPanel.classList.contains('active');
 
                 allPanels.forEach(panel => {
-                    if (panel) {
-                        panel.classList.remove('active');
-                        panel.style.display = "";
-                    }
+                    if (panel) panel.classList.remove('active');
                 });
+                
                 allCards.forEach(card => {
                     if (card) card.classList.remove('active');
                 });
 
                 if (!isAlreadyActive) {
                     targetPanel.classList.add('active');
-                    targetPanel.style.display = "block";
                     if (cardElement) cardElement.classList.add('active');
                     targetPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
-            } catch(e) {
-                console.error("openPanel Error:", e);
+            } catch (err) {
+                console.error("Panel error:", err);
             }
         }
 
         function closeAllPanels() {
-            try {
-                let allPanels = document.querySelectorAll('.category-detail-panel');
-                let allCards = document.querySelectorAll('.service-card');
-                let displayArea = document.getElementById("panelDisplayArea");
+            let allPanels = document.querySelectorAll('.category-detail-panel');
+            let allCards = document.querySelectorAll('.service-card');
+            
+            allPanels.forEach(panel => panel.classList.remove('active'));
+            allCards.forEach(card => card.classList.remove('active'));
+        }
 
-                allPanels.forEach(panel => {
-                    if (panel) {
-                        panel.classList.remove('active');
-                        panel.style.display = "";
-                    }
-                });
-                allCards.forEach(card => {
-                    if (card) card.classList.remove('active');
-                });
-                if (displayArea) displayArea.style.display = "";
-            } catch(e) {
-                console.error("closeAllPanels Error:", e);
+        function toggleSection(sectionId) {
+            let element = document.getElementById(sectionId);
+            if (element) {
+                element.classList.toggle('open');
             }
         }
 
-        function toggleSection(boxId) {
-            var x = document.getElementById(boxId);
-            if (x) x.classList.toggle("open");
-        }
+        function toggleSubProductBox(boxId, cardElement) {
+            let allSubBoxes = document.querySelectorAll('#allProductsBox > .sub-box');
+            let allCards = document.querySelectorAll('.sub-product-card');
+            let targetBox = document.getElementById(boxId);
 
-        function togglePackage(pkgId) {
-            let allBoxes = document.querySelectorAll(".package-content-box");
-            let targetBox = document.getElementById(pkgId);
-            
-            allBoxes.forEach(box => {
-                if (box && box.id !== pkgId) box.style.display = "none";
+            allCards.forEach(card => card.classList.remove('active'));
+
+            allSubBoxes.forEach(box => {
+                if (box !== targetBox) box.classList.remove('open');
             });
 
             if (targetBox) {
-                if (targetBox.style.display === "block") {
-                    targetBox.style.display = "none";
+                targetBox.classList.toggle('open');
+                if (targetBox.classList.contains('open') && cardElement) {
+                    cardElement.classList.add('active');
+                }
+            }
+        }
+
+        function togglePackage(pkgId) {
+            let allBoxes = document.querySelectorAll('.package-content-box');
+            let targetBox = document.getElementById(pkgId);
+
+            allBoxes.forEach(box => {
+                if (box !== targetBox) box.style.display = 'none';
+            });
+
+            if (targetBox) {
+                if (targetBox.style.display === 'block') {
+                    targetBox.style.display = 'none';
                 } else {
-                    targetBox.style.display = "block";
-                    targetBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                    targetBox.style.display = 'block';
+                    targetBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
             }
         }
 
+        function copyAccNumber(id, btn) {
+            let accNum = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(accNum).then(() => {
+                let originalText = btn.innerText;
+                btn.innerText = 'Copied!';
+                setTimeout(() => { btn.innerText = originalText; }, 2000);
+            });
+        }
+
+        function openOriginalHours() {
+            document.getElementById('hoursModal').style.display = 'flex';
+        }
+
+        function closeOriginalHours() {
+            document.getElementById('hoursModal').style.display = 'none';
+        }
+
+        function openLightbox(src) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('imageLightbox').style.display = 'flex';
+        }
+
+        function closeLightbox(event) {
+            document.getElementById('imageLightbox').style.display = 'none';
+        }
+
+        function sendToWhatsApp(e) {
+            e.preventDefault();
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let mobile = document.getElementById('mobile').value;
+            let message = document.getElementById('message').value;
+
+            let fullText = `*New Contact Message*%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Mobile:* ${mobile}%0A*Message:* ${message}`;
+            window.open(`https://wa.me/94770545464?text=${fullText}`, '_blank');
+        }
+
+        // --- ENHANCED FULL SEARCH FUNCTION ---
         function searchServices() {
-            try {
-                let searchInputEl = document.getElementById("searchInput");
-                if (!searchInputEl) return;
+            let input = document.getElementById('searchInput').value.trim().toLowerCase();
+            let subBoxes = document.querySelectorAll('.sub-box');
+            let panels = document.querySelectorAll('.category-detail-panel');
+            let firstMatchFound = false;
 
-                let input = searchInputEl.value.toLowerCase().trim();
-                let cards = document.querySelectorAll(".services-grid .service-card, .service-card");
-                let panels = document.querySelectorAll(".category-detail-panel");
-                let displayArea = document.getElementById("panelDisplayArea");
+            // Reset previous highlights and states
+            subBoxes.forEach(box => {
+                box.classList.remove('open', 'search-match');
+            });
 
-                if (input === "") {
-                    cards.forEach(card => { if(card) card.style.display = ""; });
-                    closeAllPanels();
-                    return;
-                }
+            if (input === '') {
+                return; // Empty input clears the auto-opened sections
+            }
 
-                let hasMatch = false;
+            subBoxes.forEach(box => {
+                if (box.innerText.toLowerCase().includes(input)) {
+                    box.classList.add('open', 'search-match');
 
-                cards.forEach(card => {
-                    if (!card) return;
-                    let cardText = card.innerText ? card.innerText.toLowerCase() : "";
-                    if (cardText.includes(input)) {
-                        card.style.display = "flex";
-                    } else {
-                        card.style.display = "none";
+                    // Auto-open parent category panel
+                    let parentPanel = box.closest('.category-detail-panel');
+                    if (parentPanel) {
+                        parentPanel.classList.add('active');
                     }
-                });
 
-                panels.forEach(panel => {
-                    if (!panel) return;
-                    let panelText = panel.innerText ? panel.innerText.toLowerCase() : "";
-                    let subBoxes = panel.querySelectorAll(".sub-box");
-
-                    if (panelText.includes(input)) {
-                        panel.classList.add("active");
-                        panel.style.display = "block";
-                        hasMatch = true;
-
-                        subBoxes.forEach(box => {
-                            if (!box) return;
-                            let boxText = box.innerText ? box.innerText.toLowerCase() : "";
-                            if (boxText.includes(input)) {
-                                box.style.display = "block";
-                            }
-                        });
-                    } else {
-                        panel.classList.remove("active");
-                        panel.style.display = "none";
+                    // Auto-open nested sub-boxes (e.g., inside All Products or Mobile Acc)
+                    let parentSubBox = box.parentElement.closest('.sub-box');
+                    if (parentSubBox) {
+                        parentSubBox.classList.add('open');
                     }
-                });
 
-                if (displayArea && hasMatch) {
-                    displayArea.style.display = "block";
+                    // Scroll to the first found result smoothly
+                    if (!firstMatchFound) {
+                        box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        firstMatchFound = true;
+                    }
                 }
-            } catch (err) {
-                console.error("Search Error:", err);
-            }
+            });
         }
-
-        function copyAccNumber(elementId, btn) {
-            let el = document.getElementById(elementId);
-            if (!el) return;
-            var accNum = el.innerText;
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(accNum).then(function() {
-                    var originalText = btn.innerHTML;
-                    btn.innerHTML = "Copied! ✓";
-                    btn.style.background = "#22c55e"; 
-                    setTimeout(function() {
-                        btn.innerHTML = originalText;
-                        btn.style.background = "#0284c7"; 
-                    }, 2000);
-                });
-            }
-        }
-
-        function sendToWhatsApp(event) {
-            if (event) event.preventDefault();
-            let nameEl = document.getElementById("name");
-            let emailEl = document.getElementById("email");
-            let mobileEl = document.getElementById("mobile");
-            let messageEl = document.getElementById("message");
-
-            let name = nameEl ? nameEl.value : "";
-            let email = emailEl ? emailEl.value : "";
-            let mobile = mobileEl ? mobileEl.value : "";
-            let message = messageEl ? messageEl.value : "";
-
-            let whatsappUrl = "https://wa.me/94770545464?text=" + 
-                              "Hello Chami Multi Shop,%0A%0A" + 
-                              "*Name:* " + encodeURIComponent(name) + "%0A" + 
-                              "*Email:* " + encodeURIComponent(email) + "%0A" + 
-                              "*Mobile:* " + encodeURIComponent(mobile) + "%0A" + 
-                              "*Message:* " + encodeURIComponent(message);
-            
-            window.open(whatsappUrl, '_blank');
-        }
-
-        window.addEventListener('load', function() {
-            let slides = document.querySelectorAll(".slide");
-            let current = 0;
-            if (slides.length > 0) {
-                setInterval(() => {
-                    slides[current].classList.remove("active");
-                    current = (current + 1) % slides.length;
-                    slides[current].classList.add("active");
-                }, 3000);
-            }
-        });
-
-        function openOriginalHours() { 
-            let modal = document.getElementById('hoursModal');
-            if (modal) modal.style.display = 'flex'; 
-        }
-        function closeOriginalHours() { 
-            let modal = document.getElementById('hoursModal');
-            if (modal) modal.style.display = 'none'; 
-        }
-
-        function openLightbox(imgSrc) {
-            const modal = document.getElementById('imageLightbox');
-            const img = document.getElementById('lightboxImg');
-            if (modal && img) {
-                img.src = imgSrc;
-                modal.style.display = 'flex';
-            }
-        }
-        function closeLightbox(e) {
-            const modal = document.getElementById('imageLightbox');
-            if (modal && (e.target.id === 'imageLightbox' || e.target.className === 'lightbox-close')) {
-                modal.style.display = 'none';
-            }
-        }
-
-        window.addEventListener('click', function(event) {
-            var hoursModal = document.getElementById('hoursModal');
-            if (hoursModal && event.target == hoursModal) {
-                hoursModal.style.display = 'none';
-            }
-        });
-    </script> 
-</body> 
+    </script>
+</body>
 </html>
