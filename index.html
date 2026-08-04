@@ -274,6 +274,7 @@
             margin-bottom: 25px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             animation: fadeIn 0.25s ease-out;
+            scroll-margin-top: 20px; /* Offset for smooth scroll */
         }
 
         .category-detail-panel.active { display: block; }
@@ -318,6 +319,7 @@
             font-family: 'Inter', sans-serif;
             text-transform: uppercase;
             font-size: 0.85rem;
+            scroll-margin-top: 15px;
         }
 
         .serviceBtn:hover {
@@ -336,13 +338,13 @@
             font-size: 0.95rem;
             color: #334155;
             border: 1px solid #e2e8f0;
+            scroll-margin-top: 15px;
         }
 
         .sub-box.open { display: block; }
         .sub-box ul { padding-left: 20px; margin-top: 10px; margin-bottom: 15px; }
         .sub-box li { margin-bottom: 5px; color: #64748b; }
 
-        /* Highlight box for search results */
         .sub-box.search-match {
             border: 2px solid #0284c7;
             background-color: #f0f9ff;
@@ -423,6 +425,7 @@
             border-radius: 12px;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            scroll-margin-top: 20px;
         }
 
         .drive-link-btn {
@@ -811,7 +814,7 @@
                     📄 Document Services
                     <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
                 </div>
-                <button onclick="toggleSection('photoCopyBox');" class="serviceBtn">Photo Copy</button>
+                <button onclick="toggleSection('photoCopyBox', this);" class="serviceBtn">Photo Copy</button>
                 <div id="photoCopyBox" class="sub-box">
                     <b>A4 Paper Photo Copy</b>
                     <ul>
@@ -827,7 +830,7 @@
                     </ul>
                 </div>
 
-                <button onclick="toggleSection('printOutBox')" class="serviceBtn">Print Out</button>
+                <button onclick="toggleSection('printOutBox', this)" class="serviceBtn">Print Out</button>
                 <div id="printOutBox" class="sub-box">
                     <b>A4 B/W Print Out</b>
                     <ul>
@@ -849,7 +852,7 @@
                     </ul>
                 </div>
 
-                <button onclick="toggleSection('scanningBox')" class="serviceBtn">Scanning</button>
+                <button onclick="toggleSection('scanningBox', this)" class="serviceBtn">Scanning</button>
                 <div id="scanningBox" class="sub-box">
                     <b>Scanning Charges</b>
                     <ul>
@@ -859,7 +862,7 @@
                     </ul>
                 </div>
 
-                <button onclick="toggleSection('laminatingBindingBox')" class="serviceBtn">Laminating & Binding</button>
+                <button onclick="toggleSection('laminatingBindingBox', this)" class="serviceBtn">Laminating & Binding</button>
                 <div id="laminatingBindingBox" class="sub-box">
                     <b>Laminating</b>
                     <ul>
@@ -891,7 +894,7 @@
                     📱 Recharge & New Connections
                     <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
                 </div>
-                <button onclick="toggleSection('mobileReloadBox');" class="serviceBtn">Reload</button>
+                <button onclick="toggleSection('mobileReloadBox', this);" class="serviceBtn">Reload</button>
                 <div id="mobileReloadBox" class="sub-box">
                     <b>Available Networks</b>
                     <ul>
@@ -902,7 +905,7 @@
                     <a href="https://docs.google.com/spreadsheets/d/your-reload-sheet-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Reload Excel Sheet</a>
                 </div>
 
-                <button onclick="toggleSection('rechargeCardsBox');" class="serviceBtn">Recharge Cards</button>
+                <button onclick="toggleSection('rechargeCardsBox', this);" class="serviceBtn">Recharge Cards</button>
                 <div id="rechargeCardsBox" class="sub-box">
                     <b>Card Types</b>
                     <ul>
@@ -911,7 +914,7 @@
                     <a href="https://docs.google.com/spreadsheets/d/your-cards-sheet-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Recharge Cards Stock Sheet</a>
                 </div>
 
-                <button onclick="toggleSection('newSimBox');" class="serviceBtn">New SIM Connections</button>
+                <button onclick="toggleSection('newSimBox', this);" class="serviceBtn">New SIM Connections</button>
                 <div id="newSimBox" class="sub-box">
                     <b>New SIM & Change Activation</b>
                     <ul>
@@ -929,7 +932,7 @@
                     💡 Bill Payments
                     <span class="close-panel-btn" onclick="closeAllPanels()">&times;</span>
                 </div>
-                <button onclick="toggleSection('electricityBillBox');" class="serviceBtn">Electricity Bill</button>
+                <button onclick="toggleSection('electricityBillBox', this);" class="serviceBtn">Electricity Bill</button>
                 <div id="electricityBillBox" class="sub-box">
                     <b>Power Utilities</b>
                     <ul>
@@ -938,7 +941,7 @@
                     </ul>
                 </div>
 
-                <button onclick="toggleSection('waterBillBox');" class="serviceBtn">Water Bill</button>
+                <button onclick="toggleSection('waterBillBox', this);" class="serviceBtn">Water Bill</button>
                 <div id="waterBillBox" class="sub-box">
                     <b>Water Supply</b>
                     <ul>
@@ -946,7 +949,7 @@
                     </ul>
                 </div>
 
-                <button onclick="toggleSection('postpaidBillBox');" class="serviceBtn">Postpaid Bill</button>
+                <button onclick="toggleSection('postpaidBillBox', this);" class="serviceBtn">Postpaid Bill</button>
                 <div id="postpaidBillBox" class="sub-box">
                     <b>Mobile Networks</b>
                     <ul>
@@ -957,7 +960,7 @@
                     </ul>
                 </div>
 
-                <button onclick="toggleSection('sltBillBox');" class="serviceBtn">SLT Bill & More</button>
+                <button onclick="toggleSection('sltBillBox', this);" class="serviceBtn">SLT Bill & More</button>
                 <div id="sltBillBox" class="sub-box">
                     <b>Telecom & Other Payments</b>
                     <ul>
@@ -977,9 +980,9 @@
                 </div>
                 
                 <!-- 1. Mobile & Accessories -->
-                <button onclick="toggleSection('mobileAccBox');" class="serviceBtn">Mobile & Accessories</button>
+                <button onclick="toggleSection('mobileAccBox', this);" class="serviceBtn">Mobile & Accessories</button>
                 <div id="mobileAccBox" class="sub-box">
-                    <button onclick="toggleSection('mobileItemsSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Mobile Phone</button>
+                    <button onclick="toggleSection('mobileItemsSubBox', this);" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Mobile Phone</button>
                     <div id="mobileItemsSubBox" class="sub-box">
                         <b>Phone Items</b>
                         <ul>
@@ -987,7 +990,7 @@
                         </ul>
                     </div>
 
-                    <button onclick="toggleSection('mobileServicesSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Mobile Accessories</button>
+                    <button onclick="toggleSection('mobileServicesSubBox', this);" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Mobile Accessories</button>
                     <div id="mobileServicesSubBox" class="sub-box">
                         <b>Mobile Accessories</b>
                         <ul>
@@ -999,9 +1002,9 @@
                 </div>
 
                 <!-- 2. Dialog TV Products & Accessories -->
-                <button onclick="toggleSection('dialogTvAccBox');" class="serviceBtn">Dialog TV Products & Accessories</button>
+                <button onclick="toggleSection('dialogTvAccBox', this);" class="serviceBtn">Dialog TV Products & Accessories</button>
                 <div id="dialogTvAccBox" class="sub-box">
-                    <button onclick="toggleSection('dtvConnSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Dialog TV New Connections</button>
+                    <button onclick="toggleSection('dtvConnSubBox', this);" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Dialog TV New Connections</button>
                     <div id="dtvConnSubBox" class="sub-box">
                         <b>New Connections & Setup</b>
                         <ul>
@@ -1021,7 +1024,7 @@
                         </ul>
                     </div>
 
-                    <button onclick="toggleSection('dtvRemoteSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Satellite Accessories</button>
+                    <button onclick="toggleSection('dtvRemoteSubBox', this);" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Satellite Accessories</button>
                     <div id="dtvRemoteSubBox" class="sub-box">
                         <b>Remotes</b>
                         <ul>
@@ -1030,7 +1033,7 @@
                         </ul>
                     </div>
 
-                    <button onclick="toggleSection('dtvCablesSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">LNBs & Cables</button>
+                    <button onclick="toggleSection('dtvCablesSubBox', this);" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">LNBs & Cables</button>
                     <div id="dtvCablesSubBox" class="sub-box">
                         <b>LNBs & Cables</b>
                         <ul>
@@ -1040,7 +1043,7 @@
                         </ul>
                     </div>
 
-                    <button onclick="toggleSection('dtvPowerSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Adapters, Conectors & Services</button>
+                    <button onclick="toggleSection('dtvPowerSubBox', this);" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Adapters, Conectors & Services</button>
                     <div id="dtvPowerSubBox" class="sub-box">
                         <b>Adapters & Others</b>
                         <ul>
@@ -1054,9 +1057,9 @@
                 </div>
 
                 <!-- 3. Electrical Accessories -->
-                <button onclick="toggleSection('electricalAccBox');" class="serviceBtn">Electrical Accessories</button>
+                <button onclick="toggleSection('electricalAccBox', this);" class="serviceBtn">Electrical Accessories</button>
                 <div id="electricalAccBox" class="sub-box">
-                    <button onclick="toggleSection('elecHomePowerSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Home & Power</button>
+                    <button onclick="toggleSection('elecHomePowerSubBox', this);" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Home & Power</button>
                     <div id="elecHomePowerSubBox" class="sub-box">
                         <b>Home Power & Wiring</b>
                         <ul>
@@ -1068,7 +1071,7 @@
                         </ul>
                     </div>
 
-                    <button onclick="toggleSection('elecLightingSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">School</button>
+                    <button onclick="toggleSection('elecLightingSubBox', this);" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">School</button>
                     <div id="elecLightingSubBox" class="sub-box">
                         <b>Practical Sets</b>
                         <ul>
@@ -1079,7 +1082,7 @@
                         </ul>
                     </div>
 
-                    <button onclick="toggleSection('elecSwitchesSubBox');" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">This service will be updated soon.</button>
+                    <button onclick="toggleSection('elecSwitchesSubBox', this);" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">This service will be updated soon.</button>
                     <div id="elecSwitchesSubBox" class="sub-box">
                         <b>- None -</b>
                         <ul>
@@ -1092,7 +1095,7 @@
                 </div>
 
                 <!-- 4. ALL PRODUCTS (Retail Hub Style Grid with 8 Category Cards) -->
-                <button onclick="toggleSection('allProductsBox');" class="serviceBtn" style="background: #0284c7; color: #ffffff;">All Products</button>
+                <button onclick="toggleSection('allProductsBox', this);" class="serviceBtn" style="background: #0284c7; color: #ffffff;">All Products</button>
                 <div id="allProductsBox" class="sub-box">
                     <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 12px; font-weight: 600;">SELECT PRODUCT CATEGORY:</p>
 
@@ -1446,6 +1449,7 @@
         
         setInterval(nextSlide, 4000);
 
+        // --- UPDATED OPEN PANEL WITH AUTO-SCROLL ---
         function openPanel(panelId, cardElement) {
             try {
                 let allPanels = document.querySelectorAll('.category-detail-panel');
@@ -1467,7 +1471,11 @@
                 if (!isAlreadyActive) {
                     targetPanel.classList.add('active');
                     if (cardElement) cardElement.classList.add('active');
-                    targetPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    
+                    // Auto-scroll smooth to panel
+                    setTimeout(() => {
+                        targetPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 50);
                 }
             } catch (err) {
                 console.error("Panel error:", err);
@@ -1482,13 +1490,26 @@
             allCards.forEach(card => card.classList.remove('active'));
         }
 
-        function toggleSection(sectionId) {
+        // --- UPDATED TOGGLE SECTION WITH AUTO-SCROLL ---
+        function toggleSection(sectionId, btnElement) {
             let element = document.getElementById(sectionId);
             if (element) {
+                let isOpen = element.classList.contains('open');
                 element.classList.toggle('open');
+
+                if (!isOpen) {
+                    setTimeout(() => {
+                        if (btnElement) {
+                            btnElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        } else {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                    }, 50);
+                }
             }
         }
 
+        // --- UPDATED SUB-PRODUCT TOGGLE WITH AUTO-SCROLL ---
         function toggleSubProductBox(boxId, cardElement) {
             let allSubBoxes = document.querySelectorAll('#allProductsBox > .sub-box');
             let allCards = document.querySelectorAll('.sub-product-card');
@@ -1501,13 +1522,19 @@
             });
 
             if (targetBox) {
+                let isOpen = targetBox.classList.contains('open');
                 targetBox.classList.toggle('open');
-                if (targetBox.classList.contains('open') && cardElement) {
-                    cardElement.classList.add('active');
+                
+                if (!isOpen) {
+                    if (cardElement) cardElement.classList.add('active');
+                    setTimeout(() => {
+                        targetBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 50);
                 }
             }
         }
 
+        // --- UPDATED PACKAGE TOGGLE WITH AUTO-SCROLL ---
         function togglePackage(pkgId) {
             let allBoxes = document.querySelectorAll('.package-content-box');
             let targetBox = document.getElementById(pkgId);
@@ -1521,7 +1548,9 @@
                     targetBox.style.display = 'none';
                 } else {
                     targetBox.style.display = 'block';
-                    targetBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    setTimeout(() => {
+                        targetBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 50);
                 }
             }
         }
