@@ -1057,7 +1057,37 @@
                         </ul>
                     </div>
                     
-                    <a href="https://docs.google.com/spreadsheets/d/your-dtv-sheet-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Dialog TV Accessories Excel Sheet</a>
+                    <!-- Dialog TV Accessories Image Slider -->
+<div class="slider-container">
+    <div class="slider">
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <img src="https://lh3.googleusercontent.com/d/1--D3mEhWB74-3cjFQlkMQZ93L6SF3ziz" alt="Dialog TV Connections">
+            <div class="slide-caption">Dialog TV New Connections</div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide">
+            <img src="https://lh3.googleusercontent.com/d/1--D3mEhWB74-3cjFQlkMQZ93L6SF3ziz>
+            <div class="slide-caption">Satellite Accessories</div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="slide">
+            <img src="https://lh3.googleusercontent.com/d/1yASyAnNlh-T1IJqcG3T5tqK_8NnJmMo0">
+            <div class="slide-caption">LNBs & Cables</div>
+        </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <button type="button" class="prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+    <button type="button" class="next-btn" onclick="moveSlide(1)">&#10095;</button>
+
+    <!-- Indicators/Dots -->
+    <div class="dots-container">
+        <span class="dot active-dot" onclick="currentSlide(0)"></span>
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+    </div>
+</div>
                 </div>
 
                 <!-- 3. Electrical Accessories -->
