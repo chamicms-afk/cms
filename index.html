@@ -274,7 +274,7 @@
             margin-bottom: 25px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             animation: fadeIn 0.25s ease-out;
-            scroll-margin-top: 20px; /* Offset for smooth scroll */
+            scroll-margin-top: 20px;
         }
 
         .category-detail-panel.active { display: block; }
@@ -356,7 +356,8 @@
             width: 100%;
         }
 
-        .slider {
+        /* MAIN HERO SLIDER */
+        .hero-slider {
             width: 100%;
             aspect-ratio: 16 / 9;
             overflow: hidden;
@@ -366,7 +367,7 @@
             position: relative;
         }
 
-        .slider img {
+        .hero-slider img.hero-slide {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -374,7 +375,86 @@
             cursor: pointer;
         }
 
-        .slider img.active { display: block; }
+        .hero-slider img.hero-slide.active { display: block; }
+
+        /* DIALOG TV SLIDER CSS FIX */
+        .dtv-slider-container {
+            position: relative;
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            background: #000;
+        }
+
+        .dtv-slider {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            position: relative;
+        }
+
+        .dtv-slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .dtv-slide.active {
+            display: block;
+        }
+
+        .dtv-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .prev-btn, .next-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            padding: 10px 14px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 16px;
+            z-index: 10;
+            transition: background 0.3s;
+        }
+
+        .prev-btn:hover, .next-btn:hover {
+            background: rgba(2, 132, 199, 0.8);
+        }
+
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
+        .dots-container {
+            text-align: center;
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 10px;
+            width: 10px;
+            margin: 0 4px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active-dot, .dot:hover {
+            background-color: #0284c7;
+        }
 
         .package-section { margin: 40px 0; }
 
@@ -736,12 +816,13 @@
             Photo Copy, Printing, Scanning, Binding, Laminating, Stationery, School Items, Office Items, Reload, Bill Payments, Dialog TV Setup, Fancy & Electrical Items and Every daily essential All under one roof.
         </p>
 
+        <!-- MAIN HERO SLIDER -->
         <div class="hero-image-wrapper">
-            <div class="slider">
-                <img class="slide active" src="https://lh3.googleusercontent.com/d/1R8NnJOotmKFIyfPJR41FH6DHu3KIMzF5" alt="Slide 1" onclick="openLightbox(this.src)">
-                <img class="slide" src="https://lh3.googleusercontent.com/d/1gx9JjRTMsCPJlLmaQ88W3vK2bGP-CSM8" alt="Slide 2" onclick="openLightbox(this.src)">
-                <img class="slide" src="https://lh3.googleusercontent.com/d/1Y7pe5IK5MTEj-gch3OibYiyNESV2UIOE" alt="Slide 3" onclick="openLightbox(this.src)">
-                <img class="slide" src="https://lh3.googleusercontent.com/d/1GaYoP-SJ_5-PsMBdEO7FjGeFFd5lVXpP" alt="Slide 4" onclick="openLightbox(this.src)">
+            <div class="hero-slider">
+                <img class="hero-slide active" src="https://lh3.googleusercontent.com/d/1R8NnJOotmKFIyfPJR41FH6DHu3KIMzF5" alt="Slide 1" onclick="openLightbox(this.src)">
+                <img class="hero-slide" src="https://lh3.googleusercontent.com/d/1gx9JjRTMsCPJlLmaQ88W3vK2bGP-CSM8" alt="Slide 2" onclick="openLightbox(this.src)">
+                <img class="hero-slide" src="https://lh3.googleusercontent.com/d/1Y7pe5IK5MTEj-gch3OibYiyNESV2UIOE" alt="Slide 3" onclick="openLightbox(this.src)">
+                <img class="hero-slide" src="https://lh3.googleusercontent.com/d/1GaYoP-SJ_5-PsMBdEO7FjGeFFd5lVXpP" alt="Slide 4" onclick="openLightbox(this.src)">
             </div>
         </div>
 
@@ -1016,7 +1097,7 @@
                                 </span>
                             </li>
                             <li>
-                                Dialog TV New Connections Rs.4990/= Only. (STB Only - Decorder)
+                                Dialog TV New Connections Rs.5990/= Only. (STB Only - Decoder)
                                 <span style="display: block; font-size: 11px; color: #0284c7; font-weight: 600; margin-top: 2px;">
                                     (Dialog Axiata PLC 12 months Warranty)
                                 </span>
@@ -1046,48 +1127,42 @@
                         </ul>
                     </div>
 
-                    <button onclick="toggleSection('dtvPowerSubBox', this);" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Adapters, Conectors & Services</button>
+                    <button onclick="toggleSection('dtvPowerSubBox', this);" class="serviceBtn" style="font-size: 0.8rem; margin: 4px 0;">Adapters, Connectors & Services</button>
                     <div id="dtvPowerSubBox" class="sub-box">
                         <b>Adapters & Others</b>
                         <ul>
                             <li>Power Adapters Rs.1000/= - Standard</li>
-                            <li>Conectors From 50/= - Standard</li>
+                            <li>Connectors From 50/= - Standard</li>
                             <li>Warranty Services & Technical Troubleshooting</li>
                             <li>Prices may vary</li>
                         </ul>
                     </div>
                     
-                   <!-- Dialog TV Accessories Image Slider -->
-                    <div class="slider-container">
-                    <div class="slider">
-                    <!-- Slide 1 -->
-                    <div class="slide active">
-                        <img src="https://lh3.googleusercontent.com/d/1KwQYIFdWf76-9MDTdwvIncBJWUDXGpRm" alt="Slide 1" onclick="openLightbox(this.src)">
-                    
-                </div>
-                    <!-- Slide 2 -->
-                    <div class="slide">
-                        <img src="https://lh3.googleusercontent.com/d/1--D3mEhWB74-3cjFQlkMQZ93L6SF3ziz" alt="Slide 2" onclick="openLightbox(this.src)">
-                    
-                </div>
-                    <!-- Slide 3 -->
-                    <div class="slide">
-                    <img src="https://lh3.googleusercontent.com/d/1PfF59_H6l3O68vzVyg0LFoiqmZU2HteR" alt="Slide 3" onclick="openLightbox(this.src)">
-                
-        </div>
-    </div>
+                    <!-- Dialog TV Accessories Image Slider (Corrected Structure) -->
+                    <div class="dtv-slider-container">
+                        <div class="dtv-slider">
+                            <div class="dtv-slide active">
+                                <img src="https://lh3.googleusercontent.com/d/1KwQYIFdWf76-9MDTdwvIncBJWUDXGpRm" alt="Slide 1" onclick="openLightbox(this.src)">
+                            </div>
+                            <div class="dtv-slide">
+                                <img src="https://lh3.googleusercontent.com/d/1--D3mEhWB74-3cjFQlkMQZ93L6SF3ziz" alt="Slide 2" onclick="openLightbox(this.src)">
+                            </div>
+                            <div class="dtv-slide">
+                                <img src="https://lh3.googleusercontent.com/d/1PfF59_H6l3O68vzVyg0LFoiqmZU2HteR" alt="Slide 3" onclick="openLightbox(this.src)">
+                            </div>
+                        </div>
 
-    <!-- Navigation Buttons -->
-    <button type="button" class="prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-    <button type="button" class="next-btn" onclick="moveSlide(1)">&#10095;</button>
+                        <!-- Navigation Buttons -->
+                        <button type="button" class="prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+                        <button type="button" class="next-btn" onclick="moveSlide(1)">&#10095;</button>
 
-    <!-- Indicators/Dots -->
-    <div class="dots-container">
-        <span class="dot active-dot" onclick="currentSlide(0)"></span>
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-    </div>
-</div> 
+                        <!-- Indicators/Dots -->
+                        <div class="dots-container">
+                            <span class="dot active-dot" onclick="currentDtvSlide(0)"></span>
+                            <span class="dot" onclick="currentDtvSlide(1)"></span>
+                            <span class="dot" onclick="currentDtvSlide(2)"></span>
+                        </div>
+                    </div> 
                 </div>
 
                 <!-- 3. Electrical Accessories -->
@@ -1466,27 +1541,55 @@
 
     <!-- JAVASCRIPT FUNCTIONS -->
     <script>
-        // Image Slider Functionality
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slider img');
+        // 1. MAIN HERO SLIDER SCRIPT
+        let currentHeroSlide = 0;
+        const heroSlides = document.querySelectorAll('.hero-slider img.hero-slide');
         
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
+        function showHeroSlide(index) {
+            heroSlides.forEach((slide, i) => {
                 slide.classList.remove('active');
                 if (i === index) slide.classList.add('active');
             });
         }
 
-        function nextSlide() {
-            if (slides.length > 0) {
-                currentSlide = (currentSlide + 1) % slides.length;
-                showSlide(currentSlide);
+        function nextHeroSlide() {
+            if (heroSlides.length > 0) {
+                currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+                showHeroSlide(currentHeroSlide);
             }
         }
         
-        setInterval(nextSlide, 4000);
+        setInterval(nextHeroSlide, 4000);
 
-        // --- UPDATED OPEN PANEL WITH AUTO-SCROLL ---
+        // 2. DIALOG TV SLIDER SCRIPT
+        let dtvSlideIndex = 0;
+        const dtvSlides = document.querySelectorAll('.dtv-slide');
+        const dtvDots = document.querySelectorAll('.dtv-slider-container .dot');
+
+        function showDtvSlide(index) {
+            if (dtvSlides.length === 0) return;
+            
+            if (index >= dtvSlides.length) { dtvSlideIndex = 0; }
+            if (index < 0) { dtvSlideIndex = dtvSlides.length - 1; }
+
+            dtvSlides.forEach(slide => slide.classList.remove('active'));
+            dtvDots.forEach(dot => dot.classList.remove('active-dot'));
+
+            dtvSlides[dtvSlideIndex].classList.add('active');
+            if (dtvDots[dtvSlideIndex]) {
+                dtvDots[dtvSlideIndex].classList.add('active-dot');
+            }
+        }
+
+        function moveSlide(n) {
+            showDtvSlide(dtvSlideIndex += n);
+        }
+
+        function currentDtvSlide(n) {
+            showDtvSlide(dtvSlideIndex = n);
+        }
+
+        // --- OPEN PANEL WITH AUTO-SCROLL ---
         function openPanel(panelId, cardElement) {
             try {
                 let allPanels = document.querySelectorAll('.category-detail-panel');
@@ -1509,7 +1612,6 @@
                     targetPanel.classList.add('active');
                     if (cardElement) cardElement.classList.add('active');
                     
-                    // Auto-scroll smooth to panel
                     setTimeout(() => {
                         targetPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }, 50);
@@ -1527,7 +1629,7 @@
             allCards.forEach(card => card.classList.remove('active'));
         }
 
-        // --- UPDATED TOGGLE SECTION WITH AUTO-SCROLL ---
+        // --- TOGGLE SECTION WITH AUTO-SCROLL ---
         function toggleSection(sectionId, btnElement) {
             let element = document.getElementById(sectionId);
             if (element) {
@@ -1546,7 +1648,7 @@
             }
         }
 
-        // --- UPDATED SUB-PRODUCT TOGGLE WITH AUTO-SCROLL ---
+        // --- SUB-PRODUCT TOGGLE WITH AUTO-SCROLL ---
         function toggleSubProductBox(boxId, cardElement) {
             let allSubBoxes = document.querySelectorAll('#allProductsBox > .sub-box');
             let allCards = document.querySelectorAll('.sub-product-card');
@@ -1571,7 +1673,7 @@
             }
         }
 
-        // --- UPDATED PACKAGE TOGGLE WITH AUTO-SCROLL ---
+        // --- PACKAGE TOGGLE WITH AUTO-SCROLL ---
         function togglePackage(pkgId) {
             let allBoxes = document.querySelectorAll('.package-content-box');
             let targetBox = document.getElementById(pkgId);
@@ -1633,35 +1735,30 @@
         function searchServices() {
             let input = document.getElementById('searchInput').value.trim().toLowerCase();
             let subBoxes = document.querySelectorAll('.sub-box');
-            let panels = document.querySelectorAll('.category-detail-panel');
             let firstMatchFound = false;
 
-            // Reset previous highlights and states
             subBoxes.forEach(box => {
                 box.classList.remove('open', 'search-match');
             });
 
             if (input === '') {
-                return; // Empty input clears the auto-opened sections
+                return;
             }
 
             subBoxes.forEach(box => {
                 if (box.innerText.toLowerCase().includes(input)) {
                     box.classList.add('open', 'search-match');
 
-                    // Auto-open parent category panel
                     let parentPanel = box.closest('.category-detail-panel');
                     if (parentPanel) {
                         parentPanel.classList.add('active');
                     }
 
-                    // Auto-open nested sub-boxes (e.g., inside All Products or Mobile Acc)
                     let parentSubBox = box.parentElement.closest('.sub-box');
                     if (parentSubBox) {
                         parentSubBox.classList.add('open');
                     }
 
-                    // Scroll to the first found result smoothly
                     if (!firstMatchFound) {
                         box.scrollIntoView({ behavior: 'smooth', block: 'center' });
                         firstMatchFound = true;
