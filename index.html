@@ -1655,22 +1655,30 @@
             allCards.forEach(card => card.classList.remove('active'));
         }
 
-        // --- TOGGLE SECTION WITH AUTO-SCROLL ---
+       // --- TOGGLE SECTION WITH AUTO-SCROLL (ACCORDION FIXED) ---
         function toggleSection(sectionId, btnElement) {
             let element = document.getElementById(sectionId);
-            if (element) {
-                let isOpen = element.classList.contains('open');
-                element.classList.toggle('open');
+            if (!element) return;
 
-                if (!isOpen) {
-                    setTimeout(() => {
-                        if (btnElement) {
-                            btnElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        } else {
-                            element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                        }
-                    }, 50);
-                }
+            let parentContainer = element.parentElement; // වර්තමාන Panel එක හෝ Parent Box එක
+            let isOpen = element.classList.contains('open');
+
+            // එකම මට්ටමේ (Parent එක ඇතුළේ) open වී ඇති අනෙකුත් sub-box වැසීම
+            let siblingBoxes = parentContainer.querySelectorAll(':scope > .sub-box');
+            siblingBoxes.forEach(box => {
+                box.classList.remove('open');
+            });
+
+            // Click කළ box එක කලින් වැසී තිබුනේ නම් පමණක් open කිරීම
+            if (!isOpen) {
+                element.classList.add('open');
+                setTimeout(() => {
+                    if (btnElement) {
+                        btnElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }, 50);
             }
         }
 
@@ -1699,24 +1707,26 @@
             }
         }
 
-        // --- PACKAGE TOGGLE WITH AUTO-SCROLL ---
+        // --- PACKAGE TOGGLE WITH AUTO-SCROLL (ACCORDION FIXED) ---
         function togglePackage(pkgId) {
             let allBoxes = document.querySelectorAll('.package-content-box');
             let targetBox = document.getElementById(pkgId);
 
+            if (!targetBox) return;
+
+            let isAlreadyOpen = targetBox.style.display === 'block';
+
+            // සියලුම package boxes වැසීම
             allBoxes.forEach(box => {
-                if (box !== targetBox) box.style.display = 'none';
+                box.style.display = 'none';
             });
 
-            if (targetBox) {
-                if (targetBox.style.display === 'block') {
-                    targetBox.style.display = 'none';
-                } else {
-                    targetBox.style.display = 'block';
-                    setTimeout(() => {
-                        targetBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 50);
-                }
+            // Click කළ package එක කලින් වැසී තිබුනේ නම් පමණක් open කිරීම
+            if (!isAlreadyOpen) {
+                targetBox.style.display = 'block';
+                setTimeout(() => {
+                    targetBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 50);
             }
         }
 
