@@ -45,8 +45,6 @@
             padding: 15px 0;
             gap: 15px;
             border-bottom: 1px solid var(--border-color);
-    
-        /* Sticky Header සඳහා එකතු කරන ලදී */
             position: sticky;
             top: 0;
             background-color: #ffffff;
@@ -809,23 +807,23 @@
             </div>
 
             <div class="search-wrapper">
-            <input type="text" id="searchInput" list="searchSuggestions" placeholder="Search Services & Products..." class="search-input" onkeyup="searchServices()">
-            <datalist id="searchSuggestions">
-            <option value="Book"></option>
-            <option value="Photo Copy"></option>
-            <option value="Print Out"></option>
-            <option value="Reload"></option>
-            <option value="Dialog TV"></option>
-            <option value="Laminating"></option>
-            <option value="Stationery"></option>
-            </datalist>
-            <button type="button" class="search-btn" aria-label="Search" onclick="searchServices()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-    </button>
-</div>
+                <input type="text" id="searchInput" list="searchSuggestions" placeholder="Search Services & Products..." class="search-input" onkeyup="if(event.key==='Enter') searchServices()">
+                <datalist id="searchSuggestions">
+                    <option value="Book"></option>
+                    <option value="Photo Copy"></option>
+                    <option value="Print Out"></option>
+                    <option value="Reload"></option>
+                    <option value="Dialog TV"></option>
+                    <option value="Laminating"></option>
+                    <option value="Stationery"></option>
+                </datalist>
+                <button type="button" class="search-btn" aria-label="Search" onclick="searchServices()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </div>
         </header>
 
         <p class="hero-description">
@@ -845,7 +843,7 @@
         <div class="action-buttons-wrapper">
             <div class="button-row">
                 <a href="tel:0770545464" class="action-btn btn-call">CALL 0770 54 54 64</a>
-                <a href="https://wa.me/94701193383" target="_blank" class="action-btn btn-whatsapp">WHATSAPP</a>
+                <a href="https://wa.me/94770545464" target="_blank" class="action-btn btn-whatsapp">WHATSAPP</a>
             </div>
             <div class="button-row">
                 <button type="button" class="action-btn btn-hours" onclick="openOriginalHours()">OPEN 6 AM - 10:30 PM</button>
@@ -1113,7 +1111,7 @@
                                 </span>
                             </li>
                             <li>
-                                Dialog TV New Connections Rs.4990/= Only. (STB Only - Decoder)
+                                Dialog TV New Connections Rs.5990/= Only. (STB Only - Decoder)
                                 <span style="display: block; font-size: 11px; color: #0284c7; font-weight: 600; margin-top: 2px;">
                                     (Dialog Axiata PLC 12 months Warranty)
                                 </span>
@@ -1154,7 +1152,7 @@
                         </ul>
                     </div>
                     
-                    <!-- Dialog TV Accessories Image Slider (Corrected Structure) -->
+                    <!-- Dialog TV Accessories Image Slider -->
                     <div class="dtv-slider-container">
                         <div class="dtv-slider">
                             <div class="dtv-slide active">
@@ -1263,7 +1261,7 @@
                         </div>
                     </div>
 
-                    <!-- Category Content Boxes (Excel Sheets & Item List) -->
+                    <!-- Category Content Boxes -->
                     <div id="prodCat1Box" class="sub-box" style="margin-top: 10px;">
                         <b>Available Books & Price</b>
                         <ul>
@@ -1272,10 +1270,7 @@
                             <li>Drawing Books, Note Books</li>
                             <li>View inventory, Prices and details</li>
                         </ul>
-                        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQTqkLgKRYsZ3_bRDIKAnJkK-dcfzK271ZHfC_TqiDO30E68mzi7JmMmedPNtc5nQ/pubhtml?gid=342426926&single=true" 
-   target="_blank" 
-   rel="noopener noreferrer" 
-   class="excel-sheet-btn">📊 Price & Details</a>
+                        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQTqkLgKRYsZ3_bRDIKAnJkK-dcfzK271ZHfC_TqiDO30E68mzi7JmMmedPNtc5nQ/pubhtml?gid=342426926&single=true" target="_blank" rel="noopener noreferrer" class="excel-sheet-btn">📊 Price & Details</a>
                     </div>
 
                     <div id="prodCat2Box" class="sub-box" style="margin-top: 10px;">
@@ -1307,7 +1302,6 @@
                             <li>Envelop, File, Glue</li>
                             <li>Maths Set, Puncer, Staplers</li>
                             <li>Ruler, Stickers, Paper Clips</li> 
-                            
                         </ul>
                         <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQBcOkrDZ9CZl8FpxSTDY15D_XBf3Gw_P2nUmG47v1Z3LQThDYIqWucnv3WSvuK9w/pubhtml?gid=1456422593&single=true" target="_blank" class="excel-sheet-btn">📊 Price & Details</a>
                     </div> 
@@ -1317,7 +1311,7 @@
                         <ul>
                             <li>View inventory, prices and details for Category 5.</li>
                         </ul>
-                        <a href="https://docs.google.com/spreadsheets/d/your-all-products-sheet-5-id/edit" target="_blank" class="excel-sheet-btn">📊 Price & Details)</a>
+                        <a href="https://docs.google.com/spreadsheets/d/your-all-products-sheet-5-id/edit" target="_blank" class="excel-sheet-btn">📊 Price & Details</a>
                     </div>
 
                     <div id="prodCat6Box" class="sub-box" style="margin-top: 10px;">
@@ -1343,9 +1337,7 @@
                         </ul>
                         <a href="https://docs.google.com/spreadsheets/d/your-all-products-sheet-8-id/edit" target="_blank" class="excel-sheet-btn">📊 Price & Details</a>
                     </div>
-
                 </div>
-
             </div>
 
             <div id="techPanel" class="category-detail-panel">
@@ -1448,7 +1440,7 @@
                 
                 <div class="contact-icons">
                     <a href="tel:+94770545464"><img class="icon" src="https://lh3.googleusercontent.com/d/1OFcjgWWFOeguwizL0Lbmaag1AgHqYdHO" alt="Call"></a>
-                    <a href="https://wa.me/9471193383" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/19W1N_0UmfJ0kgOfu5zKqLZdqLUbcYQug" alt="WhatsApp"></a>
+                    <a href="https://wa.me/94770545464" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/19W1N_0UmfJ0kgOfu5zKqLZdqLUbcYQug" alt="WhatsApp"></a>
                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=chamicms@gmail.com" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/1PtHWv3zqC12Uis2uJktEijOmbdCOtGbx" alt="Email"></a>
                     <a href="https://web.facebook.com/chamimultishopcms" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/1Pv4hKbA7EQw9ZaGKlHtHtKGJsvG5UxcT" alt="Facebook"></a>
                     <a href="https://www.google.com/search?q=Chami+Multi+Shop+%28CMS%29" target="_blank"><img class="icon" src="https://lh3.googleusercontent.com/d/1ecm8t-d0BMieUmB1qzQp_caeBnygan_L" alt="Google"></a>
@@ -1496,49 +1488,41 @@
             </div>
 
             <div class="package-buttons-container">
-                <button onclick="togglePackage('dialogPkg')" class="package-logo-btn">
+                <button type="button" onclick="togglePackage('dialogPkg')" class="package-logo-btn">
                     <img src="https://lh3.googleusercontent.com/d/1bAEy99QFJM3bAjuMLJK6Z-PnPQ3iJN8b" alt="Dialog">
                 </button>
 
-                <button onclick="togglePackage('mobitelPkg')" class="package-logo-btn">
+                <button type="button" onclick="togglePackage('mobitelPkg')" class="package-logo-btn">
                     <img src="https://lh3.googleusercontent.com/d/1IeDlOE3Ti_l-pBYxz4DB3jeirDFuxPjn" alt="Mobitel">
                 </button>
 
-                <button onclick="togglePackage('hutchPkg')" class="package-logo-btn">
+                <button type="button" onclick="togglePackage('hutchPkg')" class="package-logo-btn">
                     <img src="https://lh3.googleusercontent.com/d/1txqxjB9NSqmUmatH9l1vUX4CU30wJMNe" alt="Hutch">
                 </button>
 
-                <button onclick="togglePackage('airtelPkg')" class="package-logo-btn">
+                <button type="button" onclick="togglePackage('airtelPkg')" class="package-logo-btn">
                     <img src="https://lh3.googleusercontent.com/d/1UElQSeZ0I23C6W0AzGXwQBcGWNteJa69" alt="Airtel">
                 </button>
             </div>
 
             <div id="dialogPkg" class="package-content-box">
                 <h4 style="color:#e11d48; margin-bottom: 5px;">Dialog Latest Packages & Sheets</h4>
-                
-                <a href="https://drive.google.com/file/d/18Km7HVMrSHC_p6UfEg1AnTKPVOoakyGn/view?usp=sharing" target="_blank" class="drive-link-btn">View Dialog Packages</a><br>
-                
+                <a href="https://drive.google.com/file/d/18Km7HVMrSHC_p6UfEg1AnTKPVOoakyGn/view?usp=sharing" target="_blank" class="drive-link-btn">View Dialog Packages</a>
             </div>
 
             <div id="mobitelPkg" class="package-content-box">
                 <h4 style="color:#00529b; margin-bottom: 5px;">Mobitel Latest Packages & Sheets</h4>
-                
-                <a href="https://drive.google.com/file/d/18f2GRydT4jfkXy4yyE3IODskBt9cK7wS/view?usp=sharing" target="_blank" class="drive-link-btn">View Mobitel Packages</a><br>
-                
+                <a href="https://drive.google.com/file/d/18f2GRydT4jfkXy4yyE3IODskBt9cK7wS/view?usp=sharing" target="_blank" class="drive-link-btn">View Mobitel Packages</a>
             </div>
 
             <div id="hutchPkg" class="package-content-box">
                 <h4 style="color:#ea580c; margin-bottom: 5px;">Hutch Latest Packages & Sheets</h4>
-                
-                <a href="https://drive.google.com/file/d/13Q5lRtnIGycM9hQsQkbj7701ZO4ipDns/view?usp=sharing" target="_blank" class="drive-link-btn">View Hutch Packages</a><br>
-                
+                <a href="https://drive.google.com/file/d/13Q5lRtnIGycM9hQsQkbj7701ZO4ipDns/view?usp=sharing" target="_blank" class="drive-link-btn">View Hutch Packages</a>
             </div>
 
             <div id="airtelPkg" class="package-content-box">
                 <h4 style="color:#dc2626; margin-bottom: 5px;">Airtel Latest Packages & Sheets</h4>
-                
-                <a href="https://drive.google.com/file/d/1ofAbOu8eVnmHYK5P2TpkeVrvFweeenPC/view?usp=sharing" target="_blank" class="drive-link-btn">View Airtel PDF Packages</a><br>
-                
+                <a href="https://drive.google.com/file/d/1ofAbOu8eVnmHYK5P2TpkeVrvFweeenPC/view?usp=sharing" target="_blank" class="drive-link-btn">View Airtel PDF Packages</a>
             </div>
         </div>
 
@@ -1587,10 +1571,9 @@
                 showHeroSlide(currentHeroSlide);
             }
         }
-        
         setInterval(nextHeroSlide, 4000);
 
-        // 2. DIALOG TV SLIDER SCRIPT
+        // 2. DIALOG TV SLIDER SCRIPT (FIXED AUTO-SLIDE)
         let dtvSlideIndex = 0;
         const dtvSlides = document.querySelectorAll('.dtv-slide');
         const dtvDots = document.querySelectorAll('.dtv-slider-container .dot');
@@ -1618,6 +1601,13 @@
             showDtvSlide(dtvSlideIndex = n);
         }
 
+        setInterval(() => {
+            if (dtvSlides.length > 0) {
+                dtvSlideIndex = (dtvSlideIndex + 1) % dtvSlides.length;
+                showDtvSlide(dtvSlideIndex);
+            }
+        }, 5000);
+
         // --- OPEN PANEL WITH AUTO-SCROLL ---
         function openPanel(panelId, cardElement) {
             try {
@@ -1629,13 +1619,8 @@
 
                 let isAlreadyActive = targetPanel.classList.contains('active');
 
-                allPanels.forEach(panel => {
-                    if (panel) panel.classList.remove('active');
-                });
-                
-                allCards.forEach(card => {
-                    if (card) card.classList.remove('active');
-                });
+                allPanels.forEach(panel => panel.classList.remove('active'));
+                allCards.forEach(card => card.classList.remove('active'));
 
                 if (!isAlreadyActive) {
                     targetPanel.classList.add('active');
@@ -1658,21 +1643,17 @@
             allCards.forEach(card => card.classList.remove('active'));
         }
 
-       // --- TOGGLE SECTION WITH AUTO-SCROLL (ACCORDION FIXED) ---
+        // --- TOGGLE SECTION WITH AUTO-SCROLL ---
         function toggleSection(sectionId, btnElement) {
             let element = document.getElementById(sectionId);
             if (!element) return;
 
-            let parentContainer = element.parentElement; // වර්තමාන Panel එක හෝ Parent Box එක
+            let parentContainer = element.parentElement; 
             let isOpen = element.classList.contains('open');
 
-            // එකම මට්ටමේ (Parent එක ඇතුළේ) open වී ඇති අනෙකුත් sub-box වැසීම
             let siblingBoxes = parentContainer.querySelectorAll(':scope > .sub-box');
-            siblingBoxes.forEach(box => {
-                box.classList.remove('open');
-            });
+            siblingBoxes.forEach(box => box.classList.remove('open'));
 
-            // Click කළ box එක කලින් වැසී තිබුනේ නම් පමණක් open කිරීම
             if (!isOpen) {
                 element.classList.add('open');
                 setTimeout(() => {
@@ -1692,7 +1673,6 @@
             let targetBox = document.getElementById(boxId);
 
             allCards.forEach(card => card.classList.remove('active'));
-
             allSubBoxes.forEach(box => {
                 if (box !== targetBox) box.classList.remove('open');
             });
@@ -1703,14 +1683,17 @@
                 
                 if (!isOpen) {
                     if (cardElement) cardElement.classList.add('active');
+                    sessionStorage.setItem('lastSubBox', boxId);
                     setTimeout(() => {
                         targetBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                     }, 50);
+                } else {
+                    sessionStorage.removeItem('lastSubBox');
                 }
             }
         }
 
-        // --- PACKAGE TOGGLE WITH AUTO-SCROLL (ACCORDION FIXED) ---
+        // --- PACKAGE TOGGLE WITH AUTO-SCROLL ---
         function togglePackage(pkgId) {
             let allBoxes = document.querySelectorAll('.package-content-box');
             let targetBox = document.getElementById(pkgId);
@@ -1719,12 +1702,8 @@
 
             let isAlreadyOpen = targetBox.style.display === 'block';
 
-            // සියලුම package boxes වැසීම
-            allBoxes.forEach(box => {
-                box.style.display = 'none';
-            });
+            allBoxes.forEach(box => box.style.display = 'none');
 
-            // Click කළ package එක කලින් වැසී තිබුනේ නම් පමණක් open කිරීම
             if (!isAlreadyOpen) {
                 targetBox.style.display = 'block';
                 setTimeout(() => {
@@ -1759,6 +1738,7 @@
             document.getElementById('imageLightbox').style.display = 'none';
         }
 
+        // FIXED WHATSAPP FORM SUBMISSION
         function sendToWhatsApp(e) {
             e.preventDefault();
             let name = document.getElementById('name').value;
@@ -1766,117 +1746,76 @@
             let mobile = document.getElementById('mobile').value;
             let message = document.getElementById('message').value;
 
-            let fullText = `*New Contact Message*%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Mobile:* ${mobile}%0A*Message:* ${message}`;
+            let fullText = `*New Contact Message*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Email:* ${encodeURIComponent(email)}%0A*Mobile:* ${encodeURIComponent(mobile)}%0A*Message:* ${encodeURIComponent(message)}`;
             window.open(`https://wa.me/94770545464?text=${fullText}`, '_blank');
         }
 
-        // --- ENHANCED FULL SEARCH FUNCTION ---
+        // --- ENHANCED SEARCH FUNCTION ---
         function searchServices() {
             let inputField = document.getElementById('searchInput');
             let rawInput = inputField.value.trim().toLowerCase();
     
             if (rawInput === '') return;
 
-        // 1. Common spelling corrections dictionary
             const dictionary = {
-            "bok": "book",
-            "books": "book",
-            "copi": "copy",
-            "photocopi": "photo copy",
-            "prnt": "print",
-            "relog": "reload",
-            "dialogue": "dialog"
+                "bok": "book",
+                "books": "book",
+                "copi": "copy",
+                "photocopi": "photo copy",
+                "prnt": "print",
+                "relog": "reload",
+                "dialogue": "dialog"
             };
 
-        // Auto-correct spelling if matched
             let query = dictionary[rawInput] ? dictionary[rawInput] : rawInput;
 
-        // Update search bar value to corrected term
             if (dictionary[rawInput]) {
-            inputField.value = dictionary[rawInput];
+                inputField.value = dictionary[rawInput];
             }
 
-    let subBoxes = document.querySelectorAll('.sub-box');
-    let firstMatchFound = false;
+            let subBoxes = document.querySelectorAll('.sub-box');
+            let firstMatchFound = false;
 
-    subBoxes.forEach(box => {
-        box.classList.remove('open', 'search-match');
-    });
+            subBoxes.forEach(box => box.classList.remove('open', 'search-match'));
 
-    subBoxes.forEach(box => {
-        if (box.innerText.toLowerCase().includes(query)) {
-            box.classList.add('open', 'search-match');
+            subBoxes.forEach(box => {
+                if (box.innerText.toLowerCase().includes(query)) {
+                    box.classList.add('open', 'search-match');
 
-            let parentPanel = box.closest('.category-detail-panel');
-            if (parentPanel) parentPanel.classList.add('active');
+                    let parentPanel = box.closest('.category-detail-panel');
+                    if (parentPanel) parentPanel.classList.add('active');
 
-            let parentSubBox = box.parentElement.closest('.sub-box');
-            if (parentSubBox) parentSubBox.classList.add('open');
+                    let parentSubBox = box.parentElement.closest('.sub-box');
+                    if (parentSubBox) parentSubBox.classList.add('open');
 
-            if (!firstMatchFound) {
-                // Adjust scroll position to account for sticky header
-                let yOffset = -120; 
-                let elementPosition = box.getBoundingClientRect().top + window.pageYOffset;
-                window.scrollTo({ top: elementPosition + yOffset, behavior: 'smooth' });
-                
-                firstMatchFound = true;
+                    if (!firstMatchFound) {
+                        let yOffset = -120; 
+                        let elementPosition = box.getBoundingClientRect().top + window.pageYOffset;
+                        window.scrollTo({ top: elementPosition + yOffset, behavior: 'smooth' });
+                        firstMatchFound = true;
+                    }
+                }
+            });
+        }
+
+        // Restore State on Page Reload
+        window.addEventListener('DOMContentLoaded', () => {
+            let lastSubBox = sessionStorage.getItem('lastSubBox');
+            if (lastSubBox) {
+                let accessoriesPanel = document.getElementById('accessoriesPanel');
+                let allProductsBox = document.getElementById('allProductsBox');
+                let targetSubBox = document.getElementById(lastSubBox);
+
+                if (accessoriesPanel) accessoriesPanel.classList.add('active');
+                if (allProductsBox) allProductsBox.classList.add('open');
+                if (targetSubBox) {
+                    targetSubBox.classList.add('open');
+                    setTimeout(() => {
+                        targetSubBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
+                }
             }
-        }
-    });
-}
-        // LocalStorage මගින් Current Active States සුරැකීම
-function savePanelState(panelId, subBoxId) {
-    sessionStorage.setItem('activePanel', panelId);
-    if (subBoxId) {
-        sessionStorage.setItem('activeSubBox', subBoxId);
-    }
-}
-
-// Sub-product Box Click කිරීමේදී State Save කිරීම
-function toggleSubProductBox(boxId, cardElement) {
-    let allSubBoxes = document.querySelectorAll('#allProductsBox > .sub-box');
-    let allCards = document.querySelectorAll('.sub-product-card');
-    let targetBox = document.getElementById(boxId);
-
-    allCards.forEach(card => card.classList.remove('active'));
-    allSubBoxes.forEach(box => {
-        if (box !== targetBox) box.classList.remove('open');
-    });
-
-    if (targetBox) {
-        let isOpen = targetBox.classList.contains('open');
-        targetBox.classList.toggle('open');
-        
-        if (!isOpen) {
-            if (cardElement) cardElement.classList.add('active');
-            sessionStorage.setItem('lastSubBox', boxId);
-            setTimeout(() => {
-                targetBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 50);
-        } else {
-            sessionStorage.removeItem('lastSubBox');
-        }
-    }
-}
-
-// Page එක Load / Back වෙද්දී තිබූ තත්වයට පැමිණීම (Restore State)
-window.addEventListener('DOMContentLoaded', () => {
-    let lastSubBox = sessionStorage.getItem('lastSubBox');
-    if (lastSubBox) {
-        let accessoriesPanel = document.getElementById('accessoriesPanel');
-        let allProductsBox = document.getElementById('allProductsBox');
-        let targetSubBox = document.getElementById(lastSubBox);
-
-        if (accessoriesPanel) accessoriesPanel.classList.add('active');
-        if (allProductsBox) allProductsBox.classList.add('open');
-        if (targetSubBox) {
-            targetSubBox.classList.add('open');
-            setTimeout(() => {
-                targetSubBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 300);
-        }
-    }
-});
+        });
     </script>
 </body>
 </html>
