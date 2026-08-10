@@ -1272,7 +1272,10 @@
                             <li>Drawing Books, Note Books</li>
                             <li>View inventory, Prices and details</li>
                         </ul>
-                        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQTqkLgKRYsZ3_bRDIKAnJkK-dcfzK271ZHfC_TqiDO30E68mzi7JmMmedPNtc5nQ/pubhtml?gid=342426926&single=true" target="_blank" class="excel-sheet-btn">📊 Price & Details</a>
+                        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQTqkLgKRYsZ3_bRDIKAnJkK-dcfzK271ZHfC_TqiDO30E68mzi7JmMmedPNtc5nQ/pubhtml?gid=342426926&single=true" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   class="excel-sheet-btn">📊 Price & Details</a>
                     </div>
 
                     <div id="prodCat2Box" class="sub-box" style="margin-top: 10px;">
@@ -1821,6 +1824,59 @@
         }
     });
 }
+        // LocalStorage මගින් Current Active States සුරැකීම
+function savePanelState(panelId, subBoxId) {
+    sessionStorage.setItem('activePanel', panelId);
+    if (subBoxId) {
+        sessionStorage.setItem('activeSubBox', subBoxId);
+    }
+}
+
+// Sub-product Box Click කිරීමේදී State Save කිරීම
+function toggleSubProductBox(boxId, cardElement) {
+    let allSubBoxes = document.querySelectorAll('#allProductsBox > .sub-box');
+    let allCards = document.querySelectorAll('.sub-product-card');
+    let targetBox = document.getElementById(boxId);
+
+    allCards.forEach(card => card.classList.remove('active'));
+    allSubBoxes.forEach(box => {
+        if (box !== targetBox) box.classList.remove('open');
+    });
+
+    if (targetBox) {
+        let isOpen = targetBox.classList.contains('open');
+        targetBox.classList.toggle('open');
+        
+        if (!isOpen) {
+            if (cardElement) cardElement.classList.add('active');
+            sessionStorage.setItem('lastSubBox', boxId);
+            setTimeout(() => {
+                targetBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 50);
+        } else {
+            sessionStorage.removeItem('lastSubBox');
+        }
+    }
+}
+
+// Page එක Load / Back වෙද්දී තිබූ තත්වයට පැමිණීම (Restore State)
+window.addEventListener('DOMContentLoaded', () => {
+    let lastSubBox = sessionStorage.getItem('lastSubBox');
+    if (lastSubBox) {
+        let accessoriesPanel = document.getElementById('accessoriesPanel');
+        let allProductsBox = document.getElementById('allProductsBox');
+        let targetSubBox = document.getElementById(lastSubBox);
+
+        if (accessoriesPanel) accessoriesPanel.classList.add('active');
+        if (allProductsBox) allProductsBox.classList.add('open');
+        if (targetSubBox) {
+            targetSubBox.classList.add('open');
+            setTimeout(() => {
+                targetSubBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+        }
+    }
+});
     </script>
 </body>
 </html>
