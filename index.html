@@ -1270,7 +1270,10 @@
                             <li>Drawing Books, Note Books</li>
                             <li>View inventory, Prices and details</li>
                         </ul>
-                        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQTqkLgKRYsZ3_bRDIKAnJkK-dcfzK271ZHfC_TqiDO30E68mzi7JmMmedPNtc5nQ/pubhtml?gid=342426926&single=true" target="_blank" rel="noopener noreferrer" class="excel-sheet-btn">📊 Price & Details</a>
+                        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQTqkLgKRYsZ3_bRDIKAnJkK-dcfzK271ZHfC_TqiDO30E68mzi7JmMmedPNtc5nQ/pubhtml?gid=342426926&single=true" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="excel-sheet-btn">📊 Price & Details</a>
                     </div>
 
                     <div id="prodCat2Box" class="sub-box" style="margin-top: 10px;">
@@ -1667,51 +1670,78 @@
         }
 
         // --- SUB-PRODUCT TOGGLE WITH AUTO-SCROLL ---
-        function toggleSubProductBox(boxId, cardElement) {
-            let allSubBoxes = document.querySelectorAll('#allProductsBox > .sub-box');
-            let allCards = document.querySelectorAll('.sub-product-card');
-            let targetBox = document.getElementById(boxId);
+function toggleSubProductBox(boxId, cardElement) {
+    let allSubBoxes = document.querySelectorAll('#allProductsBox > .sub-box');
+    let allCards = document.querySelectorAll('.sub-product-card');
+    let targetBox = document.getElementById(boxId);
 
-            allCards.forEach(card => card.classList.remove('active'));
-            allSubBoxes.forEach(box => {
-                if (box !== targetBox) box.classList.remove('open');
-            });
+    allCards.forEach(card => card.classList.remove('active'));
+    allSubBoxes.forEach(box => {
+        if (box !== targetBox) box.classList.remove('open');
+    });
 
-            if (targetBox) {
-                let isOpen = targetBox.classList.contains('open');
-                targetBox.classList.toggle('open');
-                
-                if (!isOpen) {
-                    if (cardElement) cardElement.classList.add('active');
-                    sessionStorage.setItem('lastSubBox', boxId);
-                    setTimeout(() => {
-                        targetBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }, 50);
-                } else {
-                    sessionStorage.removeItem('lastSubBox');
-                }
-            }
+    if (targetBox) {
+        let isOpen = targetBox.classList.contains('open');
+        targetBox.classList.toggle('open');
+        
+        if (!isOpen) {
+            if (cardElement) cardElement.classList.add('active');
+            
+            // Session Storage Updates
+            sessionStorage.setItem('activePanel', 'accessoriesPanel');
+            sessionStorage.setItem('activeMainBox', 'allProductsBox');
+            sessionStorage.setItem('lastSubBox', boxId);
+
+            setTimeout(() => {
+                targetBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 50);
+        } else {
+            sessionStorage.removeItem('lastSubBox');
         }
+    }
+}
 
-        // --- PACKAGE TOGGLE WITH AUTO-SCROLL ---
-        function togglePackage(pkgId) {
-            let allBoxes = document.querySelectorAll('.package-content-box');
-            let targetBox = document.getElementById(pkgId);
+// --- PACKAGE TOGGLE WITH AUTO-SCROLL ---
+function togglePackage(pkgId) {
+    let allBoxes = document.querySelectorAll('.package-content-box');
+    let targetBox = document.getElementById(pkgId);
 
-            if (!targetBox) return;
+    if (!targetBox) return;
 
-            let isAlreadyOpen = targetBox.style.display === 'block';
+    let isAlreadyOpen = targetBox.style.display === 'block';
 
-            allBoxes.forEach(box => box.style.display = 'none');
+    allBoxes.forEach(box => box.style.display = 'none');
 
-            if (!isAlreadyOpen) {
-                targetBox.style.display = 'block';
-                setTimeout(() => {
-                    targetBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 50);
-            }
+    if (!isAlreadyOpen) {
+        targetBox.style.display = 'block';
+        setTimeout(() => {
+            targetBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+    }
+}
+
+// --- RESTORE STATE ON PAGE RELOAD / BACK NAVIGATION ---
+window.addEventListener('DOMContentLoaded', () => {
+    let activePanelId = sessionStorage.getItem('activePanel');
+    let activeMainBoxId = sessionStorage.getItem('activeMainBox');
+    let lastSubBoxId = sessionStorage.getItem('lastSubBox');
+
+    if (lastSubBoxId) {
+        let activePanel = document.getElementById(activePanelId || 'accessoriesPanel');
+        let activeMainBox = document.getElementById(activeMainBoxId || 'allProductsBox');
+        let targetSubBox = document.getElementById(lastSubBoxId);
+
+        if (activePanel) activePanel.classList.add('active');
+        if (activeMainBox) activeMainBox.classList.add('open');
+        
+        if (targetSubBox) {
+            targetSubBox.classList.add('open');
+            setTimeout(() => {
+                targetSubBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 200);
         }
-
+    }
+});
         function copyAccNumber(id, btn) {
             let accNum = document.getElementById(id).innerText;
             navigator.clipboard.writeText(accNum).then(() => {
