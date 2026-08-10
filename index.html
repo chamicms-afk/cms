@@ -1687,7 +1687,7 @@ function toggleSubProductBox(boxId, cardElement) {
         if (!isOpen) {
             if (cardElement) cardElement.classList.add('active');
             
-            // Session Storage Updates
+            // Storage එකට Save කිරීම
             sessionStorage.setItem('activePanel', 'accessoriesPanel');
             sessionStorage.setItem('activeMainBox', 'allProductsBox');
             sessionStorage.setItem('lastSubBox', boxId);
@@ -1720,8 +1720,8 @@ function togglePackage(pkgId) {
     }
 }
 
-// --- RESTORE STATE ON PAGE RELOAD / BACK NAVIGATION ---
-window.addEventListener('DOMContentLoaded', () => {
+// --- RESTORE STATE ON BACK / RELOAD (PAGESHOW EVENT) ---
+window.addEventListener('pageshow', (event) => {
     let activePanelId = sessionStorage.getItem('activePanel');
     let activeMainBoxId = sessionStorage.getItem('activeMainBox');
     let lastSubBoxId = sessionStorage.getItem('lastSubBox');
@@ -1731,14 +1731,24 @@ window.addEventListener('DOMContentLoaded', () => {
         let activeMainBox = document.getElementById(activeMainBoxId || 'allProductsBox');
         let targetSubBox = document.getElementById(lastSubBoxId);
 
-        if (activePanel) activePanel.classList.add('active');
-        if (activeMainBox) activeMainBox.classList.add('open');
+        // Active Classes / Styles Auto Apply කිරීම
+        if (activePanel) {
+            activePanel.classList.add('active');
+            activePanel.style.display = 'block'; // Display block නැත්නම් පෙනෙන්නේ නැත
+        }
+        
+        if (activeMainBox) {
+            activeMainBox.classList.add('open');
+            activeMainBox.style.display = 'block';
+        }
         
         if (targetSubBox) {
             targetSubBox.classList.add('open');
+            targetSubBox.style.display = 'block';
+            
             setTimeout(() => {
                 targetSubBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 200);
+            }, 300);
         }
     }
 });
