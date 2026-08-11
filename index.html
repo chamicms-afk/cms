@@ -1659,16 +1659,34 @@
             }
         }
 
-        // --- SUB-PRODUCT TOGGLE WITH HASH HISTORY ---
+        // --- SUB-PRODUCT TOGGLE WITH AUTO-SCROLL ---
         function toggleSubProductBox(boxId, cardElement) {
-            let currentHash = window.location.hash.replace('#', '');
-            
-            if (currentHash === boxId) {
-                // දැනට Open වී ඇති Box එකම Click කළහොත් Close කර Back යන්න
-                history.back();
-            } else {
-                // අලුත් Sub Box එකක් Click කළ විට URL Hash එක Push කරන්න
-                window.location.hash = boxId;
+            let allSubBoxes = document.querySelectorAll('#allProductsBox > .sub-box');
+            let allCards = document.querySelectorAll('.sub-product-card');
+            let targetBox = document.getElementById(boxId);
+
+            allCards.forEach(card => card.classList.remove('active'));
+            allSubBoxes.forEach(box => {
+                if (box !== targetBox) box.classList.remove('open');
+            });
+
+            if (targetBox) {
+                let isOpen = targetBox.classList.contains('open');
+                targetBox.classList.toggle('open');
+                
+                if (!isOpen) {
+                    if (cardElement) cardElement.classList.add('active');
+                    
+                    sessionStorage.setItem('activePanel', 'accessoriesPanel');
+                    sessionStorage.setItem('activeMainBox', 'allProductsBox');
+                    sessionStorage.setItem('lastSubBox', boxId);
+
+                    setTimeout(() => {
+                        targetBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 50);
+                } else {
+                    sessionStorage.removeItem('lastSubBox');
+                }
             }
         }
 
@@ -1691,63 +1709,38 @@
             }
         }
 
-        // --- CORE FUNCTION: RENDER UI BASED ON URL HASH ---
-        function handleHashChange() {
-            let hash = window.location.hash.replace('#', '');
-            
-            let allSubBoxes = document.querySelectorAll('#allProductsBox > .sub-box');
-            let allCards = document.querySelectorAll('.sub-product-card');
-            let accessoriesPanel = document.getElementById('accessoriesPanel');
-            let allProductsBox = document.getElementById('allProductsBox');
+        // --- RESTORE STATE ON BACK / RELOAD (PAGESHOW EVENT) ---
+        window.addEventListener('pageshow', () => {
+            let activePanelId = sessionStorage.getItem('activePanel');
+            let activeMainBoxId = sessionStorage.getItem('activeMainBox');
+            let lastSubBoxId = sessionStorage.getItem('lastSubBox');
 
-            // 1. සියලුම Sub Boxes සහ Card Active State අයින් කරන්න
-            allSubBoxes.forEach(box => {
-                box.classList.remove('open');
-                box.style.display = 'none'; // DOM display එකත් Force reset කරනවා
-            });
-            allCards.forEach(card => card.classList.remove('active'));
+            if (lastSubBoxId) {
+                let activePanel = document.getElementById(activePanelId || 'accessoriesPanel');
+                let activeMainBox = document.getElementById(activeMainBoxId || 'allProductsBox');
+                let targetSubBox = document.getElementById(lastSubBoxId);
 
-            // 2. Hash එකක් නැත්නම් (Back ගිහින් මුල් තත්වයට ආවා නම්) ඔක්කොම Sub Box Close තියන්න
-            if (!hash) return;
-
-            // 3. Hash එකට අදාළ Box එක සොයාගන්න
-            let targetBox = document.getElementById(hash);
-
-            if (targetBox) {
-                // Parent Panels Open කිරීම
-                if (accessoriesPanel) {
-                    accessoriesPanel.classList.add('active');
-                    accessoriesPanel.style.display = 'block';
+                if (activePanel) {
+                    activePanel.classList.add('active');
+                    activePanel.style.display = 'block';
                 }
-                if (allProductsBox) {
-                    allProductsBox.classList.add('open');
-                    allProductsBox.style.display = 'block';
+                
+                if (activeMainBox) {
+                    activeMainBox.classList.add('open');
+                    activeMainBox.style.display = 'block';
                 }
-
-                // Sub Box එක Open කිරීම
-                targetBox.classList.add('open');
-                targetBox.style.display = 'block';
-
-                // අදාළ Sub Product Card එක Active (Highlight) කිරීම
-                allCards.forEach(card => {
-                    let onclickAttr = card.getAttribute('onclick') || '';
-                    if (onclickAttr.includes(`'${hash}'`)) {
-                        card.classList.add('active');
-                    }
-                });
-
-                // Auto Scroll
-                setTimeout(() => {
-                    targetBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }, 100);
+                
+                if (targetSubBox) {
+                    targetSubBox.classList.add('open');
+                    targetSubBox.style.display = 'block';
+                    
+                    setTimeout(() => {
+                        targetSubBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
+                }
             }
-        }
+        });
 
-        // --- LISTENERS (HASH වෙනස් වන සෑම විටම UI එක UPDATE වේ) ---
-        window.addEventListener('hashchange', handleHashChange);
-        window.addEventListener('load', handleHashChange);
-        window.addEventListener('pageshow', handleHashChange);
-        
         function copyAccNumber(id, btn) {
             let accNum = document.getElementById(id).innerText;
             navigator.clipboard.writeText(accNum).then(() => {
@@ -1827,7 +1820,7 @@
                     if (!firstMatchFound) {
                         let yOffset = -120; 
                         let elementPosition = box.getBoundingClientRect().top + window.pageYOffset;
-                        window.scrollTo({ top: elementPosition + yOffset, behavior: 'smooth' });
+                        window.scrollTo({ top:elementPosition + yOffset, behavior: 'smooth' });
                         firstMatchFound = true;
                     }
                 }
