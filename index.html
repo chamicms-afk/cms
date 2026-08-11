@@ -779,7 +779,18 @@
             .payment-list { grid-template-columns: 1fr; }
             .package-logo-btn { height: 46px; padding: 6px 6px; }
         }
-    </style>
+    
+        /* ===== CMS GOOGLE SHEET VIEWER ===== */
+        #sheetViewerModal { display:none; position:fixed; inset:0; z-index:99999; background:rgba(15,23,42,.78); padding:10px; box-sizing:border-box; }
+        #sheetViewerModal.open { display:flex; align-items:stretch; justify-content:center; }
+        .sheet-viewer-window { width:min(1500px,100%); height:100%; background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 20px 70px rgba(0,0,0,.4); display:flex; flex-direction:column; }
+        .sheet-viewer-toolbar { flex:0 0 auto; min-height:54px; display:flex; align-items:center; gap:10px; padding:8px 12px; background:#0f172a; color:#fff; }
+        .sheet-back-btn { border:0; border-radius:9px; background:#16a34a; color:#fff; font-weight:800; font-size:14px; padding:10px 16px; cursor:pointer; }
+        .sheet-back-btn:hover { background:#15803d; }
+        .sheet-viewer-title { font-weight:700; font-size:14px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        #sheetViewerFrame { flex:1 1 auto; width:100%; height:100%; border:0; background:#fff; }
+        @media (max-width:600px) { #sheetViewerModal{padding:0;} .sheet-viewer-window{border-radius:0;} .sheet-viewer-toolbar{min-height:50px;padding:7px 9px;} .sheet-back-btn{padding:9px 12px;font-size:13px;} .sheet-viewer-title{font-size:12px;} }
+</style>
 </head>
 <body>
 
@@ -996,7 +1007,7 @@
                         <li>Data Packs, Voice & Router Recharges</li>
                         <li>Instant Reload & Online Recharges available</li>
                     </ul>
-                    <a href="https://docs.google.com/spreadsheets/d/your-reload-sheet-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Reload Excel Sheet</a>
+                    <a href="javascript:void(0)" data-sheet-url="https://docs.google.com/spreadsheets/d/your-reload-sheet-id/edit" class="excel-sheet-btn">📊 Open Reload Excel Sheet</a>
                 </div>
 
                 <button onclick="toggleSection('rechargeCardsBox', this);" class="serviceBtn">Recharge Cards</button>
@@ -1005,7 +1016,7 @@
                     <ul>
                         <li>Rs. 50, Rs. 79, Rs. 100, Rs. 159 & More</li>
                     </ul>
-                    <a href="https://docs.google.com/spreadsheets/d/your-cards-sheet-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Recharge Cards Stock Sheet</a>
+                    <a href="javascript:void(0)" data-sheet-url="https://docs.google.com/spreadsheets/d/your-cards-sheet-id/edit" class="excel-sheet-btn">📊 Open Recharge Cards Stock Sheet</a>
                 </div>
 
                 <button onclick="toggleSection('newSimBox', this);" class="serviceBtn">New SIM Connections</button>
@@ -1017,7 +1028,7 @@
                         <li>Sim change (Lost/Damage)</li>
                         <li><span style="color:red;">*</span> Please bring your original NIC (ජාතික හැඳුනුම්පත)</li>
                     </ul>
-                    <a href="https://docs.google.com/spreadsheets/d/your-sim-sheet-id/edit" target="_blank" class="excel-sheet-btn">📊 Open SIM Inventory Excel Sheet</a>
+                    <a href="javascript:void(0)" data-sheet-url="https://docs.google.com/spreadsheets/d/your-sim-sheet-id/edit" class="excel-sheet-btn">📊 Open SIM Inventory Excel Sheet</a>
                 </div>
             </div>
 
@@ -1207,7 +1218,7 @@
                         </ul>
                     </div>
                     
-                    <a href="https://docs.google.com/spreadsheets/d/your-stationery-sheet-id/edit" target="_blank" class="excel-sheet-btn">📊 Open Stationeries / Products Excel Sheet</a>
+                    <a href="javascript:void(0)" data-sheet-url="https://docs.google.com/spreadsheets/d/your-stationery-sheet-id/edit" class="excel-sheet-btn">📊 Open Stationeries / Products Excel Sheet</a>
                 </div>
 
                 <!-- 4. ALL PRODUCTS (Retail Hub Style Grid with 8 Category Cards) -->
@@ -1260,9 +1271,7 @@
                             <li>Drawing Books, Note Books</li>
                             <li>View inventory, Prices and details</li>
                         </ul>
-                        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQTqkLgKRYsZ3_bRDIKAnJkK-dcfzK271ZHfC_TqiDO30E68mzi7JmMmedPNtc5nQ/pubhtml?gid=342426926&single=true" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
+                        <a href="javascript:void(0)" data-sheet-url="https://docs.google.com/spreadsheets/d/e/2PACX-1vQTqkLgKRYsZ3_bRDIKAnJkK-dcfzK271ZHfC_TqiDO30E68mzi7JmMmedPNtc5nQ/pubhtml?gid=342426926&single=true" 
                            class="excel-sheet-btn">📊 Price & Details</a>
                     </div>
 
@@ -1274,7 +1283,7 @@
                             <li>Folscap Paper / Dimai Paper</li>
                             <li>Bristol Board / Brown Paper</li>
                         </ul>
-                        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4DkJBR6n4wo0-4Qr40gocDAv4pfXITyU09W7ZAj9BsqQ5t7aHPUSbxYUgSGhN_w/pubhtml?gid=1337537030&single=true" target="_blank" class="excel-sheet-btn">📊 Price & Details</a>
+                        <a href="javascript:void(0)" data-sheet-url="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4DkJBR6n4wo0-4Qr40gocDAv4pfXITyU09W7ZAj9BsqQ5t7aHPUSbxYUgSGhN_w/pubhtml?gid=1337537030&single=true" class="excel-sheet-btn">📊 Price & Details</a>
                     </div>
 
                     <div id="prodCat3Box" class="sub-box" style="margin-top: 10px;">
@@ -1285,7 +1294,7 @@
                             <li>Colour Pencil - Atlas, Mango </li>
                             <li>Colour Pen - Atlas, Mango, Speed </li>
                         </ul>
-                        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSPmy0-PiijVer1Wkl9Q4fHHDt83BDIg6bKmv8TL3JfqFd3Y6PD50qpO3t6b8ZNbQ/pubhtml?gid=264933185&single=true" target="_blank" class="excel-sheet-btn">📊 Price & Details</a>
+                        <a href="javascript:void(0)" data-sheet-url="https://docs.google.com/spreadsheets/d/e/2PACX-1vSPmy0-PiijVer1Wkl9Q4fHHDt83BDIg6bKmv8TL3JfqFd3Y6PD50qpO3t6b8ZNbQ/pubhtml?gid=264933185&single=true" class="excel-sheet-btn">📊 Price & Details</a>
                     </div>
 
                    <div id="prodCat4Box" class="sub-box" style="margin-top: 10px;">
@@ -1296,7 +1305,7 @@
                             <li>Maths Set, Puncer, Staplers</li>
                             <li>Ruler, Stickers, Paper Clips</li> 
                         </ul>
-                        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQBcOkrDZ9CZl8FpxSTDY15D_XBf3Gw_P2nUmG47v1Z3LQThDYIqWucnv3WSvuK9w/pubhtml?gid=1456422593&single=true" target="_blank" class="excel-sheet-btn">📊 Price & Details</a>
+                        <a href="javascript:void(0)" data-sheet-url="https://docs.google.com/spreadsheets/d/e/2PACX-1vQBcOkrDZ9CZl8FpxSTDY15D_XBf3Gw_P2nUmG47v1Z3LQThDYIqWucnv3WSvuK9w/pubhtml?gid=1456422593&single=true" class="excel-sheet-btn">📊 Price & Details</a>
                     </div> 
 
                     <div id="prodCat5Box" class="sub-box" style="margin-top: 10px;">
@@ -1304,7 +1313,7 @@
                         <ul>
                             <li>View inventory, prices and details for Category 5.</li>
                         </ul>
-                        <a href="https://docs.google.com/spreadsheets/d/your-all-products-sheet-5-id/edit" target="_blank" class="excel-sheet-btn">📊 Price & Details</a>
+                        <a href="javascript:void(0)" data-sheet-url="https://docs.google.com/spreadsheets/d/your-all-products-sheet-5-id/edit" class="excel-sheet-btn">📊 Price & Details</a>
                     </div>
 
                     <div id="prodCat6Box" class="sub-box" style="margin-top: 10px;">
@@ -1312,7 +1321,7 @@
                         <ul>
                             <li>View inventory, prices and details for Category 6.</li>
                         </ul>
-                        <a href="https://docs.google.com/spreadsheets/d/your-all-products-sheet-6-id/edit" target="_blank" class="excel-sheet-btn">📊 Price & Details</a>
+                        <a href="javascript:void(0)" data-sheet-url="https://docs.google.com/spreadsheets/d/your-all-products-sheet-6-id/edit" class="excel-sheet-btn">📊 Price & Details</a>
                     </div>
 
                     <div id="prodCat7Box" class="sub-box" style="margin-top: 10px;">
@@ -1320,7 +1329,7 @@
                         <ul>
                             <li>View inventory, prices and details for Category 7.</li>
                         </ul>
-                        <a href="https://docs.google.com/spreadsheets/d/your-all-products-sheet-7-id/edit" target="_blank" class="excel-sheet-btn">📊 Price & Details</a>
+                        <a href="javascript:void(0)" data-sheet-url="https://docs.google.com/spreadsheets/d/your-all-products-sheet-7-id/edit" class="excel-sheet-btn">📊 Price & Details</a>
                     </div>
 
                     <div id="prodCat8Box" class="sub-box" style="margin-top: 10px;">
@@ -1328,7 +1337,7 @@
                         <ul>
                             <li>View inventory, prices and details for Category 8.</li>
                         </ul>
-                        <a href="https://docs.google.com/spreadsheets/d/your-all-products-sheet-8-id/edit" target="_blank" class="excel-sheet-btn">📊 Price & Details</a>
+                        <a href="javascript:void(0)" data-sheet-url="https://docs.google.com/spreadsheets/d/your-all-products-sheet-8-id/edit" class="excel-sheet-btn">📊 Price & Details</a>
                     </div>
                 </div>
             </div>
@@ -1539,6 +1548,17 @@
         </div>
     </div>
 
+    <!-- Google Sheet Viewer: keeps the CMS page in place and provides a safe Back button -->
+    <div id="sheetViewerModal" aria-hidden="true">
+        <div class="sheet-viewer-window">
+            <div class="sheet-viewer-toolbar">
+                <button type="button" class="sheet-back-btn" onclick="closeSheetViewer()">← BACK TO CMS</button>
+                <div id="sheetViewerTitle" class="sheet-viewer-title">Google Sheet</div>
+            </div>
+            <iframe id="sheetViewerFrame" title="Google Sheet" allow="clipboard-read; clipboard-write"></iframe>
+        </div>
+    </div>
+
     <!-- Full Image Preview Lightbox -->
     <div id="imageLightbox" class="lightbox-modal" onclick="closeLightbox(event)">
         <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
@@ -1736,25 +1756,106 @@
             }
         }
 
-        // Save state and FORCE Excel / Google Sheet links to open in a separate tab.
-        // Preventing the default anchor navigation is important here: otherwise the
-        // CMS page itself can enter the browser history and Back will move the UI.
-        document.addEventListener('click', function (event) {
-            const link = event.target.closest('a.excel-sheet-btn');
-            if (!link) return;
+        // ===== GOOGLE SHEET VIEWER =====
+        // Sheets are shown inside the CMS so the browser never navigates away from this page.
+        // The green BACK TO CMS button closes the viewer and restores the exact position.
+        let sheetViewerOpened = false;
+        let sheetViewerState = null;
 
-            event.preventDefault();
-            event.stopPropagation();
+        function saveUIState() {
+            try {
+                const scrollY = window.scrollY || window.pageYOffset || 0;
+                sessionStorage.setItem('cmsScrollY', String(scrollY));
 
+                const activePanel = document.querySelector('.category-detail-panel.active');
+                if (activePanel && activePanel.id) sessionStorage.setItem('activePanel', activePanel.id);
+
+                const allProducts = document.getElementById('allProductsBox');
+                if (allProducts && allProducts.classList.contains('open')) {
+                    sessionStorage.setItem('activeMainBox', allProducts.id);
+                }
+
+                const openSubBoxes = Array.from(document.querySelectorAll('.sub-box.open'));
+                const lastSubBox = openSubBoxes.length ? openSubBoxes[openSubBoxes.length - 1] : null;
+                if (lastSubBox && lastSubBox.id) sessionStorage.setItem('lastSubBox', lastSubBox.id);
+
+                sheetViewerState = {
+                    scrollY,
+                    activePanel: activePanel ? activePanel.id : sessionStorage.getItem('activePanel'),
+                    activeMainBox: (allProducts && allProducts.classList.contains('open')) ? allProducts.id : sessionStorage.getItem('activeMainBox'),
+                    lastSubBox: lastSubBox ? lastSubBox.id : sessionStorage.getItem('lastSubBox')
+                };
+            } catch (err) { console.warn('CMS UI state could not be saved:', err); }
+        }
+
+        function openSheetViewer(sheetUrl, title) {
+            if (!sheetUrl || sheetUrl.indexOf('your-') !== -1) {
+                alert('Please add the actual Google Sheet URL first.');
+                return false;
+            }
             saveUIState();
+            const modal = document.getElementById('sheetViewerModal');
+            const frame = document.getElementById('sheetViewerFrame');
+            const titleBox = document.getElementById('sheetViewerTitle');
+            if (!modal || !frame) return false;
 
-            const url = link.href;
-            if (url) {
-                window.open(url, '_blank', 'noopener,noreferrer');
+            titleBox.textContent = title || 'Google Sheet';
+            frame.src = sheetUrl;
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden','false');
+            document.body.style.overflow = 'hidden';
+            sheetViewerOpened = true;
+            return false;
+        }
+
+        function closeSheetViewer() {
+            const modal = document.getElementById('sheetViewerModal');
+            const frame = document.getElementById('sheetViewerFrame');
+            if (!modal) return;
+
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden','true');
+            if (frame) frame.src = 'about:blank';
+            document.body.style.overflow = '';
+            sheetViewerOpened = false;
+
+            const state = sheetViewerState || {};
+            const activePanelId = state.activePanel || sessionStorage.getItem('activePanel');
+            const activeMainBoxId = state.activeMainBox || sessionStorage.getItem('activeMainBox');
+            const lastSubBoxId = state.lastSubBox || sessionStorage.getItem('lastSubBox');
+
+            if (activePanelId) {
+                const panel = document.getElementById(activePanelId);
+                if (panel) { panel.classList.add('active'); panel.style.display='block'; }
+            }
+            if (activeMainBoxId) {
+                const mainBox = document.getElementById(activeMainBoxId);
+                if (mainBox) { mainBox.classList.add('open'); mainBox.style.display='block'; }
+            }
+            if (lastSubBoxId) {
+                const subBox = document.getElementById(lastSubBoxId);
+                if (subBox) { subBox.classList.add('open'); subBox.style.display='block'; }
             }
 
+            const y = Number(state.scrollY ?? sessionStorage.getItem('cmsScrollY') ?? 0);
+            requestAnimationFrame(() => requestAnimationFrame(() => window.scrollTo({top:y,left:0,behavior:'auto'})));
+        }
+
+        document.addEventListener('click', function(event) {
+            const link = event.target.closest('a.excel-sheet-btn');
+            if (!link) return;
+            event.preventDefault();
+            event.stopPropagation();
+            const url = link.getAttribute('href');
+            // If another handler has changed href, use the real URL stored in data-sheet-url when available.
+            const sheetUrl = link.getAttribute('data-sheet-url') || url;
+            openSheetViewer(sheetUrl, link.textContent.trim());
             return false;
         }, true);
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && sheetViewerOpened) closeSheetViewer();
+        });
 
         // Also save the current scroll position while the user is browsing.
         let cmsScrollSaveTimer;
