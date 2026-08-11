@@ -1824,21 +1824,58 @@
             const activeMainBoxId = state.activeMainBox || sessionStorage.getItem('activeMainBox');
             const lastSubBoxId = state.lastSubBox || sessionStorage.getItem('lastSubBox');
 
-            if (activePanelId) {
-                const panel = document.getElementById(activePanelId);
-                if (panel) { panel.classList.add('active'); panel.style.display='block'; }
-            }
-            if (activeMainBoxId) {
-                const mainBox = document.getElementById(activeMainBoxId);
-                if (mainBox) { mainBox.classList.add('open'); mainBox.style.display='block'; }
-            }
-            if (lastSubBoxId) {
-                const subBox = document.getElementById(lastSubBoxId);
-                if (subBox) { subBox.classList.add('open'); subBox.style.display='block'; }
+            // Restore ONLY the state that existed immediately before opening the sheet.
+            // First clear all product-category boxes/cards so an old category cannot
+            // remain open underneath the restored one.
+            const allProductBox = document.getElementById('allProductsBox');
+            if (allProductBox) {
+                allProductBox.querySelectorAll(':scope > .sub-box').forEach(box => {
+                    box.classList.remove('open');
+                    box.style.display = '';
+                });
+                allProductBox.querySelectorAll('.sub-product-card').forEach(card => {
+                    card.classList.remove('active');
+                });
             }
 
+            if (activePanelId) {
+                const panel = document.getElementById(activePanelId);
+                if (panel) {
+                    panel.classList.add('active');
+                    panel.style.display = 'block';
+                }
+            }
+
+            if (activeMainBoxId) {
+                const mainBox = document.getElementById(activeMainBoxId);
+                if (mainBox) {
+                    mainBox.classList.add('open');
+                    mainBox.style.display = 'block';
+                }
+            }
+
+            if (lastSubBoxId) {
+                const subBox = document.getElementById(lastSubBoxId);
+                if (subBox) {
+                    subBox.classList.add('open');
+                    subBox.style.display = 'block';
+
+                    // Re-activate the exact category card that was open before the sheet.
+                    const card = document.querySelector('.sub-product-card[onclick*="\'' + lastSubBoxId + '\'"]');
+                    if (card) card.classList.add('active');
+                }
+            }
+
+            // Keep the saved state, but make sure the next category click starts cleanly.
+            sessionStorage.setItem('activePanel', activePanelId || '');
+            sessionStorage.setItem('activeMainBox', activeMainBoxId || '');
+            if (lastSubBoxId) sessionStorage.setItem('lastSubBox', lastSubBoxId);
+            else sessionStorage.removeItem('lastSubBox');
+
             const y = Number(state.scrollY ?? sessionStorage.getItem('cmsScrollY') ?? 0);
-            requestAnimationFrame(() => requestAnimationFrame(() => window.scrollTo({top:y,left:0,behavior:'auto'})));
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                window.scrollTo({top:y,left:0,behavior:'auto'});
+            }));
         }
 
         document.addEventListener('click', function(event) {
