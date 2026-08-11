@@ -1736,13 +1736,25 @@
             }
         }
 
-        // Save state immediately before opening an external Excel / Google Sheet.
+        // Save state and FORCE Excel / Google Sheet links to open in a separate tab.
+        // Preventing the default anchor navigation is important here: otherwise the
+        // CMS page itself can enter the browser history and Back will move the UI.
         document.addEventListener('click', function (event) {
-            const link = event.target.closest('a.excel-sheet-btn, a.drive-link-btn');
-            if (link) {
-                saveUIState();
+            const link = event.target.closest('a.excel-sheet-btn');
+            if (!link) return;
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            saveUIState();
+
+            const url = link.href;
+            if (url) {
+                window.open(url, '_blank', 'noopener,noreferrer');
             }
-        });
+
+            return false;
+        }, true);
 
         // Also save the current scroll position while the user is browsing.
         let cmsScrollSaveTimer;
@@ -1752,6 +1764,11 @@
                 sessionStorage.setItem('cmsScrollY', String(window.scrollY || window.pageYOffset || 0));
             }, 80);
         }, { passive: true });
+
+        // Do not let the browser overwrite our saved UI position.
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
 
         // Restore UI state when coming back to this page, including browser Back.
         window.addEventListener('pageshow', function () {
