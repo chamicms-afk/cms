@@ -1659,33 +1659,47 @@
             }
         }
 
-        // --- SUB-PRODUCT TOGGLE WITH AUTO-SCROLL ---
+        // --- SUB-PRODUCT TOGGLE WITH URL HASH METHOD ---
         function toggleSubProductBox(boxId, cardElement) {
             let allSubBoxes = document.querySelectorAll('#allProductsBox > .sub-box');
             let allCards = document.querySelectorAll('.sub-product-card');
             let targetBox = document.getElementById(boxId);
 
             allCards.forEach(card => card.classList.remove('active'));
-            allSubBoxes.forEach(box => {
-                if (box !== targetBox) box.classList.remove('open');
-            });
 
             if (targetBox) {
                 let isOpen = targetBox.classList.contains('open');
-                targetBox.classList.toggle('open');
-                
-                if (!isOpen) {
-                    if (cardElement) cardElement.classList.add('active');
-                    
-                    sessionStorage.setItem('activePanel', 'accessoriesPanel');
-                    sessionStorage.setItem('activeMainBox', 'allProductsBox');
-                    sessionStorage.setItem('lastSubBox', boxId);
 
+                // සියලුම Sub-boxes ක්ලෝස් කිරීම
+                allSubBoxes.forEach(box => box.classList.remove('open'));
+
+                if (!isOpen) {
+                    // Parent Containers Open බව තහවුරු කිරීම
+                    let parentPanel = document.getElementById('accessoriesPanel');
+                    let parentMainBox = document.getElementById('allProductsBox');
+                    if (parentPanel) {
+                        parentPanel.classList.add('active');
+                        parentPanel.style.display = 'block';
+                    }
+                    if (parentMainBox) {
+                        parentMainBox.classList.add('open');
+                        parentMainBox.style.display = 'block';
+                    }
+
+                    targetBox.classList.add('open');
+                    targetBox.style.display = 'block';
+                    if (cardElement) cardElement.classList.add('active');
+
+                    // URL Hash එක Update කිරීම
+                    history.pushState(null, null, '#' + boxId);
+
+                    // Auto-Scroll
                     setTimeout(() => {
                         targetBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                     }, 50);
                 } else {
-                    sessionStorage.removeItem('lastSubBox');
+                    // Box එක Close කරන්නේ නම් Hash එක ඉවත් කිරීම
+                    history.pushState(null, null, window.location.pathname + window.location.search);
                 }
             }
         }
@@ -1709,38 +1723,50 @@
             }
         }
 
-        // --- RESTORE STATE ON BACK / RELOAD (PAGESHOW EVENT) ---
-        window.addEventListener('pageshow', () => {
-            let activePanelId = sessionStorage.getItem('activePanel');
-            let activeMainBoxId = sessionStorage.getItem('activeMainBox');
-            let lastSubBoxId = sessionStorage.getItem('lastSubBox');
+        // --- URL HASH එක අනුව BOX එක OPEN කරන FUNCTION එක ---
+        function openBoxFromHash() {
+            const hash = window.location.hash.replace('#', '');
+            if (!hash) return;
 
-            if (lastSubBoxId) {
-                let activePanel = document.getElementById(activePanelId || 'accessoriesPanel');
-                let activeMainBox = document.getElementById(activeMainBoxId || 'allProductsBox');
-                let targetSubBox = document.getElementById(lastSubBoxId);
+            const targetBox = document.getElementById(hash);
+            if (targetBox) {
+                const accessoriesPanel = document.getElementById('accessoriesPanel');
+                const allProductsBox = document.getElementById('allProductsBox');
 
-                if (activePanel) {
-                    activePanel.classList.add('active');
-                    activePanel.style.display = 'block';
+                if (accessoriesPanel) {
+                    accessoriesPanel.classList.add('active');
+                    accessoriesPanel.style.display = 'block';
                 }
+                if (allProductsBox) {
+                    allProductsBox.classList.add('open');
+                    allProductsBox.style.display = 'block';
+                }
+
+                let allSubBoxes = document.querySelectorAll('#allProductsBox > .sub-box');
+                allSubBoxes.forEach(box => box.classList.remove('open'));
                 
-                if (activeMainBox) {
-                    activeMainBox.classList.add('open');
-                    activeMainBox.style.display = 'block';
-                }
-                
-                if (targetSubBox) {
-                    targetSubBox.classList.add('open');
-                    targetSubBox.style.display = 'block';
-                    
-                    setTimeout(() => {
-                        targetSubBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }, 300);
-                }
+                targetBox.classList.add('open');
+                targetBox.style.display = 'block';
+
+                let allCards = document.querySelectorAll('.sub-product-card');
+                allCards.forEach(card => {
+                    if (card.getAttribute('onclick') && card.getAttribute('onclick').includes(hash)) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+                });
+
+                setTimeout(() => {
+                    targetBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 200);
             }
-        });
+        }
 
+        // --- LISTENERS FOR BACK/FORWARD & LOAD ---
+        window.addEventListener('DOMContentLoaded', openBoxFromHash);
+        window.addEventListener('popstate', openBoxFromHash);
+        window.addEventListener('pageshow', openBoxFromHash);
         function copyAccNumber(id, btn) {
             let accNum = document.getElementById(id).innerText;
             navigator.clipboard.writeText(accNum).then(() => {
