@@ -1709,35 +1709,88 @@
             }
         }
 
-        // --- RESTORE STATE ON BACK / RELOAD (PAGESHOW EVENT) ---
-        window.addEventListener('pageshow', () => {
-            let activePanelId = sessionStorage.getItem('activePanel');
-            let activeMainBoxId = sessionStorage.getItem('activeMainBox');
-            let lastSubBoxId = sessionStorage.getItem('lastSubBox');
+        // --- SAVE / RESTORE UI STATE WHEN RETURNING FROM EXCEL / GOOGLE SHEETS ---
+        // Saves the currently visible panel/boxes and the exact scroll position.
+        // This is especially useful when an Excel/Google Sheet is opened in a new tab.
+        function saveUIState() {
+            try {
+                sessionStorage.setItem('cmsScrollY', String(window.scrollY || window.pageYOffset || 0));
 
-            if (lastSubBoxId) {
-                let activePanel = document.getElementById(activePanelId || 'accessoriesPanel');
-                let activeMainBox = document.getElementById(activeMainBoxId || 'allProductsBox');
-                let targetSubBox = document.getElementById(lastSubBoxId);
+                const activePanel = document.querySelector('.category-detail-panel.active');
+                if (activePanel && activePanel.id) {
+                    sessionStorage.setItem('activePanel', activePanel.id);
+                }
 
+                const openMainBox = document.querySelector('.category-detail-panel.active > .sub-box.open, .category-detail-panel.active > .package-content-box.open');
+                if (openMainBox && openMainBox.id) {
+                    sessionStorage.setItem('activeMainBox', openMainBox.id);
+                }
+
+                const openSubBoxes = Array.from(document.querySelectorAll('.sub-box.open'));
+                const lastSubBox = openSubBoxes.length ? openSubBoxes[openSubBoxes.length - 1] : null;
+                if (lastSubBox && lastSubBox.id) {
+                    sessionStorage.setItem('lastSubBox', lastSubBox.id);
+                }
+            } catch (err) {
+                console.warn('CMS UI state could not be saved:', err);
+            }
+        }
+
+        // Save state immediately before opening an external Excel / Google Sheet.
+        document.addEventListener('click', function (event) {
+            const link = event.target.closest('a.excel-sheet-btn, a.drive-link-btn');
+            if (link) {
+                saveUIState();
+            }
+        });
+
+        // Also save the current scroll position while the user is browsing.
+        let cmsScrollSaveTimer;
+        window.addEventListener('scroll', function () {
+            clearTimeout(cmsScrollSaveTimer);
+            cmsScrollSaveTimer = setTimeout(function () {
+                sessionStorage.setItem('cmsScrollY', String(window.scrollY || window.pageYOffset || 0));
+            }, 80);
+        }, { passive: true });
+
+        // Restore UI state when coming back to this page, including browser Back.
+        window.addEventListener('pageshow', function () {
+            const activePanelId = sessionStorage.getItem('activePanel');
+            const activeMainBoxId = sessionStorage.getItem('activeMainBox');
+            const lastSubBoxId = sessionStorage.getItem('lastSubBox');
+            const savedScrollY = parseInt(sessionStorage.getItem('cmsScrollY') || '0', 10);
+
+            if (activePanelId) {
+                const activePanel = document.getElementById(activePanelId);
                 if (activePanel) {
                     activePanel.classList.add('active');
                     activePanel.style.display = 'block';
                 }
-                
+            }
+
+            if (activeMainBoxId) {
+                const activeMainBox = document.getElementById(activeMainBoxId);
                 if (activeMainBox) {
                     activeMainBox.classList.add('open');
                     activeMainBox.style.display = 'block';
                 }
-                
+            }
+
+            if (lastSubBoxId) {
+                const targetSubBox = document.getElementById(lastSubBoxId);
                 if (targetSubBox) {
                     targetSubBox.classList.add('open');
                     targetSubBox.style.display = 'block';
-                    
-                    setTimeout(() => {
-                        targetSubBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }, 300);
                 }
+            }
+
+            // Wait for the DOM/layout to settle before restoring the exact position.
+            if (savedScrollY > 0) {
+                requestAnimationFrame(function () {
+                    requestAnimationFrame(function () {
+                        window.scrollTo({ top: savedScrollY, left: 0, behavior: 'auto' });
+                    });
+                });
             }
         });
 
