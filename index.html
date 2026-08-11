@@ -1659,48 +1659,16 @@
             }
         }
 
-        // --- SUB-PRODUCT TOGGLE WITH URL HASH METHOD ---
+        // --- SUB-PRODUCT TOGGLE WITH HASH HISTORY ---
         function toggleSubProductBox(boxId, cardElement) {
-            let allSubBoxes = document.querySelectorAll('#allProductsBox > .sub-box');
-            let allCards = document.querySelectorAll('.sub-product-card');
-            let targetBox = document.getElementById(boxId);
-
-            allCards.forEach(card => card.classList.remove('active'));
-
-            if (targetBox) {
-                let isOpen = targetBox.classList.contains('open');
-
-                // සියලුම Sub-boxes ක්ලෝස් කිරීම
-                allSubBoxes.forEach(box => box.classList.remove('open'));
-
-                if (!isOpen) {
-                    // Parent Containers Open බව තහවුරු කිරීම
-                    let parentPanel = document.getElementById('accessoriesPanel');
-                    let parentMainBox = document.getElementById('allProductsBox');
-                    if (parentPanel) {
-                        parentPanel.classList.add('active');
-                        parentPanel.style.display = 'block';
-                    }
-                    if (parentMainBox) {
-                        parentMainBox.classList.add('open');
-                        parentMainBox.style.display = 'block';
-                    }
-
-                    targetBox.classList.add('open');
-                    targetBox.style.display = 'block';
-                    if (cardElement) cardElement.classList.add('active');
-
-                    // URL Hash එක Update කිරීම
-                    history.pushState(null, null, '#' + boxId);
-
-                    // Auto-Scroll
-                    setTimeout(() => {
-                        targetBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }, 50);
-                } else {
-                    // Box එක Close කරන්නේ නම් Hash එක ඉවත් කිරීම
-                    history.pushState(null, null, window.location.pathname + window.location.search);
-                }
+            let currentHash = window.location.hash.replace('#', '');
+            
+            if (currentHash === boxId) {
+                // දැනට Open වී ඇති Box එකම Click කළහොත් Close කර Back යන්න
+                history.back();
+            } else {
+                // අලුත් Sub Box එකක් Click කළ විට URL Hash එක Push කරන්න
+                window.location.hash = boxId;
             }
         }
 
@@ -1723,16 +1691,30 @@
             }
         }
 
-        // --- URL HASH එක අනුව BOX එක OPEN කරන FUNCTION එක ---
-        function openBoxFromHash() {
-            const hash = window.location.hash.replace('#', '');
+        // --- CORE FUNCTION: RENDER UI BASED ON URL HASH ---
+        function handleHashChange() {
+            let hash = window.location.hash.replace('#', '');
+            
+            let allSubBoxes = document.querySelectorAll('#allProductsBox > .sub-box');
+            let allCards = document.querySelectorAll('.sub-product-card');
+            let accessoriesPanel = document.getElementById('accessoriesPanel');
+            let allProductsBox = document.getElementById('allProductsBox');
+
+            // 1. සියලුම Sub Boxes සහ Card Active State අයින් කරන්න
+            allSubBoxes.forEach(box => {
+                box.classList.remove('open');
+                box.style.display = 'none'; // DOM display එකත් Force reset කරනවා
+            });
+            allCards.forEach(card => card.classList.remove('active'));
+
+            // 2. Hash එකක් නැත්නම් (Back ගිහින් මුල් තත්වයට ආවා නම්) ඔක්කොම Sub Box Close තියන්න
             if (!hash) return;
 
-            const targetBox = document.getElementById(hash);
-            if (targetBox) {
-                const accessoriesPanel = document.getElementById('accessoriesPanel');
-                const allProductsBox = document.getElementById('allProductsBox');
+            // 3. Hash එකට අදාළ Box එක සොයාගන්න
+            let targetBox = document.getElementById(hash);
 
+            if (targetBox) {
+                // Parent Panels Open කිරීම
                 if (accessoriesPanel) {
                     accessoriesPanel.classList.add('active');
                     accessoriesPanel.style.display = 'block';
@@ -1742,31 +1724,30 @@
                     allProductsBox.style.display = 'block';
                 }
 
-                let allSubBoxes = document.querySelectorAll('#allProductsBox > .sub-box');
-                allSubBoxes.forEach(box => box.classList.remove('open'));
-                
+                // Sub Box එක Open කිරීම
                 targetBox.classList.add('open');
                 targetBox.style.display = 'block';
 
-                let allCards = document.querySelectorAll('.sub-product-card');
+                // අදාළ Sub Product Card එක Active (Highlight) කිරීම
                 allCards.forEach(card => {
-                    if (card.getAttribute('onclick') && card.getAttribute('onclick').includes(hash)) {
+                    let onclickAttr = card.getAttribute('onclick') || '';
+                    if (onclickAttr.includes(`'${hash}'`)) {
                         card.classList.add('active');
-                    } else {
-                        card.classList.remove('active');
                     }
                 });
 
+                // Auto Scroll
                 setTimeout(() => {
-                    targetBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 200);
+                    targetBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
             }
         }
 
-        // --- LISTENERS FOR BACK/FORWARD & LOAD ---
-        window.addEventListener('DOMContentLoaded', openBoxFromHash);
-        window.addEventListener('popstate', openBoxFromHash);
-        window.addEventListener('pageshow', openBoxFromHash);
+        // --- LISTENERS (HASH වෙනස් වන සෑම විටම UI එක UPDATE වේ) ---
+        window.addEventListener('hashchange', handleHashChange);
+        window.addEventListener('load', handleHashChange);
+        window.addEventListener('pageshow', handleHashChange);
+        
         function copyAccNumber(id, btn) {
             let accNum = document.getElementById(id).innerText;
             navigator.clipboard.writeText(accNum).then(() => {
