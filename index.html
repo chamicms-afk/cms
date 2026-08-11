@@ -1621,6 +1621,28 @@
             }
         }, 5000);
 
+        // --- RESET ALL INNER SECTIONS OF A PANEL ---
+        function resetPanelSections(panel) {
+            if (!panel) return;
+
+            // Close only the panel's own top-level sub-boxes.
+            // Their nested boxes are also cleared so no old UI state survives.
+            panel.querySelectorAll('.sub-box').forEach(box => {
+                box.classList.remove('open');
+                box.style.removeProperty('display');
+            });
+
+            panel.querySelectorAll('.sub-product-card').forEach(card => {
+                card.classList.remove('active');
+            });
+
+            // Clear saved product-category state when the user changes panels.
+            if (panel.id !== 'accessoriesPanel') {
+                sessionStorage.removeItem('lastSubBox');
+                sessionStorage.removeItem('activeMainBox');
+            }
+        }
+
         // --- OPEN PANEL WITH AUTO-SCROLL ---
         function openPanel(panelId, cardElement) {
             try {
@@ -1632,16 +1654,40 @@
 
                 let isAlreadyActive = targetPanel.classList.contains('active');
 
-                allPanels.forEach(panel => panel.classList.remove('active'));
+                allPanels.forEach(panel => {
+                    if (panel !== targetPanel) {
+                        panel.classList.remove('active');
+                        resetPanelSections(panel);
+                    }
+                });
                 allCards.forEach(card => card.classList.remove('active'));
 
                 if (!isAlreadyActive) {
+                    // Every time a new main panel is opened, start its inner
+                    // buttons closed. This prevents old All Products state
+                    // from appearing automatically.
+                    resetPanelSections(targetPanel);
                     targetPanel.classList.add('active');
                     if (cardElement) cardElement.classList.add('active');
-                    
+
+                    // Save only the main panel. Inner sections will be saved
+                    // when the user actually opens them.
+                    sessionStorage.setItem('activePanel', panelId);
+                    sessionStorage.removeItem('activeMainBox');
+                    sessionStorage.removeItem('lastSubBox');
+
                     setTimeout(() => {
                         targetPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }, 50);
+                } else {
+                    // Clicking the currently open main panel should not
+                    // resurrect a previously opened inner section.
+                    resetPanelSections(targetPanel);
+                    targetPanel.classList.add('active');
+                    if (cardElement) cardElement.classList.add('active');
+                    sessionStorage.setItem('activePanel', panelId);
+                    sessionStorage.removeItem('activeMainBox');
+                    sessionStorage.removeItem('lastSubBox');
                 }
             } catch (err) {
                 console.error("Panel error:", err);
@@ -1657,57 +1703,110 @@
         }
 
         // --- TOGGLE SECTION WITH AUTO-SCROLL ---
+        // At each level, only ONE sibling section can be open.
+        // Example: Products & Accessories -> All Products -> one product category.
         function toggleSection(sectionId, btnElement) {
-            let element = document.getElementById(sectionId);
+            const element = document.getElementById(sectionId);
             if (!element) return;
 
-            let parentContainer = element.parentElement; 
-            let isOpen = element.classList.contains('open');
+            const parentContainer = element.parentElement;
+            const isOpen = element.classList.contains('open');
+            const siblingBoxes = parentContainer.querySelectorAll(':scope > .sub-box');
 
-            let siblingBoxes = parentContainer.querySelectorAll(':scope > .sub-box');
-            siblingBoxes.forEach(box => box.classList.remove('open'));
+            // Close every sibling at THIS level first.
+            siblingBoxes.forEach(box => {
+                if (box !== element) {
+                    box.classList.remove('open');
+                    box.style.removeProperty('display');
+                }
+            });
 
-            if (!isOpen) {
-                element.classList.add('open');
-                setTimeout(() => {
-                    if (btnElement) {
-                        btnElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    } else {
-                        element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }
-                }, 50);
+            if (isOpen) {
+                // Clicking the same button closes it.
+                element.classList.remove('open');
+                element.style.removeProperty('display');
+
+                if (sectionId === 'allProductsBox') {
+                    clearProductCategoryState();
+                    sessionStorage.removeItem('activeMainBox');
+                    sessionStorage.removeItem('lastSubBox');
+                }
+                return;
             }
+
+            // When opening All Products, always start with a clean product list.
+            if (sectionId === 'allProductsBox') {
+                clearProductCategoryState();
+                sessionStorage.setItem('activePanel', 'accessoriesPanel');
+                sessionStorage.setItem('activeMainBox', 'allProductsBox');
+                sessionStorage.removeItem('lastSubBox');
+            }
+
+            // Open only the button that was clicked.
+            element.classList.add('open');
+            element.style.removeProperty('display');
+
+            setTimeout(() => {
+                if (btnElement) {
+                    btnElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            }, 50);
+        }
+
+        // --- PRODUCT CATEGORY STATE HELPERS ---
+        function clearProductCategoryState() {
+            const allProductsBox = document.getElementById('allProductsBox');
+            if (!allProductsBox) return;
+
+            // Close every product category content box.
+            allProductsBox.querySelectorAll(':scope > .sub-box').forEach(box => {
+                box.classList.remove('open');
+                box.style.removeProperty('display');
+            });
+
+            // Remove the selected/active state from every category card.
+            allProductsBox.querySelectorAll('.sub-product-card').forEach(card => {
+                card.classList.remove('active');
+            });
+        }
+
+        function getOpenProductCategoryId() {
+            const allProductsBox = document.getElementById('allProductsBox');
+            if (!allProductsBox) return '';
+            const openBox = allProductsBox.querySelector(':scope > .sub-box.open');
+            return openBox ? openBox.id : '';
         }
 
         // --- SUB-PRODUCT TOGGLE WITH AUTO-SCROLL ---
         function toggleSubProductBox(boxId, cardElement) {
-            let allSubBoxes = document.querySelectorAll('#allProductsBox > .sub-box');
-            let allCards = document.querySelectorAll('.sub-product-card');
-            let targetBox = document.getElementById(boxId);
+            const targetBox = document.getElementById(boxId);
+            const allProductsBox = document.getElementById('allProductsBox');
+            if (!targetBox || !allProductsBox) return;
 
-            allCards.forEach(card => card.classList.remove('active'));
-            allSubBoxes.forEach(box => {
-                if (box !== targetBox) box.classList.remove('open');
-            });
+            const wasOpen = targetBox.classList.contains('open');
 
-            if (targetBox) {
-                let isOpen = targetBox.classList.contains('open');
-                targetBox.classList.toggle('open');
-                
-                if (!isOpen) {
-                    if (cardElement) cardElement.classList.add('active');
-                    
-                    sessionStorage.setItem('activePanel', 'accessoriesPanel');
-                    sessionStorage.setItem('activeMainBox', 'allProductsBox');
-                    sessionStorage.setItem('lastSubBox', boxId);
+            // ALWAYS close all other categories first.
+            clearProductCategoryState();
 
-                    setTimeout(() => {
-                        targetBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }, 50);
-                } else {
-                    sessionStorage.removeItem('lastSubBox');
-                }
+            // If the clicked category was already open, leave all categories closed.
+            if (wasOpen) {
+                sessionStorage.removeItem('lastSubBox');
+                return;
             }
+
+            // Open ONLY the category that was clicked.
+            targetBox.classList.add('open');
+            if (cardElement) cardElement.classList.add('active');
+
+            sessionStorage.setItem('activePanel', 'accessoriesPanel');
+            sessionStorage.setItem('activeMainBox', 'allProductsBox');
+            sessionStorage.setItem('lastSubBox', boxId);
+
+            setTimeout(() => {
+                targetBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 50);
         }
 
         // --- PACKAGE TOGGLE WITH AUTO-SCROLL ---
@@ -1729,33 +1828,6 @@
             }
         }
 
-        // --- SAVE / RESTORE UI STATE WHEN RETURNING FROM EXCEL / GOOGLE SHEETS ---
-        // Saves the currently visible panel/boxes and the exact scroll position.
-        // This is especially useful when an Excel/Google Sheet is opened in a new tab.
-        function saveUIState() {
-            try {
-                sessionStorage.setItem('cmsScrollY', String(window.scrollY || window.pageYOffset || 0));
-
-                const activePanel = document.querySelector('.category-detail-panel.active');
-                if (activePanel && activePanel.id) {
-                    sessionStorage.setItem('activePanel', activePanel.id);
-                }
-
-                const openMainBox = document.querySelector('.category-detail-panel.active > .sub-box.open, .category-detail-panel.active > .package-content-box.open');
-                if (openMainBox && openMainBox.id) {
-                    sessionStorage.setItem('activeMainBox', openMainBox.id);
-                }
-
-                const openSubBoxes = Array.from(document.querySelectorAll('.sub-box.open'));
-                const lastSubBox = openSubBoxes.length ? openSubBoxes[openSubBoxes.length - 1] : null;
-                if (lastSubBox && lastSubBox.id) {
-                    sessionStorage.setItem('lastSubBox', lastSubBox.id);
-                }
-            } catch (err) {
-                console.warn('CMS UI state could not be saved:', err);
-            }
-        }
-
         // ===== GOOGLE SHEET VIEWER =====
         // Sheets are shown inside the CMS so the browser never navigates away from this page.
         // The green BACK TO CMS button closes the viewer and restores the exact position.
@@ -1768,24 +1840,30 @@
                 sessionStorage.setItem('cmsScrollY', String(scrollY));
 
                 const activePanel = document.querySelector('.category-detail-panel.active');
-                if (activePanel && activePanel.id) sessionStorage.setItem('activePanel', activePanel.id);
-
                 const allProducts = document.getElementById('allProductsBox');
+                const openCategoryId = getOpenProductCategoryId();
+
+                if (activePanel && activePanel.id) {
+                    sessionStorage.setItem('activePanel', activePanel.id);
+                }
                 if (allProducts && allProducts.classList.contains('open')) {
                     sessionStorage.setItem('activeMainBox', allProducts.id);
                 }
-
-                const openSubBoxes = Array.from(document.querySelectorAll('.sub-box.open'));
-                const lastSubBox = openSubBoxes.length ? openSubBoxes[openSubBoxes.length - 1] : null;
-                if (lastSubBox && lastSubBox.id) sessionStorage.setItem('lastSubBox', lastSubBox.id);
+                if (openCategoryId) {
+                    sessionStorage.setItem('lastSubBox', openCategoryId);
+                } else {
+                    sessionStorage.removeItem('lastSubBox');
+                }
 
                 sheetViewerState = {
                     scrollY,
                     activePanel: activePanel ? activePanel.id : sessionStorage.getItem('activePanel'),
                     activeMainBox: (allProducts && allProducts.classList.contains('open')) ? allProducts.id : sessionStorage.getItem('activeMainBox'),
-                    lastSubBox: lastSubBox ? lastSubBox.id : sessionStorage.getItem('lastSubBox')
+                    lastSubBox: openCategoryId || ''
                 };
-            } catch (err) { console.warn('CMS UI state could not be saved:', err); }
+            } catch (err) {
+                console.warn('CMS UI state could not be saved:', err);
+            }
         }
 
         function openSheetViewer(sheetUrl, title) {
@@ -1822,22 +1900,15 @@
             const state = sheetViewerState || {};
             const activePanelId = state.activePanel || sessionStorage.getItem('activePanel');
             const activeMainBoxId = state.activeMainBox || sessionStorage.getItem('activeMainBox');
-            const lastSubBoxId = state.lastSubBox || sessionStorage.getItem('lastSubBox');
+            const lastSubBoxId = state.lastSubBox || '';
 
-            // Restore ONLY the state that existed immediately before opening the sheet.
-            // First clear all product-category boxes/cards so an old category cannot
-            // remain open underneath the restored one.
-            const allProductBox = document.getElementById('allProductsBox');
-            if (allProductBox) {
-                allProductBox.querySelectorAll(':scope > .sub-box').forEach(box => {
-                    box.classList.remove('open');
-                    box.style.display = '';
-                });
-                allProductBox.querySelectorAll('.sub-product-card').forEach(card => {
-                    card.classList.remove('active');
-                });
-            }
+            // IMPORTANT: start from a completely clean product-category state.
+            clearProductCategoryState();
 
+            // Restore the parent panel.
+            document.querySelectorAll('.category-detail-panel').forEach(panel => {
+                if (panel.id !== activePanelId) panel.classList.remove('active');
+            });
             if (activePanelId) {
                 const panel = document.getElementById(activePanelId);
                 if (panel) {
@@ -1846,6 +1917,7 @@
                 }
             }
 
+            // Restore the main All Products box.
             if (activeMainBoxId) {
                 const mainBox = document.getElementById(activeMainBoxId);
                 if (mainBox) {
@@ -1854,19 +1926,21 @@
                 }
             }
 
+            // Restore EXACTLY ONE product category, if one was open before the sheet.
             if (lastSubBoxId) {
                 const subBox = document.getElementById(lastSubBoxId);
-                if (subBox) {
+                if (subBox && subBox.parentElement === document.getElementById('allProductsBox')) {
                     subBox.classList.add('open');
-                    subBox.style.display = 'block';
-
-                    // Re-activate the exact category card that was open before the sheet.
-                    const card = document.querySelector('.sub-product-card[onclick*="\'' + lastSubBoxId + '\'"]');
-                    if (card) card.classList.add('active');
+                    const cards = document.querySelectorAll('.sub-product-card');
+                    cards.forEach(card => {
+                        const onclick = card.getAttribute('onclick') || '';
+                        if (onclick.includes("'" + lastSubBoxId + "'")) {
+                            card.classList.add('active');
+                        }
+                    });
                 }
             }
 
-            // Keep the saved state, but make sure the next category click starts cleanly.
             sessionStorage.setItem('activePanel', activePanelId || '');
             sessionStorage.setItem('activeMainBox', activeMainBoxId || '');
             if (lastSubBoxId) sessionStorage.setItem('lastSubBox', lastSubBoxId);
@@ -1874,7 +1948,7 @@
 
             const y = Number(state.scrollY ?? sessionStorage.getItem('cmsScrollY') ?? 0);
             requestAnimationFrame(() => requestAnimationFrame(() => {
-                window.scrollTo({top:y,left:0,behavior:'auto'});
+                window.scrollTo({ top: y, left: 0, behavior: 'auto' });
             }));
         }
 
@@ -1915,6 +1989,9 @@
             const lastSubBoxId = sessionStorage.getItem('lastSubBox');
             const savedScrollY = parseInt(sessionStorage.getItem('cmsScrollY') || '0', 10);
 
+            // Never allow stale product categories to survive a page restore.
+            clearProductCategoryState();
+
             if (activePanelId) {
                 const activePanel = document.getElementById(activePanelId);
                 if (activePanel) {
@@ -1933,20 +2010,24 @@
 
             if (lastSubBoxId) {
                 const targetSubBox = document.getElementById(lastSubBoxId);
-                if (targetSubBox) {
+                const allProductsBox = document.getElementById('allProductsBox');
+                if (targetSubBox && allProductsBox && targetSubBox.parentElement === allProductsBox) {
                     targetSubBox.classList.add('open');
-                    targetSubBox.style.display = 'block';
+                    const cards = document.querySelectorAll('.sub-product-card');
+                    cards.forEach(card => {
+                        const onclick = card.getAttribute('onclick') || '';
+                        if (onclick.includes("'" + lastSubBoxId + "'")) {
+                            card.classList.add('active');
+                        }
+                    });
                 }
             }
 
-            // Wait for the DOM/layout to settle before restoring the exact position.
-            if (savedScrollY > 0) {
+            requestAnimationFrame(function () {
                 requestAnimationFrame(function () {
-                    requestAnimationFrame(function () {
-                        window.scrollTo({ top: savedScrollY, left: 0, behavior: 'auto' });
-                    });
+                    window.scrollTo({ top: savedScrollY, left: 0, behavior: 'auto' });
                 });
-            }
+            });
         });
 
         function copyAccNumber(id, btn) {
