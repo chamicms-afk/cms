@@ -1646,30 +1646,7 @@
             allCards.forEach(card => card.classList.remove('active'));
         }
 
-        // --- TOGGLE SECTION WITH AUTO-SCROLL ---
-        function toggleSection(sectionId, btnElement) {
-            let element = document.getElementById(sectionId);
-            if (!element) return;
-
-            let parentContainer = element.parentElement; 
-            let isOpen = element.classList.contains('open');
-
-            let siblingBoxes = parentContainer.querySelectorAll(':scope > .sub-box');
-            siblingBoxes.forEach(box => box.classList.remove('open'));
-
-            if (!isOpen) {
-                element.classList.add('open');
-                setTimeout(() => {
-                    if (btnElement) {
-                        btnElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    } else {
-                        element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }
-                }, 50);
-            }
-        }
-
-        // --- SUB-PRODUCT TOGGLE WITH AUTO-SCROLL ---
+        // --- SUB-PRODUCT TOGGLE WITH AUTO-SCROLL & URL HASH ---
 function toggleSubProductBox(boxId, cardElement) {
     let allSubBoxes = document.querySelectorAll('#allProductsBox > .sub-box');
     let allCards = document.querySelectorAll('.sub-product-card');
@@ -1677,80 +1654,66 @@ function toggleSubProductBox(boxId, cardElement) {
 
     allCards.forEach(card => card.classList.remove('active'));
     allSubBoxes.forEach(box => {
-        if (box !== targetBox) box.classList.remove('open');
+        if (box !== targetBox) {
+            box.classList.remove('open');
+            box.style.display = 'none';
+        }
     });
 
     if (targetBox) {
         let isOpen = targetBox.classList.contains('open');
-        targetBox.classList.toggle('open');
         
         if (!isOpen) {
+            targetBox.classList.add('open');
+            targetBox.style.display = 'block';
             if (cardElement) cardElement.classList.add('active');
             
-            // Storage එකට Save කිරීම
-            sessionStorage.setItem('activePanel', 'accessoriesPanel');
-            sessionStorage.setItem('activeMainBox', 'allProductsBox');
-            sessionStorage.setItem('lastSubBox', boxId);
+            // URL එක අගට Box ID එක එකතු කිරීම
+            window.location.hash = boxId;
 
             setTimeout(() => {
                 targetBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }, 50);
         } else {
-            sessionStorage.removeItem('lastSubBox');
+            targetBox.classList.remove('open');
+            targetBox.style.display = 'none';
+            history.pushState("", document.title, window.location.pathname + window.location.search);
         }
     }
 }
 
-// --- PACKAGE TOGGLE WITH AUTO-SCROLL ---
-function togglePackage(pkgId) {
-    let allBoxes = document.querySelectorAll('.package-content-box');
-    let targetBox = document.getElementById(pkgId);
+// --- PAGE LOAD / BACK BUTTON CHECK ---
+function checkAndOpenHash() {
+    let hash = window.location.hash.replace('#', '');
+    if (hash) {
+        let targetBox = document.getElementById(hash);
+        let activePanel = document.getElementById('accessoriesPanel');
+        let activeMainBox = document.getElementById('allProductsBox');
 
-    if (!targetBox) return;
-
-    let isAlreadyOpen = targetBox.style.display === 'block';
-
-    allBoxes.forEach(box => box.style.display = 'none');
-
-    if (!isAlreadyOpen) {
-        targetBox.style.display = 'block';
-        setTimeout(() => {
-            targetBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 50);
-    }
-}
-
-// --- RESTORE STATE ON BACK / RELOAD (PAGESHOW EVENT) ---
-window.addEventListener('pageshow', (event) => {
-    let activePanelId = sessionStorage.getItem('activePanel');
-    let activeMainBoxId = sessionStorage.getItem('activeMainBox');
-    let lastSubBoxId = sessionStorage.getItem('lastSubBox');
-
-    if (lastSubBoxId) {
-        let activePanel = document.getElementById(activePanelId || 'accessoriesPanel');
-        let activeMainBox = document.getElementById(activeMainBoxId || 'allProductsBox');
-        let targetSubBox = document.getElementById(lastSubBoxId);
-
-        // Active Classes / Styles Auto Apply කිරීම
         if (activePanel) {
             activePanel.classList.add('active');
-            activePanel.style.display = 'block'; // Display block නැත්නම් පෙනෙන්නේ නැත
+            activePanel.style.display = 'block';
         }
-        
         if (activeMainBox) {
             activeMainBox.classList.add('open');
             activeMainBox.style.display = 'block';
         }
-        
-        if (targetSubBox) {
-            targetSubBox.classList.add('open');
-            targetSubBox.style.display = 'block';
+        if (targetBox) {
+            targetBox.classList.add('open');
+            targetBox.style.display = 'block';
             
             setTimeout(() => {
-                targetSubBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                targetBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 300);
         }
     }
+}
+
+// Page එක Load වෙද්දී සහ Back වෙද්දී Event දෙකම Check කිරීම
+window.addEventListener('load', checkAndOpenHash);
+window.addEventListener('hashchange', checkAndOpenHash);
+window.addEventListener('pageshow', checkAndOpenHash);
+        
 });
         function copyAccNumber(id, btn) {
             let accNum = document.getElementById(id).innerText;
