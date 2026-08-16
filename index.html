@@ -270,7 +270,7 @@
         }
 
         .category-detail-panel {
-            display: none;
+            display: none !important;
             background: #ffffff;
             border: 1px solid #cbd5e1;
             border-radius: 16px;
@@ -281,7 +281,9 @@
             scroll-margin-top: 20px;
         }
 
-        .category-detail-panel.active { display: block; }
+        .category-detail-panel.active { 
+            display: block !important; 
+        }
 
         .category-panel-title {
             font-size: 1.2rem;
@@ -345,7 +347,7 @@
             scroll-margin-top: 15px;
         }
 
-        .sub-box.open { display: block; }
+        .sub-box.open { display: block !important; }
         .sub-box ul { padding-left: 20px; margin-top: 10px; margin-bottom: 15px; }
         .sub-box li { margin-bottom: 5px; color: #64748b; }
 
@@ -543,6 +545,27 @@
         }
 
         .excel-sheet-btn:hover { background: #15803d; }
+
+        /* Custom Green Button Style */
+        .green-btn {
+            display: inline-block;
+            background-color: #12a652;
+            color: #ffffff !important;
+            font-weight: bold;
+            font-size: 13px;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .green-btn:hover {
+            background-color: #0e8a43;
+            cursor: pointer;
+        }
 
         .payment-list {
             display: grid;
@@ -1057,7 +1080,8 @@
                         <li><span style="color:red;">*</span> Please bring your original NIC (ජාතික හැඳුනුම්පත)</li>
                     </ul>                    
                 </div>
-				<!-- Buttons 3ට පහළින් පෙනෙන කොළ පාට Button එක -->
+
+                <!-- Buttons 3ට පහළින් පෙනෙන කොළ පාට Button එක -->
                 <div style="margin-top: 15px;">
                     <a href="javascript:void(0)" 
                        data-sheet-url="https://lh3.googleusercontent.com/d/1UMtA_6wSKaKyrvKDonPwXaOZYxfT7Niy" 
@@ -1658,8 +1682,6 @@
         function resetPanelSections(panel) {
             if (!panel) return;
 
-            // Close only the panel's own top-level sub-boxes.
-            // Their nested boxes are also cleared so no old UI state survives.
             panel.querySelectorAll('.sub-box').forEach(box => {
                 box.classList.remove('open');
                 box.style.removeProperty('display');
@@ -1669,14 +1691,13 @@
                 card.classList.remove('active');
             });
 
-            // Clear saved product-category state when the user changes panels.
             if (panel.id !== 'accessoriesPanel') {
                 sessionStorage.removeItem('lastSubBox');
                 sessionStorage.removeItem('activeMainBox');
             }
         }
 
-        // --- OPEN PANEL WITH AUTO-SCROLL ---
+        // --- OPEN PANEL WITH AUTO-SCROLL (FIXED PANEL SWITCHING) ---
         function openPanel(panelId, cardElement) {
             try {
                 let allPanels = document.querySelectorAll('.category-detail-panel');
@@ -1687,33 +1708,27 @@
 
                 let isAlreadyActive = targetPanel.classList.contains('active');
 
+                // 1. Close ALL panels and remove active classes completely
                 allPanels.forEach(panel => {
-                    if (panel !== targetPanel) {
-                        panel.classList.remove('active');
-                        resetPanelSections(panel);
-                    }
+                    panel.classList.remove('active');
+                    panel.style.removeProperty('display');
+                    resetPanelSections(panel);
                 });
+                
                 allCards.forEach(card => card.classList.remove('active'));
 
+                // 2. If clicking the currently active panel, just close it
                 if (isAlreadyActive) {
-                    // Clicking the SAME main service card again closes it.
-                    // Clear its inner sections and all related saved state.
-                    resetPanelSections(targetPanel);
-                    targetPanel.classList.remove('active');
-                    if (cardElement) cardElement.classList.remove('active');
                     sessionStorage.removeItem('activePanel');
                     sessionStorage.removeItem('activeMainBox');
                     sessionStorage.removeItem('lastSubBox');
                     return;
                 }
 
-                // Opening a different main service always starts clean.
-                resetPanelSections(targetPanel);
+                // 3. Activate target panel
                 targetPanel.classList.add('active');
                 if (cardElement) cardElement.classList.add('active');
 
-                // Save only the currently open main panel. Inner sections are
-                // saved only when the user actually opens them.
                 sessionStorage.setItem('activePanel', panelId);
                 sessionStorage.removeItem('activeMainBox');
                 sessionStorage.removeItem('lastSubBox');
@@ -1732,6 +1747,7 @@
             
             allPanels.forEach(panel => {
                 panel.classList.remove('active');
+                panel.style.removeProperty('display');
                 resetPanelSections(panel);
             });
             allCards.forEach(card => card.classList.remove('active'));
@@ -1741,8 +1757,6 @@
         }
 
         // --- TOGGLE SECTION WITH AUTO-SCROLL ---
-        // At each level, only ONE sibling section can be open.
-        // Example: Products & Accessories -> All Products -> one product category.
         function toggleSection(sectionId, btnElement) {
             const element = document.getElementById(sectionId);
             if (!element) return;
@@ -1751,7 +1765,6 @@
             const isOpen = element.classList.contains('open');
             const siblingBoxes = parentContainer.querySelectorAll(':scope > .sub-box');
 
-            // Close every sibling at THIS level first.
             siblingBoxes.forEach(box => {
                 if (box !== element) {
                     box.classList.remove('open');
@@ -1760,7 +1773,6 @@
             });
 
             if (isOpen) {
-                // Clicking the same button closes it.
                 element.classList.remove('open');
                 element.style.removeProperty('display');
 
@@ -1772,7 +1784,6 @@
                 return;
             }
 
-            // When opening All Products, always start with a clean product list.
             if (sectionId === 'allProductsBox') {
                 clearProductCategoryState();
                 sessionStorage.setItem('activePanel', 'accessoriesPanel');
@@ -1780,7 +1791,6 @@
                 sessionStorage.removeItem('lastSubBox');
             }
 
-            // Open only the button that was clicked.
             element.classList.add('open');
             element.style.removeProperty('display');
 
@@ -1798,13 +1808,11 @@
             const allProductsBox = document.getElementById('allProductsBox');
             if (!allProductsBox) return;
 
-            // Close every product category content box.
             allProductsBox.querySelectorAll(':scope > .sub-box').forEach(box => {
                 box.classList.remove('open');
                 box.style.removeProperty('display');
             });
 
-            // Remove the selected/active state from every category card.
             allProductsBox.querySelectorAll('.sub-product-card').forEach(card => {
                 card.classList.remove('active');
             });
@@ -1825,16 +1833,13 @@
 
             const wasOpen = targetBox.classList.contains('open');
 
-            // ALWAYS close all other categories first.
             clearProductCategoryState();
 
-            // If the clicked category was already open, leave all categories closed.
             if (wasOpen) {
                 sessionStorage.removeItem('lastSubBox');
                 return;
             }
 
-            // Open ONLY the category that was clicked.
             targetBox.classList.add('open');
             if (cardElement) cardElement.classList.add('active');
 
@@ -1867,8 +1872,6 @@
         }
 
         // ===== GOOGLE SHEET VIEWER =====
-        // Sheets are shown inside the CMS so the browser never navigates away from this page.
-        // The green BACK TO CMS button closes the viewer and restores the exact position.
         let sheetViewerOpened = false;
         let sheetViewerState = null;
 
@@ -1940,31 +1943,28 @@
             const activeMainBoxId = state.activeMainBox || sessionStorage.getItem('activeMainBox');
             const lastSubBoxId = state.lastSubBox || '';
 
-            // IMPORTANT: start from a completely clean product-category state.
             clearProductCategoryState();
 
-            // Restore the parent panel.
             document.querySelectorAll('.category-detail-panel').forEach(panel => {
-                if (panel.id !== activePanelId) panel.classList.remove('active');
+                if (panel.id !== activePanelId) {
+                    panel.classList.remove('active');
+                    panel.style.removeProperty('display');
+                }
             });
             if (activePanelId) {
                 const panel = document.getElementById(activePanelId);
                 if (panel) {
                     panel.classList.add('active');
-                    panel.style.display = 'block';
                 }
             }
 
-            // Restore the main All Products box.
             if (activeMainBoxId) {
                 const mainBox = document.getElementById(activeMainBoxId);
                 if (mainBox) {
                     mainBox.classList.add('open');
-                    mainBox.style.display = 'block';
                 }
             }
 
-            // Restore EXACTLY ONE product category, if one was open before the sheet.
             if (lastSubBoxId) {
                 const subBox = document.getElementById(lastSubBoxId);
                 if (subBox && subBox.parentElement === document.getElementById('allProductsBox')) {
@@ -1996,7 +1996,6 @@
             event.preventDefault();
             event.stopPropagation();
             const url = link.getAttribute('href');
-            // If another handler has changed href, use the real URL stored in data-sheet-url when available.
             const sheetUrl = link.getAttribute('data-sheet-url') || url;
             openSheetViewer(sheetUrl, link.textContent.trim());
             return false;
@@ -2006,7 +2005,6 @@
             if (event.key === 'Escape' && sheetViewerOpened) closeSheetViewer();
         });
 
-        // Also save the current scroll position while the user is browsing.
         let cmsScrollSaveTimer;
         window.addEventListener('scroll', function () {
             clearTimeout(cmsScrollSaveTimer);
@@ -2015,26 +2013,30 @@
             }, 80);
         }, { passive: true });
 
-        // Do not let the browser overwrite our saved UI position.
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
         }
 
-        // Restore UI state when coming back to this page, including browser Back.
         window.addEventListener('pageshow', function () {
             const activePanelId = sessionStorage.getItem('activePanel');
             const activeMainBoxId = sessionStorage.getItem('activeMainBox');
             const lastSubBoxId = sessionStorage.getItem('lastSubBox');
             const savedScrollY = parseInt(sessionStorage.getItem('cmsScrollY') || '0', 10);
 
-            // Never allow stale product categories to survive a page restore.
             clearProductCategoryState();
+
+            // Clear inline style overrides on page show
+            document.querySelectorAll('.category-detail-panel').forEach(panel => {
+                panel.style.removeProperty('display');
+                if (panel.id !== activePanelId) {
+                    panel.classList.remove('active');
+                }
+            });
 
             if (activePanelId) {
                 const activePanel = document.getElementById(activePanelId);
                 if (activePanel) {
                     activePanel.classList.add('active');
-                    activePanel.style.display = 'block';
                 }
             }
 
@@ -2042,7 +2044,6 @@
                 const activeMainBox = document.getElementById(activeMainBoxId);
                 if (activeMainBox) {
                     activeMainBox.classList.add('open');
-                    activeMainBox.style.display = 'block';
                 }
             }
 
