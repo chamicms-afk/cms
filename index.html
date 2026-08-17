@@ -1628,545 +1628,534 @@
     </div>
 
     <!-- JAVASCRIPT FUNCTIONS -->
-    <script>
-        // 1. MAIN HERO SLIDER SCRIPT
-        let currentHeroSlide = 0;
-        const heroSlides = document.querySelectorAll('.hero-slider img.hero-slide');
+   <script>
+    // 1. MAIN HERO SLIDER SCRIPT
+    let currentHeroSlide = 0;
+    const heroSlides = document.querySelectorAll('.hero-slider img.hero-slide');
+    
+    function showHeroSlide(index) {
+        heroSlides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (i === index) slide.classList.add('active');
+        });
+    }
+
+    function nextHeroSlide() {
+        if (heroSlides.length > 0) {
+            currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+            showHeroSlide(currentHeroSlide);
+        }
+    }
+    setInterval(nextHeroSlide, 4000);
+
+    // 2. DIALOG TV SLIDER SCRIPT
+    let dtvSlideIndex = 0;
+    const dtvSlides = document.querySelectorAll('.dtv-slide');
+    const dtvDots = document.querySelectorAll('.dtv-slider-container .dot');
+
+    function showDtvSlide(index) {
+        if (dtvSlides.length === 0) return;
         
-        function showHeroSlide(index) {
-            heroSlides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                if (i === index) slide.classList.add('active');
-            });
+        if (index >= dtvSlides.length) { dtvSlideIndex = 0; }
+        if (index < 0) { dtvSlideIndex = dtvSlides.length - 1; }
+
+        dtvSlides.forEach(slide => slide.classList.remove('active'));
+        dtvDots.forEach(dot => dot.classList.remove('active-dot'));
+
+        dtvSlides[dtvSlideIndex].classList.add('active');
+        if (dtvDots[dtvSlideIndex]) {
+            dtvDots[dtvSlideIndex].classList.add('active-dot');
         }
+    }
 
-        function nextHeroSlide() {
-            if (heroSlides.length > 0) {
-                currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
-                showHeroSlide(currentHeroSlide);
-            }
+    function moveSlide(n) {
+        showDtvSlide(dtvSlideIndex += n);
+    }
+
+    function currentDtvSlide(n) {
+        showDtvSlide(dtvSlideIndex = n);
+    }
+
+    setInterval(() => {
+        if (dtvSlides.length > 0) {
+            dtvSlideIndex = (dtvSlideIndex + 1) % dtvSlides.length;
+            showDtvSlide(dtvSlideIndex);
         }
-        setInterval(nextHeroSlide, 4000);
+    }, 5000);
 
-        // 2. DIALOG TV SLIDER SCRIPT
-        let dtvSlideIndex = 0;
-        const dtvSlides = document.querySelectorAll('.dtv-slide');
-        const dtvDots = document.querySelectorAll('.dtv-slider-container .dot');
+    // --- RESET ALL INNER SECTIONS OF A PANEL ---
+    function resetPanelSections(panel) {
+        if (!panel) return;
 
-        function showDtvSlide(index) {
-            if (dtvSlides.length === 0) return;
-            
-            if (index >= dtvSlides.length) { dtvSlideIndex = 0; }
-            if (index < 0) { dtvSlideIndex = dtvSlides.length - 1; }
+        panel.querySelectorAll('.sub-box').forEach(box => {
+            box.classList.remove('open');
+            box.style.removeProperty('display');
+        });
 
-            dtvSlides.forEach(slide => slide.classList.remove('active'));
-            dtvDots.forEach(dot => dot.classList.remove('active-dot'));
+        panel.querySelectorAll('.sub-product-card').forEach(card => {
+            card.classList.remove('active');
+        });
 
-            dtvSlides[dtvSlideIndex].classList.add('active');
-            if (dtvDots[dtvSlideIndex]) {
-                dtvDots[dtvSlideIndex].classList.add('active-dot');
-            }
+        if (panel.id !== 'accessoriesPanel') {
+            sessionStorage.removeItem('lastSubBox');
+            sessionStorage.removeItem('activeMainBox');
         }
+    }
 
-        function moveSlide(n) {
-            showDtvSlide(dtvSlideIndex += n);
-        }
-
-        function currentDtvSlide(n) {
-            showDtvSlide(dtvSlideIndex = n);
-        }
-
-        setInterval(() => {
-            if (dtvSlides.length > 0) {
-                dtvSlideIndex = (dtvSlideIndex + 1) % dtvSlides.length;
-                showDtvSlide(dtvSlideIndex);
-            }
-        }, 5000);
-
-        // --- RESET ALL INNER SECTIONS OF A PANEL ---
-        function resetPanelSections(panel) {
-            if (!panel) return;
-
-            panel.querySelectorAll('.sub-box').forEach(box => {
-                box.classList.remove('open');
-                box.style.removeProperty('display');
-            });
-
-            panel.querySelectorAll('.sub-product-card').forEach(card => {
-                card.classList.remove('active');
-            });
-
-            if (panel.id !== 'accessoriesPanel') {
-                sessionStorage.removeItem('lastSubBox');
-                sessionStorage.removeItem('activeMainBox');
-            }
-        }
-
-        // --- OPEN PANEL WITH AUTO-SCROLL (FIXED PANEL SWITCHING) ---
-        function openPanel(panelId, cardElement) {
-            try {
-                let allPanels = document.querySelectorAll('.category-detail-panel');
-                let allCards = document.querySelectorAll('.service-card');
-                let targetPanel = document.getElementById(panelId);
-
-                if (!targetPanel) return;
-
-                let isAlreadyActive = targetPanel.classList.contains('active');
-
-                // 1. Close ALL panels and remove active classes completely
-                allPanels.forEach(panel => {
-                    panel.classList.remove('active');
-                    panel.style.removeProperty('display');
-                    resetPanelSections(panel);
-                });
-                
-                allCards.forEach(card => card.classList.remove('active'));
-
-                // 2. If clicking the currently active panel, just close it
-                if (isAlreadyActive) {
-                    sessionStorage.removeItem('activePanel');
-                    sessionStorage.removeItem('activeMainBox');
-                    sessionStorage.removeItem('lastSubBox');
-                    return;
-                }
-
-                // 3. Activate target panel
-                targetPanel.classList.add('active');
-                if (cardElement) cardElement.classList.add('active');
-
-                sessionStorage.setItem('activePanel', panelId);
-                sessionStorage.removeItem('activeMainBox');
-                sessionStorage.removeItem('lastSubBox');
-
-                setTimeout(() => {
-                    targetPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 50);
-            } catch (err) {
-                console.error("Panel error:", err);
-            }
-        }
-
-        function closeAllPanels() {
+    // --- OPEN PANEL WITH AUTO-SCROLL ---
+    function openPanel(panelId, cardElement) {
+        try {
             let allPanels = document.querySelectorAll('.category-detail-panel');
             let allCards = document.querySelectorAll('.service-card');
-            
+            let targetPanel = document.getElementById(panelId);
+
+            if (!targetPanel) return;
+
+            let isAlreadyActive = targetPanel.classList.contains('active');
+
             allPanels.forEach(panel => {
                 panel.classList.remove('active');
                 panel.style.removeProperty('display');
                 resetPanelSections(panel);
             });
+            
             allCards.forEach(card => card.classList.remove('active'));
-            sessionStorage.removeItem('activePanel');
-            sessionStorage.removeItem('activeMainBox');
-            sessionStorage.removeItem('lastSubBox');
-        }
 
-        // --- TOGGLE SECTION WITH AUTO-SCROLL ---
-        function toggleSection(sectionId, btnElement) {
-            const element = document.getElementById(sectionId);
-            if (!element) return;
-
-            const parentContainer = element.parentElement;
-            const isOpen = element.classList.contains('open');
-            const siblingBoxes = parentContainer.querySelectorAll(':scope > .sub-box');
-
-            siblingBoxes.forEach(box => {
-                if (box !== element) {
-                    box.classList.remove('open');
-                    box.style.removeProperty('display');
-                }
-            });
-
-            if (isOpen) {
-                element.classList.remove('open');
-                element.style.removeProperty('display');
-
-                if (sectionId === 'allProductsBox') {
-                    clearProductCategoryState();
-                    sessionStorage.removeItem('activeMainBox');
-                    sessionStorage.removeItem('lastSubBox');
-                }
+            if (isAlreadyActive) {
+                sessionStorage.removeItem('activePanel');
+                sessionStorage.removeItem('activeMainBox');
+                sessionStorage.removeItem('lastSubBox');
                 return;
             }
+
+            targetPanel.classList.add('active');
+            if (cardElement) cardElement.classList.add('active');
+
+            sessionStorage.setItem('activePanel', panelId);
+            sessionStorage.removeItem('activeMainBox');
+            sessionStorage.removeItem('lastSubBox');
+
+            setTimeout(() => {
+                targetPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
+        } catch (err) {
+            console.error("Panel error:", err);
+        }
+    }
+
+    function closeAllPanels() {
+        let allPanels = document.querySelectorAll('.category-detail-panel');
+        let allCards = document.querySelectorAll('.service-card');
+        
+        allPanels.forEach(panel => {
+            panel.classList.remove('active');
+            panel.style.removeProperty('display');
+            resetPanelSections(panel);
+        });
+        allCards.forEach(card => card.classList.remove('active'));
+        sessionStorage.removeItem('activePanel');
+        sessionStorage.removeItem('activeMainBox');
+        sessionStorage.removeItem('lastSubBox');
+    }
+
+    // --- TOGGLE SECTION WITH AUTO-SCROLL (මෙම නිවැරදි එක භාවිත වේ) ---
+    function toggleSection(sectionId, btnElement) {
+        const element = document.getElementById(sectionId);
+        if (!element) return;
+
+        const parentContainer = element.parentElement;
+        const isOpen = element.classList.contains('open');
+        const siblingBoxes = parentContainer.querySelectorAll(':scope > .sub-box');
+
+        // එකක් Open කරද්දී අනිත් sub-box ඔක්කොම Auto Close කිරීම
+        siblingBoxes.forEach(box => {
+            if (box !== element) {
+                box.classList.remove('open');
+                box.style.removeProperty('display');
+            }
+        });
+
+        if (isOpen) {
+            element.classList.remove('open');
+            element.style.removeProperty('display');
 
             if (sectionId === 'allProductsBox') {
                 clearProductCategoryState();
-                sessionStorage.setItem('activePanel', 'accessoriesPanel');
-                sessionStorage.setItem('activeMainBox', 'allProductsBox');
+                sessionStorage.removeItem('activeMainBox');
                 sessionStorage.removeItem('lastSubBox');
             }
-
-            element.classList.add('open');
-            element.style.removeProperty('display');
-
-            setTimeout(() => {
-                if (btnElement) {
-                    btnElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                } else {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }
-            }, 50);
+            return;
         }
 
-        // --- PRODUCT CATEGORY STATE HELPERS ---
-        function clearProductCategoryState() {
-            const allProductsBox = document.getElementById('allProductsBox');
-            if (!allProductsBox) return;
-
-            allProductsBox.querySelectorAll(':scope > .sub-box').forEach(box => {
-                box.classList.remove('open');
-                box.style.removeProperty('display');
-            });
-
-            allProductsBox.querySelectorAll('.sub-product-card').forEach(card => {
-                card.classList.remove('active');
-            });
-        }
-
-        function getOpenProductCategoryId() {
-            const allProductsBox = document.getElementById('allProductsBox');
-            if (!allProductsBox) return '';
-            const openBox = allProductsBox.querySelector(':scope > .sub-box.open');
-            return openBox ? openBox.id : '';
-        }
-
-        // --- SUB-PRODUCT TOGGLE WITH AUTO-SCROLL ---
-        function toggleSubProductBox(boxId, cardElement) {
-            const targetBox = document.getElementById(boxId);
-            const allProductsBox = document.getElementById('allProductsBox');
-            if (!targetBox || !allProductsBox) return;
-
-            const wasOpen = targetBox.classList.contains('open');
-
+        if (sectionId === 'allProductsBox') {
             clearProductCategoryState();
-
-            if (wasOpen) {
-                sessionStorage.removeItem('lastSubBox');
-                return;
-            }
-
-            targetBox.classList.add('open');
-            if (cardElement) cardElement.classList.add('active');
-
             sessionStorage.setItem('activePanel', 'accessoriesPanel');
             sessionStorage.setItem('activeMainBox', 'allProductsBox');
-            sessionStorage.setItem('lastSubBox', boxId);
+            sessionStorage.removeItem('lastSubBox');
+        }
 
+        element.classList.add('open');
+        element.style.removeProperty('display');
+
+        setTimeout(() => {
+            if (btnElement) {
+                btnElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }, 50);
+    }
+
+    // --- PRODUCT CATEGORY STATE HELPERS ---
+    function clearProductCategoryState() {
+        const allProductsBox = document.getElementById('allProductsBox');
+        if (!allProductsBox) return;
+
+        allProductsBox.querySelectorAll(':scope > .sub-box').forEach(box => {
+            box.classList.remove('open');
+            box.style.removeProperty('display');
+        });
+
+        allProductsBox.querySelectorAll('.sub-product-card').forEach(card => {
+            card.classList.remove('active');
+        });
+    }
+
+    function getOpenProductCategoryId() {
+        const allProductsBox = document.getElementById('allProductsBox');
+        if (!allProductsBox) return '';
+        const openBox = allProductsBox.querySelector(':scope > .sub-box.open');
+        return openBox ? openBox.id : '';
+    }
+
+    // --- SUB-PRODUCT TOGGLE WITH AUTO-SCROLL ---
+    function toggleSubProductBox(boxId, cardElement) {
+        const targetBox = document.getElementById(boxId);
+        const allProductsBox = document.getElementById('allProductsBox');
+        if (!targetBox || !allProductsBox) return;
+
+        const wasOpen = targetBox.classList.contains('open');
+
+        clearProductCategoryState();
+
+        if (wasOpen) {
+            sessionStorage.removeItem('lastSubBox');
+            return;
+        }
+
+        targetBox.classList.add('open');
+        if (cardElement) cardElement.classList.add('active');
+
+        sessionStorage.setItem('activePanel', 'accessoriesPanel');
+        sessionStorage.setItem('activeMainBox', 'allProductsBox');
+        sessionStorage.setItem('lastSubBox', boxId);
+
+        setTimeout(() => {
+            targetBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 50);
+    }
+
+    // --- PACKAGE TOGGLE WITH AUTO-SCROLL ---
+    function togglePackage(pkgId) {
+        let allBoxes = document.querySelectorAll('.package-content-box');
+        let targetBox = document.getElementById(pkgId);
+
+        if (!targetBox) return;
+
+        let isAlreadyOpen = targetBox.style.display === 'block';
+
+        allBoxes.forEach(box => box.style.display = 'none');
+
+        if (!isAlreadyOpen) {
+            targetBox.style.display = 'block';
             setTimeout(() => {
-                targetBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                targetBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 50);
         }
+    }
 
-        // --- PACKAGE TOGGLE WITH AUTO-SCROLL ---
-        function togglePackage(pkgId) {
-            let allBoxes = document.querySelectorAll('.package-content-box');
-            let targetBox = document.getElementById(pkgId);
+    // ===== GOOGLE SHEET VIEWER =====
+    let sheetViewerOpened = false;
+    let sheetViewerState = null;
 
-            if (!targetBox) return;
+    function saveUIState() {
+        try {
+            const scrollY = window.scrollY || window.pageYOffset || 0;
+            sessionStorage.setItem('cmsScrollY', String(scrollY));
 
-            let isAlreadyOpen = targetBox.style.display === 'block';
+            const activePanel = document.querySelector('.category-detail-panel.active');
+            const allProducts = document.getElementById('allProductsBox');
+            const openCategoryId = getOpenProductCategoryId();
 
-            allBoxes.forEach(box => box.style.display = 'none');
-
-            if (!isAlreadyOpen) {
-                targetBox.style.display = 'block';
-                setTimeout(() => {
-                    targetBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 50);
+            if (activePanel && activePanel.id) {
+                sessionStorage.setItem('activePanel', activePanel.id);
             }
-        }
-
-        // ===== GOOGLE SHEET VIEWER =====
-        let sheetViewerOpened = false;
-        let sheetViewerState = null;
-
-        function saveUIState() {
-            try {
-                const scrollY = window.scrollY || window.pageYOffset || 0;
-                sessionStorage.setItem('cmsScrollY', String(scrollY));
-
-                const activePanel = document.querySelector('.category-detail-panel.active');
-                const allProducts = document.getElementById('allProductsBox');
-                const openCategoryId = getOpenProductCategoryId();
-
-                if (activePanel && activePanel.id) {
-                    sessionStorage.setItem('activePanel', activePanel.id);
-                }
-                if (allProducts && allProducts.classList.contains('open')) {
-                    sessionStorage.setItem('activeMainBox', allProducts.id);
-                }
-                if (openCategoryId) {
-                    sessionStorage.setItem('lastSubBox', openCategoryId);
-                } else {
-                    sessionStorage.removeItem('lastSubBox');
-                }
-
-                sheetViewerState = {
-                    scrollY,
-                    activePanel: activePanel ? activePanel.id : sessionStorage.getItem('activePanel'),
-                    activeMainBox: (allProducts && allProducts.classList.contains('open')) ? allProducts.id : sessionStorage.getItem('activeMainBox'),
-                    lastSubBox: openCategoryId || ''
-                };
-            } catch (err) {
-                console.warn('CMS UI state could not be saved:', err);
+            if (allProducts && allProducts.classList.contains('open')) {
+                sessionStorage.setItem('activeMainBox', allProducts.id);
             }
-        }
-
-        function openSheetViewer(sheetUrl, title) {
-            if (!sheetUrl || sheetUrl.indexOf('your-') !== -1) {
-                alert('Please add the actual Google Sheet URL first.');
-                return false;
-            }
-            saveUIState();
-            const modal = document.getElementById('sheetViewerModal');
-            const frame = document.getElementById('sheetViewerFrame');
-            const titleBox = document.getElementById('sheetViewerTitle');
-            if (!modal || !frame) return false;
-
-            titleBox.textContent = title || 'Google Sheet';
-            frame.src = sheetUrl;
-            modal.classList.add('open');
-            modal.setAttribute('aria-hidden','false');
-            document.body.style.overflow = 'hidden';
-            sheetViewerOpened = true;
-            return false;
-        }
-
-        function closeSheetViewer() {
-            const modal = document.getElementById('sheetViewerModal');
-            const frame = document.getElementById('sheetViewerFrame');
-            if (!modal) return;
-
-            modal.classList.remove('open');
-            modal.setAttribute('aria-hidden','true');
-            if (frame) frame.src = 'about:blank';
-            document.body.style.overflow = '';
-            sheetViewerOpened = false;
-
-            const state = sheetViewerState || {};
-            const activePanelId = state.activePanel || sessionStorage.getItem('activePanel');
-            const activeMainBoxId = state.activeMainBox || sessionStorage.getItem('activeMainBox');
-            const lastSubBoxId = state.lastSubBox || '';
-
-            clearProductCategoryState();
-
-            document.querySelectorAll('.category-detail-panel').forEach(panel => {
-                if (panel.id !== activePanelId) {
-                    panel.classList.remove('active');
-                    panel.style.removeProperty('display');
-                }
-            });
-            if (activePanelId) {
-                const panel = document.getElementById(activePanelId);
-                if (panel) {
-                    panel.classList.add('active');
-                }
-            }
-
-            if (activeMainBoxId) {
-                const mainBox = document.getElementById(activeMainBoxId);
-                if (mainBox) {
-                    mainBox.classList.add('open');
-                }
-            }
-
-            if (lastSubBoxId) {
-                const subBox = document.getElementById(lastSubBoxId);
-                if (subBox && subBox.parentElement === document.getElementById('allProductsBox')) {
-                    subBox.classList.add('open');
-                    const cards = document.querySelectorAll('.sub-product-card');
-                    cards.forEach(card => {
-                        const onclick = card.getAttribute('onclick') || '';
-                        if (onclick.includes("'" + lastSubBoxId + "'")) {
-                            card.classList.add('active');
-                        }
-                    });
-                }
-            }
-
-            sessionStorage.setItem('activePanel', activePanelId || '');
-            sessionStorage.setItem('activeMainBox', activeMainBoxId || '');
-            if (lastSubBoxId) sessionStorage.setItem('lastSubBox', lastSubBoxId);
-            else sessionStorage.removeItem('lastSubBox');
-
-            const y = Number(state.scrollY ?? sessionStorage.getItem('cmsScrollY') ?? 0);
-            requestAnimationFrame(() => requestAnimationFrame(() => {
-                window.scrollTo({ top: y, left: 0, behavior: 'auto' });
-            }));
-        }
-
-        document.addEventListener('click', function(event) {
-            const link = event.target.closest('a.excel-sheet-btn');
-            if (!link) return;
-            event.preventDefault();
-            event.stopPropagation();
-            const url = link.getAttribute('href');
-            const sheetUrl = link.getAttribute('data-sheet-url') || url;
-            openSheetViewer(sheetUrl, link.textContent.trim());
-            return false;
-        }, true);
-
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && sheetViewerOpened) closeSheetViewer();
-        });
-
-        let cmsScrollSaveTimer;
-        window.addEventListener('scroll', function () {
-            clearTimeout(cmsScrollSaveTimer);
-            cmsScrollSaveTimer = setTimeout(function () {
-                sessionStorage.setItem('cmsScrollY', String(window.scrollY || window.pageYOffset || 0));
-            }, 80);
-        }, { passive: true });
-
-        if ('scrollRestoration' in history) {
-            history.scrollRestoration = 'manual';
-        }
-
-        window.addEventListener('pageshow', function () {
-            const activePanelId = sessionStorage.getItem('activePanel');
-            const activeMainBoxId = sessionStorage.getItem('activeMainBox');
-            const lastSubBoxId = sessionStorage.getItem('lastSubBox');
-            const savedScrollY = parseInt(sessionStorage.getItem('cmsScrollY') || '0', 10);
-
-            clearProductCategoryState();
-
-            // Clear inline style overrides on page show
-            document.querySelectorAll('.category-detail-panel').forEach(panel => {
-                panel.style.removeProperty('display');
-                if (panel.id !== activePanelId) {
-                    panel.classList.remove('active');
-                }
-            });
-
-            if (activePanelId) {
-                const activePanel = document.getElementById(activePanelId);
-                if (activePanel) {
-                    activePanel.classList.add('active');
-                }
-            }
-
-            if (activeMainBoxId) {
-                const activeMainBox = document.getElementById(activeMainBoxId);
-                if (activeMainBox) {
-                    activeMainBox.classList.add('open');
-                }
-            }
-
-            if (lastSubBoxId) {
-                const targetSubBox = document.getElementById(lastSubBoxId);
-                const allProductsBox = document.getElementById('allProductsBox');
-                if (targetSubBox && allProductsBox && targetSubBox.parentElement === allProductsBox) {
-                    targetSubBox.classList.add('open');
-                    const cards = document.querySelectorAll('.sub-product-card');
-                    cards.forEach(card => {
-                        const onclick = card.getAttribute('onclick') || '';
-                        if (onclick.includes("'" + lastSubBoxId + "'")) {
-                            card.classList.add('active');
-                        }
-                    });
-                }
-            }
-
-            requestAnimationFrame(function () {
-                requestAnimationFrame(function () {
-                    window.scrollTo({ top: savedScrollY, left: 0, behavior: 'auto' });
-                });
-            });
-        });
-
-        function copyAccNumber(id, btn) {
-            let accNum = document.getElementById(id).innerText;
-            navigator.clipboard.writeText(accNum).then(() => {
-                let originalText = btn.innerText;
-                btn.innerText = 'Copied!';
-                setTimeout(() => { btn.innerText = originalText; }, 2000);
-            });
-        }
-
-        function openOriginalHours() {
-            document.getElementById('hoursModal').style.display = 'flex';
-        }
-
-        function closeOriginalHours() {
-            document.getElementById('hoursModal').style.display = 'none';
-        }
-
-        function openLightbox(src) {
-            document.getElementById('lightboxImg').src = src;
-            document.getElementById('imageLightbox').style.display = 'flex';
-        }
-
-        function closeLightbox(event) {
-            document.getElementById('imageLightbox').style.display = 'none';
-        }
-
-        // WHATSAPP FORM SUBMISSION
-        function sendToWhatsApp(e) {
-            e.preventDefault();
-            let name = document.getElementById('name').value;
-            let email = document.getElementById('email').value;
-            let mobile = document.getElementById('mobile').value;
-            let message = document.getElementById('message').value;
-
-            let fullText = `*New Contact Message*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Email:* ${encodeURIComponent(email)}%0A*Mobile:* ${encodeURIComponent(mobile)}%0A*Message:* ${encodeURIComponent(message)}`;
-            window.open(`https://wa.me/94770545464?text=${fullText}`, '_blank');
-        }
-
-        // --- ENHANCED SEARCH FUNCTION ---
-        function searchServices() {
-            let inputField = document.getElementById('searchInput');
-            let rawInput = inputField.value.trim().toLowerCase();
-    
-            if (rawInput === '') return;
-
-            const dictionary = {
-                "bok": "book",
-                "books": "book",
-                "copi": "copy",
-                "photocopi": "photo copy",
-                "prnt": "print",
-                "relog": "reload",
-                "dialogue": "dialog"
-            };
-
-            let query = dictionary[rawInput] ? dictionary[rawInput] : rawInput;
-
-            if (dictionary[rawInput]) {
-                inputField.value = dictionary[rawInput];
-            }
-
-            let subBoxes = document.querySelectorAll('.sub-box');
-            let firstMatchFound = false;
-
-            subBoxes.forEach(box => box.classList.remove('open', 'search-match'));
-
-            subBoxes.forEach(box => {
-                if (box.innerText.toLowerCase().includes(query)) {
-                    box.classList.add('open', 'search-match');
-
-                    let parentPanel = box.closest('.category-detail-panel');
-                    if (parentPanel) parentPanel.classList.add('active');
-
-                    let parentSubBox = box.parentElement.closest('.sub-box');
-                    if (parentSubBox) parentSubBox.classList.add('open');
-
-                    if (!firstMatchFound) {
-                        let yOffset = -120; 
-                        let elementPosition = box.getBoundingClientRect().top + window.pageYOffset;
-                        window.scrollTo({ top: elementPosition + yOffset, behavior: 'smooth' });
-                        firstMatchFound = true;
-                    }
-                }
-            });
-        }
-		function toggleSection(elementId, btn) {
-            var section = document.getElementById(elementId);
-            if (section.style.display === "none" || section.style.display === "") {
-                section.style.display = "block";
+            if (openCategoryId) {
+                sessionStorage.setItem('lastSubBox', openCategoryId);
             } else {
-                section.style.display = "none";
+                sessionStorage.removeItem('lastSubBox');
+            }
+
+            sheetViewerState = {
+                scrollY,
+                activePanel: activePanel ? activePanel.id : sessionStorage.getItem('activePanel'),
+                activeMainBox: (allProducts && allProducts.classList.contains('open')) ? allProducts.id : sessionStorage.getItem('activeMainBox'),
+                lastSubBox: openCategoryId || ''
+            };
+        } catch (err) {
+            console.warn('CMS UI state could not be saved:', err);
+        }
+    }
+
+    function openSheetViewer(sheetUrl, title) {
+        if (!sheetUrl || sheetUrl.indexOf('your-') !== -1) {
+            alert('Please add the actual Google Sheet URL first.');
+            return false;
+        }
+        saveUIState();
+        const modal = document.getElementById('sheetViewerModal');
+        const frame = document.getElementById('sheetViewerFrame');
+        const titleBox = document.getElementById('sheetViewerTitle');
+        if (!modal || !frame) return false;
+
+        titleBox.textContent = title || 'Google Sheet';
+        frame.src = sheetUrl;
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+        sheetViewerOpened = true;
+        return false;
+    }
+
+    function closeSheetViewer() {
+        const modal = document.getElementById('sheetViewerModal');
+        const frame = document.getElementById('sheetViewerFrame');
+        if (!modal) return;
+
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        if (frame) frame.src = 'about:blank';
+        document.body.style.overflow = '';
+        sheetViewerOpened = false;
+
+        const state = sheetViewerState || {};
+        const activePanelId = state.activePanel || sessionStorage.getItem('activePanel');
+        const activeMainBoxId = state.activeMainBox || sessionStorage.getItem('activeMainBox');
+        const lastSubBoxId = state.lastSubBox || '';
+
+        clearProductCategoryState();
+
+        document.querySelectorAll('.category-detail-panel').forEach(panel => {
+            if (panel.id !== activePanelId) {
+                panel.classList.remove('active');
+                panel.style.removeProperty('display');
+            }
+        });
+        if (activePanelId) {
+            const panel = document.getElementById(activePanelId);
+            if (panel) {
+                panel.classList.add('active');
             }
         }
-    </script>
+
+        if (activeMainBoxId) {
+            const mainBox = document.getElementById(activeMainBoxId);
+            if (mainBox) {
+                mainBox.classList.add('open');
+            }
+        }
+
+        if (lastSubBoxId) {
+            const subBox = document.getElementById(lastSubBoxId);
+            if (subBox && subBox.parentElement === document.getElementById('allProductsBox')) {
+                subBox.classList.add('open');
+                const cards = document.querySelectorAll('.sub-product-card');
+                cards.forEach(card => {
+                    const onclick = card.getAttribute('onclick') || '';
+                    if (onclick.includes("'" + lastSubBoxId + "'")) {
+                        card.classList.add('active');
+                    }
+                });
+            }
+        }
+
+        sessionStorage.setItem('activePanel', activePanelId || '');
+        sessionStorage.setItem('activeMainBox', activeMainBoxId || '');
+        if (lastSubBoxId) sessionStorage.setItem('lastSubBox', lastSubBoxId);
+        else sessionStorage.removeItem('lastSubBox');
+
+        const y = Number(state.scrollY ?? sessionStorage.getItem('cmsScrollY') ?? 0);
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            window.scrollTo({ top: y, left: 0, behavior: 'auto' });
+        }));
+    }
+
+    document.addEventListener('click', function(event) {
+        const link = event.target.closest('a.excel-sheet-btn');
+        if (!link) return;
+        event.preventDefault();
+        event.stopPropagation();
+        const url = link.getAttribute('href');
+        const sheetUrl = link.getAttribute('data-sheet-url') || url;
+        openSheetViewer(sheetUrl, link.textContent.trim());
+        return false;
+    }, true);
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && sheetViewerOpened) closeSheetViewer();
+    });
+
+    let cmsScrollSaveTimer;
+    window.addEventListener('scroll', function () {
+        clearTimeout(cmsScrollSaveTimer);
+        cmsScrollSaveTimer = setTimeout(function () {
+            sessionStorage.setItem('cmsScrollY', String(window.scrollY || window.pageYOffset || 0));
+        }, 80);
+    }, { passive: true });
+
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+
+    window.addEventListener('pageshow', function () {
+        const activePanelId = sessionStorage.getItem('activePanel');
+        const activeMainBoxId = sessionStorage.getItem('activeMainBox');
+        const lastSubBoxId = sessionStorage.getItem('lastSubBox');
+        const savedScrollY = parseInt(sessionStorage.getItem('cmsScrollY') || '0', 10);
+
+        clearProductCategoryState();
+
+        document.querySelectorAll('.category-detail-panel').forEach(panel => {
+            panel.style.removeProperty('display');
+            if (panel.id !== activePanelId) {
+                panel.classList.remove('active');
+            }
+        });
+
+        if (activePanelId) {
+            const activePanel = document.getElementById(activePanelId);
+            if (activePanel) {
+                activePanel.classList.add('active');
+            }
+        }
+
+        if (activeMainBoxId) {
+            const activeMainBox = document.getElementById(activeMainBoxId);
+            if (activeMainBox) {
+                activeMainBox.classList.add('open');
+            }
+        }
+
+        if (lastSubBoxId) {
+            const targetSubBox = document.getElementById(lastSubBoxId);
+            const allProductsBox = document.getElementById('allProductsBox');
+            if (targetSubBox && allProductsBox && targetSubBox.parentElement === allProductsBox) {
+                targetSubBox.classList.add('open');
+                const cards = document.querySelectorAll('.sub-product-card');
+                cards.forEach(card => {
+                    const onclick = card.getAttribute('onclick') || '';
+                    if (onclick.includes("'" + lastSubBoxId + "'")) {
+                        card.classList.add('active');
+                    }
+                });
+            }
+        }
+
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+                window.scrollTo({ top: savedScrollY, left: 0, behavior: 'auto' });
+            });
+        });
+    });
+
+    function copyAccNumber(id, btn) {
+        let accNum = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(accNum).then(() => {
+            let originalText = btn.innerText;
+            btn.innerText = 'Copied!';
+            setTimeout(() => { btn.innerText = originalText; }, 2000);
+        });
+    }
+
+    function openOriginalHours() {
+        document.getElementById('hoursModal').style.display = 'flex';
+    }
+
+    function closeOriginalHours() {
+        document.getElementById('hoursModal').style.display = 'none';
+    }
+
+    function openLightbox(src) {
+        document.getElementById('lightboxImg').src = src;
+        document.getElementById('imageLightbox').style.display = 'flex';
+    }
+
+    function closeLightbox(event) {
+        document.getElementById('imageLightbox').style.display = 'none';
+    }
+
+    // WHATSAPP FORM SUBMISSION
+    function sendToWhatsApp(e) {
+        e.preventDefault();
+        let name = document.getElementById('name').value;
+        let email = document.getElementById('email').value;
+        let mobile = document.getElementById('mobile').value;
+        let message = document.getElementById('message').value;
+
+        let fullText = `*New Contact Message*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Email:* ${encodeURIComponent(email)}%0A*Mobile:* ${encodeURIComponent(mobile)}%0A*Message:* ${encodeURIComponent(message)}`;
+        window.open(`https://wa.me/94770545464?text=${fullText}`, '_blank');
+    }
+
+    // --- ENHANCED SEARCH FUNCTION ---
+    function searchServices() {
+        let inputField = document.getElementById('searchInput');
+        let rawInput = inputField.value.trim().toLowerCase();
+
+        if (rawInput === '') return;
+
+        const dictionary = {
+            "bok": "book",
+            "books": "book",
+            "copi": "copy",
+            "photocopi": "photo copy",
+            "prnt": "print",
+            "relog": "reload",
+            "dialogue": "dialog"
+        };
+
+        let query = dictionary[rawInput] ? dictionary[rawInput] : rawInput;
+
+        if (dictionary[rawInput]) {
+            inputField.value = dictionary[rawInput];
+        }
+
+        let subBoxes = document.querySelectorAll('.sub-box');
+        let firstMatchFound = false;
+
+        subBoxes.forEach(box => box.classList.remove('open', 'search-match'));
+
+        subBoxes.forEach(box => {
+            if (box.innerText.toLowerCase().includes(query)) {
+                box.classList.add('open', 'search-match');
+
+                let parentPanel = box.closest('.category-detail-panel');
+                if (parentPanel) parentPanel.classList.add('active');
+
+                let parentSubBox = box.parentElement.closest('.sub-box');
+                if (parentSubBox) parentSubBox.classList.add('open');
+
+                if (!firstMatchFound) {
+                    let yOffset = -120; 
+                    let elementPosition = box.getBoundingClientRect().top + window.pageYOffset;
+                    window.scrollTo({ top: elementPosition + yOffset, behavior: 'smooth' });
+                    firstMatchFound = true;
+                }
+            }
+        });
+    }
+</script> 
 </body>
 </html>
