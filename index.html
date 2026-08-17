@@ -1070,21 +1070,19 @@
                     </ul>                    
                 </div>
 
-                <!-- HTML Code -->
-			<button onclick="toggleSection('newSimBox', this);" class="serviceBtn">New SIM Connections</button>
-
-			<div id="newSimBox" class="sim-activation-section" style="display: none; margin-top: 10px;">
-    		<strong>New SIM & Change Activation</strong>
-    		<ul style="list-style-type: disc; padding-left: 20px;">
-        		<li>Dialog / Mobitel / Hutch / Airtel</li>
-        		<li>E Sim</li>
-        		<li>Router Sim</li>
-        		<li>Sim change (Lost/Damage)</li>
-        		<li style="list-style-type: none; margin-left: -15px;">
-	            <span style="color: red; font-weight: bold;">*</span> Please bring your original NIC (ජාතික හැඳුනුම්පත)
-		        </li>
-    		</ul>
-		</div>
+                <button onclick="toggleSection('newSimBox', this);" class="serviceBtn">New SIM Connections</button>
+                <div id="newSimBox" class="sub-box">
+                    <b>New SIM & Change Activation</b>
+                    <ul>
+                        <li>Dialog / Mobitel / Hutch / Airtel</li>
+                        <li>E Sim</li>
+                        <li>Router Sim</li>
+                        <li>Sim change (Lost/Damage)</li>
+                        <li style="list-style-type: none; margin-left: -15px;">
+                            <span style="color: red; font-weight: bold;">*</span> Please bring your original NIC (ජාතික හැඳුනුම්පත)
+                        </li>
+                    </ul>
+                </div>
 
                 <!-- Buttons 3ට පහළින් පෙනෙන කොළ පාට Button එක -->
                 <div style="margin-top: 15px;">
@@ -1758,7 +1756,7 @@
         sessionStorage.removeItem('lastSubBox');
     }
 
-    // --- TOGGLE SECTION WITH AUTO-SCROLL (මෙම නිවැරදි එක භාවිත වේ) ---
+    // --- TOGGLE SECTION WITH AUTO-SCROLL ---
     function toggleSection(sectionId, btnElement) {
         const element = document.getElementById(sectionId);
         if (!element) return;
