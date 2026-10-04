@@ -416,6 +416,40 @@
             object-fit: cover;
             cursor: pointer;
         }
+        
+        /* MOBILE ACCESSORIES SLIDER CSS */
+        .mobile-slider-container {
+            position: relative;
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            background: #000;
+        }
+
+        .mobile-slider {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            position: relative;
+        }
+
+        .mobile-slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .mobile-slide.active {
+            display: block;
+        }
+
+        .mobile-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
 
         .prev-btn, .next-btn {
             position: absolute;
@@ -1165,6 +1199,33 @@
 							<li>Bluetooth Devices - From Rs.350/=</li>
                             <li>Software Flashing & Unlocking</li>
                         </ul>
+                        
+                        <!-- Mobile Accessories Image Slider -->
+                        <div class="mobile-slider-container">
+                            <div class="mobile-slider">
+                                <div class="mobile-slide active">
+                                    <img src="https://lh3.googleusercontent.com/d/1alrx6lV9nj2t0UaHsBiCZIigXbkLvx1f" alt="Slide 1" onclick="openLightbox(this.src)">
+                                </div>
+                                <div class="mobile-slide">
+                                    <img src="https://lh3.googleusercontent.com/d/1BBz-8_gm_tO65CwnqitopOqZ2b3kPXmW" onclick="openLightbox(this.src)">
+                                </div>
+                                <div class="mobile-slide">
+                                    <img src="https://lh3.googleusercontent.com/d/1XZeeTkq7s9WWqMFrZomBZRPdjXeK8pod" alt="Slide 3" onclick="openLightbox(this.src)">
+                                </div>
+                            </div>
+
+                            <!-- Navigation Buttons -->
+                            <button type="button" class="prev-btn" onclick="moveMobileSlide(-1)">&#10094;</button>
+                            <button type="button" class="next-btn" onclick="moveMobileSlide(1)">&#10095;</button>
+
+                            <!-- Indicators/Dots -->
+                            <div class="dots-container">
+                                <span class="dot mobile-dot active-dot" onclick="currentMobileSlide(0)"></span>
+                                <span class="dot mobile-dot" onclick="currentMobileSlide(1)"></span>
+                                <span class="dot mobile-dot" onclick="currentMobileSlide(2)"></span>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
 
@@ -1681,6 +1742,41 @@
         if (dtvSlides.length > 0) {
             dtvSlideIndex = (dtvSlideIndex + 1) % dtvSlides.length;
             showDtvSlide(dtvSlideIndex);
+        }
+    }, 5000);
+
+    // 3. MOBILE ACCESSORIES SLIDER SCRIPT
+    let mobileSlideIndex = 0;
+    const mobileSlides = document.querySelectorAll('.mobile-slide');
+    const mobileDots = document.querySelectorAll('.mobile-slider-container .dot.mobile-dot');
+
+    function showMobileSlide(index) {
+        if (mobileSlides.length === 0) return;
+        
+        if (index >= mobileSlides.length) { mobileSlideIndex = 0; }
+        if (index < 0) { mobileSlideIndex = mobileSlides.length - 1; }
+
+        mobileSlides.forEach(slide => slide.classList.remove('active'));
+        mobileDots.forEach(dot => dot.classList.remove('active-dot'));
+
+        mobileSlides[mobileSlideIndex].classList.add('active');
+        if (mobileDots[mobileSlideIndex]) {
+            mobileDots[mobileSlideIndex].classList.add('active-dot');
+        }
+    }
+
+    function moveMobileSlide(n) {
+        showMobileSlide(mobileSlideIndex += n);
+    }
+
+    function currentMobileSlide(n) {
+        showMobileSlide(mobileSlideIndex = n);
+    }
+
+    setInterval(() => {
+        if (mobileSlides.length > 0) {
+            mobileSlideIndex = (mobileSlideIndex + 1) % mobileSlides.length;
+            showMobileSlide(mobileSlideIndex);
         }
     }, 5000);
 
