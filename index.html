@@ -51,7 +51,7 @@
 
         /* Glassmorphism */
         .glass-nav {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
@@ -147,11 +147,11 @@
 <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
 
     <!-- 1. CONTINUOUS RUNNING ANNOUNCEMENT BANNER -->
-    <div class="bg-gradient-to-r from-red-600 via-orange-600 to-amber-600 text-white text-sm py-2 px-4 overflow-hidden shadow-sm relative z-50">
+    <div class="bg-gradient-to-r from-red-600 via-orange-600 to-amber-600 text-white text-xs sm:text-sm py-1.5 px-3 overflow-hidden shadow-sm relative z-50">
         <div class="max-w-7xl mx-auto flex items-center">
-            <div class="flex items-center space-x-2 bg-black/20 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shrink-0 z-10 mr-3">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                <span>NOTICE / නිවේදනය</span>
+            <div class="flex items-center space-x-1.5 bg-black/20 px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider shrink-0 z-10 mr-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                <span>NOTICE</span>
             </div>
             <div class="overflow-hidden w-full relative">
                 <div class="marquee-track font-medium text-xs sm:text-sm">
@@ -162,33 +162,55 @@
         </div>
     </div>
 
-    <!-- 2. STICKY HEADER & NAVIGATION BAR -->
+    <!-- 2. STICKY HEADER & NAVIGATION BAR (FIXED RESPONSIVE HEADER WITH SEARCH BAR FOR BOTH MOBILE & PC) -->
     <header class="sticky top-0 z-40 glass-nav border-b border-slate-200/80 transition-all duration-300 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 sm:h-20">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2.5 sm:py-3">
+            <div class="flex flex-col gap-2.5">
                 
-                <!-- Logo & Branding -->
-                <a href="#" class="flex items-center gap-2 sm:gap-3 group">
-                    <img src="https://lh3.googleusercontent.com/d/1qY4_78N7PLEzWwsPowtfyy848HzVUnRi" alt="CMS Logo" class="h-9 sm:h-12 w-auto object-contain rounded-xl group-hover:scale-105 transition-transform duration-300">
-                    <div>
-                        <div class="flex items-center gap-1.5 sm:gap-2">
-                            <span class="font-black text-lg sm:text-2xl tracking-tight bg-gradient-to-r from-slate-900 to-brand-900 bg-clip-text text-transparent">CHAMI MULTI SHOP</span>
-                            <span class="bg-brand-100 text-brand-700 text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider">Since 2005</span>
+                <!-- Top Row: Logo, Phone & Menu Button -->
+                <div class="flex items-center justify-between gap-2">
+                    
+                    <!-- Logo & Branding -->
+                    <a href="#" class="flex items-center gap-2 group">
+                        <img src="https://lh3.googleusercontent.com/d/1qY4_78N7PLEzWwsPowtfyy848HzVUnRi" alt="CMS Logo" class="h-9 sm:h-11 w-auto object-contain rounded-xl group-hover:scale-105 transition-transform duration-300">
+                        <div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="font-black text-base sm:text-2xl tracking-tight bg-gradient-to-r from-slate-900 to-brand-900 bg-clip-text text-transparent">CHAMI MULTI SHOP</span>
+                                <span class="bg-brand-100 text-brand-700 text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider shrink-0">Since 2005</span>
+                            </div>
+                            <p class="text-[10px] sm:text-xs text-slate-500 font-medium line-clamp-1">No. 476 A1, St. Vincent Rd, Diyalagoda • Maggona</p>
                         </div>
-                        <p class="text-[10px] sm:text-xs text-slate-500 font-medium">No. 476 A1, St. Vincent Rd, Diyalagoda • Maggona</p>
-                    </div>
-                </a>
+                    </a>
 
-                <!-- Desktop Search Bar -->
-                <div class="hidden lg:block flex-1 max-w-xl mx-6 relative">
+                    <!-- Desktop Navigation Links & Quick Call -->
+                    <div class="hidden lg:flex items-center space-x-5 shrink-0">
+                        <a href="#services" class="text-sm font-semibold text-slate-700 hover:text-brand-600 transition-colors">Services</a>
+                        <a href="#products-showcase" class="text-sm font-semibold text-slate-700 hover:text-brand-600 transition-colors">Products</a>
+                        <a href="#packages" class="text-sm font-semibold text-slate-700 hover:text-brand-600 transition-colors">Packages</a>
+                        <a href="#payments-section" class="text-sm font-semibold text-slate-700 hover:text-brand-600 transition-colors">Payments & Bank</a>
+                        <a href="#contact-section" class="text-sm font-semibold text-slate-700 hover:text-brand-600 transition-colors">Contact</a>
+                        
+                        <a href="tel:0770545464" class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs sm:text-sm font-bold px-3.5 py-2 rounded-xl shadow-md transition-all">
+                            <i class="fa-solid fa-phone"></i>
+                            <span>0770 54 54 64</span>
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none shrink-0">
+                        <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+                    </button>
+                </div>
+
+                <!-- Universal Search Bar (VISIBLE ON BOTH MOBILE AND DESKTOP) -->
+                <div class="w-full relative">
                     <div class="relative flex items-center">
-                        <input type="text" id="searchInput" list="searchSuggestions" placeholder="Search services, reload, bills, accessories..." class="w-full bg-slate-100/90 border border-slate-300 rounded-2xl py-2.5 pl-11 pr-12 text-sm text-slate-800 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-all shadow-sm">
-                        <i class="fa-solid fa-magnifying-glass absolute left-4 text-slate-400 text-base"></i>
-                        <button type="button" class="absolute right-2 p-2 rounded-xl bg-brand-600 text-white text-xs hover:bg-brand-700 transition-colors shadow-sm">
+                        <input type="text" id="searchInput" list="searchSuggestions" placeholder="Search services, reloads, bills, accessories..." class="w-full bg-slate-100 border border-slate-300 rounded-xl py-2 pl-9 pr-10 text-xs sm:text-sm text-slate-800 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-all shadow-inner">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 text-slate-400 text-xs sm:text-sm"></i>
+                        <button type="button" class="absolute right-1.5 p-1.5 rounded-lg bg-brand-600 text-white text-xs hover:bg-brand-700 transition-colors">
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
-                    <!-- Auto Suggestions List -->
                     <datalist id="searchSuggestions">
                         <option value="Photo Copy"></option>
                         <option value="Print Out"></option>
@@ -204,29 +226,11 @@
                     </datalist>
                 </div>
 
-                <!-- Navigation Links & Quick Call -->
-                <div class="hidden md:flex items-center space-x-5">
-                    <a href="#services" class="text-sm font-semibold text-slate-700 hover:text-brand-600 transition-colors">Services</a>
-                    <a href="#products-showcase" class="text-sm font-semibold text-slate-700 hover:text-brand-600 transition-colors">Products</a>
-                    <a href="#packages" class="text-sm font-semibold text-slate-700 hover:text-brand-600 transition-colors">Packages</a>
-                    <a href="#payments-section" class="text-sm font-semibold text-slate-700 hover:text-brand-600 transition-colors">Payments & Bank</a>
-                    <a href="#contact-section" class="text-sm font-semibold text-slate-700 hover:text-brand-600 transition-colors">Contact</a>
-                    
-                    <a href="tel:0770545464" class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-sm font-bold px-4 py-2.5 rounded-2xl shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30 transition-all hover:-translate-y-0.5">
-                        <i class="fa-solid fa-phone animate-bounce"></i>
-                        <span>0770 54 54 64</span>
-                    </a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 focus:outline-none">
-                    <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
-                </button>
             </div>
         </div>
 
         <!-- Mobile Navigation Menu -->
-        <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white/95 backdrop-blur-lg px-4 pt-3 pb-6 space-y-3 shadow-xl">
+        <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 bg-white/95 backdrop-blur-lg px-4 pt-3 pb-6 space-y-3 shadow-xl">
             <a href="#services" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-600">Services</a>
             <a href="#products-showcase" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-600">Products & Accessories</a>
             <a href="#packages" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-600">Voice & Data Packages</a>
@@ -245,7 +249,7 @@
 
     <main class="flex-grow">
         
-        <!-- 3. HERO SECTION (RESPONSIVE SLIDER HEIGHT FOR MOBILE & PC) -->
+        <!-- 3. HERO SECTION -->
         <section class="relative overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-50 py-6 sm:py-10 border-b border-slate-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
@@ -283,7 +287,7 @@
                         </div>
                     </div>
 
-                    <!-- Right Hero Image Slider (MOBILE & PC DUAL RESPONSIVE HEIGHT) -->
+                    <!-- Right Hero Image Slider -->
                     <div class="lg:col-span-6 relative">
                         <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-2 sm:border-4 border-white bg-slate-900 group">
                             <div id="heroSlider" class="relative h-[220px] sm:h-[380px] lg:h-[450px] w-full overflow-hidden cursor-pointer bg-slate-950">
@@ -584,7 +588,7 @@
             </div>
         </section>
 
-        <!-- 5. PRODUCTS & ACCESSORIES SLIDER SECTION (OPTIMIZED FOR MOBILE & PC SCREEN SIZES) -->
+        <!-- 5. PRODUCTS & ACCESSORIES SLIDER SECTION -->
         <section id="products-showcase" class="py-6 sm:py-8 bg-slate-900 text-white border-y border-slate-800">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
