@@ -167,30 +167,26 @@
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2.5 sm:py-3">
             <div class="flex flex-col gap-2.5">
                 
-                <!-- Top Row: Logo, Mobile Quick Call & Menu Button -->
+                <!-- Top Row: Logo & Menu Button -->
                 <div class="flex items-center justify-between gap-2">
                     
                     <!-- Logo & Branding -->
-                    <a href="#" class="flex items-center gap-2 group">
-                        <img src="https://lh3.googleusercontent.com/d/1qY4_78N7PLEzWwsPowtfyy848HzVUnRi" alt="CMS Logo" class="h-9 sm:h-11 w-auto object-contain rounded-xl group-hover:scale-105 transition-transform duration-300">
+                    <a href="#" class="flex items-center gap-2.5 group">
+                        <div class="flex flex-col items-center">
+                            <img src="https://lh3.googleusercontent.com/d/1qY4_78N7PLEzWwsPowtfyy848HzVUnRi" alt="CMS Logo" class="h-9 sm:h-11 w-auto object-contain rounded-xl group-hover:scale-105 transition-transform duration-300">
+                            <span class="bg-brand-100 text-brand-700 text-[8px] sm:text-[9px] font-extrabold px-1.5 py-0.2 rounded-full uppercase tracking-wider mt-0.5">Since 2005</span>
+                        </div>
                         <div>
                             <div class="flex items-center gap-1.5">
-                                <span class="font-black text-base sm:text-2xl tracking-tight bg-gradient-to-r from-slate-900 to-brand-900 bg-clip-text text-transparent">CHAMI MULTI SHOP</span>
-                                <span class="bg-brand-100 text-brand-700 text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider shrink-0">Since 2005</span>
+                                <span class="font-bold text-sm sm:text-lg tracking-tight bg-gradient-to-r from-slate-900 to-brand-900 bg-clip-text text-transparent">CHAMI MULTI SHOP</span>
                             </div>
-                            <p class="text-[10px] sm:text-xs text-slate-500 font-medium line-clamp-1">No. 476 A1, St. Vincent Rd, Diyalagoda • Maggona</p>
+                            <p class="text-[9px] sm:text-[11px] font-bold bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-800 bg-clip-text text-transparent line-clamp-1">Beyond the Page, Beyond the Connection</p>
                         </div>
                     </a>
 
-                    <!-- Mobile & Desktop Call + Menu Buttons -->
+                    <!-- Mobile & Desktop Menu Buttons -->
                     <div class="flex items-center gap-2">
-                        <!-- Mobile Quick Call Button (Visible on Mobile) -->
-                        <a href="tel:0770545464" class="lg:hidden inline-flex items-center gap-1.5 bg-emerald-600 text-white text-xs font-bold px-3 py-2 rounded-xl shadow-md">
-                            <i class="fa-solid fa-phone"></i>
-                            <span class="text-[11px]">Call</span>
-                        </a>
-
-                        <!-- Desktop Navigation Links & Call -->
+                        <!-- Desktop Navigation Links -->
                         <div class="hidden lg:flex items-center space-x-5 shrink-0">
                             <a href="#services" class="text-sm font-semibold text-slate-700 hover:text-brand-600 transition-colors">Services</a>
                             <a href="#products-showcase" class="text-sm font-semibold text-slate-700 hover:text-brand-600 transition-colors">Products</a>
@@ -205,7 +201,7 @@
                         </div>
 
                         <!-- Mobile Menu Button -->
-                        <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none shrink-0">
+                        <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none shrink-0 cursor-pointer">
                             <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
                         </button>
                     </div>
@@ -1204,11 +1200,9 @@
 
             const isAlreadyOpen = sec.classList.contains('open');
 
-            // Close all document sub-boxes first
             const allDocBoxes = document.querySelectorAll('#docServicesPanel .sub-box');
             allDocBoxes.forEach(box => box.classList.remove('open'));
 
-            // If it was not open, open it now
             if (!isAlreadyOpen) {
                 sec.classList.add('open');
             }
@@ -1221,11 +1215,9 @@
 
             const isAlreadyOpen = sec.classList.contains('open');
 
-            // Close all accessories sub-boxes first
             const allAccBoxes = document.querySelectorAll('#accessoriesPanel .sub-box');
             allAccBoxes.forEach(box => box.classList.remove('open'));
 
-            // If it was not open, open it now
             if (!isAlreadyOpen) {
                 sec.classList.add('open');
             }
