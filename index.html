@@ -295,20 +295,24 @@
                         </div>
                     </div>
 
-                    <!-- Right Hero Image Slider -->
+                    <!-- Right Hero Image Slider (Fixed with object-contain so full image displays completely without cutting) -->
                     <div class="lg:col-span-6 relative">
                         <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-2 sm:border-4 border-white bg-slate-900 group">
-                            <div id="heroSlider" class="relative h-[220px] sm:h-[380px] lg:h-[450px] w-full overflow-hidden cursor-pointer bg-slate-950">
+                            <div id="heroSlider" class="relative h-[250px] sm:h-[380px] lg:h-[450px] w-full overflow-hidden cursor-pointer bg-slate-950" onclick="zoomHeroImage()">
                                 <img src="https://lh3.googleusercontent.com/d/1R8NnJOotmKFIyfPJR41FH6DHu3KIMzF5" alt="Slide 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-100" id="slide0">
                                 <img src="https://lh3.googleusercontent.com/d/1gx9JjRTMsCPJlLmaQ88W3vK2bGP-CSM8" alt="Slide 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="slide1">
-                                <img src="https://lh3.googleusercontent.com/d/1Y7pe5IK5MTEj-gch3OibYiyNESV2UIOE" alt="Slide 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="slide2">
+                                <img src="https://lh3.googleusercontent.com/d/1zV7CJlvFIvwWE8PW0K1PC0nDB9W9o5xz" alt="Slide 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="slide2">
+                                <img src="https://lh3.googleusercontent.com/d/1Y7pe5IK5MTEj-gch3OibYiyNESV2UIOE" alt="Slide 4" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="slide3">
                             </div>
 
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
 
-                            <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 text-white p-1.5 pointer-events-none">
-                                <span class="bg-brand-600 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full mb-0.5 inline-block">Chami Multi Shop</span>
-                                <p class="text-xs sm:text-sm font-semibold">Modern Printing & Digital Services Center</p>
+                            <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 text-white p-1.5 pointer-events-none flex justify-between items-end">
+                                <div>
+                                    <span class="bg-brand-600 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full mb-0.5 inline-block">Chami Multi Shop</span>
+                                    <p class="text-xs sm:text-sm font-semibold">Modern Printing & Digital Services Center</p>
+                                </div>
+                                <span class="text-[10px] bg-black/60 px-2 py-1 rounded-lg backdrop-blur text-amber-300"><i class="fa-solid fa-arrows-left-right"></i> Swipe / Click to Zoom</span>
                             </div>
                         </div>
                     </div>
@@ -361,8 +365,7 @@
                         <ul class="space-y-2 text-xs sm:text-sm text-slate-700 font-medium mb-5">
                             <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500 text-xs"></i> Reload & Scratch Cards (All Networks)</li>
                             <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500 text-xs"></i> New SIM Connections (Bring Original NIC)</li>
-			    <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500 text-xs"></i> SIM Repalcement (Bring Original NIC)</li>
-
+			    <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500 text-xs"></i> SIM Replacement (Bring Original NIC)</li>
                             <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500 text-xs"></i> Voice & Data Package Activations</li>
                         </ul>
                     </div>
@@ -599,7 +602,7 @@
             </div>
         </section>
 
-        <!-- 5. PRODUCTS & ACCESSORIES SLIDER SECTION (WITH CLICK TO ZOOM) -->
+        <!-- 5. PRODUCTS & ACCESSORIES SLIDER SECTION (WITH CLICK TO ZOOM & SWIPE) -->
         <section id="products-showcase" class="py-6 sm:py-8 bg-slate-900 text-white border-y border-slate-800">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
@@ -607,20 +610,22 @@
                     <div>
                         <span class="text-rose-400 font-bold text-[10px] sm:text-[11px] uppercase tracking-widest block">In-Store Gallery</span>
                         <h2 class="text-lg sm:text-2xl font-extrabold text-white">Products & Accessories Showcase</h2>
-                        <p class="text-slate-400 text-[11px] sm:text-xs mt-0.5">Click any image to zoom and view clearly • High quality tech accessories & items.</p>
+                        <p class="text-slate-400 text-[11px] sm:text-xs mt-0.5">Swipe or click any image to zoom and view clearly • High quality tech accessories & items.</p>
                     </div>
                 </div>
 
-                <!-- Product Showcase Multi-Image Slider Container (Click to Zoom Enabled) -->
+                <!-- Product Showcase Multi-Image Slider Container (Click to Zoom & Swipe Enabled) -->
                 <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-950 border border-white/10 shadow-2xl group cursor-pointer" onclick="zoomCurrentProductImage()">
                     <div id="productSlider" class="relative h-[250px] sm:h-[450px] lg:h-[550px] w-full bg-slate-950">
                         <img src="https://lh3.googleusercontent.com/d/1XZeeTkq7s9WWqMFrZomBZRPdjXeK8pod" alt="Product Showcase 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-100" id="prodSlide0">
                         <img src="https://lh3.googleusercontent.com/d/1BBz-8_gm_tO65CwnqitopOqZ2b3kPXmW" alt="Product Showcase 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="prodSlide1">
                         <img src="https://lh3.googleusercontent.com/d/1alrx6lV9nj2t0UaHsBiCZIigXbkLvx1f" alt="Product Showcase 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="prodSlide2">
-                        <img src="https://lh3.googleusercontent.com/d/1LFTj66e4-hgcLjhwD4HL4UL5AZozRk9g" alt="Product Showcase 4" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="prodSlide3">
+                        <img src="https://lh3.googleusercontent.com/d/1zV7CJlvFIvwWE8PW0K1PC0nDB9W9o5xz" alt="Product Showcase 4" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="prodSlide3">
+                        <img src="https://lh3.googleusercontent.com/d/1LFTj66e4-hgcLjhwD4HL4UL5AZozRk9g" alt="Product Showcase 5" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="prodSlide4">
+			            <img src="https://lh3.googleusercontent.com/d/14XVIZH-VbyF7wflWtsY8bDtU6llIN-uI" alt="Product Showcase 6" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="prodSlide5">
                     </div>
                     <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white text-[10px] sm:text-xs font-bold px-3 py-1.5 rounded-xl border border-white/20 pointer-events-none flex items-center gap-1.5">
-                        <i class="fa-solid fa-magnifying-glass-plus"></i> Click to Zoom
+                        <i class="fa-solid fa-magnifying-glass-plus"></i> Swipe / Click to Zoom
                     </div>
                 </div>
             </div>
@@ -1052,7 +1057,7 @@
         </div>
     </div>
 
-    <!-- IMAGE ZOOM MODAL FOR SHOWCASE -->
+    <!-- IMAGE ZOOM MODAL FOR SHOWCASE & HERO -->
     <div id="imageZoomModal" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-lg hidden flex-col justify-center items-center p-2 sm:p-6">
         <button onclick="closeZoomModal()" class="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white font-bold w-10 h-10 rounded-full flex items-center justify-center text-lg z-50 cursor-pointer">
             <i class="fa-solid fa-xmark"></i>
@@ -1060,21 +1065,23 @@
         <div class="relative max-w-5xl max-h-[85vh] w-full h-full flex items-center justify-center">
             <img id="zoomedImg" src="" alt="Zoomed Showcase Image" class="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl border border-white/10">
         </div>
-        <p class="text-slate-400 text-xs mt-3">Chami Multi Shop (CMS) - Product Showcase Zoom View</p>
+        <p class="text-slate-400 text-xs mt-3">Chami Multi Shop (CMS) - Zoom View</p>
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- JAVASCRIPT LOGIC (Swipe, Touch, Auto-play, Zoom & Direct Filtering) -->
     <script>
-        // Hero Slider Images
+        // Hero Slider Images & Swipe Logic
         const slideImages = [
             "https://lh3.googleusercontent.com/d/1R8NnJOotmKFIyfPJR41FH6DHu3KIMzF5",
             "https://lh3.googleusercontent.com/d/1gx9JjRTMsCPJlLmaQ88W3vK2bGP-CSM8",
+            "https://lh3.googleusercontent.com/d/1zV7CJlvFIvwWE8PW0K1PC0nDB9W9o5xz",
             "https://lh3.googleusercontent.com/d/1Y7pe5IK5MTEj-gch3OibYiyNESV2UIOE"
         ];
         let currentSlide = 0;
+        let heroInterval = setInterval(nextHeroSlide, 4000);
 
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % slideImages.length;
+        function showHeroSlide(index) {
+            currentSlide = (index + slideImages.length) % slideImages.length;
             for (let i = 0; i < slideImages.length; i++) {
                 const img = document.getElementById('slide' + i);
                 if (img) {
@@ -1087,20 +1094,41 @@
                     }
                 }
             }
-        }, 4000);
+        }
 
-        // Product Showcase Slider Images & Zoom Logic
+        function nextHeroSlide() {
+            showHeroSlide(currentSlide + 1);
+        }
+
+        function prevHeroSlide() {
+            showHeroSlide(currentSlide - 1);
+        }
+
+        function zoomHeroImage() {
+            const currentImgUrl = slideImages[currentSlide];
+            const modal = document.getElementById('imageZoomModal');
+            const zoomedImg = document.getElementById('zoomedImg');
+            zoomedImg.src = currentImgUrl;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Product Showcase Slider Images & Swipe Logic
         let currentProdSlide = 0;
-        const totalProdSlides = 4;
+        const totalProdSlides = 6;
         const productSlideImages = [
             "https://lh3.googleusercontent.com/d/1XZeeTkq7s9WWqMFrZomBZRPdjXeK8pod",
             "https://lh3.googleusercontent.com/d/1BBz-8_gm_tO65CwnqitopOqZ2b3kPXmW",
             "https://lh3.googleusercontent.com/d/1alrx6lV9nj2t0UaHsBiCZIigXbkLvx1f",
-            "https://lh3.googleusercontent.com/d/1LFTj66e4-hgcLjhwD4HL4UL5AZozRk9g"
+            "https://lh3.googleusercontent.com/d/1zV7CJlvFIvwWE8PW0K1PC0nDB9W9o5xz",
+            "https://lh3.googleusercontent.com/d/1LFTj66e4-hgcLjhwD4HL4UL5AZozRk9g",
+	        "https://lh3.googleusercontent.com/d/14XVIZH-VbyF7wflWtsY8bDtU6llIN-uI"
         ];
+        let prodInterval = setInterval(nextProdSlideAuto, 4500);
 
-        setInterval(() => {
-            currentProdSlide = (currentProdSlide + 1) % totalProdSlides;
+        function showProdSlide(index) {
+            currentProdSlide = (index + totalProdSlides) % totalProdSlides;
             for (let i = 0; i < totalProdSlides; i++) {
                 const img = document.getElementById('prodSlide' + i);
                 if (img) {
@@ -1113,7 +1141,11 @@
                     }
                 }
             }
-        }, 4500);
+        }
+
+        function nextProdSlideAuto() {
+            showProdSlide(currentProdSlide + 1);
+        }
 
         function zoomCurrentProductImage() {
             const currentImgUrl = productSlideImages[currentProdSlide];
@@ -1131,6 +1163,27 @@
             modal.classList.add('hidden');
             document.body.style.overflow = 'auto';
         }
+
+        // --- Touch / Swipe Gesture Support for Sliders ---
+        function addTouchSupport(elementId, onSwipeLeft, onSwipeRight) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            let startX = 0;
+            el.addEventListener('touchstart', e => {
+                startX = e.touches[0].clientX;
+            }, {passive: true});
+            el.addEventListener('touchend', e => {
+                let endX = e.changedTouches[0].clientX;
+                if (startX - endX > 50) {
+                    onSwipeLeft();
+                } else if (endX - startX > 50) {
+                    onSwipeRight();
+                }
+            }, {passive: true});
+        }
+
+        addTouchSupport('heroSlider', () => { showHeroSlide(currentSlide + 1); }, () => { showHeroSlide(currentSlide - 1); });
+        addTouchSupport('productSlider', () => { showProdSlide(currentProdSlide + 1); }, () => { showProdSlide(currentProdSlide - 1); });
 
         // Search Bar Functionality
         function handleSearch(e) {
@@ -1154,7 +1207,7 @@
             });
         }
 
-        // Product Category Filtering Logic (Auto open all products on load & filter correctly on click)
+        // Product Category Filtering Logic
         function filterProductCategory(category) {
             const buttons = document.querySelectorAll('.cat-btn');
             buttons.forEach(btn => {
@@ -1176,6 +1229,8 @@
                     item.style.display = 'none';
                 }
             });
+
+            document.getElementById('productInventoryGrid').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
         // --- MAIN PANEL TOGGLE FUNCTIONALITY ---
@@ -1197,13 +1252,12 @@
             panels.forEach(p => p.classList.remove('active'));
         }
 
-        // --- DOCUMENT SERVICES SUB-SECTIONS ACCORDION (AUTO-CLOSE OTHERS) ---
+        // --- DOCUMENT SERVICES SUB-SECTIONS ACCORDION ---
         function toggleDocSubSection(sectionId, btn) {
             const sec = document.getElementById(sectionId);
             if (!sec) return;
 
             const isAlreadyOpen = sec.classList.contains('open');
-
             const allDocBoxes = document.querySelectorAll('#docServicesPanel .sub-box');
             allDocBoxes.forEach(box => box.classList.remove('open'));
 
@@ -1212,13 +1266,12 @@
             }
         }
 
-        // --- PRODUCTS & ACCESSORIES SUB-SECTIONS ACCORDION (AUTO-CLOSE OTHERS) ---
+        // --- PRODUCTS & ACCESSORIES SUB-SECTIONS ACCORDION ---
         function toggleAccSubSection(sectionId, btn) {
             const sec = document.getElementById(sectionId);
             if (!sec) return;
 
             const isAlreadyOpen = sec.classList.contains('open');
-
             const allAccBoxes = document.querySelectorAll('#accessoriesPanel .sub-box');
             allAccBoxes.forEach(box => box.classList.remove('open'));
 
