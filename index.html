@@ -146,12 +146,12 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
 
-    <!-- 1. CONTINUOUS RUNNING ANNOUNCEMENT BANNER -->
+    <!-- 1. CONTINUOUS RUNNING ANNOUNCEMENT BANNER WITH AUTOMATIC SHOP STATUS -->
     <div class="bg-gradient-to-r from-red-600 via-orange-600 to-amber-600 text-white text-xs sm:text-sm py-1.5 px-3 overflow-hidden shadow-sm relative z-50">
         <div class="max-w-7xl mx-auto flex items-center">
-            <div class="flex items-center space-x-1.5 bg-black/20 px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider shrink-0 z-10 mr-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                <span>NOTICE</span>
+            <div id="shopStatusBadge" class="flex items-center space-x-1.5 bg-black/30 px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider shrink-0 z-10 mr-2 border border-white/20">
+                <span id="shopStatusDot" class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                <span id="shopStatusText">OPEN</span>
             </div>
             <div class="overflow-hidden w-full relative">
                 <div class="marquee-track font-medium text-xs sm:text-sm">
@@ -201,7 +201,7 @@
                         </div>
 
                         <!-- Mobile Menu Button -->
-                        <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none shrink-0 cursor-pointer">
+                        <button type="button" onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none shrink-0 cursor-pointer">
                             <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
                         </button>
                     </div>
@@ -264,11 +264,6 @@
                     <!-- Left Hero Content -->
                     <div class="lg:col-span-6 space-y-4 sm:space-y-5 text-center lg:text-left">
                         
-                        <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-extrabold uppercase tracking-wider shadow-sm">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span>Open Today</span>
-                        </div>
-
                         <h1 class="text-xl sm:text-3xl lg:text-5xl font-black tracking-tight leading-tight text-slate-900">
                             Your Trusted One-Stop <br class="hidden sm:inline">
                             Service & Retail Hub
@@ -295,10 +290,10 @@
                         </div>
                     </div>
 
-                    <!-- Right Hero Image Slider (Fixed with object-contain so full image displays completely without cutting) -->
+                    <!-- Right Hero Image Slider (Fixed 16:9 Aspect Ratio Frame & object-contain) -->
                     <div class="lg:col-span-6 relative">
                         <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-2 sm:border-4 border-white bg-slate-900 group">
-                            <div id="heroSlider" class="relative h-[250px] sm:h-[380px] lg:h-[450px] w-full overflow-hidden cursor-pointer bg-slate-950" onclick="zoomHeroImage()">
+                            <div id="heroSlider" class="relative aspect-video w-full overflow-hidden cursor-pointer bg-slate-950" onclick="zoomHeroImage()">
                                 <img src="https://lh3.googleusercontent.com/d/1R8NnJOotmKFIyfPJR41FH6DHu3KIMzF5" alt="Slide 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-100" id="slide0">
                                 <img src="https://lh3.googleusercontent.com/d/1gx9JjRTMsCPJlLmaQ88W3vK2bGP-CSM8" alt="Slide 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="slide1">
                                 <img src="https://lh3.googleusercontent.com/d/1zV7CJlvFIvwWE8PW0K1PC0nDB9W9o5xz" alt="Slide 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="slide2">
@@ -309,8 +304,7 @@
 
                             <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 text-white p-1.5 pointer-events-none flex justify-between items-end">
                                 <div>
-                                    <span class="bg-brand-600 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full mb-0.5 inline-block">Chami Multi Shop</span>
-                                    <p class="text-xs sm:text-sm font-semibold">Modern Printing & Digital Services Center</p>
+                                    <p class="text-xs sm:text-sm font-semibold">Chami Multi Shop</p>
                                 </div>
                                 <span class="text-[10px] bg-black/60 px-2 py-1 rounded-lg backdrop-blur text-amber-300"><i class="fa-solid fa-arrows-left-right"></i> Swipe / Click to Zoom</span>
                             </div>
@@ -462,10 +456,10 @@
                 <div id="docServicesPanel" class="category-detail-panel">
                     <div class="flex justify-between items-center text-lg sm:text-xl font-bold text-indigo-600 border-b border-slate-200 pb-3 mb-4">
                         <span>📄 Document Services Price List</span>
-                        <span class="cursor-pointer text-slate-400 hover:text-slate-600 text-2xl" onclick="closeAllPanels()">&times;</span>
+                        <button type="button" class="cursor-pointer text-slate-400 hover:text-slate-600 text-2xl font-bold bg-transparent border-none" onclick="closeAllPanels()">&times;</button>
                     </div>
                     
-                    <button onclick="toggleDocSubSection('photoCopyBox', this);" class="serviceBtn">Photo Copy</button>
+                    <button type="button" onclick="toggleDocSubSection('photoCopyBox', this);" class="serviceBtn">Photo Copy</button>
                     <div id="photoCopyBox" class="sub-box">
                         <b>A4 Paper Photo Copy</b>
                         <ul>
@@ -481,7 +475,7 @@
                         </ul>
                     </div>
 
-                    <button onclick="toggleDocSubSection('printOutBox', this)" class="serviceBtn">Print Out</button>
+                    <button type="button" onclick="toggleDocSubSection('printOutBox', this)" class="serviceBtn">Print Out</button>
                     <div id="printOutBox" class="sub-box">
                         <b>A4 B/W Print Out</b>
                         <ul>
@@ -500,7 +494,7 @@
                         </ul>
                     </div>
 
-                    <button onclick="toggleDocSubSection('typeSettingsBox', this)" class="serviceBtn">Type Settings</button>
+                    <button type="button" onclick="toggleDocSubSection('typeSettingsBox', this)" class="serviceBtn">Type Settings</button>
                     <div id="typeSettingsBox" class="sub-box">
                         <b>English typing</b>
                         <ul>
@@ -512,7 +506,7 @@
                         </ul>
                     </div>
 
-                    <button onclick="toggleDocSubSection('documentsTranslateBox', this)" class="serviceBtn">Documents Translate</button>
+                    <button type="button" onclick="toggleDocSubSection('documentsTranslateBox', this)" class="serviceBtn">Documents Translate</button>
                     <div id="documentsTranslateBox" class="sub-box">
                         <b>English language to Sinhala language</b>
                         <ul>
@@ -520,7 +514,7 @@
                         </ul>
                     </div>
 
-                    <button onclick="toggleDocSubSection('scanningBox', this)" class="serviceBtn">Scanning</button>
+                    <button type="button" onclick="toggleDocSubSection('scanningBox', this)" class="serviceBtn">Scanning</button>
                     <div id="scanningBox" class="sub-box">
                         <b>Scanning Charges</b>
                         <ul>
@@ -529,7 +523,7 @@
                         </ul>
                     </div>
 
-                    <button onclick="toggleDocSubSection('laminatingBindingBox', this)" class="serviceBtn">Laminating & Binding</button>
+                    <button type="button" onclick="toggleDocSubSection('laminatingBindingBox', this)" class="serviceBtn">Laminating & Binding</button>
                     <div id="laminatingBindingBox" class="sub-box">
                         <b>Laminating</b>
                         <ul>
@@ -546,11 +540,11 @@
                 <div id="accessoriesPanel" class="category-detail-panel">
                     <div class="flex justify-between items-center text-lg sm:text-xl font-bold text-rose-600 border-b border-slate-200 pb-3 mb-4">
                         <span>🔌 Products & Accessories Price List</span>
-                        <span class="cursor-pointer text-slate-400 hover:text-slate-600 text-2xl" onclick="closeAllPanels()">&times;</span>
+                        <button type="button" class="cursor-pointer text-slate-400 hover:text-slate-600 text-2xl font-bold bg-transparent border-none" onclick="closeAllPanels()">&times;</button>
                     </div>
                     
                     <!-- Mobile Accessories -->
-                    <button onclick="toggleAccSubSection('mobileAccBox', this);" class="serviceBtn">Mobile Accessories</button>
+                    <button type="button" onclick="toggleAccSubSection('mobileAccBox', this);" class="serviceBtn">Mobile Accessories</button>
                     <div id="mobileAccBox" class="sub-box">
                         <ul>
                             <li>Phone Chargers - From Rs.450/=</li>
@@ -561,7 +555,7 @@
                     </div>
 
                     <!-- Dialog TV Accessories -->
-                    <button onclick="toggleAccSubSection('dialogTvAccBox', this);" class="serviceBtn">Dialog TV Products & Accessories</button>
+                    <button type="button" onclick="toggleAccSubSection('dialogTvAccBox', this);" class="serviceBtn">Dialog TV Products & Accessories</button>
                     <div id="dialogTvAccBox" class="sub-box">
                         <ul>
                             <li>Dialog TV Connection (Full Set) - Rs.9,990/=</li>
@@ -573,7 +567,7 @@
                     </div>
 
                     <!-- Electrical Accessories -->
-                    <button onclick="toggleAccSubSection('electricalAccBox', this);" class="serviceBtn">ELECTRICAL ACCESSORIES</button>
+                    <button type="button" onclick="toggleAccSubSection('electricalAccBox', this);" class="serviceBtn">ELECTRICAL ACCESSORIES</button>
                     <div id="electricalAccBox" class="sub-box">
                         <b>Home Power & Electrical Supplies</b>
                         <ul>
@@ -586,7 +580,7 @@
                     </div>
 
                     <!-- Available Products -->
-                    <button onclick="toggleAccSubSection('availableProductBox', this);" class="serviceBtn">AVAILABLE PRODUCT</button>
+                    <button type="button" onclick="toggleAccSubSection('availableProductBox', this);" class="serviceBtn">AVAILABLE PRODUCT</button>
                     <div id="availableProductBox" class="sub-box">
                         <b>In-Store Products & Stationery Supplies</b>
                         <ul>
@@ -602,19 +596,17 @@
             </div>
         </section>
 
-        <!-- 5. PRODUCTS & ACCESSORIES SLIDER SECTION (WITH CLICK TO ZOOM & SWIPE) -->
+        <!-- 5. PRODUCTS & ACCESSORIES SLIDER SECTION -->
         <section id="products-showcase" class="py-6 sm:py-8 bg-slate-900 text-white border-y border-slate-800">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3 sm:mb-4 gap-1 sm:gap-2">
                     <div>
-                        <span class="text-rose-400 font-bold text-[10px] sm:text-[11px] uppercase tracking-widest block">In-Store Gallery</span>
                         <h2 class="text-lg sm:text-2xl font-extrabold text-white">Products & Accessories Showcase</h2>
-                        <p class="text-slate-400 text-[11px] sm:text-xs mt-0.5">Swipe or click any image to zoom and view clearly • High quality tech accessories & items.</p>
                     </div>
                 </div>
 
-                <!-- Product Showcase Multi-Image Slider Container (Click to Zoom & Swipe Enabled) -->
+                <!-- Product Showcase Multi-Image Slider Container -->
                 <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-950 border border-white/10 shadow-2xl group cursor-pointer" onclick="zoomCurrentProductImage()">
                     <div id="productSlider" class="relative h-[250px] sm:h-[450px] lg:h-[550px] w-full bg-slate-950">
                         <img src="https://lh3.googleusercontent.com/d/1XZeeTkq7s9WWqMFrZomBZRPdjXeK8pod" alt="Product Showcase 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-100" id="prodSlide0">
@@ -637,164 +629,208 @@
                 <div class="text-center max-w-3xl mx-auto mb-8">
                     <span class="text-brand-600 font-bold text-xs uppercase tracking-widest block mb-1">Catalog & Inventory</span>
                     <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Explore All In-Store Products</h2>
-                    <p class="text-slate-600 text-xs sm:text-sm mt-1">Select a category below to browse items, specifications, and prices.</p>
+                    <p class="text-slate-600 text-xs sm:text-sm mt-1">Select a category below or tap on any item image to view it clearly.</p>
                 </div>
 
-                <!-- Category Filter Buttons (Default 'All' active on load) -->
+                <!-- Category Filter Buttons -->
                 <div class="flex flex-wrap justify-center gap-2 mb-8">
-                    <button onclick="filterProductCategory('all')" id="catBtn-all" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-brand-600 text-white shadow-sm transition-all cursor-pointer">All Products</button>
-                    <button onclick="filterProductCategory('books')" id="catBtn-books" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Books & Stationery</button>
-                    <button onclick="filterProductCategory('photocopy')" id="catBtn-photocopy" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Photo Copy & Print</button>
-                    <button onclick="filterProductCategory('mobile')" id="catBtn-mobile" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Mobile & Accessories</button>
-                    <button onclick="filterProductCategory('dialog')" id="catBtn-dialog" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Dialog TV & Accessories</button>
-                    <button onclick="filterProductCategory('electrical')" id="catBtn-electrical" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Electrical Items</button>
-                    <button onclick="filterProductCategory('decorations')" id="catBtn-decorations" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Decorations & Gifts</button>
-                    <button onclick="filterProductCategory('declaration')" id="catBtn-declaration" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Official Forms & Govt Services</button>
+                    <button type="button" onclick="filterProductCategory('all')" id="catBtn-all" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-brand-600 text-white shadow-sm transition-all cursor-pointer">All Products</button>
+                    <button type="button" onclick="filterProductCategory('books')" id="catBtn-books" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Books & Stationery</button>
+                    <button type="button" onclick="filterProductCategory('photocopy')" id="catBtn-photocopy" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Photo Copy & Print</button>
+                    <button type="button" onclick="filterProductCategory('mobile')" id="catBtn-mobile" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Mobile & Accessories</button>
+                    <button type="button" onclick="filterProductCategory('dialog')" id="catBtn-dialog" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Dialog TV & Accessories</button>
+                    <button type="button" onclick="filterProductCategory('electrical')" id="catBtn-electrical" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Electrical Items</button>
+                    <button type="button" onclick="filterProductCategory('decorations')" id="catBtn-decorations" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Decorations & Gifts</button>
+                    <button type="button" onclick="filterProductCategory('declaration')" id="catBtn-declaration" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer">Official Forms & Govt Services</button>
                 </div>
 
                 <!-- Product Grid List -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" id="productInventoryGrid">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6" id="productInventoryGrid">
                     
                     <!-- Item 1 -->
-                    <div class="product-item bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="books">
+                    <div class="product-item bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl p-3 sm:p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="books">
                         <div>
-                            <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-indigo-100 text-indigo-700 mb-2 inline-block">Books & Stationery</span>
-                            <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1">School Exercise Books (CR / Normal)</h4>
-                            <p class="text-xs text-slate-500 mb-3">High quality pages, durable binding suitable for school & office use.</p>
+                            <div onclick="openItemZoomModal('https://lh3.googleusercontent.com/d/1XZeeTkq7s9WWqMFrZomBZRPdjXeK8pod', 'School Exercise Books (CR / Normal)')" class="relative aspect-video rounded-lg sm:rounded-xl overflow-hidden mb-2.5 bg-slate-200 cursor-pointer group">
+                                <img src="https://lh3.googleusercontent.com/d/1XZeeTkq7s9WWqMFrZomBZRPdjXeK8pod" alt="Books" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] sm:text-xs font-bold gap-1"><i class="fa-solid fa-magnifying-glass-plus"></i> View</div>
+                            </div>
+                            <span class="text-[9px] sm:text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-indigo-100 text-indigo-700 mb-1.5 inline-block">Books</span>
+                            <h4 class="font-bold text-slate-900 text-xs sm:text-base mb-1 line-clamp-1">School Exercise Books</h4>
+                            <p class="text-[11px] sm:text-xs text-slate-500 mb-3 line-clamp-2">High quality pages, durable binding suitable for school & office use.</p>
                         </div>
-                        <div class="flex items-center justify-between pt-3 border-t border-slate-200">
-                            <span class="font-black text-brand-600 text-sm sm:text-base">From Rs. 20/=</span>
-                            <a href="https://wa.me/94701193383?text=I%20want%20to%20order%20School%20Exercise%20Books" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">Order</a>
+                        <div class="flex items-center justify-between pt-2.5 border-t border-slate-200">
+                            <span class="font-black text-brand-600 text-xs sm:text-base">From Rs. 20/=</span>
+                            <a href="https://wa.me/94701193383?text=I%20want%20to%20order%20School%20Exercise%20Books" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1.5 rounded-lg transition-colors">Order</a>
                         </div>
                     </div>
 
                     <!-- Item 2 -->
-                    <div class="product-item bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="books">
+                    <div class="product-item bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl p-3 sm:p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="books">
                         <div>
-                            <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-indigo-100 text-indigo-700 mb-2 inline-block">Books & Stationery</span>
-                            <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1">Pens, Pencils & Erasers Set</h4>
-                            <p class="text-xs text-slate-500 mb-3">Popular brands including Atlas, Faber-Castell, and domestic essentials.</p>
+                            <div onclick="openItemZoomModal('https://lh3.googleusercontent.com/d/1BBz-8_gm_tO65CwnqitopOqZ2b3kPXmW', 'Pens, Pencils & Erasers Set')" class="relative aspect-video rounded-lg sm:rounded-xl overflow-hidden mb-2.5 bg-slate-200 cursor-pointer group">
+                                <img src="https://lh3.googleusercontent.com/d/1BBz-8_gm_tO65CwnqitopOqZ2b3kPXmW" alt="Stationery" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] sm:text-xs font-bold gap-1"><i class="fa-solid fa-magnifying-glass-plus"></i> View</div>
+                            </div>
+                            <span class="text-[9px] sm:text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-indigo-100 text-indigo-700 mb-1.5 inline-block">Stationery</span>
+                            <h4 class="font-bold text-slate-900 text-xs sm:text-base mb-1 line-clamp-1">Pens, Pencils & Erasers</h4>
+                            <p class="text-[11px] sm:text-xs text-slate-500 mb-3 line-clamp-2">Popular brands including Atlas, Faber-Castell, and domestic essentials.</p>
                         </div>
-                        <div class="flex items-center justify-between pt-3 border-t border-slate-200">
-                            <span class="font-black text-brand-600 text-sm sm:text-base">From Rs. 30/=</span>
-                            <a href="https://wa.me/94701193383?text=I%20want%20to%20order%20Pens%20and%20Pencils" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">Order</a>
+                        <div class="flex items-center justify-between pt-2.5 border-t border-slate-200">
+                            <span class="font-black text-brand-600 text-xs sm:text-base">From Rs. 30/=</span>
+                            <a href="https://wa.me/94701193383?text=I%20want%20to%20order%20Pens%20and%20Pencils" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1.5 rounded-lg transition-colors">Order</a>
                         </div>
                     </div>
 
                     <!-- Item 3 -->
-                    <div class="product-item bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="photocopy">
+                    <div class="product-item bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl p-3 sm:p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="photocopy">
                         <div>
-                            <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-purple-100 text-purple-700 mb-2 inline-block">Photo Copy</span>
-                            <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1">Photo Copy & Print (B/W & Color)</h4>
-                            <p class="text-xs text-slate-500 mb-3">High speed clear photocopying for single and double sides with discounts.</p>
+                            <div onclick="openItemZoomModal('https://lh3.googleusercontent.com/d/1alrx6lV9nj2t0UaHsBiCZIigXbkLvx1f', 'Photo Copy & Print (B/W & Color)')" class="relative aspect-video rounded-lg sm:rounded-xl overflow-hidden mb-2.5 bg-slate-200 cursor-pointer group">
+                                <img src="https://lh3.googleusercontent.com/d/1alrx6lV9nj2t0UaHsBiCZIigXbkLvx1f" alt="Photo Copy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] sm:text-xs font-bold gap-1"><i class="fa-solid fa-magnifying-glass-plus"></i> View</div>
+                            </div>
+                            <span class="text-[9px] sm:text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-purple-100 text-purple-700 mb-1.5 inline-block">Photo Copy</span>
+                            <h4 class="font-bold text-slate-900 text-xs sm:text-base mb-1 line-clamp-1">Photo Copy & Print</h4>
+                            <p class="text-[11px] sm:text-xs text-slate-500 mb-3 line-clamp-2">High speed clear photocopying for single and double sides with discounts.</p>
                         </div>
-                        <div class="flex items-center justify-between pt-3 border-t border-slate-200">
-                            <span class="font-black text-brand-600 text-sm sm:text-base">From Rs. 10/=</span>
-                            <a href="https://wa.me/94701193383?text=I%20want%20Photo%20Copy%20service" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">Order</a>
+                        <div class="flex items-center justify-between pt-2.5 border-t border-slate-200">
+                            <span class="font-black text-brand-600 text-xs sm:text-base">From Rs. 10/=</span>
+                            <a href="https://wa.me/94701193383?text=I%20want%20Photo%20Copy%20service" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1.5 rounded-lg transition-colors">Order</a>
                         </div>
                     </div>
 
                     <!-- Item 4 -->
-                    <div class="product-item bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="mobile">
+                    <div class="product-item bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl p-3 sm:p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="mobile">
                         <div>
-                            <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-rose-100 text-rose-700 mb-2 inline-block">Mobile Accessories</span>
-                            <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1">Fast Phone Chargers (Type-C / Micro / Lightning)</h4>
-                            <p class="text-xs text-slate-500 mb-3">High speed charging adapters with warranty support.</p>
+                            <div onclick="openItemZoomModal('https://lh3.googleusercontent.com/d/1zV7CJlvFIvwWE8PW0K1PC0nDB9W9o5xz', 'Fast Phone Chargers')" class="relative aspect-video rounded-lg sm:rounded-xl overflow-hidden mb-2.5 bg-slate-200 cursor-pointer group">
+                                <img src="https://lh3.googleusercontent.com/d/1zV7CJlvFIvwWE8PW0K1PC0nDB9W9o5xz" alt="Chargers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] sm:text-xs font-bold gap-1"><i class="fa-solid fa-magnifying-glass-plus"></i> View</div>
+                            </div>
+                            <span class="text-[9px] sm:text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-rose-100 text-rose-700 mb-1.5 inline-block">Mobile</span>
+                            <h4 class="font-bold text-slate-900 text-xs sm:text-base mb-1 line-clamp-1">Fast Phone Chargers</h4>
+                            <p class="text-[11px] sm:text-xs text-slate-500 mb-3 line-clamp-2">High speed charging adapters with warranty support.</p>
                         </div>
-                        <div class="flex items-center justify-between pt-3 border-t border-slate-200">
-                            <span class="font-black text-brand-600 text-sm sm:text-base">From Rs. 450/=</span>
-                            <a href="https://wa.me/94701193383?text=I%20want%20to%20order%20Phone%20Chargers" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">Order</a>
+                        <div class="flex items-center justify-between pt-2.5 border-t border-slate-200">
+                            <span class="font-black text-brand-600 text-xs sm:text-base">From Rs. 450/=</span>
+                            <a href="https://wa.me/94701193383?text=I%20want%20to%20order%20Phone%20Chargers" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1.5 rounded-lg transition-colors">Order</a>
                         </div>
                     </div>
 
                     <!-- Item 5 -->
-                    <div class="product-item bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="mobile">
+                    <div class="product-item bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl p-3 sm:p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="mobile">
                         <div>
-                            <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-rose-100 text-rose-700 mb-2 inline-block">Mobile Accessories</span>
-                            <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1">Handsfree & Bluetooth Earphones</h4>
-                            <p class="text-xs text-slate-500 mb-3">Crystal clear sound quality with deep bass and ergonomic fit.</p>
+                            <div onclick="openItemZoomModal('https://lh3.googleusercontent.com/d/1LFTj66e4-hgcLjhwD4HL4UL5AZozRk9g', 'Handsfree & Bluetooth Earphones')" class="relative aspect-video rounded-lg sm:rounded-xl overflow-hidden mb-2.5 bg-slate-200 cursor-pointer group">
+                                <img src="https://lh3.googleusercontent.com/d/1LFTj66e4-hgcLjhwD4HL4UL5AZozRk9g" alt="Handsfree" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] sm:text-xs font-bold gap-1"><i class="fa-solid fa-magnifying-glass-plus"></i> View</div>
+                            </div>
+                            <span class="text-[9px] sm:text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-rose-100 text-rose-700 mb-1.5 inline-block">Mobile</span>
+                            <h4 class="font-bold text-slate-900 text-xs sm:text-base mb-1 line-clamp-1">Handsfree & Earphones</h4>
+                            <p class="text-[11px] sm:text-xs text-slate-500 mb-3 line-clamp-2">Crystal clear sound quality with deep bass and ergonomic fit.</p>
                         </div>
-                        <div class="flex items-center justify-between pt-3 border-t border-slate-200">
-                            <span class="font-black text-brand-600 text-sm sm:text-base">From Rs. 350/=</span>
-                            <a href="https://wa.me/94701193383?text=I%20want%20to%20order%20Handsfree" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">Order</a>
+                        <div class="flex items-center justify-between pt-2.5 border-t border-slate-200">
+                            <span class="font-black text-brand-600 text-xs sm:text-base">From Rs. 350/=</span>
+                            <a href="https://wa.me/94701193383?text=I%20want%20to%20order%20Handsfree" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1.5 rounded-lg transition-colors">Order</a>
                         </div>
                     </div>
 
                     <!-- Item 6 -->
-                    <div class="product-item bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="dialog">
+                    <div class="product-item bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl p-3 sm:p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="dialog">
                         <div>
-                            <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-amber-100 text-amber-800 mb-2 inline-block">Dialog TV & Remotes</span>
-                            <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1">Dialog TV Full Connection Set</h4>
-                            <p class="text-xs text-slate-500 mb-3">Complete setup with dish, decoder, and instant activation assistance.</p>
+                            <div onclick="openItemZoomModal('https://lh3.googleusercontent.com/d/14XVIZH-VbyF7wflWtsY8bDtU6llIN-uI', 'Dialog TV Full Connection Set')" class="relative aspect-video rounded-lg sm:rounded-xl overflow-hidden mb-2.5 bg-slate-200 cursor-pointer group">
+                                <img src="https://lh3.googleusercontent.com/d/14XVIZH-VbyF7wflWtsY8bDtU6llIN-uI" alt="Dialog TV" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] sm:text-xs font-bold gap-1"><i class="fa-solid fa-magnifying-glass-plus"></i> View</div>
+                            </div>
+                            <span class="text-[9px] sm:text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-amber-100 text-amber-800 mb-1.5 inline-block">Dialog TV</span>
+                            <h4 class="font-bold text-slate-900 text-xs sm:text-base mb-1 line-clamp-1">Dialog TV Connection Set</h4>
+                            <p class="text-[11px] sm:text-xs text-slate-500 mb-3 line-clamp-2">Complete setup with dish, decoder, and instant activation assistance.</p>
                         </div>
-                        <div class="flex items-center justify-between pt-3 border-t border-slate-200">
-                            <span class="font-black text-brand-600 text-sm sm:text-base">Rs. 9,990/=</span>
-                            <a href="https://wa.me/94701193383?text=I%20want%20Dialog%20TV%20Connection" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">Order</a>
+                        <div class="flex items-center justify-between pt-2.5 border-t border-slate-200">
+                            <span class="font-black text-brand-600 text-xs sm:text-base">Rs. 9,990/=</span>
+                            <a href="https://wa.me/94701193383?text=I%20want%20Dialog%20TV%20Connection" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1.5 rounded-lg transition-colors">Order</a>
                         </div>
                     </div>
 
                     <!-- Item 7 -->
-                    <div class="product-item bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="dialog">
+                    <div class="product-item bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl p-3 sm:p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="dialog">
                         <div>
-                            <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-amber-100 text-amber-800 mb-2 inline-block">Dialog TV & Remotes</span>
-                            <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1">Dialog TV & Ordinary TV Remotes</h4>
-                            <p class="text-xs text-slate-500 mb-3">Original replacement remotes for all TV brands and Dialog decoders.</p>
+                            <div onclick="openItemZoomModal('https://lh3.googleusercontent.com/d/1R8NnJOotmKFIyfPJR41FH6DHu3KIMzF5', 'Dialog TV & Ordinary TV Remotes')" class="relative aspect-video rounded-lg sm:rounded-xl overflow-hidden mb-2.5 bg-slate-200 cursor-pointer group">
+                                <img src="https://lh3.googleusercontent.com/d/1R8NnJOotmKFIyfPJR41FH6DHu3KIMzF5" alt="Remotes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] sm:text-xs font-bold gap-1"><i class="fa-solid fa-magnifying-glass-plus"></i> View</div>
+                            </div>
+                            <span class="text-[9px] sm:text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-amber-100 text-amber-800 mb-1.5 inline-block">Dialog TV</span>
+                            <h4 class="font-bold text-slate-900 text-xs sm:text-base mb-1 line-clamp-1">TV Remotes (Dialog/Normal)</h4>
+                            <p class="text-[11px] sm:text-xs text-slate-500 mb-3 line-clamp-2">Original replacement remotes for all TV brands and Dialog decoders.</p>
                         </div>
-                        <div class="flex items-center justify-between pt-3 border-t border-slate-200">
-                            <span class="font-black text-brand-600 text-sm sm:text-base">From Rs. 550/=</span>
-                            <a href="https://wa.me/94701193383?text=I%20want%20to%20buy%20TV%20Remote" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">Order</a>
+                        <div class="flex items-center justify-between pt-2.5 border-t border-slate-200">
+                            <span class="font-black text-brand-600 text-xs sm:text-base">From Rs. 550/=</span>
+                            <a href="https://wa.me/94701193383?text=I%20want%20to%20buy%20TV%20Remote" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1.5 rounded-lg transition-colors">Order</a>
                         </div>
                     </div>
 
                     <!-- Item 8 -->
-                    <div class="product-item bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="electrical">
+                    <div class="product-item bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl p-3 sm:p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="electrical">
                         <div>
-                            <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 mb-2 inline-block">Electrical Items</span>
-                            <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1">LED Bulbs & Energy Savers</h4>
-                            <p class="text-xs text-slate-500 mb-3">Long lasting bright illumination with replacement warranty.</p>
+                            <div onclick="openItemZoomModal('https://lh3.googleusercontent.com/d/1gx9JjRTMsCPJlLmaQ88W3vK2bGP-CSM8', 'LED Bulbs & Energy Savers')" class="relative aspect-video rounded-lg sm:rounded-xl overflow-hidden mb-2.5 bg-slate-200 cursor-pointer group">
+                                <img src="https://lh3.googleusercontent.com/d/1gx9JjRTMsCPJlLmaQ88W3vK2bGP-CSM8" alt="LED Bulbs" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] sm:text-xs font-bold gap-1"><i class="fa-solid fa-magnifying-glass-plus"></i> View</div>
+                            </div>
+                            <span class="text-[9px] sm:text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 mb-1.5 inline-block">Electrical</span>
+                            <h4 class="font-bold text-slate-900 text-xs sm:text-base mb-1 line-clamp-1">LED Bulbs & Energy Savers</h4>
+                            <p class="text-[11px] sm:text-xs text-slate-500 mb-3 line-clamp-2">Long lasting bright illumination with replacement warranty.</p>
                         </div>
-                        <div class="flex items-center justify-between pt-3 border-t border-slate-200">
-                            <span class="font-black text-brand-600 text-sm sm:text-base">From Rs. 250/=</span>
-                            <a href="https://wa.me/94701193383?text=I%20want%20to%20order%20LED%20Bulbs" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">Order</a>
+                        <div class="flex items-center justify-between pt-2.5 border-t border-slate-200">
+                            <span class="font-black text-brand-600 text-xs sm:text-base">From Rs. 250/=</span>
+                            <a href="https://wa.me/94701193383?text=I%20want%20to%20order%20LED%20Bulbs" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1.5 rounded-lg transition-colors">Order</a>
                         </div>
                     </div>
 
                     <!-- Item 9 -->
-                    <div class="product-item bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="electrical">
+                    <div class="product-item bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl p-3 sm:p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="electrical">
                         <div>
-                            <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 mb-2 inline-block">Electrical Items</span>
-                            <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1">Extension Cords & Multi Plugs</h4>
-                            <p class="text-xs text-slate-500 mb-3">Heavy-duty power strips with individual switches and safety fuse.</p>
+                            <div onclick="openItemZoomModal('https://lh3.googleusercontent.com/d/1Y7pe5IK5MTEj-gch3OibYiyNESV2UIOE', 'Extension Cords & Multi Plugs')" class="relative aspect-video rounded-lg sm:rounded-xl overflow-hidden mb-2.5 bg-slate-200 cursor-pointer group">
+                                <img src="https://lh3.googleusercontent.com/d/1Y7pe5IK5MTEj-gch3OibYiyNESV2UIOE" alt="Cords" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] sm:text-xs font-bold gap-1"><i class="fa-solid fa-magnifying-glass-plus"></i> View</div>
+                            </div>
+                            <span class="text-[9px] sm:text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 mb-1.5 inline-block">Electrical</span>
+                            <h4 class="font-bold text-slate-900 text-xs sm:text-base mb-1 line-clamp-1">Extension Cords & Plugs</h4>
+                            <p class="text-[11px] sm:text-xs text-slate-500 mb-3 line-clamp-2">Heavy-duty power strips with individual switches and safety fuse.</p>
                         </div>
-                        <div class="flex items-center justify-between pt-3 border-t border-slate-200">
-                            <span class="font-black text-brand-600 text-sm sm:text-base">From Rs. 500/=</span>
-                            <a href="https://wa.me/94701193383?text=I%20want%20to%20order%20Extension%20Cords" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">Order</a>
+                        <div class="flex items-center justify-between pt-2.5 border-t border-slate-200">
+                            <span class="font-black text-brand-600 text-xs sm:text-base">From Rs. 500/=</span>
+                            <a href="https://wa.me/94701193383?text=I%20want%20to%20order%20Extension%20Cords" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1.5 rounded-lg transition-colors">Order</a>
                         </div>
                     </div>
 
                     <!-- Item 10 -->
-                    <div class="product-item bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="decorations">
+                    <div class="product-item bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl p-3 sm:p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="decorations">
                         <div>
-                            <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-pink-100 text-pink-700 mb-2 inline-block">Decorations & Gifts</span>
-                            <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1">Gift Items, Toys & Party Decorations</h4>
-                            <p class="text-xs text-slate-500 mb-3">Beautiful decorations, children's toys, and special gift items for occasions.</p>
+                            <div onclick="openItemZoomModal('https://lh3.googleusercontent.com/d/1XZeeTkq7s9WWqMFrZomBZRPdjXeK8pod', 'Gift Items, Toys & Party Decorations')" class="relative aspect-video rounded-lg sm:rounded-xl overflow-hidden mb-2.5 bg-slate-200 cursor-pointer group">
+                                <img src="https://lh3.googleusercontent.com/d/1XZeeTkq7s9WWqMFrZomBZRPdjXeK8pod" alt="Gifts" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] sm:text-xs font-bold gap-1"><i class="fa-solid fa-magnifying-glass-plus"></i> View</div>
+                            </div>
+                            <span class="text-[9px] sm:text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-pink-100 text-pink-700 mb-1.5 inline-block">Decorations</span>
+                            <h4 class="font-bold text-slate-900 text-xs sm:text-base mb-1 line-clamp-1">Gift Items & Toys</h4>
+                            <p class="text-[11px] sm:text-xs text-slate-500 mb-3 line-clamp-2">Beautiful decorations, children's toys, and special gift items for occasions.</p>
                         </div>
-                        <div class="flex items-center justify-between pt-3 border-t border-slate-200">
-                            <span class="font-black text-brand-600 text-sm sm:text-base">From Rs. 150/=</span>
-                            <a href="https://wa.me/94701193383?text=I%20want%20to%20order%20Decorations%20and%20Gifts" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">Order</a>
+                        <div class="flex items-center justify-between pt-2.5 border-t border-slate-200">
+                            <span class="font-black text-brand-600 text-xs sm:text-base">From Rs. 150/=</span>
+                            <a href="https://wa.me/94701193383?text=I%20want%20to%20order%20Decorations%20and%20Gifts" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1.5 rounded-lg transition-colors">Order</a>
                         </div>
                     </div>
 
                     <!-- Item 11 -->
-                    <div class="product-item bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="declaration">
+                    <div class="product-item bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl p-3 sm:p-4 flex flex-col justify-between shadow-sm hover:shadow-md transition-all" data-category="declaration">
                         <div>
-                            <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-sky-100 text-sky-800 mb-2 inline-block">Official Forms & Govt Services</span>
-                            <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1">Online Declarations & Government Applications</h4>
-                            <p class="text-xs text-slate-500 mb-3">Professional assistance for online form fillings, exam applications & formal declarations.</p>
+                            <div onclick="openItemZoomModal('https://lh3.googleusercontent.com/d/1alrx6lV9nj2t0UaHsBiCZIigXbkLvx1f', 'Online Declarations & Government Applications')" class="relative aspect-video rounded-lg sm:rounded-xl overflow-hidden mb-2.5 bg-slate-200 cursor-pointer group">
+                                <img src="https://lh3.googleusercontent.com/d/1alrx6lV9nj2t0UaHsBiCZIigXbkLvx1f" alt="Services" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] sm:text-xs font-bold gap-1"><i class="fa-solid fa-magnifying-glass-plus"></i> View</div>
+                            </div>
+                            <span class="text-[9px] sm:text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-sky-100 text-sky-800 mb-1.5 inline-block">Govt Services</span>
+                            <h4 class="font-bold text-slate-900 text-xs sm:text-base mb-1 line-clamp-1">Govt Applications</h4>
+                            <p class="text-[11px] sm:text-xs text-slate-500 mb-3 line-clamp-2">Professional assistance for online form fillings, exam applications & declarations.</p>
                         </div>
-                        <div class="flex items-center justify-between pt-3 border-t border-slate-200">
-                            <span class="font-black text-brand-600 text-sm sm:text-base">Standard Rates</span>
-                            <a href="https://wa.me/94701193383?text=I%20need%20help%20with%20Government%20Declarations%20and%20Forms" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">Inquire</a>
+                        <div class="flex items-center justify-between pt-2.5 border-t border-slate-200">
+                            <span class="font-black text-brand-600 text-xs sm:text-base">Standard Rates</span>
+                            <a href="https://wa.me/94701193383?text=I%20need%20help%20with%20Government%20Declarations%20and%20Forms" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1.5 rounded-lg transition-colors">Inquire</a>
                         </div>
                     </div>
 
@@ -813,22 +849,22 @@
                 </div>
 
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto mb-6 sm:mb-8">
-                    <button onclick="openSheetModal('Dialog', 'https://lh3.googleusercontent.com/d/1iO_mC2F4hVbbNra_h7hguP8gFrM78eNl')" class="bg-white hover:bg-red-50 border-2 border-red-100 hover:border-red-500 p-4 sm:p-5 rounded-2xl shadow-sm hover:shadow-md transition-all text-center group flex flex-col items-center justify-center cursor-pointer">
+                    <button type="button" onclick="openSheetModal('Dialog', 'https://lh3.googleusercontent.com/d/1iO_mC2F4hVbbNra_h7hguP8gFrM78eNl')" class="bg-white hover:bg-red-50 border-2 border-red-100 hover:border-red-500 p-4 sm:p-5 rounded-2xl shadow-sm hover:shadow-md transition-all text-center group flex flex-col items-center justify-center cursor-pointer">
                         <img src="https://lh3.googleusercontent.com/d/1bAEy99QFJM3bAjuMLJK6Z-PnPQ3iJN8b" alt="Dialog" class="h-8 sm:h-10 w-auto object-contain mb-1.5 group-hover:scale-110 transition-transform">
                         <span class="font-bold text-slate-800 group-hover:text-red-600 text-xs sm:text-base">Dialog</span>
                     </button>
 
-                    <button onclick="openSheetModal('Mobitel', 'https://lh3.googleusercontent.com/d/18f2GRydT4jfkXy4yyE3IODskBt9cK7wS')" class="bg-white hover:bg-blue-50 border-2 border-blue-100 hover:border-blue-500 p-4 sm:p-5 rounded-2xl shadow-sm hover:shadow-md transition-all text-center group flex flex-col items-center justify-center cursor-pointer">
+                    <button type="button" onclick="openSheetModal('Mobitel', 'https://lh3.googleusercontent.com/d/18f2GRydT4jfkXy4yyE3IODskBt9cK7wS')" class="bg-white hover:bg-blue-50 border-2 border-blue-100 hover:border-blue-500 p-4 sm:p-5 rounded-2xl shadow-sm hover:shadow-md transition-all text-center group flex flex-col items-center justify-center cursor-pointer">
                         <img src="https://lh3.googleusercontent.com/d/1IeDlOE3Ti_l-pBYxz4DB3jeirDFuxPjn" alt="Mobitel" class="h-8 sm:h-10 w-auto object-contain mb-1.5 group-hover:scale-110 transition-transform">
                         <span class="font-bold text-slate-800 group-hover:text-blue-600 text-xs sm:text-base">Mobitel</span>
                     </button>
 
-                    <button onclick="openSheetModal('Hutch', 'https://lh3.googleusercontent.com/d/13Q5lRtnIGycM9hQsQkbj7701ZO4ipDns')" class="bg-white hover:bg-orange-50 border-2 border-orange-100 hover:border-orange-500 p-4 sm:p-5 rounded-2xl shadow-sm hover:shadow-md transition-all text-center group flex flex-col items-center justify-center cursor-pointer">
+                    <button type="button" onclick="openSheetModal('Hutch', 'https://lh3.googleusercontent.com/d/13Q5lRtnIGycM9hQsQkbj7701ZO4ipDns')" class="bg-white hover:bg-orange-50 border-2 border-orange-100 hover:border-orange-500 p-4 sm:p-5 rounded-2xl shadow-sm hover:shadow-md transition-all text-center group flex flex-col items-center justify-center cursor-pointer">
                         <img src="https://lh3.googleusercontent.com/d/1txqxjB9NSqmUmatH9l1vUX4CU30wJMNe" alt="Hutch" class="h-8 sm:h-10 w-auto object-contain mb-1.5 group-hover:scale-110 transition-transform">
                         <span class="font-bold text-slate-800 group-hover:text-orange-600 text-xs sm:text-base">Hutch</span>
                     </button>
 
-                    <button onclick="openSheetModal('Airtel', 'https://lh3.googleusercontent.com/d/1ofAbOu8eVnmHYK5P2TpkeVrvFweeenPC')" class="bg-white hover:bg-rose-50 border-2 border-rose-100 hover:border-rose-500 p-4 sm:p-5 rounded-2xl shadow-sm hover:shadow-md transition-all text-center group flex flex-col items-center justify-center cursor-pointer">
+                    <button type="button" onclick="openSheetModal('Airtel', 'https://lh3.googleusercontent.com/d/1ofAbOu8eVnmHYK5P2TpkeVrvFweeenPC')" class="bg-white hover:bg-rose-50 border-2 border-rose-100 hover:border-rose-500 p-4 sm:p-5 rounded-2xl shadow-sm hover:shadow-md transition-all text-center group flex flex-col items-center justify-center cursor-pointer">
                         <img src="https://lh3.googleusercontent.com/d/1UElQSeZ0I23C6W0AzGXwQBcGWNteJa69" alt="Airtel" class="h-8 sm:h-10 w-auto object-contain mb-1.5 group-hover:scale-110 transition-transform">
                         <span class="font-bold text-slate-800 group-hover:text-rose-600 text-xs sm:text-base">Airtel</span>
                     </button>
@@ -913,7 +949,7 @@
                                 <p><strong>Account Holder:</strong> Chami Multi Shop</p>
                                 <p class="flex items-center gap-2">
                                     <strong>Account No:</strong> <span id="comAcc" class="font-mono text-amber-300 font-bold text-xs sm:text-sm">8027678059</span>
-                                    <button onclick="copyAccNumber('comAcc', this)" class="bg-brand-600 hover:bg-brand-700 text-white text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded cursor-pointer">Copy</button>
+                                    <button type="button" onclick="copyAccNumber('comAcc', this)" class="bg-brand-600 hover:bg-brand-700 text-white text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded cursor-pointer">Copy</button>
                                 </p>
                             </div>
                         </div>
@@ -931,7 +967,7 @@
                                 <p><strong>Account Holder:</strong> M.K.A.D.C.R. Arsakularathna</p>
                                 <p class="flex items-center gap-2">
                                     <strong>Account No:</strong> <span id="peoAcc" class="font-mono text-amber-300 font-bold text-xs sm:text-sm">282200120031516</span>
-                                    <button onclick="copyAccNumber('peoAcc', this)" class="bg-brand-600 hover:bg-brand-700 text-white text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded cursor-pointer">Copy</button>
+                                    <button type="button" onclick="copyAccNumber('peoAcc', this)" class="bg-brand-600 hover:bg-brand-700 text-white text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded cursor-pointer">Copy</button>
                                 </p>
                             </div>
                         </div>
@@ -1047,7 +1083,7 @@
     <div id="sheetViewerModal" class="fixed inset-0 z-50 bg-slate-900/90 backdrop-blur-md hidden flex-col justify-between p-2 sm:p-6">
         <div class="bg-slate-900 text-white px-4 py-3 rounded-2xl flex items-center justify-between border border-slate-800 shadow-xl max-w-4xl mx-auto w-full">
             <span class="text-xs sm:text-sm font-bold text-amber-400" id="sheetModalTitle">Package Details</span>
-            <button onclick="closeSheetModal()" class="bg-red-600 hover:bg-red-700 text-white font-bold px-3.5 py-1.5 rounded-xl text-xs flex items-center gap-1.5 cursor-pointer shadow">
+            <button type="button" onclick="closeSheetModal()" class="bg-red-600 hover:bg-red-700 text-white font-bold px-3.5 py-1.5 rounded-xl text-xs flex items-center gap-1.5 cursor-pointer shadow">
                 <i class="fa-solid fa-xmark"></i>
                 <span>Close</span>
             </button>
@@ -1057,19 +1093,49 @@
         </div>
     </div>
 
-    <!-- IMAGE ZOOM MODAL FOR SHOWCASE & HERO -->
+    <!-- IMAGE ZOOM MODAL FOR SHOWCASE & HERO & CATALOG ITEMS -->
     <div id="imageZoomModal" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-lg hidden flex-col justify-center items-center p-2 sm:p-6">
-        <button onclick="closeZoomModal()" class="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white font-bold w-10 h-10 rounded-full flex items-center justify-center text-lg z-50 cursor-pointer">
+        <button type="button" onclick="closeZoomModal()" class="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white font-bold w-10 h-10 rounded-full flex items-center justify-center text-lg z-50 cursor-pointer">
             <i class="fa-solid fa-xmark"></i>
         </button>
-        <div class="relative max-w-5xl max-h-[85vh] w-full h-full flex items-center justify-center">
-            <img id="zoomedImg" src="" alt="Zoomed Showcase Image" class="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl border border-white/10">
+        <div class="relative max-w-5xl max-h-[85vh] w-full h-full flex flex-col items-center justify-center">
+            <img id="zoomedImg" src="" alt="Zoomed Showcase Image" class="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl border border-white/10">
+            <h3 id="zoomItemTitle" class="text-white text-sm sm:text-base font-bold mt-3 text-center"></h3>
         </div>
-        <p class="text-slate-400 text-xs mt-3">Chami Multi Shop (CMS) - Zoom View</p>
+        <p class="text-slate-400 text-xs mt-2">Chami Multi Shop (CMS) - Zoom View</p>
     </div>
 
-    <!-- JAVASCRIPT LOGIC (Swipe, Touch, Auto-play, Zoom & Direct Filtering) -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
+        // --- 01. Automatic Shop Open / Close Status based on Time (6:00 AM - 10:30 PM) ---
+        function updateShopStatus() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const currentTimeInMinutes = hours * 60 + minutes;
+
+            const openTime = 6 * 60; // 360
+            const closeTime = 22 * 60 + 30; // 1350
+
+            const badge = document.getElementById('shopStatusBadge');
+            const dot = document.getElementById('shopStatusDot');
+            const text = document.getElementById('shopStatusText');
+
+            if (!badge || !dot || !text) return;
+
+            if (currentTimeInMinutes >= openTime && currentTimeInMinutes <= closeTime) {
+                text.innerText = "OPEN";
+                badge.className = "flex items-center space-x-1.5 bg-emerald-600/80 px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider shrink-0 z-10 mr-2 border border-emerald-400/40 shadow-sm";
+                dot.className = "w-1.5 h-1.5 rounded-full bg-emerald-300 animate-ping";
+            } else {
+                text.innerText = "CLOSE";
+                badge.className = "flex items-center space-x-1.5 bg-rose-600/80 px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider shrink-0 z-10 mr-2 border border-rose-400/40 shadow-sm";
+                dot.className = "w-1.5 h-1.5 rounded-full bg-rose-300";
+            }
+        }
+        updateShopStatus();
+        setInterval(updateShopStatus, 60000);
+
         // Hero Slider Images & Swipe Logic
         const slideImages = [
             "https://lh3.googleusercontent.com/d/1R8NnJOotmKFIyfPJR41FH6DHu3KIMzF5",
@@ -1100,15 +1166,14 @@
             showHeroSlide(currentSlide + 1);
         }
 
-        function prevHeroSlide() {
-            showHeroSlide(currentSlide - 1);
-        }
-
         function zoomHeroImage() {
             const currentImgUrl = slideImages[currentSlide];
             const modal = document.getElementById('imageZoomModal');
             const zoomedImg = document.getElementById('zoomedImg');
+            const zoomTitle = document.getElementById('zoomItemTitle');
+            if(!modal || !zoomedImg) return;
             zoomedImg.src = currentImgUrl;
+            zoomTitle.innerText = "Chami Multi Shop - Hero Slide Showcase";
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             document.body.style.overflow = 'hidden';
@@ -1151,7 +1216,22 @@
             const currentImgUrl = productSlideImages[currentProdSlide];
             const modal = document.getElementById('imageZoomModal');
             const zoomedImg = document.getElementById('zoomedImg');
+            const zoomTitle = document.getElementById('zoomItemTitle');
+            if(!modal || !zoomedImg) return;
             zoomedImg.src = currentImgUrl;
+            zoomTitle.innerText = "Products & Accessories Showcase";
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openItemZoomModal(imgUrl, itemTitle) {
+            const modal = document.getElementById('imageZoomModal');
+            const zoomedImg = document.getElementById('zoomedImg');
+            const zoomTitle = document.getElementById('zoomItemTitle');
+            if(!modal || !zoomedImg) return;
+            zoomedImg.src = imgUrl;
+            zoomTitle.innerText = itemTitle;
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             document.body.style.overflow = 'hidden';
@@ -1159,12 +1239,12 @@
 
         function closeZoomModal() {
             const modal = document.getElementById('imageZoomModal');
+            if(!modal) return;
             modal.classList.remove('flex');
             modal.classList.add('hidden');
             document.body.style.overflow = 'auto';
         }
 
-        // --- Touch / Swipe Gesture Support for Sliders ---
         function addTouchSupport(elementId, onSwipeLeft, onSwipeRight) {
             const el = document.getElementById(elementId);
             if (!el) return;
@@ -1185,7 +1265,6 @@
         addTouchSupport('heroSlider', () => { showHeroSlide(currentSlide + 1); }, () => { showHeroSlide(currentSlide - 1); });
         addTouchSupport('productSlider', () => { showProdSlide(currentProdSlide + 1); }, () => { showProdSlide(currentProdSlide - 1); });
 
-        // Search Bar Functionality
         function handleSearch(e) {
             e.preventDefault();
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
@@ -1207,7 +1286,6 @@
             });
         }
 
-        // Product Category Filtering Logic
         function filterProductCategory(category) {
             const buttons = document.querySelectorAll('.cat-btn');
             buttons.forEach(btn => {
@@ -1230,10 +1308,12 @@
                 }
             });
 
-            document.getElementById('productInventoryGrid').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            const grid = document.getElementById('productInventoryGrid');
+            if(grid) {
+                grid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
         }
 
-        // --- MAIN PANEL TOGGLE FUNCTIONALITY ---
         function openPanel(panelId) {
             const targetPanel = document.getElementById(panelId);
             if (!targetPanel) return;
@@ -1252,7 +1332,6 @@
             panels.forEach(p => p.classList.remove('active'));
         }
 
-        // --- DOCUMENT SERVICES SUB-SECTIONS ACCORDION ---
         function toggleDocSubSection(sectionId, btn) {
             const sec = document.getElementById(sectionId);
             if (!sec) return;
@@ -1266,7 +1345,6 @@
             }
         }
 
-        // --- PRODUCTS & ACCESSORIES SUB-SECTIONS ACCORDION ---
         function toggleAccSubSection(sectionId, btn) {
             const sec = document.getElementById(sectionId);
             if (!sec) return;
@@ -1280,34 +1358,42 @@
             }
         }
 
-        // Mobile Menu Toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
+            if(menu) {
+                menu.classList.toggle('hidden');
+            }
         }
 
-        // Package Image Viewer Modal
         function openSheetModal(title, imageUrl) {
-            document.getElementById('sheetModalTitle').innerText = title + " Voice & Data Packages";
-            document.getElementById('modalPackageImg').src = imageUrl;
-            
+            const modalTitle = document.getElementById('sheetModalTitle');
+            const modalImg = document.getElementById('modalPackageImg');
             const modal = document.getElementById('sheetViewerModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden';
+            
+            if(modalTitle) modalTitle.innerText = title + " Voice & Data Packages";
+            if(modalImg) modalImg.src = imageUrl;
+            
+            if(modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
         }
 
         function closeSheetModal() {
             const modal = document.getElementById('sheetViewerModal');
+            const modalImg = document.getElementById('modalPackageImg');
+            if(!modal) return;
             modal.classList.remove('flex');
             modal.classList.add('hidden');
-            document.getElementById('modalPackageImg').src = '';
+            if(modalImg) modalImg.src = '';
             document.body.style.overflow = 'auto';
         }
 
-        // Copy Account Number Logic
         function copyAccNumber(id, btn) {
-            const accNum = document.getElementById(id).innerText;
+            const accElem = document.getElementById(id);
+            if(!accElem) return;
+            const accNum = accElem.innerText;
             navigator.clipboard.writeText(accNum).then(() => {
                 const originalText = btn.innerText;
                 btn.innerText = 'Copied!';
@@ -1315,12 +1401,17 @@
             });
         }
 
-        // WhatsApp Form Submit Logic
         function sendToWhatsApp(e) {
             e.preventDefault();
-            const name = document.getElementById('name').value;
-            const mobile = document.getElementById('mobile').value;
-            const message = document.getElementById('message').value;
+            const nameEl = document.getElementById('name');
+            const mobileEl = document.getElementById('mobile');
+            const messageEl = document.getElementById('message');
+
+            if(!nameEl || !mobileEl || !messageEl) return;
+
+            const name = nameEl.value;
+            const mobile = mobileEl.value;
+            const message = messageEl.value;
 
             const text = `*New Contact Message*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Mobile:* ${encodeURIComponent(mobile)}%0A*Message:* ${encodeURIComponent(message)}`;
             window.open(`https://wa.me/94770545464?text=${text}`, '_blank');
