@@ -229,11 +229,13 @@
 
         /* CMS Glass Shopping Bag 3D Retail Background */
         .cms-retail-hero {
+            position: relative;
+            background-color: #F8FAFC;
             background-image:
-                linear-gradient(90deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.82) 38%, rgba(255,255,255,0.28) 72%, rgba(255,255,255,0.12) 100%),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.78) 40%, rgba(255, 255, 255, 0.20) 75%, rgba(255, 255, 255, 0.05) 100%),
                 url("./assets/cms-glass-shopping-background.png");
             background-size: cover;
-            background-position: center center;
+            background-position: right center;
             background-repeat: no-repeat;
             isolation: isolate;
         }
@@ -243,24 +245,33 @@
             inset: 0;
             z-index: -1;
             pointer-events: none;
-            background: linear-gradient(180deg, rgba(239,247,255,0.10), rgba(219,237,255,0.18));
+            background: radial-gradient(circle at 82% 50%, rgba(56, 189, 248, 0.15), transparent 55%),
+                        linear-gradient(180deg, rgba(240, 246, 255, 0.35) 0%, rgba(248, 250, 252, 0.75) 100%);
         }
         .cms-retail-hero .cms-hero-glass-card {
-            background: rgba(255,255,255,0.68);
-            border: 1px solid rgba(255,255,255,0.88);
-            box-shadow: 0 22px 55px rgba(20,75,150,0.18);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.90);
+            box-shadow: 0 20px 45px -10px rgba(14, 41, 84, 0.22);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
-        @media (max-width: 640px) {
+        @media (max-width: 1023px) {
             .cms-retail-hero {
-                background-position: 62% center;
+                background-position: 78% center;
                 background-image:
-                    linear-gradient(180deg, rgba(255,255,255,0.90) 0%, rgba(255,255,255,0.82) 55%, rgba(235,245,255,0.42) 100%),
+                    linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(240, 246, 255, 0.75) 50%, rgba(248, 250, 252, 0.92) 100%),
                     url("./assets/cms-glass-shopping-background.png");
             }
         }
-
+        @media (max-width: 640px) {
+            .cms-retail-hero {
+                background-position: 80% top;
+                background-size: cover;
+                background-image:
+                    linear-gradient(180deg, rgba(255, 255, 255, 0.86) 0%, rgba(240, 246, 255, 0.72) 45%, rgba(248, 250, 252, 0.92) 100%),
+                    url("./assets/cms-glass-shopping-background.png");
+            }
+        }
     </style>
 </head>
 <body class="bg-[#F8FAFC] text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-cms-navy selection:text-white">
@@ -406,6 +417,11 @@
                         <option value="Decorations">Decorations & Gifts</option>
                         <option value="Declaration">Declaration / Official Forms</option>
                         <option value="Student Practice Items">Student Practice Items</option>
+                        <option value="General Merchandise">General Merchandise</option>
+                        <option value="Slippers">Slippers (DSI Beach)</option>
+                        <option value="Umbrella">Umbrella (Rain & Sun)</option>
+                        <option value="Delivery Service">Delivery Service</option>
+                        <option value="Leo Ex PUDO Service">Leo Ex PUDO Service</option>
                     </datalist>
                 </div>
 
@@ -975,17 +991,52 @@
                     <p class="text-slate-600 text-xs sm:text-base mt-2">Filter by category or tap on any item image to preview specifications and order via WhatsApp.</p>
                 </div>
 
-                <!-- Modern Category Filter Tabs (Scrollable on small devices) -->
-                <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-8 no-scrollbar sm:flex-wrap sm:justify-center">
-                    <button type="button" onclick="filterProductCategory('all')" id="catBtn-all" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-cms-navy text-white shadow-sm transition-all cursor-pointer whitespace-nowrap">All Products</button>
-                    <button type="button" onclick="filterProductCategory('books')" id="catBtn-books" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer whitespace-nowrap">Books & Stationery</button>
-                    <button type="button" onclick="filterProductCategory('photocopy')" id="catBtn-photocopy" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer whitespace-nowrap">Photo Copy & Print</button>
-                    <button type="button" onclick="filterProductCategory('mobile')" id="catBtn-mobile" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer whitespace-nowrap">Mobile & Accessories</button>
-                    <button type="button" onclick="filterProductCategory('dialog')" id="catBtn-dialog" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer whitespace-nowrap">Dialog TV & Accessories</button>
-                    <button type="button" onclick="filterProductCategory('electrical')" id="catBtn-electrical" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer whitespace-nowrap">Electrical Items</button>
-                    <button type="button" onclick="filterProductCategory('decorations')" id="catBtn-decorations" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer whitespace-nowrap">Decorations & Gifts</button>
-                    <button type="button" onclick="filterProductCategory('declaration')" id="catBtn-declaration" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer whitespace-nowrap">Official Forms & Govt Services</button>
-                    <button type="button" onclick="filterProductCategory('student-practice')" id="catBtn-student-practice" class="cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer whitespace-nowrap">Student Practice Items</button>
+                <!-- Modern Category Filter Tabs (Visible all at once on Mobile & Desktop) -->
+                <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-6 sm:mb-8 max-w-5xl mx-auto">
+                    <button type="button" onclick="filterProductCategory('all')" id="catBtn-all" class="cat-btn px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs md:text-sm font-extrabold bg-cms-navy text-white shadow-sm transition-all cursor-pointer flex items-center gap-1.5">
+                        <i class="fa-solid fa-border-all text-[10px] sm:text-xs"></i>
+                        <span>All Products</span>
+                    </button>
+                    <button type="button" onclick="filterProductCategory('books')" id="catBtn-books" class="cat-btn px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs md:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer flex items-center gap-1.5">
+                        <i class="fa-solid fa-book-open text-[10px] sm:text-xs text-indigo-600"></i>
+                        <span>Books & Stationery</span>
+                    </button>
+                    <button type="button" onclick="filterProductCategory('photocopy')" id="catBtn-photocopy" class="cat-btn px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs md:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer flex items-center gap-1.5">
+                        <i class="fa-solid fa-print text-[10px] sm:text-xs text-purple-600"></i>
+                        <span>Photo Copy & Print</span>
+                    </button>
+                    <button type="button" onclick="filterProductCategory('mobile')" id="catBtn-mobile" class="cat-btn px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs md:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer flex items-center gap-1.5">
+                        <i class="fa-solid fa-mobile-screen-button text-[10px] sm:text-xs text-rose-600"></i>
+                        <span>Mobile & Accessories</span>
+                    </button>
+                    <button type="button" onclick="filterProductCategory('dialog')" id="catBtn-dialog" class="cat-btn px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs md:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer flex items-center gap-1.5">
+                        <i class="fa-solid fa-tv text-[10px] sm:text-xs text-amber-600"></i>
+                        <span>Dialog TV & Accessories</span>
+                    </button>
+                    <button type="button" onclick="filterProductCategory('electrical')" id="catBtn-electrical" class="cat-btn px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs md:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer flex items-center gap-1.5">
+                        <i class="fa-solid fa-bolt text-[10px] sm:text-xs text-emerald-600"></i>
+                        <span>Electrical Items</span>
+                    </button>
+                    <button type="button" onclick="filterProductCategory('decorations')" id="catBtn-decorations" class="cat-btn px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs md:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer flex items-center gap-1.5">
+                        <i class="fa-solid fa-gifts text-[10px] sm:text-xs text-pink-600"></i>
+                        <span>Decorations & Gifts</span>
+                    </button>
+                    <button type="button" onclick="filterProductCategory('declaration')" id="catBtn-declaration" class="cat-btn px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs md:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer flex items-center gap-1.5">
+                        <i class="fa-solid fa-file-signature text-[10px] sm:text-xs text-sky-600"></i>
+                        <span>Official Forms & Govt</span>
+                    </button>
+                    <button type="button" onclick="filterProductCategory('student-practice')" id="catBtn-student-practice" class="cat-btn px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs md:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer flex items-center gap-1.5">
+                        <i class="fa-solid fa-graduation-cap text-[10px] sm:text-xs text-teal-600"></i>
+                        <span>Student Practice</span>
+                    </button>
+                    <button type="button" onclick="filterProductCategory('merchandise')" id="catBtn-merchandise" class="cat-btn px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs md:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer flex items-center gap-1.5">
+                        <i class="fa-solid fa-bag-shopping text-[10px] sm:text-xs text-orange-600"></i>
+                        <span>General Merchandise</span>
+                    </button>
+                    <button type="button" onclick="filterProductCategory('delivery')" id="catBtn-delivery" class="cat-btn px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs md:text-sm font-extrabold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer flex items-center gap-1.5">
+                        <i class="fa-solid fa-truck-fast text-[10px] sm:text-xs text-blue-600"></i>
+                        <span>Delivery Service</span>
+                    </button>
                 </div>
 
                 <!-- Product Grid List (Preserving All Original Items & IDs) -->
@@ -1620,6 +1671,56 @@
                         <div class="flex items-center justify-between pt-2.5 border-t border-slate-200">
                             <span class="font-black text-cms-navy text-xs sm:text-base">From Rs. 150/=</span>
                             <a href="https://wa.me/94701193383?text=I%20want%20Flash%20Cards" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] sm:text-xs font-bold px-3 py-1.5 rounded-lg transition-colors shadow-sm" rel="noopener noreferrer">Order</a>
+                        </div>
+                    </div>
+
+                    <!-- General Merchandise Category (2 Items: Slippers, Umbrella) -->
+                    <div class="product-item silver-metallic-card rounded-xl sm:rounded-2xl p-3 sm:p-4 flex flex-col justify-between shadow-sm hover:shadow-card-hover transition-all" data-category="merchandise">
+                        <div>
+                            <div onclick="openItemZoomModal('./assets/dsi-beach-slippers.jpg', 'DSI Beach Slippers')" class="relative aspect-video rounded-lg sm:rounded-xl overflow-hidden mb-2.5 bg-slate-200 cursor-pointer group">
+                                <img src="./assets/dsi-beach-slippers.jpg" alt="DSI Beach Slippers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-cms-deep/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] sm:text-xs font-bold gap-1"><i class="fa-solid fa-magnifying-glass-plus"></i> View</div>
+                            </div>
+                            <span class="text-[9px] sm:text-[10px] font-black uppercase px-2 py-0.5 rounded bg-orange-100 text-orange-700 mb-1.5 inline-block">General Merchandise</span>
+                            <h4 class="font-black text-slate-900 text-xs sm:text-base mb-1 line-clamp-1">DSI Beach Slippers</h4>
+                            <p class="text-[11px] sm:text-xs text-slate-500 mb-3 line-clamp-2">Genuine DSI Beach slippers, high durability, water-resistant & comfortable for daily wear. Available in multiple sizes & colors.</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-2.5 border-t border-slate-200">
+                            <span class="font-black text-cms-navy text-xs sm:text-base">From Rs. 249/=</span>
+                            <a href="https://wa.me/94701193383?text=I%20want%20to%20order%20DSI%20Beach%20Slippers" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] sm:text-xs font-bold px-3 py-1.5 rounded-lg transition-colors shadow-sm" rel="noopener noreferrer">Order</a>
+                        </div>
+                    </div>
+
+                    <div class="product-item silver-metallic-card rounded-xl sm:rounded-2xl p-3 sm:p-4 flex flex-col justify-between shadow-sm hover:shadow-card-hover transition-all" data-category="merchandise">
+                        <div>
+                            <div onclick="openItemZoomModal('./assets/umbrella.jpg', 'Rain & Sun Folding Umbrella')" class="relative aspect-video rounded-lg sm:rounded-xl overflow-hidden mb-2.5 bg-slate-200 cursor-pointer group">
+                                <img src="./assets/umbrella.jpg" alt="Rain & Sun Folding Umbrella" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-cms-deep/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] sm:text-xs font-bold gap-1"><i class="fa-solid fa-magnifying-glass-plus"></i> View</div>
+                            </div>
+                            <span class="text-[9px] sm:text-[10px] font-black uppercase px-2 py-0.5 rounded bg-orange-100 text-orange-700 mb-1.5 inline-block">General Merchandise</span>
+                            <h4 class="font-black text-slate-900 text-xs sm:text-base mb-1 line-clamp-1">Rain & Sun Folding Umbrella</h4>
+                            <p class="text-[11px] sm:text-xs text-slate-500 mb-3 line-clamp-2">High quality UV-protective folding umbrella, waterproof windproof ribs with ergonomic grip & compact carry pouch.</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-2.5 border-t border-slate-200">
+                            <span class="font-black text-cms-navy text-xs sm:text-base">From Rs. 850/=</span>
+                            <a href="https://wa.me/94701193383?text=I%20want%20to%20order%20Rain%20and%20Sun%20Folding%20Umbrella" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] sm:text-xs font-bold px-3 py-1.5 rounded-lg transition-colors shadow-sm" rel="noopener noreferrer">Order</a>
+                        </div>
+                    </div>
+
+                    <!-- Delivery Service Category (1 Item: Leo Ex PUDO Service) -->
+                    <div class="product-item silver-metallic-card rounded-xl sm:rounded-2xl p-3 sm:p-4 flex flex-col justify-between shadow-sm hover:shadow-card-hover transition-all" data-category="delivery">
+                        <div>
+                            <div onclick="openItemZoomModal('./assets/leo-ex-pudo.jpg', 'Leo Ex PUDO Service - Pick Up & Drop Off')" class="relative aspect-video rounded-lg sm:rounded-xl overflow-hidden mb-2.5 bg-slate-200 cursor-pointer group">
+                                <img src="./assets/leo-ex-pudo.jpg" alt="Leo Ex PUDO Service" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-cms-deep/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] sm:text-xs font-bold gap-1"><i class="fa-solid fa-magnifying-glass-plus"></i> View</div>
+                            </div>
+                            <span class="text-[9px] sm:text-[10px] font-black uppercase px-2 py-0.5 rounded bg-blue-100 text-blue-700 mb-1.5 inline-block">Delivery Service</span>
+                            <h4 class="font-black text-slate-900 text-xs sm:text-base mb-1 line-clamp-1">Leo Ex PUDO Service</h4>
+                            <p class="text-[11px] sm:text-xs text-slate-500 mb-3 line-clamp-2">Official Pick-Up & Drop-Off (PUDO) parcel counter at CMS Maggona. Send, collect & track your courier packages quickly and safely.</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-2.5 border-t border-slate-200">
+                            <span class="font-black text-cms-navy text-xs sm:text-base">Islandwide Rates</span>
+                            <a href="https://wa.me/94701193383?text=I%20want%20to%20inquire%20about%20Leo%20Ex%20PUDO%20Delivery%20Service" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white text-[10px] sm:text-xs font-bold px-3 py-1.5 rounded-lg transition-colors shadow-sm" rel="noopener noreferrer">Inquire</a>
                         </div>
                     </div>
 
