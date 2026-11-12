@@ -227,6 +227,17 @@
             scrollbar-width: none;
         }
 
+        /* Light-blue crystal glass treatment for the Store Hours card */
+        .store-hours-glass {
+            background:
+                radial-gradient(circle at 88% 8%, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0) 34%),
+                linear-gradient(135deg, rgba(239,248,255,0.96) 0%, rgba(219,239,255,0.88) 48%, rgba(245,250,255,0.96) 100%);
+            border: 1px solid rgba(255,255,255,0.95);
+            box-shadow: 0 16px 38px rgba(37,99,235,0.12), inset 0 1px 0 rgba(255,255,255,0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
         /* CMS Glass Shopping Bag 3D Retail Background */
         .cms-retail-hero {
             position: relative;
@@ -463,7 +474,7 @@
     <main class="flex-grow">
         
         <!-- 3. MODERN HERO SECTION WITH CORPORATE BLUE TECH GRADIENT & WAVE BACKGROUND (IMAGE 1 INSPIRED, ZERO TEXT) -->
-        <section class="cms-retail-hero relative overflow-hidden py-8 sm:py-14 border-b border-blue-100">
+        <section class="cms-retail-hero relative overflow-hidden py-6 sm:py-10 border-b border-blue-100">
             
             <!-- Soft Radial Blue Ambient Light Halo -->
             <div class="hidden"></div>
@@ -578,24 +589,17 @@
                         <div class="cms-hero-glass-card relative rounded-2xl sm:rounded-3xl overflow-hidden border-4 border-white/90 group">
                             
                             <div id="heroSlider" class="relative aspect-video w-full overflow-hidden cursor-pointer bg-slate-950" onclick="zoomHeroImage()" title="Click to Zoom">
-                                <img src="https://lh3.googleusercontent.com/d/1R8NnJOotmKFIyfPJR41FH6DHu3KIMzF5" alt="Slide 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-100" id="slide0">
-                                <img src="https://lh3.googleusercontent.com/d/1gx9JjRTMsCPJlLmaQ88W3vK2bGP-CSM8" alt="Slide 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="slide1">
-                                <img src="https://lh3.googleusercontent.com/d/1zV7CJlvFIvwWE8PW0K1PC0nDB9W9o5xz" alt="Slide 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="slide2">
-                                <img src="https://lh3.googleusercontent.com/d/1oyThnNg3f6RDHo4ZyLUQjzjVwO3m-YAC" alt="Slide 4" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="slide3">
+                                <img src="https://lh3.googleusercontent.com/d/1RCkIqPzs19oQSWy92LazQvwzmz_96VG2" alt="Slide 1" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-100" id="slide0">
+                                <img src="https://lh3.googleusercontent.com/d/1R8NnJOotmKFIyfPJR41FH6DHu3KIMzF5" alt="Slide 2" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="slide1">
+                                <img src="https://lh3.googleusercontent.com/d/1gx9JjRTMsCPJlLmaQ88W3vK2bGP-CSM8" alt="Slide 3" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="slide2">
+                                <img src="https://lh3.googleusercontent.com/d/1zV7CJlvFIvwWE8PW0K1PC0nDB9W9o5xz" alt="Slide 4" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="slide3">
+                                <!-- DEFAULT PLACEHOLDER IMAGES: Replace these two URLs with your own image links later. -->
+                                <img src="https://lh3.googleusercontent.com/d/1HVzch9iwogXzxo-rV_MsLCasDJDGNKnf" alt="Slide 5 - Replace with your image" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="slide4">
+                                <img src="https://lh3.googleusercontent.com/d/13FcOUCzjS6WmvYVzCYyGq65g7mWspp-9" alt="Slide 6 - Replace with your image" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0" id="slide5">
                             </div>
 
                             <!-- Gradient Vignette -->
                             <div class="absolute inset-0 bg-gradient-to-t from-cms-midnight/80 via-transparent to-transparent pointer-events-none"></div>
-
-                            <!-- Interactive Navigation Buttons for Slide -->
-                            <div class="absolute inset-y-0 left-2 right-2 flex items-center justify-between pointer-events-none">
-                                <button type="button" onclick="event.stopPropagation(); showHeroSlide(currentSlide - 1);" class="pointer-events-auto w-8 h-8 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center text-xs backdrop-blur-sm transition-colors cursor-pointer border border-white/20">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </button>
-                                <button type="button" onclick="event.stopPropagation(); showHeroSlide(currentSlide + 1);" class="pointer-events-auto w-8 h-8 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center text-xs backdrop-blur-sm transition-colors cursor-pointer border border-white/20">
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </button>
-                            </div>
 
                             <!-- Centered Slide Indicator Dots (Removed Showcase and Zoom text) -->
                             <div class="absolute bottom-3 inset-x-0 flex items-center justify-center gap-2 pointer-events-auto z-10">
@@ -603,6 +607,8 @@
                                 <span class="w-2 h-2 rounded-full bg-white/40 cursor-pointer transition-all" id="dot1" onclick="showHeroSlide(1)"></span>
                                 <span class="w-2 h-2 rounded-full bg-white/40 cursor-pointer transition-all" id="dot2" onclick="showHeroSlide(2)"></span>
                                 <span class="w-2 h-2 rounded-full bg-white/40 cursor-pointer transition-all" id="dot3" onclick="showHeroSlide(3)"></span>
+                                <span class="w-2 h-2 rounded-full bg-white/40 cursor-pointer transition-all" id="dot4" onclick="showHeroSlide(4)"></span>
+                                <span class="w-2 h-2 rounded-full bg-white/40 cursor-pointer transition-all" id="dot5" onclick="showHeroSlide(5)"></span>
                             </div>
                         </div>
                     </div>
@@ -612,8 +618,8 @@
         </section>
 
         <!-- 4. RETAIL & SERVICE HUB GRID -->
-        <section id="services" class="py-10 sm:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+        <section id="services" class="py-6 sm:py-9 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
                 <h2 class="text-xl sm:text-2xl md:text-3xl font-black text-cms-deep tracking-tight leading-snug">
                     What can we help you<br>with today?
                 </h2>
@@ -729,27 +735,27 @@
                 </div>
 
                 <!-- Card 6: Business Hours & Trust Card -->
-                <div class="service-card bg-gradient-to-br from-cms-midnight via-cms-deep to-cms-navy text-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden flex flex-col justify-between border border-cms-sapphire/50">
+                <div class="service-card store-hours-glass rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden flex flex-col justify-between">
                     <div>
-                        <div class="inline-flex items-center gap-2 bg-emerald-500/20 px-3 py-1 rounded-full text-xs font-bold mb-4 text-emerald-300 border border-emerald-500/30">
+                        <div class="inline-flex items-center gap-2 bg-white/70 px-3 py-1 rounded-full text-xs font-bold mb-4 text-emerald-700 border border-emerald-200 shadow-sm">
                             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Daily Opening Hours
                         </div>
-                        <h3 class="text-xl sm:text-2xl font-black mb-2 text-white tracking-wide">Store Hours</h3>
-                        <p class="text-slate-300 text-xs sm:text-sm mb-6 font-medium">Serving the Maggona community daily with dedication.</p>
+                        <h3 class="text-xl sm:text-2xl font-black mb-2 text-cms-deep tracking-wide">Store Hours</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm mb-6 font-medium">Serving the Maggona community daily with dedication.</p>
                         <div class="space-y-3 text-xs sm:text-sm">
-                            <div class="flex justify-between border-b border-white/10 pb-2.5">
-                                <span class="text-slate-300 font-semibold">Monday - Sunday</span>
-                                <span class="font-bold text-amber-300 text-sm sm:text-base">6:00 AM - 10:30 PM</span>
+                            <div class="flex justify-between border-b border-blue-200/80 pb-2.5">
+                                <span class="text-slate-600 font-semibold">Monday - Sunday</span>
+                                <span class="font-bold text-cms-navy text-sm sm:text-base">6:00 AM - 10:30 PM</span>
                             </div>
                             <div class="flex justify-between pt-1">
-                                <span class="text-slate-300 font-semibold">Poya Days</span>
-                                <span class="font-bold text-emerald-300 text-sm sm:text-base">Open Normal Hours</span>
+                                <span class="text-slate-600 font-semibold">Poya Days</span>
+                                <span class="font-bold text-emerald-700 text-sm sm:text-base">Open Normal Hours</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="pt-6 mt-6 border-t border-white/10 flex items-center justify-between">
-                        <span class="text-[11px] sm:text-xs text-slate-300 font-medium">Need help after hours?</span>
+                    <div class="pt-6 mt-6 border-t border-blue-200/80 flex items-center justify-between">
+                        <span class="text-[11px] sm:text-xs text-slate-600 font-medium">Need help after hours?</span>
                         <a href="https://wa.me/94701193383" target="_blank" class="text-xs font-extrabold bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl transition-colors shadow flex items-center gap-1.5" rel="noopener noreferrer">
                             <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
                         </a>
@@ -956,24 +962,21 @@
         </section>
 
         <!-- 5. PROMOTIONS & ADVERTISEMENTS SHOWCASE (Single Image Banner with 3:4 Aspect Ratio) -->
-        <section id="products-showcase" class="py-8 sm:py-12 bg-gradient-to-b from-cms-midnight to-cms-deep text-white border-y border-cms-sapphire/40">
+        <section id="products-showcase" class="py-6 sm:py-9 bg-white text-slate-800 border-y border-slate-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <!-- Single-Line Header for Mobile Display -->
-                <div class="mb-6 text-center">
-                    <span class="text-cyan-400 font-black text-xs uppercase tracking-widest block mb-1">Featured In-Store Highlights</span>
-                    <h2 class="text-base sm:text-xl md:text-2xl font-black text-white tracking-tight">
+                <div class="mb-4 sm:mb-5 text-center">
+                    <span class="text-cms-sky font-black text-xs uppercase tracking-widest block mb-1">Featured In-Store Highlights</span>
+                    <h2 class="text-base sm:text-xl md:text-2xl font-black text-cms-deep tracking-tight">
                         Promotions & Advertisements Showcase
                     </h2>
                 </div>
 
                 <!-- 3:4 Aspect Ratio Single Banner Poster Container -->
                 <div class="max-w-xs sm:max-w-sm md:max-w-md mx-auto">
-                    <div class="relative w-full aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-950 border-2 border-white/20 shadow-2xl group cursor-pointer flex items-center justify-center" onclick="openItemZoomModal('https://lh3.googleusercontent.com/d/158XyrUUOwCiJL6Juzis-J02dRLl8zNvs', 'Promotions & Advertisements Showcase')">
+                    <div class="relative w-full aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-xl group cursor-zoom-in flex items-center justify-center" onclick="openItemZoomModal('https://lh3.googleusercontent.com/d/158XyrUUOwCiJL6Juzis-J02dRLl8zNvs', 'Promotions & Advertisements Showcase')">
                         <img src="https://lh3.googleusercontent.com/d/158XyrUUOwCiJL6Juzis-J02dRLl8zNvs" alt="Promotions Banner" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105">
-                        <div class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-md text-white text-[10px] sm:text-xs font-bold px-3 py-1.5 rounded-xl border border-white/20 pointer-events-none flex items-center gap-1.5">
-                            <i class="fa-solid fa-magnifying-glass-plus text-cyan-300"></i> Tap to Zoom
-                        </div>
                     </div>
                 </div>
 
@@ -981,7 +984,7 @@
         </section>
 
         <!-- 5.1 ALL PRODUCTS & CATEGORIES DIRECTORY -->
-        <section id="all-products-section" class="py-12 sm:py-16 bg-white border-b border-slate-200">
+        <section id="all-products-section" class="py-8 sm:py-11 bg-white border-b border-slate-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <!-- Section Header -->
@@ -1729,10 +1732,10 @@
         </section>
 
         <!-- 6. VOICE & DATA PACKAGES SECTION -->
-        <section id="packages" class="py-12 sm:py-16 bg-gradient-to-b from-cms-ice to-slate-100 border-b border-slate-200">
+        <section id="packages" class="py-8 sm:py-11 bg-gradient-to-b from-cms-ice to-slate-100 border-b border-slate-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
-                <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+                <div class="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
                     <span class="text-cms-navy font-black text-xs sm:text-sm uppercase tracking-widest block mb-1">Mobile & Data Services</span>
                     <h2 class="text-2xl sm:text-4xl font-black text-cms-deep tracking-tight">Voice & Data Package Directory</h2>
                     <p class="text-slate-600 text-xs sm:text-base mt-2">Click on any network operator below to view live rates, data limits, and package activation codes.</p>
@@ -1772,7 +1775,7 @@
         </section>
 
         <!-- 7. PAYMENT OPTIONS & BANK DETAILS -->
-        <section id="payments-section" class="py-12 sm:py-16 bg-white border-b border-slate-200">
+        <section id="payments-section" class="py-8 sm:py-11 bg-white border-b border-slate-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
                     <span class="text-cms-navy font-black text-xs sm:text-sm uppercase tracking-widest block mb-1">Payment Options & Bank Details</span>
@@ -1895,7 +1898,7 @@
         </section>
 
         <!-- 8. CONTACT US & LOCATION SECTION -->
-        <section id="contact-section" class="py-12 sm:py-16 bg-gradient-to-b from-cms-deep to-cms-midnight text-white relative">
+        <section id="contact-section" class="py-8 sm:py-11 bg-gradient-to-b from-cms-deep to-cms-midnight text-white relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
                     <span class="text-cyan-400 font-black text-xs sm:text-sm uppercase tracking-widest block mb-1">GET IN TOUCH</span>
@@ -2075,10 +2078,12 @@
 
         // --- 02. Hero Slider Images & Swipe Logic ---
         const slideImages = [
+            "https://lh3.googleusercontent.com/d/1RCkIqPzs19oQSWy92LazQvwzmz_96VG2",
             "https://lh3.googleusercontent.com/d/1R8NnJOotmKFIyfPJR41FH6DHu3KIMzF5",
             "https://lh3.googleusercontent.com/d/1gx9JjRTMsCPJlLmaQ88W3vK2bGP-CSM8",
             "https://lh3.googleusercontent.com/d/1zV7CJlvFIvwWE8PW0K1PC0nDB9W9o5xz",
-            "https://lh3.googleusercontent.com/d/1oyThnNg3f6RDHo4ZyLUQjzjVwO3m-YAC"
+            "https://lh3.googleusercontent.com/d/1HVzch9iwogXzxo-rV_MsLCasDJDGNKnf",
+            "https://lh3.googleusercontent.com/d/13FcOUCzjS6WmvYVzCYyGq65g7mWspp-9"
         ];
         let currentSlide = 0;
         let heroInterval = setInterval(nextHeroSlide, 4500);
@@ -2112,7 +2117,8 @@
         }
 
         function zoomHeroImage() {
-            const currentImgUrl = slideImages[currentSlide];
+            const activeSlideImage = document.getElementById('slide' + currentSlide);
+            const currentImgUrl = activeSlideImage ? activeSlideImage.currentSrc || activeSlideImage.src : slideImages[currentSlide];
             const modal = document.getElementById('imageZoomModal');
             const zoomedImg = document.getElementById('zoomedImg');
             const zoomTitle = document.getElementById('zoomItemTitle');
@@ -2162,6 +2168,25 @@
         }
 
         addTouchSupport('heroSlider', () => { showHeroSlide(currentSlide + 1); }, () => { showHeroSlide(currentSlide - 1); });
+
+        // Change hero slides with the mouse wheel while the pointer is over the slider.
+        // A short throttle prevents one wheel gesture from skipping several images.
+        const heroSliderElement = document.getElementById('heroSlider');
+        let lastHeroWheelChange = 0;
+        if (heroSliderElement) {
+            heroSliderElement.addEventListener('wheel', function(event) {
+                event.preventDefault();
+                const now = Date.now();
+                if (now - lastHeroWheelChange < 450) return;
+                lastHeroWheelChange = now;
+                if (event.deltaY > 0) {
+                    showHeroSlide(currentSlide + 1);
+                } else if (event.deltaY < 0) {
+                    showHeroSlide(currentSlide - 1);
+                }
+            }, { passive: false });
+        }
+
 
         // --- 03. Search Functionality (Instant Real-time + Submit + Clear) ---
         function handleSearch(e) {
